@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 
 package org.usfirst.frc2337.RobotProject2016;
 
@@ -32,10 +28,7 @@ public class Robot extends IterativeRobot {
     SendableChooser autonChooser;
 
     public static OI oi;
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
     public static Intake intake;
     public static PowerTakeOff powerTakeOff;
     public static ChassisPID chassisPID;
@@ -47,11 +40,7 @@ public class Robot extends IterativeRobot {
     public static ShooterArmPID shooterArmPID;
     public static ShooterRetract shooterRetract;
     public static Shooter shooter;
-<<<<<<< HEAD
-       
-=======
-    
->>>>>>> origin/master
+
     public static Preferences prefs;
     public static Preferences prefsShooterRetract;
 
@@ -79,6 +68,7 @@ public class Robot extends IterativeRobot {
         // Autonomous
         autonChooser = new SendableChooser();
         autonChooser.addDefault("Do Nothing", new auton_Wait(15));
+        autonChooser.addObject("AutonMain", new auton_Main());
         autonChooser.addObject("Auton_GyroFwd", new Auton_GyroFwd());
         autonChooser.addObject("Grab Container First", new auton_SimpleReach());
         autonChooser.addObject("GyroAndEncoderFwd", new Auton_GyroAndEncoderFwd(0.5, 1200, 4.0));      
