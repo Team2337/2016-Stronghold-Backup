@@ -59,7 +59,7 @@ public class ChassisPID extends PIDSubsystem {
     	robotDrive.tankDrive(leftValue, rightValue, true);
     }
     public void arcadeDrive(double speedValue, double turnValue) {
-    	robotDrive.arcadeDrive(speedValue, turnValue, false);
+    	robotDrive.arcadeDrive(speedValue, turnValue, true);
     }
     public void setBrakeMode(boolean type) {
         chassisLeft.enableBrakeMode(type);

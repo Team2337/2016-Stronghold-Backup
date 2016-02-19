@@ -148,6 +148,12 @@ public class RobotMap {
         LiveWindow.addActuator("ShooterArm", "shooterArmMotorA", shooterArmPIDMotorA);
         shooterArmPIDMotorA.setControlMode(0);  
         
+        shooterArmPIDMotorB = new CANTalon(12);
+        LiveWindow.addActuator("ShooterArm", "shooterArmMotorB", shooterArmPIDMotorB);
+        shooterArmPIDMotorB.setControlMode(5);
+        shooterArmPIDMotorB.reverseOutput(true);
+        shooterArmPIDMotorB.set(3);
+        
         intakeintakeMotorA = new CANTalon(6);
         LiveWindow.addActuator("Intake", "intakeMotorA", intakeintakeMotorA);
         //intakeintakeMotorA.setControlMode(0);
@@ -156,14 +162,8 @@ public class RobotMap {
         LiveWindow.addActuator("Intake", "intakeMotorB", intakeintakeMotorB);
         //intakeintakeMotorB.setControlMode(5);
         //intakeintakeMotorB.reverseOutput(true);
-        //intakeintakeMotorB.set(8);
-        
-        shooterArmPIDMotorB = new CANTalon(12);
-        LiveWindow.addActuator("ShooterArm", "shooterArmMotorB", shooterArmPIDMotorB);
-        shooterArmPIDMotorB.setControlMode(5);
-        shooterArmPIDMotorB.reverseOutput(true);
-        shooterArmPIDMotorB.set(7);
-        
+        //intakeintakeMotorB.set(6);
+
         shooterRetractMotorA = new CANTalon(7);
         LiveWindow.addActuator("ShooterRetract", "shooterRetractMotorA", shooterRetractMotorA);
         
