@@ -24,20 +24,16 @@ public class shooterArm_armSetPointTravel extends Command {
 
 
 	protected boolean isFinished() {
-		if (Robot.shooterArmPID.onTarget()) {
-			RobotMap.shooterArmOnTarget = true;
-			return true;
-		} else {
-			return false;
-		}
+		return (Robot.shooterArmPID.onTarget());
 	}
 
 
 	protected void end() {	
+		RobotMap.shooterArmOnTarget = true;
 	}
 
 	
 	protected void interrupted() {
-		this.end();	
+	
 	}
 }

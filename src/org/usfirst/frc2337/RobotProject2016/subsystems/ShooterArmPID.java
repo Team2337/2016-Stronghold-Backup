@@ -71,7 +71,7 @@ public class ShooterArmPID extends PIDSubsystem {
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new shooterArm_JoystickControl());
+        //setDefaultCommand(new shooterArm_JoystickControl());
     }
 
     protected double returnPIDInput() {

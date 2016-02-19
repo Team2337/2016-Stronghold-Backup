@@ -5,16 +5,14 @@ import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class shooterRetractor_Retract extends Command{
+public class shooterRetract_Prime extends Command{
 
-	private double m_deadBandPercent = 1.00 + Robot.shooterRetract.retractorDeadBand;
-	
-	public shooterRetractor_Retract(){
+	public shooterRetract_Prime(){
 		requires(Robot.shooterRetract);
 	}
 	protected void initialize() {
-		RobotMap.shooterRetractRetracted = false;
 		Robot.shooterRetract.retractorPreppedPosition();
+		RobotMap.shooterRetractRetracted = false;
 	}
 
 	protected void execute() {
@@ -22,16 +20,11 @@ public class shooterRetractor_Retract extends Command{
 	}
 
 	protected boolean isFinished() {
-		if(Robot.shooterRetract.getRetractPosition() < (Robot.shooterRetract.preppedRetractorPosition * m_deadBandPercent)) {
-			RobotMap.shooterRetractRetracted = true;
-			return true;
-		} else {
-			return false;
-		}
+			return (Robot.shooterArmPID.onTarget());
 	}
 
 	protected void end() {
-		
+		RobotMap.shooterRetractPrimed = true;
 	}
 
 	protected void interrupted() {

@@ -112,57 +112,57 @@ public class RobotMap {
         chassisPIDpowerDistributionPanel = new PowerDistributionPanel(0);
         LiveWindow.addSensor("ChassisPID", "powerDistributionPanel ", chassisPIDpowerDistributionPanel);
     	
-    	chassisPIDchassisLeft1 = new CANTalon(2);
+    	chassisPIDchassisLeft1 = new CANTalon(0);
         LiveWindow.addActuator("ChassisPID", "chassisLeft1", chassisPIDchassisLeft1);
         chassisPIDchassisLeft1.changeControlMode(TalonControlMode.PercentVbus);
         
          
-        chassisPIDchassisLeft2 = new CANTalon(4);
+        chassisPIDchassisLeft2 = new CANTalon(1);
         LiveWindow.addActuator("ChassisPID", "chassisLeft2", chassisPIDchassisLeft2);
         chassisPIDchassisLeft2.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisLeft2.set(chassisPIDchassisLeft1.getDeviceID());
 
         
-        chassisPIDchassisLeft3 = new CANTalon(6);
+        chassisPIDchassisLeft3 = new CANTalon(2);
         LiveWindow.addActuator("ChassisPID", "chassisLeft3", chassisPIDchassisLeft3);
         chassisPIDchassisLeft3.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisLeft3.set(chassisPIDchassisLeft1.getDeviceID());
          
-        chassisPIDchassisRight1 = new CANTalon(1);
+        chassisPIDchassisRight1 = new CANTalon(15);
         LiveWindow.addActuator("ChassisPID", "chassisRight1", chassisPIDchassisRight1);
         chassisPIDchassisRight1.changeControlMode(TalonControlMode.PercentVbus);
          
-        chassisPIDchassisRight2 = new CANTalon(3);
+        chassisPIDchassisRight2 = new CANTalon(14);
         LiveWindow.addActuator("ChassisPID", "chassisRight2", chassisPIDchassisRight2);
         chassisPIDchassisRight2.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisRight2.set(chassisPIDchassisRight1.getDeviceID());
         
-        chassisPIDchassisRight3 = new CANTalon(5);
+        chassisPIDchassisRight3 = new CANTalon(13);
         LiveWindow.addActuator("ChassisPID", "chassisRight3", chassisPIDchassisRight3);
         chassisPIDchassisRight3.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisRight3.set(chassisPIDchassisRight1.getDeviceID());
          
-        shooterArmPIDMotorA = new CANTalon(7);
+        shooterArmPIDMotorA = new CANTalon(3);
         LiveWindow.addActuator("ShooterArm", "shooterArmMotorA", shooterArmPIDMotorA);
         shooterArmPIDMotorA.setControlMode(0);  
         
-        intakeintakeMotorA = new CANTalon(8);
+        intakeintakeMotorA = new CANTalon(6);
         LiveWindow.addActuator("Intake", "intakeMotorA", intakeintakeMotorA);
         //intakeintakeMotorA.setControlMode(0);
         
-        intakeintakeMotorB = new CANTalon(10);
+        intakeintakeMotorB = new CANTalon(9);
         LiveWindow.addActuator("Intake", "intakeMotorB", intakeintakeMotorB);
         //intakeintakeMotorB.setControlMode(5);
         //intakeintakeMotorB.reverseOutput(true);
         //intakeintakeMotorB.set(8);
         
-        shooterArmPIDMotorB = new CANTalon(11);
+        shooterArmPIDMotorB = new CANTalon(12);
         LiveWindow.addActuator("ShooterArm", "shooterArmMotorB", shooterArmPIDMotorB);
         shooterArmPIDMotorB.setControlMode(5);
         shooterArmPIDMotorB.reverseOutput(true);
         shooterArmPIDMotorB.set(7);
         
-        shooterRetractMotorA = new CANTalon(12);
+        shooterRetractMotorA = new CANTalon(7);
         LiveWindow.addActuator("ShooterRetract", "shooterRetractMotorA", shooterRetractMotorA);
         
  
