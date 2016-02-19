@@ -6,10 +6,8 @@ import org.usfirst.frc2337.RobotProject2016.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class shooterArm_armSetPointLongShot extends Command {
- 
-	int setpoint; 
 	
-	public shooterArm_armSetPointLongShot(int setpoint) {
+	public shooterArm_armSetPointLongShot() {
 		requires(Robot.shooterArmPID);	
 	}
 

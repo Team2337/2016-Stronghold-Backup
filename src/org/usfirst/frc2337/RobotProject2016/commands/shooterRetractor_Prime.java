@@ -7,14 +7,12 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class shooterRetractor_Prime extends Command{
 
-	private double m_deadBandPercent = 1.00 - Robot.shooterRetract.retractorDeadBand;
-	
 	public shooterRetractor_Prime(){
 		requires(Robot.shooterRetract);
 	}
 	protected void initialize() {
-		RobotMap.shooterRetractPrimed = false;
 		Robot.shooterRetract.retractorPreppedPosition();
+		RobotMap.shooterRetractRetracted = false;
 	}
 
 	protected void execute() {
@@ -22,16 +20,11 @@ public class shooterRetractor_Prime extends Command{
 	}
 
 	protected boolean isFinished() {
-		if( Robot.shooterRetract.getRetractPosition() >  (Robot.shooterRetract.primedRetractorPosition * m_deadBandPercent) ) {
-			RobotMap.shooterRetractPrimed = true;
-				return true;
-			} else {
-				return false;
-			}
+			return (Robot.shooterArmPID.onTarget());
 	}
 
 	protected void end() {
-		
+		RobotMap.shooterRetractPrimed = true;
 	}
 
 	protected void interrupted() {

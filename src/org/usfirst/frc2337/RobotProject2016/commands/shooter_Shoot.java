@@ -3,12 +3,16 @@ package org.usfirst.frc2337.RobotProject2016.commands;
 import org.usfirst.frc2337.RobotProject2016.Robot;
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class shooter_Shoot extends Command {
 
 	public shooter_Shoot(){
 		requires(Robot.shooter);
+		
+		Timer timer = new Timer();
+		
 	}
 	protected void initialize() {
 		// Disengages the shooter pin
@@ -19,25 +23,24 @@ public class shooter_Shoot extends Command {
 
 
 	protected void execute() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 
 	protected void end() {
-		// TODO Auto-generated method stub
+		RobotMap.okToShoot = false;
+		RobotMap.shooterRetractPrimed = false;
 		
 	}
 
 
 	protected void interrupted() {
-		// TODO Auto-generated method stub
+		end();
 		
 	}
 

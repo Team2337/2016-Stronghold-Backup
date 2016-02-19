@@ -3,6 +3,7 @@ package org.usfirst.frc2337.RobotProject2016.subsystems;
 
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 import org.usfirst.frc2337.RobotProject2016.commands.*;
+
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.CANTalon;
@@ -34,14 +35,14 @@ public class ShooterArmPID extends PIDSubsystem {
     public boolean armPIDstatus = false;
     public boolean armjoystickstatus = true;
     
-    boolean PIDStatus = false;
+    boolean armPIDStatus = true;
     
     
     // Initialize your subsystem here
     public ShooterArmPID() {
        
         super("ShooterArmPID", 1.0, 0.0, 0.0);
-        setAbsoluteTolerance(0.2);
+        setAbsoluteTolerance(setPointTolerance);
         getPIDController().setContinuous(false);
         LiveWindow.addActuator("ShooterArmPID", "PIDSubsystem Controller", getPIDController());
 
@@ -117,16 +118,16 @@ public class ShooterArmPID extends PIDSubsystem {
     }
     
     public boolean getPIDStatus() {
-    	return this.PIDStatus;
+    	return this.armPIDStatus;
     }
     
     public void stopPID() {
-    	this.PIDStatus = false;
+    	this.armPIDStatus = false;
     	this.disable();
     }
     
     public void startPID() {
-    	this.PIDStatus = true;
+    	this.armPIDStatus = true;
     	this.enable();
     }
     
