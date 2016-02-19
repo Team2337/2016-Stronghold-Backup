@@ -9,7 +9,7 @@ import org.usfirst.frc2337.RobotProject2016.RobotMap;
 /**
  *
  */
-public class Auton_GyroAndEncoderFwd extends Command {
+public class Auton_GyroAndEncoderReverse extends Command {
 
 	public double Kp = 0.03;
 	public double yaw;
@@ -17,24 +17,18 @@ public class Auton_GyroAndEncoderFwd extends Command {
 	public double m_speed;
 	public double m_timeout;
 
-	 public Auton_GyroAndEncoderFwd(double speed) {
-    	requires(Robot.chassisPID);
-    	setTimeout(5);
-    	m_speed = speed;
-    	m_target = Robot.prefs.getDouble("AutonEncDist", 60.0);
-    }
 	 
-	  public Auton_GyroAndEncoderFwd(double speed, double encoderTarget) {
+	  public Auton_GyroAndEncoderReverse(double speed, double encoderTarget) {
 		   	requires(Robot.chassisPID);
 	    	setTimeout(5);
-	    	m_target = encoderTarget;
+	    	m_target = -encoderTarget;
 	    	m_speed = speed;
 	    }
 		 
-	  public Auton_GyroAndEncoderFwd(double speed, double encoderTarget, double timeout) {
+	  public Auton_GyroAndEncoderReverse(double speed, double encoderTarget, double timeout) {
 		   	requires(Robot.chassisPID);
 		   	m_timeout = timeout;
-	    	m_target = encoderTarget;
+	    	m_target = -encoderTarget;
 	    	m_speed = speed;
 	    	setTimeout(timeout);
 	    }
@@ -54,7 +48,7 @@ public class Auton_GyroAndEncoderFwd extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-         return ( isTimedOut() || (Robot.chassisPID.readLeftEncoder() > m_target));
+         return ( isTimedOut() || (Robot.chassisPID.readLeftEncoder() < m_target));
     }
 
     // Called once after isFinished returns true

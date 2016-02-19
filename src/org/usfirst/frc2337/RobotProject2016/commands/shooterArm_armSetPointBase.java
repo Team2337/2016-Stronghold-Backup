@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class shooterArm_armSetPointBase extends Command {
 	
-	public shooterArm_armSetPointBase(int setpoint) {
+	public shooterArm_armSetPointBase() {
 		requires(Robot.shooterArmPID);	
 	}
 
