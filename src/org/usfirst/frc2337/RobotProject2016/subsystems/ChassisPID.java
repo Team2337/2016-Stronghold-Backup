@@ -31,13 +31,13 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class ChassisPID extends PIDSubsystem {
 
-    private final AnalogGyro smallGyro = RobotMap.chassisPIDgyro;   //Small not NavX Gyro
+    //private final AnalogGyro smallGyro = RobotMap.chassisPIDgyro;   //Small not NavX Gyro
     private final AHRS gyro = RobotMap.gyro;
     private final PowerDistributionPanel powerDistributionPanel = RobotMap.chassisPIDpowerDistributionPanel;
     private final Encoder rightEncoder = RobotMap.chassisPIDRightEncoder;
     private final Encoder leftEncoder = RobotMap.chassisPIDLeftEncoder;
     private final Ultrasonic ultrasonicSensor = RobotMap.chassisPIDultrasonicSensor;
-    private final AnalogAccelerometer accelerometer = RobotMap.chassisPIDaccelerometer;
+   // private final AnalogAccelerometer accelerometer = RobotMap.chassisPIDaccelerometer;
     private final CANTalon chassisLeft = RobotMap.chassisPIDchassisLeft1;
     private final CANTalon chassisRight = RobotMap.chassisPIDchassisRight1;
     RobotDrive robotDrive = RobotMap.chassisDrive;  
@@ -62,9 +62,7 @@ public class ChassisPID extends PIDSubsystem {
     public void initDefaultCommand() {
         this.resetGyro();
         setDefaultCommand(new chassis_NerdyDrive());
-    	//setDefaultCommand(new chassis_ArcadeDrive());
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+
     }
 
     public void tankDrive(double leftValue, double rightValue) {

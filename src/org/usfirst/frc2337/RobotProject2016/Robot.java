@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 
 package org.usfirst.frc2337.RobotProject2016;
 
@@ -28,7 +32,10 @@ public class Robot extends IterativeRobot {
     SendableChooser autonChooser;
 
     public static OI oi;
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
     public static Intake intake;
     public static PowerTakeOff powerTakeOff;
     public static ChassisPID chassisPID;
@@ -40,7 +47,11 @@ public class Robot extends IterativeRobot {
     public static ShooterArmPID shooterArmPID;
     public static ShooterRetract shooterRetract;
     public static Shooter shooter;
+<<<<<<< HEAD
        
+=======
+    
+>>>>>>> origin/master
     public static Preferences prefs;
     public static Preferences prefsShooterRetract;
 
@@ -95,9 +106,8 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putBoolean("gotBall", RobotMap.intakeGotBallSensor.get());
       SmartDashboard.putDouble("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getRate());
       SmartDashboard.putNumber("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getDistance());
-      
       SmartDashboard.putBoolean("Shifter Status" , RobotMap.chassisShiftershiftSolenoid.get());
-      //SmartDashboard.putDouble("AutonEncDist", RobotMap.autoEncoderDist);
+
       
 
 	}
