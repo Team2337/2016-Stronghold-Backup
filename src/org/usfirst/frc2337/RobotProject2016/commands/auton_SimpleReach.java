@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class auton_SimpleReach extends Command {
 	
-    private int distance = 2;    //TODO  need to determine encoder value
+    private int distance = 400;    //TODO  need to determine encoder value
 	private int time = 3;
 	private double speed = 0.5;
 	

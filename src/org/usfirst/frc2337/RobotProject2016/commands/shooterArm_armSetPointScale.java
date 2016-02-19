@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class shooterArm_armSetPointScale extends Command {
 	
-	public shooterArm_armSetPointScale(int setpoint) {
+	public shooterArm_armSetPointScale() {
 		requires(Robot.shooterArmPID);	
 	}
 
@@ -23,20 +23,16 @@ public class shooterArm_armSetPointScale extends Command {
 
 
 	protected boolean isFinished() {
-		if (Robot.shooterArmPID.onTarget()) {
-			RobotMap.shooterArmOnTarget = true;
-			return true;
-		} else {
-			return false;
-		}
+		return (Robot.shooterArmPID.onTarget());
 	}
 
 
 	protected void end() {	
+		RobotMap.shooterArmOnTarget = true;
 	}
 
 	
 	protected void interrupted() {
-		this.end();	
+		
 	}
 }

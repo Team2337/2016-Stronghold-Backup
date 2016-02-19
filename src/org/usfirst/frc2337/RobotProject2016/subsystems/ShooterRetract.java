@@ -14,6 +14,8 @@ public class ShooterRetract extends PIDSubsystem {
 	private final CANTalon retractMotorA = RobotMap.shooterRetractMotorA;
 	private final Encoder retractEncoder = RobotMap.shooterRetractPIDEncoder;
 	
+	private final double setPointTolerance = 0.1;
+	
 	private final double retractSpeedDown = -.2;
 	private final double retractSpeedUp = .2;
 	private final double retractForwardLimit = 1.0;
@@ -22,11 +24,13 @@ public class ShooterRetract extends PIDSubsystem {
 	public double primedRetractorPosition = 2;
 	public double preppedRetractorPosition = 10;
 	public double retractorDeadBand = 0.05; //used as a percentage
+	
+	boolean retractPIDStatus = true;
 
 
 	public ShooterRetract(double p, double i, double d, double period) {
         super("ShooterRetract", 1.0, 0.0, 0.0);
-        setAbsoluteTolerance(0.2);
+        setAbsoluteTolerance(setPointTolerance);
         getPIDController().setContinuous(false);
         LiveWindow.addActuator("ShooterRetract", "PIDSubsystem Controller", getPIDController());
 
@@ -40,7 +44,7 @@ public class ShooterRetract extends PIDSubsystem {
 	}
 
 	protected double returnPIDInput() {
-		return retractEncoder.getDistance();
+		return retractEncoder.get();
 	}
 
 	protected void usePIDOutput(double output) {
@@ -56,7 +60,7 @@ public class ShooterRetract extends PIDSubsystem {
 	}
 	
 	public double readRetractEncoder() {
-		return this.retractEncoder.getDistance();
+		return this.retractEncoder.get();
 	}
 	
 	public void retractorPreppedPosition() {
@@ -66,6 +70,40 @@ public class ShooterRetract extends PIDSubsystem {
 	public void retractorPrimedPosition() {
 		this.setSetpoint(primedRetractorPosition);
 	}
+	
+    /**
+     * Sets retractor motor on outside of PID, to retract shooter, unwind rope
+     *    
+    */
+    public void retracting() {
+    	retractMotorA.set(retractSpeedUp);
+    }
+    /**
+     * Sets retractor motor on outisde of PID, to unretract shooter, wind up rope
+     * 
+     */
+    public void unretracting() {
+    	retractMotorA.set(retractSpeedDown); 	
+    }
+
+    public void stopMotors() {
+    	retractMotorA.set(0);
+    }
+    
+    public boolean getPIDStatus() {
+    	return this.retractPIDStatus;
+    }
+    
+    public void stopPID() {
+    	this.retractPIDStatus = false;
+    	this.disable();
+    }
+    
+    public void startPID() {
+    	this.retractPIDStatus = true;
+    	this.enable();
+    }
+    
 
 
 }
