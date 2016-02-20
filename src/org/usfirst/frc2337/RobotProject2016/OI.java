@@ -103,8 +103,8 @@ public class OI {
         PTO  = new JoystickButton(driverJoystick, Yellow_Y);
         PTO.whenPressed(new PTO_Activate());
         
-       // portWheels = new JoystickButton(driverJoystick, Blue_X);
-       // portWheels.whileHeld(new portWheels_activate());
+        portWheels = new JoystickButton(driverJoystick, Blue_X);
+        portWheels.whileHeld(new portWheels_activate());
         
         shoot = new JoystickButton(driverJoystick, Green_A);
         shoot.whenPressed(new shooter_ShootCG());
@@ -124,8 +124,9 @@ public class OI {
         exhale = new AnalogAxisButton(operatorJoystick, Right_trigger, 0.5);
         exhale.whenPressed(new intake_Exhale());
         
-       // light = new JoystickButton(operatorJoystick, Left_Bumper);
-       // light.whenPressed(new target_Light());
+        light = new JoystickButton(operatorJoystick, Left_Bumper);
+        light.whenPressed(new target_LightActivate());
+        light.whenReleased(new target_LightDeactivate());
      
         shortshot = new JoystickButton(operatorJoystick, Right_Bumper);
         shortshot.whenPressed(new shooterArm_armSetPointShortShot());

@@ -51,6 +51,8 @@ public class RobotMap {
     public static CANTalon intakeintakeMotorB;
     public static CANTalon shooterArmPIDMotorB;
     public static CANTalon shooterRetractMotorA;
+    public static CANTalon portWheelMotorA;
+    public static CANTalon portWheelMotorB;
     
     public static DigitalInput intakeLeftBallSensor;
     public static DigitalInput intakeRightBallSensor;
@@ -74,6 +76,7 @@ public class RobotMap {
     public static Solenoid intakeWristintakeWristSolenoid;
     public static Solenoid chassisShiftershiftSolenoid;
     public static Solenoid ledGRIPCamera;
+    public static Solenoid targetLightLight;
     
     public static Solenoid keyPullOut;
     
@@ -167,6 +170,15 @@ public class RobotMap {
         shooterRetractMotorA = new CANTalon(7);
         LiveWindow.addActuator("ShooterRetract", "shooterRetractMotorA", shooterRetractMotorA);
         
+        portWheelMotorA= new CANTalon(8);
+        LiveWindow.addActuator("PortWheels", "portWheelMotorA", portWheelMotorA);
+        portWheelMotorA.setControlMode(0);
+        
+        portWheelMotorB= new CANTalon(16);
+        LiveWindow.addActuator("PortWheels", "portWheelMotorB", portWheelMotorB);
+        portWheelMotorB.setControlMode(5);
+        portWheelMotorB.reverseOutput(true);
+        portWheelMotorB.set(8);
  
         powerTakeOffptoSolenoid = new DoubleSolenoid(0, 3, 4);
         LiveWindow.addActuator("PowerTakeOff", "ptoSolenoid", powerTakeOffptoSolenoid);

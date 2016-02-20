@@ -40,6 +40,7 @@ public class Robot extends IterativeRobot {
     public static ShooterArmPID shooterArmPID;
     public static ShooterRetract shooterRetract;
     public static Shooter shooter;
+    public static PortWheels PortWheels;
 
     public static Preferences prefs;
     public static Preferences prefsShooterRetract;
