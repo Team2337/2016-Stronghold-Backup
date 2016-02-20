@@ -62,32 +62,25 @@ public class OI {
     public int Dpad_X = 6;					// Direction Pad X axis value only.  Note: The Joystick class can only handle 6 axis
 
   //BUTTONS
-    public JoystickButton intake;
-    public JoystickButton driveWithGyro;
-    public JoystickButton driveWithGyroAndEncoder;
-    
-    public JoystickButton energizeWrist;
-    public JoystickButton intake_In;
-    public JoystickButton intake_Out;
-    public JoystickButton layup;
-    public JoystickButton hookShot;
-    public JoystickButton gripLed_On;
-    public JoystickButton gripLed_Off;
+    //driver
+    public JoystickButton shifter;
+    public JoystickButton PTO;
+    public JoystickButton portWheels;
+    public JoystickButton shoot;
+    public JoystickButton gryoDrive;
     public JoystickButton target;
-    public JoystickButton targetWithJ;
+    public JoystickButton targetdrive;
+   // opertor button
+    public JoystickButton inhale;
+    public JoystickButton exhale;
+    public JoystickButton light;
+    public JoystickButton shortshot;
+    public JoystickButton scale;
+    public JoystickButton longshot;
+    public JoystickButton travel;
+    public JoystickButton base;
+ 
     
-    public JoystickButton drive_Brake;
-    
-    public JoystickButton armSetPointBase;
-    public JoystickButton armSetPointLongShot;
-    public JoystickButton armSetPointShortShot;
-    public JoystickButton armSetPointScale;
-    
-    public JoystickButton keypullout;
-    public JoystickButton lowToHigh;
-    public JoystickButton hightoLow;
-    
-    public JoystickButton ptest;
     
     
     public OI() {
@@ -96,6 +89,61 @@ public class OI {
         operatorJoystick = new Joystick(1);
         operatorControls = new Joystick(2);
         
+        
+      //  shifter = new JoystickButton(driverJoystick, Right_trigger);
+      //  shifter.whenPressed(new chassisShifter_HighToLow());
+      //  shifter.whenReleased(new chassisShifter_LowToHigh());
+       
+        PTO  = new JoystickButton(driverJoystick, Yellow_Y);
+        PTO.whenPressed(new PTO_Activate());
+        
+       // portWheels = new JoystickButton(driverJoystick, Blue_X);
+       // portWheels.whileHeld(new portWheels_activate());
+        
+        shoot = new JoystickButton(driverJoystick, Green_A);
+        shoot.whenPressed(new shooter_ShootCG());
+        
+        gryoDrive = new JoystickButton(driverJoystick, Right_Bumper);
+        gryoDrive.whileHeld(new chassis_DriveWithGyroNoTurn());
+        
+        target = new JoystickButton(driverJoystick, Left_Bumper);
+        target.whenPressed(new chassis_TargetWithGyroPID());
+        
+       // targetdrive = new JoystickButton(driverJoystick, Left_trigger);
+       // targetdrive.whileHeld(new chassis_TargetWithGyroPIDAndJoystick());
+        
+        //operator button
+        
+       // inhale = new JoystickButton(operatorJoystick, Left_trigger);
+       // inhale.whenPressed(new intake_Inhale());
+        
+       // exhale = new JoystickButton(operatorJoystick, Right_trigger);
+       // exhale.whenPressed(new intake_Exhale());
+        
+       // light = new JoystickButton(operatorJoystick, Left_Bumper);
+       // light.whenPressed(new target_Light());
+        
+        shortshot = new JoystickButton(operatorJoystick, Right_Bumper);
+        shortshot.whenPressed(new shooterArm_armSetPointShortShot());
+        
+        scale = new JoystickButton(operatorJoystick, Yellow_Y);
+        scale.whenPressed(new shooterArm_armSetPointScale());
+        
+        longshot = new JoystickButton(operatorJoystick, Red_B);
+        longshot.whenPressed(new shooterArm_armSetPointLongShot());
+        
+        travel = new JoystickButton(operatorJoystick, Blue_X);
+        travel.whenPressed(new shooterArm_armSetPointTravel());
+        
+        base = new JoystickButton(operatorJoystick, Green_A);
+        base.whenPressed(new shooterArm_armSetPointBase());
+        
+        
+        
+        
+        
+        
+     /*   
         driveWithGyro = new JoystickButton(driverJoystick, Left_Bumper);
         driveWithGyro.whileHeld(new intake_ActivateMotors());
         
@@ -115,7 +163,7 @@ public class OI {
         
         hightoLow = new JoystickButton(driverJoystick, Yellow_Y);
         hightoLow.whenPressed(new chassisShifter_HighToLow());
-        
+        */
         
 
 
