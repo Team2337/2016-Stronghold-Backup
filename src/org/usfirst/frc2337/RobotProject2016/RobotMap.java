@@ -77,6 +77,7 @@ public class RobotMap {
     public static Solenoid chassisShiftershiftSolenoid;
     public static Solenoid ledGRIPCamera;
     public static Solenoid targetLightLight;
+    public static Solenoid gotBallLED;
     
     public static Solenoid keyPullOut;
     
@@ -96,6 +97,7 @@ public class RobotMap {
     public static boolean visionOnTarget = false;
     public static boolean okToShoot = false;
     
+    
     //Start of init
     public static void init() {
     	
@@ -110,6 +112,8 @@ public class RobotMap {
         LiveWindow.addSensor("ChassisPID", "gyro", chassisPIDgyro);
         chassisPIDgyro.setSensitivity(0.003);
         
+        shooterArmPIDshooterArmPot = new AnalogPotentiometer(3, 10.0, .068);
+        LiveWindow.addSensor("shooterArm", "Potentiometer", shooterArmPIDshooterArmPot);
        
     	//CANTalon set control mode parameters
         //PercentVbus = 0, Position = 1, Speed = 2, Current = 3, Voltage = 4, Follower = 5, Disabled = 15 
@@ -194,6 +198,11 @@ public class RobotMap {
         
         ledGRIPCamera = new Solenoid(1, 0);
         LiveWindow.addActuator("Led", "GRIPLed", ledGRIPCamera);
+        
+        gotBallLED = new Solenoid(1, 1);
+        
+        targetLightLight = new Solenoid(1, 2);
+
         
         //Digital Sensors
         
