@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class shooterRetract_DoNothing extends Command {
 
-	public void shooterRetract_DoNothing() {
+	public shooterRetract_DoNothing() {
 		requires(Robot.shooterRetract);
 	}
 	

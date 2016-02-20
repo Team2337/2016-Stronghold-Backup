@@ -28,7 +28,7 @@ public class ShooterRetract extends PIDSubsystem {
 	boolean retractPIDStatus = true;
 
 
-	public ShooterRetract(double p, double i, double d, double period) {
+	public ShooterRetract() {
         super("ShooterRetract", 1.0, 0.0, 0.0);
         setAbsoluteTolerance(setPointTolerance);
         getPIDController().setContinuous(false);

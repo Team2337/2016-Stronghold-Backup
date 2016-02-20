@@ -18,7 +18,7 @@ public class IntakeWrist extends Subsystem {
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-        setDefaultCommand(new intakeWrist_Activate());
+      setDefaultCommand(new intakeWrist_DoNothing());
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }

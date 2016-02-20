@@ -61,7 +61,11 @@ public class Robot extends IterativeRobot {
         Led = new LED();
         shooterArmPID = new ShooterArmPID();
         shooter = new Shooter();
+        shooterRetract = new ShooterRetract();
         
+      //Preference variables
+        prefs = Preferences.getInstance();
+        prefsShooterRetract = Preferences.getInstance();
         
         oi = new OI();
 
@@ -75,9 +79,7 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("GyroAndEncoderFwd", new Auton_GyroAndEncoderFwd(0.5, 1200, 4.0));      
         */
         
-        //Preference variables
-        prefs = Preferences.getInstance();
-        prefsShooterRetract = Preferences.getInstance();
+        
 
 
     }
