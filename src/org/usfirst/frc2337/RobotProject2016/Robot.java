@@ -25,7 +25,7 @@ import org.usfirst.frc2337.RobotProject2016.subsystems.*;
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
-    SendableChooser autonChooser;
+    //SendableChooser autonChooser;
 
     public static OI oi;
 
@@ -66,13 +66,14 @@ public class Robot extends IterativeRobot {
         oi = new OI();
 
         // Autonomous
+        /*
         autonChooser = new SendableChooser();
         autonChooser.addDefault("Do Nothing", new auton_Wait(15));
         autonChooser.addObject("AutonMain", new auton_Main());
         autonChooser.addObject("Auton_GyroFwd", new Auton_GyroFwd());
         autonChooser.addObject("Grab Container First", new auton_SimpleReach());
         autonChooser.addObject("GyroAndEncoderFwd", new Auton_GyroAndEncoderFwd(0.5, 1200, 4.0));      
-        
+        */
         
         //Preference variables
         prefs = Preferences.getInstance();
@@ -117,8 +118,8 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
     	RobotMap.gyro.reset();
-    	//autonomousCommand = new Auton_GyroFwd();
-    	autonomousCommand = (Command) autonChooser.getSelected();
+    	autonomousCommand = new Auton_GyroFwd();
+    	//autonomousCommand = (Command) autonChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
         
 
