@@ -19,7 +19,7 @@ public class chassis_TargetWithGyroPIDAndJoystick extends PIDCommand {
 	double deadband = 10;
 	double turnValue, targetAngle, fishAngle, leftJoystick;
 	double turnSpeed = 0.4;
-	private Joystick joystickMain = Robot.oi.driverJoystick;
+	//private Joystick joystickMain = Robot.oi.driverJoystick;
 	double Kp = .003;
 	double degreeConversion = 0.04;
 	double setpoint;
@@ -43,7 +43,7 @@ public class chassis_TargetWithGyroPIDAndJoystick extends PIDCommand {
 
 
 	protected void usePIDOutput(double output) {
-		leftJoystick = joystickMain.getRawAxis(1);
+		leftJoystick =  Robot.oi.driverJoystick.getRawAxis(1);
 		Robot.chassisPID.arcadeDrive(leftJoystick, output);	
 	}
 

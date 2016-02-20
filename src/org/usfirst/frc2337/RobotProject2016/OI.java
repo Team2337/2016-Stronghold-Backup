@@ -37,12 +37,12 @@ public class OI {
     // the button is released.
     // button.whileHeld(new ExampleCommand());
 
-  //JOYSTICKS
+	//JOYSTICKS
     public Joystick driverJoystick;
     public Joystick operatorJoystick;
     public Joystick operatorControls;
     
-  //BUTTON VARIABLES
+    //BUTTON VARIABLES
     public int Green_A = 1;
     public int Red_B = 2;
     public int Blue_X = 3;
@@ -60,19 +60,23 @@ public class OI {
     public int Right_Stick_X = 4;  			// right is positive on the axis.
     public int Right_Stick_Y = 5; 			// forward is negative on the axis.
     public int Dpad_X = 6;					// Direction Pad X axis value only.  Note: The Joystick class can only handle 6 axis
+    //TRIGGER VARIABLES
+    public int Right_trigger = 2;
+    public int Left_trigger = 3;
 
-  //BUTTONS
+
+    //BUTTONS
     //driver
-    public JoystickButton shifter;
+    public AnalogAxisButton shifter;
     public JoystickButton PTO;
     public JoystickButton portWheels;
     public JoystickButton shoot;
     public JoystickButton gryoDrive;
     public JoystickButton target;
-    public JoystickButton targetdrive;
-   // opertor button
-    public JoystickButton inhale;
-    public JoystickButton exhale;
+    public AnalogAxisButton targetdrive;
+   // operator button
+    public AnalogAxisButton inhale;
+    public AnalogAxisButton exhale;
     public JoystickButton light;
     public JoystickButton shortshot;
     public JoystickButton scale;
@@ -89,10 +93,12 @@ public class OI {
         operatorJoystick = new Joystick(1);
         operatorControls = new Joystick(2);
         
+        targetdrive = new AnalogAxisButton(driverJoystick, Left_trigger, 0.5);
+        targetdrive.whileHeld(new chassis_TargetWithGyroPIDAndJoystick());
         
-      //  shifter = new JoystickButton(driverJoystick, Right_trigger);
-      //  shifter.whenPressed(new chassisShifter_HighToLow());
-      //  shifter.whenReleased(new chassisShifter_LowToHigh());
+        shifter = new AnalogAxisButton(driverJoystick, Right_trigger, 0.5); 
+        shifter.whenPressed(new chassisShifter_HighToLow());
+        shifter.whenReleased(new chassisShifter_LowToHigh());
        
         PTO  = new JoystickButton(driverJoystick, Yellow_Y);
         PTO.whenPressed(new PTO_Activate());
@@ -109,16 +115,14 @@ public class OI {
         target = new JoystickButton(driverJoystick, Left_Bumper);
         target.whenPressed(new chassis_TargetWithGyroPID());
         
-       // targetdrive = new JoystickButton(driverJoystick, Left_trigger);
-       // targetdrive.whileHeld(new chassis_TargetWithGyroPIDAndJoystick());
         
         //operator button
         
-       // inhale = new JoystickButton(operatorJoystick, Left_trigger);
-       // inhale.whenPressed(new intake_Inhale());
+        inhale = new AnalogAxisButton(operatorJoystick, Left_trigger, 0.5);
+        inhale.whenPressed(new intake_Inhale());
         
-       // exhale = new JoystickButton(operatorJoystick, Right_trigger);
-       // exhale.whenPressed(new intake_Exhale());
+        exhale = new AnalogAxisButton(operatorJoystick, Right_trigger, 0.5);
+        exhale.whenPressed(new intake_Exhale());
         
        // light = new JoystickButton(operatorJoystick, Left_Bumper);
        // light.whenPressed(new target_Light());
