@@ -49,8 +49,18 @@ public class chassis_TargetWithGyroPIDAndJoystick extends PIDCommand {
 
 	protected void initialize() {
 		RobotMap.gyro.reset();
-
-		this.setTimeout(timeout);
+		
+		double[] centerx = RobotMap.gripTables.getNumberArray("centerX", defaultValue);
+		for (double centerX : centerx) {
+			System.out.println(centerX + " ");
+			firstcenter = centerx[0];
+		}
+		turnValue = firstcenter - centerpnt;
+		targetAngle = turnValue/RobotMap.gyroConversion;
+		System.out.println("TurnValues: FirstCenter "  + firstcenter + " - " + "Centerpoint " + centerpnt + " = " + turnValue);
+		System.out.println("targetAngle: TurnValue " + turnValue + " divided by " + RobotMap.gyroConversion + " equals " + targetAngle);
+		this.setSetpoint(targetAngle);
+		//this.setTimeout(timeout);
 		/*
 		RobotMap.gripTables = NetworkTable.getTable("GRIP/myContoursReport");
 		
@@ -69,9 +79,6 @@ public class chassis_TargetWithGyroPIDAndJoystick extends PIDCommand {
 			targetAngle = turnValue * degreeConversion;   	/// 16 * .07  = ~ 1.12
 //// REMOVE BEFORE PROD
  */
-			targetAngle = 15;
-			System.out.println("targetAngle: " + targetAngle);
-			this.setSetpoint(targetAngle);
 		
 	}
 

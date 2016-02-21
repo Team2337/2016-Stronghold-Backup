@@ -17,6 +17,10 @@ public class chassis_NerdyDrive extends Command {
 	double absTurn, absSpeed,actualTurnMagnitude,actualTurn;
 	double maxTurnFullSpeed;
 	double deadband = 0.1;
+	double[] vision = new double[0];	
+	double[] centerx;
+	int visionlen;
+	//public boolean seeTarget;
 	
 	public chassis_NerdyDrive() {
 		requires(Robot.chassisPID);
@@ -27,10 +31,18 @@ public class chassis_NerdyDrive extends Command {
 	protected void initialize() {
 		maxTurnFullSpeed = Robot.prefs.getDouble("NerdyTurnVarible", 0.45);
 		
+		
 	}
 
 
 	protected void execute() {
+		centerx = RobotMap.gripTables.getNumberArray("centerX", vision);
+		visionlen = centerx.length;
+		if (visionlen > 0) {
+			RobotMap.seeTarget = true;
+		} else {
+			RobotMap.seeTarget = false;
+		}
 		
 		/*
 		if (joystickMain.getRawAxis(2) > 0.2) {

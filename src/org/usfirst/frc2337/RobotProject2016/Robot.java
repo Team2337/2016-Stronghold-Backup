@@ -80,6 +80,8 @@ public class Robot extends IterativeRobot {
         */
         
         
+        RobotMap.gyro.reset();
+        
 
 
     }
@@ -100,7 +102,7 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putDouble("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getRate());
       SmartDashboard.putNumber("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getDistance());
       SmartDashboard.putBoolean("Shifter Status" , RobotMap.chassisShiftershiftSolenoid.get());
-
+      SmartDashboard.putBoolean("Do We See the Target?" , RobotMap.seeTarget);
       
 
 	}

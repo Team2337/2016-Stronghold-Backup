@@ -92,11 +92,15 @@ public class RobotMap {
     public static boolean shooterArmOnTarget = false;
     public static boolean visionOnTarget = false;
     public static boolean okToShoot = false;
+    public static boolean seeTarget = false;
+    public static double gyroConversion = 4.5;
     
     //Start of init
     public static void init() {
     	
     	
+    	//gripTables = new NetworkTablegetTable("GRIP\MyContoursReport");
+    	gripTables = NetworkTable.getTable("GRIP/myContoursReport");
     	
     	chassisPIDaccelerometer = new AnalogAccelerometer(1);
         LiveWindow.addSensor("ChassisPID", "accelerometer ", chassisPIDaccelerometer);
@@ -152,9 +156,10 @@ public class RobotMap {
         LiveWindow.addActuator("ShooterArm", "shooterArmMotorB", shooterArmPIDMotorB);
         shooterArmPIDMotorB.setControlMode(5);
         shooterArmPIDMotorB.reverseOutput(true);
-        shooterArmPIDMotorB.set(3);
+        shooterArmPIDMotorB.set(shooterArmPIDMotorA.getDeviceID());
         
         intakeintakeMotorA = new CANTalon(6);
+        intakeintakeMotorA.setInverted(true);
         LiveWindow.addActuator("Intake", "intakeMotorA", intakeintakeMotorA);
         //intakeintakeMotorA.setControlMode(0);
         
