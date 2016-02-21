@@ -51,6 +51,8 @@ public class RobotMap {
     public static CANTalon intakeintakeMotorB;
     public static CANTalon shooterArmPIDMotorB;
     public static CANTalon shooterRetractMotorA;
+    public static CANTalon portWheelMotorA;
+    public static CANTalon portWheelMotorB;
     
     public static DigitalInput intakeLeftBallSensor;
     public static DigitalInput intakeRightBallSensor;
@@ -74,6 +76,8 @@ public class RobotMap {
     public static Solenoid intakeWristintakeWristSolenoid;
     public static Solenoid chassisShiftershiftSolenoid;
     public static Solenoid ledGRIPCamera;
+    public static Solenoid targetLightLight;
+    public static Solenoid gotBallLED;
     
     public static Solenoid keyPullOut;
     
@@ -93,6 +97,7 @@ public class RobotMap {
     public static boolean visionOnTarget = false;
     public static boolean okToShoot = false;
     
+    
     //Start of init
     public static void init() {
     	
@@ -107,6 +112,8 @@ public class RobotMap {
         LiveWindow.addSensor("ChassisPID", "gyro", chassisPIDgyro);
         chassisPIDgyro.setSensitivity(0.003);
         
+        shooterArmPIDshooterArmPot = new AnalogPotentiometer(3, 10.0, .068);
+        LiveWindow.addSensor("shooterArm", "Potentiometer", shooterArmPIDshooterArmPot);
        
     	//CANTalon set control mode parameters
         //PercentVbus = 0, Position = 1, Speed = 2, Current = 3, Voltage = 4, Follower = 5, Disabled = 15 
@@ -167,6 +174,15 @@ public class RobotMap {
         shooterRetractMotorA = new CANTalon(7);
         LiveWindow.addActuator("ShooterRetract", "shooterRetractMotorA", shooterRetractMotorA);
         
+        portWheelMotorA= new CANTalon(8);
+        LiveWindow.addActuator("PortWheels", "portWheelMotorA", portWheelMotorA);
+        portWheelMotorA.setControlMode(0);
+        
+        portWheelMotorB= new CANTalon(16);
+        LiveWindow.addActuator("PortWheels", "portWheelMotorB", portWheelMotorB);
+        portWheelMotorB.setControlMode(5);
+        portWheelMotorB.reverseOutput(true);
+        portWheelMotorB.set(8);
  
         powerTakeOffptoSolenoid = new DoubleSolenoid(0, 3, 4);
         LiveWindow.addActuator("PowerTakeOff", "ptoSolenoid", powerTakeOffptoSolenoid);
@@ -182,6 +198,11 @@ public class RobotMap {
         
         ledGRIPCamera = new Solenoid(1, 0);
         LiveWindow.addActuator("Led", "GRIPLed", ledGRIPCamera);
+        
+        gotBallLED = new Solenoid(1, 1);
+        
+        targetLightLight = new Solenoid(1, 2);
+
         
         //Digital Sensors
         
