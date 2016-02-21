@@ -71,6 +71,7 @@ public class ChassisPID extends PIDSubsystem {
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
         return rightEncoder.pidGet();
+    	//return gyro.getYaw();
     }
 
     protected void usePIDOutput(double output) {
@@ -80,6 +81,7 @@ public class ChassisPID extends PIDSubsystem {
         //chassisLeft2.pidWrite(output);
         double PIDyaw = this.readGyroYaw();
         this.arcadeDrive(-output, PIDyaw);
+        //this.arcadeDrive(0, output);
     }
     //Reset the encoders
     public void resetEncoders() {

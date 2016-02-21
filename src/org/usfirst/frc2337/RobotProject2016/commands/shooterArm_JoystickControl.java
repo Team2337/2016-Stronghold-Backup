@@ -2,6 +2,7 @@
 package org.usfirst.frc2337.RobotProject2016.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc2337.RobotProject2016.Robot;
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
@@ -14,6 +15,7 @@ public class  shooterArm_JoystickControl extends Command {
 	public boolean setPointSet = false;
 	public double armSpeedFactor = 0.5;    //multiply joystick to reduce arm speed
 	private double deadBand = 0.1;
+	private double armJoystickY;
 	
     public shooterArm_JoystickControl() {
         // Use requires() here to declare subsystem dependencies
@@ -28,7 +30,7 @@ public class  shooterArm_JoystickControl extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double armJoystickY = Robot.oi.operatorJoystick.getRawAxis(1);
+    	armJoystickY = Robot.oi.operatorJoystick.getRawAxis(1);
     	//armJoystickY = -armJoystickY;
     	
     	//Check the joystick for a dead band, if in do...
@@ -59,6 +61,8 @@ public class  shooterArm_JoystickControl extends Command {
     		//Make the setPointSet to false, so if in dead band, the PID can reset
     		setPointSet = false;
     	}	// End Deadband
+    
+    	SmartDashboard.putBoolean("setPointSet?" , setPointSet);
     }		// End Method
 
     // Make this return true when this Command no longer needs to run execute()

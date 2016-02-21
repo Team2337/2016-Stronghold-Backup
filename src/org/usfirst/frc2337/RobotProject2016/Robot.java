@@ -101,7 +101,13 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putDouble("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getRate());
       SmartDashboard.putNumber("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getDistance());
       SmartDashboard.putBoolean("Shifter Status" , RobotMap.chassisShiftershiftSolenoid.get());
-
+      SmartDashboard.putNumber("String pot" , RobotMap.shooterArmPIDshooterArmPot.get());
+      SmartDashboard.putNumber("arm set pt" , Robot.shooterArmPID.getSetpoint());
+      SmartDashboard.putNumber("arm get position" , Robot.shooterArmPID.getPosition());
+      SmartDashboard.putBoolean("arm pid enabled?" , Robot.shooterArmPID.getPIDStatus());
+      SmartDashboard.putNumber("arm joystick y" , Robot.oi.operatorJoystick.getRawAxis(1));
+      SmartDashboard.putNumber("arm get position" , Robot.shooterArmPID.getPIDController().getError());
+    
       
 
 	}

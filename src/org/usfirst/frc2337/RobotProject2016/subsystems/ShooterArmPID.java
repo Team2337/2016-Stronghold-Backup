@@ -19,17 +19,20 @@ public class ShooterArmPID extends PIDSubsystem {
     private final AnalogPotentiometer shooterArmPot = RobotMap.shooterArmPIDshooterArmPot;
     private final CANTalon shooterArmMotor = RobotMap.shooterArmPIDMotorA;
     
-    //  Encoder = 1, POT = 2;
-    private double encoderPotChooser = 1;
-    public double base, travel, layupShot, hookShot, scale;
+   	//Specified angle value for Pot
+    public double scale = 5;
+    public double layupShot = 4;
+    public double hookShot = 3.5;
+    public double travel = 3.3;
+    public double base = 2.85; 
 
-    private final double setPointTolerance = 0.05;
-    public final double autonArmSpeedUp = .2;
-    public final double autonArmSpeedDown = -.2;
-    public final double teleopArmSpeedUp = .2;
-    public final double teleopArmSpeedDown = -.2;
-    public final double armToplimit = 4;
-    public final double armBottomlimit = 0;
+    private final double setPointTolerance = 0.1;
+    public final double autonArmSpeedUp = .4;
+    public final double autonArmSpeedDown = -.4;
+    public final double teleopArmSpeedUp = .4;
+    public final double teleopArmSpeedDown = -.4;
+    public final double armToplimit = 6.24;
+    public final double armBottomlimit = 2.8;
     
     public boolean armPIDstatus = false;
     public boolean armjoystickstatus = true;
@@ -48,21 +51,9 @@ public class ShooterArmPID extends PIDSubsystem {
         getPIDController().setOutputRange(autonArmSpeedDown, autonArmSpeedUp);
         getPIDController().setInputRange(armBottomlimit, armToplimit);
 
-        if(encoderPotChooser == 1){
-        	//Specified angle value for Pot
-        	scale = 5;
-        	layupShot = 4;
-        	hookShot = 3;
-        	travel = 2;
-        	base = 1;
-        }else {
-        	//Specified angle value for encoder
-        	scale = 120;
-        	layupShot = 100;
-        	hookShot = 80;
-        	travel = 50;
-        	base = 10;
-        }
+        
+ 
+     
         // Use these to get going:
         // setSetpoint() -  Sets where the PID controller should move the system
         //                  to
@@ -77,16 +68,14 @@ public class ShooterArmPID extends PIDSubsystem {
         // Return your input value for the PID loop
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
-    	if(encoderPotChooser == 1) {
-    		return shooterEncoder.get();
-    	} else {
+    	
     		return shooterArmPot.get();
-    	}
+    	
     }
     
 
     protected void usePIDOutput(double output) {
-        shooterArmMotor.pidWrite(output);
+        shooterArmMotor.pidWrite(-output);
     }
    /**
     * Set the position of the shooterarm using the analog pot

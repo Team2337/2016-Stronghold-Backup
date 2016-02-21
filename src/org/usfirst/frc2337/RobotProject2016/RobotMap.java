@@ -112,7 +112,7 @@ public class RobotMap {
         LiveWindow.addSensor("ChassisPID", "gyro", chassisPIDgyro);
         chassisPIDgyro.setSensitivity(0.003);
         
-        shooterArmPIDshooterArmPot = new AnalogPotentiometer(3, 10.0, .068);
+        shooterArmPIDshooterArmPot = new AnalogPotentiometer(3, 20.0, .068);
         LiveWindow.addSensor("shooterArm", "Potentiometer", shooterArmPIDshooterArmPot);
        
     	//CANTalon set control mode parameters
@@ -154,6 +154,7 @@ public class RobotMap {
         shooterArmPIDMotorA = new CANTalon(3);
         LiveWindow.addActuator("ShooterArm", "shooterArmMotorA", shooterArmPIDMotorA);
         shooterArmPIDMotorA.setControlMode(0);  
+        shooterArmPIDMotorA.enableBrakeMode(true);
         
         shooterArmPIDMotorB = new CANTalon(12);
         LiveWindow.addActuator("ShooterArm", "shooterArmMotorB", shooterArmPIDMotorB);
