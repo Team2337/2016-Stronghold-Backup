@@ -83,6 +83,8 @@ public class OI {
     public JoystickButton longshot;
     public JoystickButton travel;
     public JoystickButton base;
+    public JoystickButton retractorManualUp;
+    public JoystickButton retractorManualDown;
  
     
     
@@ -103,8 +105,8 @@ public class OI {
         PTO  = new JoystickButton(driverJoystick, Yellow_Y);
         PTO.whenPressed(new PTO_Activate());
         
-        portWheels = new JoystickButton(driverJoystick, Blue_X);
-        portWheels.whileHeld(new portWheels_activate());
+        //portWheels = new JoystickButton(driverJoystick, Blue_X);
+        //portWheels.whileHeld(new portWheels_activate());
         
         shoot = new JoystickButton(driverJoystick, Green_A);
         shoot.whenPressed(new shooter_ShootCG());
@@ -115,6 +117,12 @@ public class OI {
         target = new JoystickButton(driverJoystick, Left_Bumper);
         target.whenPressed(new chassis_TargetWithGyroPID());
         
+        //remove before production
+        retractorManualUp = new JoystickButton(driverJoystick, Red_B);
+        retractorManualUp.whileHeld(new shooterRetract_RetractManual());
+        
+        retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
+        retractorManualDown.whileHeld(new shooterRetract_PrimeManual());
         
         //operator button
         

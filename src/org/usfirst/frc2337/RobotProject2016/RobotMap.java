@@ -159,9 +159,10 @@ public class RobotMap {
         LiveWindow.addActuator("ShooterArm", "shooterArmMotorB", shooterArmPIDMotorB);
         shooterArmPIDMotorB.setControlMode(5);
         shooterArmPIDMotorB.reverseOutput(true);
-        shooterArmPIDMotorB.set(3);
+        shooterArmPIDMotorB.set(shooterArmPIDMotorA.getDeviceID());
         
         intakeintakeMotorA = new CANTalon(6);
+        intakeintakeMotorA.setInverted(true);
         LiveWindow.addActuator("Intake", "intakeMotorA", intakeintakeMotorA);
         //intakeintakeMotorA.setControlMode(0);
         

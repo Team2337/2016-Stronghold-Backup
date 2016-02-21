@@ -29,7 +29,7 @@ public class  shooterArm_JoystickControl extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	double armJoystickY = Robot.oi.operatorJoystick.getRawAxis(1);
-    	armJoystickY = -armJoystickY;
+    	//armJoystickY = -armJoystickY;
     	
     	//Check the joystick for a dead band, if in do...
     	if ((armJoystickY > -deadBand ) && (armJoystickY < deadBand)) { //Dead band

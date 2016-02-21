@@ -80,7 +80,7 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("GyroAndEncoderFwd", new Auton_GyroAndEncoderFwd(0.5, 1200, 4.0));      
         */
         
-        
+        RobotMap.gyro.reset();
 
 
     }
