@@ -16,10 +16,11 @@ public class shooterRetract_PrimeManual extends Command{
 
 	protected void execute() {
 			Robot.shooterRetract.unretracting();
+		
 	}
 
 	protected boolean isFinished() {
-			return true;
+			return false;
 	}
 
 	protected void end() {

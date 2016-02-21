@@ -61,8 +61,8 @@ public class OI {
     public int Right_Stick_Y = 5; 			// forward is negative on the axis.
     public int Dpad_X = 6;					// Direction Pad X axis value only.  Note: The Joystick class can only handle 6 axis
     //TRIGGER VARIABLES
-    public int Right_trigger = 2;
-    public int Left_trigger = 3;
+    public int Right_trigger = 3;
+    public int Left_trigger = 2;
 
 
     //BUTTONS
