@@ -170,7 +170,7 @@ public class RobotMap {
         intakeintakeMotorB = new CANTalon(9);
         LiveWindow.addActuator("Intake", "intakeMotorB", intakeintakeMotorB);
         //intakeintakeMotorB.setControlMode(5);
-        //intakeintakeMotorB.reverseOutput(true);
+        intakeintakeMotorB.reverseOutput(false);
         //intakeintakeMotorB.set(6);
 
         shooterRetractMotorA = new CANTalon(7);

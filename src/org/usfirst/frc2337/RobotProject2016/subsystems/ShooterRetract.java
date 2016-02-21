@@ -16,8 +16,8 @@ public class ShooterRetract extends PIDSubsystem {
 	
 	private final double setPointTolerance = 0.1;
 	
-	private final double retractSpeedDown = -.2;
-	private final double retractSpeedUp = .2;
+	private final double retractSpeedDown = -.4;
+	private final double retractSpeedUp = .4;
 	private final double retractForwardLimit = 1.0;
 	private final double retractBackwardLimit = 0.5;
 	

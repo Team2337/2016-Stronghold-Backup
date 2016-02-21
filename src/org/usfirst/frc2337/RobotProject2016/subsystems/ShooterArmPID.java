@@ -24,7 +24,7 @@ public class ShooterArmPID extends PIDSubsystem {
     public double layupShot = 4;
     public double hookShot = 3.5;
     public double travel = 3.3;
-    public double base = 2.85; 
+    public double base = 2.4; 
 
     private final double setPointTolerance = 0.1;
     public final double autonArmSpeedUp = .4;
@@ -32,7 +32,7 @@ public class ShooterArmPID extends PIDSubsystem {
     public final double teleopArmSpeedUp = .4;
     public final double teleopArmSpeedDown = -.4;
     public final double armToplimit = 6.24;
-    public final double armBottomlimit = 2.8;
+    public final double armBottomlimit = 2.25;
     
     public boolean armPIDstatus = false;
     public boolean armjoystickstatus = true;
