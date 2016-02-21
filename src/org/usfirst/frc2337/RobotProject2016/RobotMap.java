@@ -96,12 +96,14 @@ public class RobotMap {
     public static boolean shooterArmOnTarget = false;
     public static boolean visionOnTarget = false;
     public static boolean okToShoot = false;
+    public static boolean seeTarget = false;
+    public static double gyroConversion = 4.5;
     
     
     //Start of init
     public static void init() {
     	
-    	
+    	gripTables = NetworkTable.getTable("GRIP/myContoursReport");
     	
     	chassisPIDaccelerometer = new AnalogAccelerometer(1);
         LiveWindow.addSensor("ChassisPID", "accelerometer ", chassisPIDaccelerometer);

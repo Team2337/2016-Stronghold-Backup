@@ -1,13 +1,9 @@
 package org.usfirst.frc2337.RobotProject2016.commands;
 
-import java.io.IOException;
-
 import org.usfirst.frc2337.RobotProject2016.Robot;
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.PIDCommand;
-//import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 public class chassis_TargetWithGyroPIDAndJoystick extends PIDCommand {
@@ -17,14 +13,12 @@ public class chassis_TargetWithGyroPIDAndJoystick extends PIDCommand {
 	double centerpnt = 172;
 	double firstcenter, secondcenter;
 	double deadband = 10;
-	double turnValue, targetAngle, fishAngle, leftJoystick;
+	double turnValue, targetAngle, leftJoystick;
 	double turnSpeed = 0.4;
-	//private Joystick joystickMain = Robot.oi.driverJoystick;
 	double Kp = .003;
 	double degreeConversion = 0.04;
 	double setpoint;
 	double timeout = 5.0;
-	static double P;
 
 	public chassis_TargetWithGyroPIDAndJoystick() {
 		//chassis_TargetWithGyroPID(String name, double p, double i, double d)
@@ -50,29 +44,16 @@ public class chassis_TargetWithGyroPIDAndJoystick extends PIDCommand {
 	protected void initialize() {
 		RobotMap.gyro.reset();
 
-		this.setTimeout(timeout);
-		/*
-		RobotMap.gripTables = NetworkTable.getTable("GRIP/myContoursReport");
-		
-		P = Robot.prefs.getDouble("TargetPID-P", 0.2);
-		double[] defaultValue = new double[0];
 		double[] centerx = RobotMap.gripTables.getNumberArray("centerX", defaultValue);
-		System.out.print("centerX: ");
-			for (double centerX : centerx) {
-				System.out.print(centerX + " ");
-				firstcenter = centerx[0];
-				//secondcenter = centerx[1];
-			System.out.println();
-			}
-			
-			turnValue = firstcenter - centerpnt;			///166 - 150 = 16
-			targetAngle = turnValue * degreeConversion;   	/// 16 * .07  = ~ 1.12
-//// REMOVE BEFORE PROD
- */
-			targetAngle = 15;
-			System.out.println("targetAngle: " + targetAngle);
-			this.setSetpoint(targetAngle);
-		
+		for (double centerX : centerx) {
+			System.out.println(centerX + " ");
+			firstcenter = centerx[0];
+		}
+		turnValue = firstcenter - centerpnt;
+		targetAngle = turnValue/RobotMap.gyroConversion;
+		System.out.println("TurnValues: FirstCenter "  + firstcenter + " - " + "Centerpoint " + centerpnt + " = " + turnValue);
+		System.out.println("targetAngle: TurnValue " + turnValue + " divided by " + RobotMap.gyroConversion + " equals " + targetAngle);
+		this.setSetpoint(targetAngle);	
 	}
 
 	protected void execute() {

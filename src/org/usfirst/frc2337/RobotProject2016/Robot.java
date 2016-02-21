@@ -107,6 +107,7 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putBoolean("arm pid enabled?" , Robot.shooterArmPID.getPIDStatus());
       SmartDashboard.putNumber("arm joystick y" , Robot.oi.operatorJoystick.getRawAxis(1));
       SmartDashboard.putNumber("arm get position" , Robot.shooterArmPID.getPIDController().getError());
+      SmartDashboard.putBoolean("Do We See the Target?" , RobotMap.seeTarget);
     
       
 

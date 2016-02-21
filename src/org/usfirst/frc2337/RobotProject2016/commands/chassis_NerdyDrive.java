@@ -17,6 +17,9 @@ public class chassis_NerdyDrive extends Command {
 	double absTurn, absSpeed,actualTurnMagnitude,actualTurn;
 	double maxTurnFullSpeed;
 	double deadband = 0.1;
+	double[] vision = new double[0];	
+	double[] centerx;
+	int visionlen;
 	
 	public chassis_NerdyDrive() {
 		requires(Robot.chassisPID);
@@ -31,25 +34,14 @@ public class chassis_NerdyDrive extends Command {
 
 
 	protected void execute() {
-		
-		/*
-		if (joystickMain.getRawAxis(2) > 0.2) {
-    		speed = Robot.oi.driverJoystick.getRawAxis(2);
-        	yaw = RobotMap.gyro.getAngle();
-        	speed = speed * speed;
-        	RobotMap.chassisDrive.drive(-speed, -yaw*Kp);
-        	SmartDashboard.putNumber("yaw4Nerds", yaw);
+		centerx = RobotMap.gripTables.getNumberArray("centerX", vision);
+		visionlen = centerx.length;
+		if (visionlen > 0) {
+			RobotMap.seeTarget = true;
+		} else {
+			RobotMap.seeTarget = false;
 		}
-		//Allows for driver to drive with the Gyro backwards
-        if (joystickMain.getRawAxis(2) < -0.2) {
-        	speed = Robot.oi.driverJoystick.getRawAxis(2);
-            yaw = RobotMap.gyro.getAngle();
-            speed = speed * speed;
-            RobotMap.chassisDrive.drive(speed, yaw*Kp);
-            SmartDashboard.putNumber("yaw4Nerds", yaw); 	
-    	} else {
-    		*/
-		//RobotMap.gyro.reset();
+
 		leftJoystick = joystickMain.getRawAxis(1);
 		turnJoystick = joystickMain.getRawAxis(4);
 		absTurn = Math.abs(turnJoystick);
@@ -66,14 +58,6 @@ public class chassis_NerdyDrive extends Command {
 
     	
     	 Robot.chassisPID.arcadeDrive(leftJoystick, actualTurn);
-    	 /*
-    	 SmartDashboard.putNumber(   "turnReduction",             turnReduction);
-    	 SmartDashboard.putNumber(   "actualTurnMagnitude",             actualTurnMagnitude);
-    	 SmartDashboard.putNumber(   "actualTurn",             actualTurn);
-    	 SmartDashboard.putNumber(   "turnOutput",             turnOutput);
-    	 SmartDashboard.putNumber(   "leftJoytick",             leftJoystick);
-    	 SmartDashboard.putNumber(   "turnJoystick",             turnJoystick);
-    	 */
     	}
 
 	
