@@ -5,15 +5,15 @@ import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class shooterRetract_Retract extends Command{
+public class shooterRetract_Prep extends Command{
 
 	//public boolean shooterRetractPrimed;
 	
-	public shooterRetract_Retract(){
-		requires(Robot.shooterRetract);
+	public shooterRetract_Prep(){
+		requires(Robot.shooterRetractor);
 	}
 	protected void initialize() {
-		Robot.shooterRetract.setRetractPosition(Robot.shooterRetract.preppedRetractorPosition);
+		RobotMap.shooterRetractMotorA.set(Robot.shooterRetractor.preppedRetractorPosition);
 		}
 
 	protected void execute() {
@@ -21,7 +21,7 @@ public class shooterRetract_Retract extends Command{
 	}
 
 	protected boolean isFinished() {
-		return (Robot.shooterArmPID.onTarget());
+		return (Robot.shooterRetractor.preppedOnTarget());
 }
 
 	protected void end() {

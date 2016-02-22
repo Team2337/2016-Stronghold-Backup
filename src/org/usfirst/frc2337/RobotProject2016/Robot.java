@@ -38,7 +38,7 @@ public class Robot extends IterativeRobot {
     public static DriveCamera driveCamera;
     public static LED Led;
     public static ShooterArmPID shooterArmPID;
-    public static ShooterRetract shooterRetract;
+    public static ShooterRetractor shooterRetractor;
     public static Shooter shooter;
     public static PortWheels PortWheels;
 
@@ -62,7 +62,7 @@ public class Robot extends IterativeRobot {
         Led = new LED();
         shooterArmPID = new ShooterArmPID();
         shooter = new Shooter();
-        shooterRetract = new ShooterRetract();
+        shooterRetractor = new ShooterRetractor();
         
       //Preference variables
         prefs = Preferences.getInstance();
@@ -108,6 +108,8 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putNumber("arm joystick y" , Robot.oi.operatorJoystick.getRawAxis(1));
       SmartDashboard.putNumber("arm get position" , Robot.shooterArmPID.getPIDController().getError());
       SmartDashboard.putBoolean("Do We See the Target?" , RobotMap.seeTarget);
+  
+
     
       
 
