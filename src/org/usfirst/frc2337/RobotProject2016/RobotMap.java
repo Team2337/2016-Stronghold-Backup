@@ -197,16 +197,16 @@ public class RobotMap {
         portWheelMotorB.reverseOutput(true);
         portWheelMotorB.set(8);
  
-        powerTakeOffptoSolenoid = new DoubleSolenoid(0, 3, 4);
+        powerTakeOffptoSolenoid = new DoubleSolenoid(0, 2, 3);
         LiveWindow.addActuator("PowerTakeOff", "ptoSolenoid", powerTakeOffptoSolenoid);
         
-        scalerscalerAirActuator = new Solenoid(0, 0);
+        scalerscalerAirActuator = new Solenoid(0, 4);
         LiveWindow.addActuator("Scaler", "scalerAirActuator", scalerscalerAirActuator);
         
         intakeWristintakeWristSolenoid = new Solenoid(0, 1);
         LiveWindow.addActuator("IntakeWrist", "intakeWristSolenoid", intakeWristintakeWristSolenoid);
         
-        chassisShiftershiftSolenoid = new Solenoid(0, 2);
+        chassisShiftershiftSolenoid = new Solenoid(0, 0);
         LiveWindow.addActuator("ChassisShifter", "shiftSolenoid", chassisShiftershiftSolenoid);
         
         ledGRIPCamera = new Solenoid(1, 0);

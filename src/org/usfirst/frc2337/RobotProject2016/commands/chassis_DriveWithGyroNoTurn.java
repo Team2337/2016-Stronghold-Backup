@@ -31,9 +31,9 @@ public class chassis_DriveWithGyroNoTurn extends Command {
     	speed = Robot.oi.driverJoystick.getRawAxis(joystickAxis);
     	
 		if (Robot.oi.driverJoystick.getRawAxis(joystickAxis) > deadband) {
-			moveSpeed = speed;
+			moveSpeed = -speed;
 		} else if (Robot.oi.driverJoystick.getRawAxis(joystickAxis) < -deadband) {
-            moveSpeed = -speed;
+            moveSpeed = speed;
         } else {
         	moveSpeed = 0;
         }

@@ -20,8 +20,8 @@ public class ShooterArmPID extends PIDSubsystem {
     private final CANTalon shooterArmMotor = RobotMap.shooterArmPIDMotorA;
     
    	//Specified angle value for Pot
-    public double scale = 5;
-    public double layupShot = 4;
+    public double scale = 6.6;
+    public double layupShot = 4.86;
     public double hookShot = 3.5;
     public double travel = 3.3;
     public double base = 2.4; 
@@ -31,8 +31,8 @@ public class ShooterArmPID extends PIDSubsystem {
     public final double autonArmSpeedDown = -.4;
     public final double teleopArmSpeedUp = .4;
     public final double teleopArmSpeedDown = -.4;
-    public final double armToplimit = 6.24;
-    public final double armBottomlimit = 2.25;
+    public final double armToplimit = 6.6;
+    public final double armBottomlimit = 2.54;
     
     public boolean armPIDstatus = false;
     public boolean armjoystickstatus = true;

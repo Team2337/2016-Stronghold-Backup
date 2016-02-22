@@ -120,19 +120,19 @@ public class OI {
         //remove before production*										************************
         retractorManualUp = new JoystickButton(driverJoystick, Red_B);
         //retractorManualUp.whileHeld(new shooterRetract_PrepManual());******************
-        retractorManualUp.whileHeld(new shooterRetract_Prep());
+        retractorManualUp.whenPressed(new shooterRetract_Prep());
         
         retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
         //retractorManualDown.whileHeld(new shooterRetract_PrimeManual());*************************
-        retractorManualDown.whileHeld(new shooterRetract_Prime());
+        retractorManualDown.whenPressed(new shooterRetract_Prime());
         
         //operator button
         
         inhale = new AnalogAxisButton(operatorJoystick, Left_trigger, 0.5);
-        inhale.whenPressed(new intake_Inhale());
+        inhale.whileHeld(new intake_Inhale());
         
         exhale = new AnalogAxisButton(operatorJoystick, Right_trigger, 0.5);
-        exhale.whenPressed(new intake_Exhale());
+        exhale.whileHeld(new intake_Exhale());
         
         light = new JoystickButton(operatorJoystick, Left_Bumper);
         light.whenPressed(new target_LightActivate());
