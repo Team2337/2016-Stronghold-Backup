@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.CANSpeedController.ControlMode;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.FeedbackDevice;
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.CounterBase.EncodingType;
@@ -126,13 +127,11 @@ public class RobotMap {
     	chassisPIDchassisLeft1 = new CANTalon(0);
         LiveWindow.addActuator("ChassisPID", "chassisLeft1", chassisPIDchassisLeft1);
         chassisPIDchassisLeft1.changeControlMode(TalonControlMode.PercentVbus);
-        
          
         chassisPIDchassisLeft2 = new CANTalon(1);
         LiveWindow.addActuator("ChassisPID", "chassisLeft2", chassisPIDchassisLeft2);
         chassisPIDchassisLeft2.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisLeft2.set(chassisPIDchassisLeft1.getDeviceID());
-
         
         chassisPIDchassisLeft3 = new CANTalon(2);
         LiveWindow.addActuator("ChassisPID", "chassisLeft3", chassisPIDchassisLeft3);
@@ -176,6 +175,16 @@ public class RobotMap {
         //intakeintakeMotorB.set(6);
 
         shooterRetractMotorA = new CANTalon(7);
+        shooterRetractMotorA.changeControlMode(TalonControlMode.Position);
+        shooterRetractMotorA.reverseOutput(false);
+        shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
+        shooterRetractMotorA.configNominalOutputVoltage(+0f, -0f);
+        shooterRetractMotorA.configPeakOutputVoltage(+12f, -12f);
+        shooterRetractMotorA.setProfile(0);
+        shooterRetractMotorA.setP(.2);
+
+        
+        
         LiveWindow.addActuator("ShooterRetract", "shooterRetractMotorA", shooterRetractMotorA);
         
         portWheelMotorA= new CANTalon(8);

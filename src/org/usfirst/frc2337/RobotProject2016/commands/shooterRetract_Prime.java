@@ -8,10 +8,10 @@ import edu.wpi.first.wpilibj.command.Command;
 public class shooterRetract_Prime extends Command{
 
 	public shooterRetract_Prime(){
-		requires(Robot.shooterRetract);
+		requires(Robot.shooterRetractor);
 	}
 	protected void initialize() {
-		Robot.shooterRetract.retractorPreppedPosition();
+		RobotMap.shooterRetractMotorA.set(Robot.shooterRetractor.primedRetractorPosition);
 		RobotMap.shooterRetractRetracted = false;
 	}
 
@@ -20,7 +20,7 @@ public class shooterRetract_Prime extends Command{
 	}
 
 	protected boolean isFinished() {
-			return (Robot.shooterArmPID.onTarget());
+			return (Robot.shooterRetractor.primedOnTarget());
 	}
 
 	protected void end() {

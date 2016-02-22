@@ -17,7 +17,7 @@ public class shooter_ShootCG extends CommandGroup {
     	addSequential(new intakeWrist_Extend());
     	addSequential(new auton_Wait(5));  				//.......adjust or remove???
     	addSequential(new shooter_Shoot());
-    	addSequential(new shooterRetract_Retract());
+    	addSequential(new shooterRetract_Prep());
     	addSequential(new auton_Wait(5));  				//.......adjust or remove???
     	addSequential(new intakeWrist_Retract());
     	addSequential(new shooterRetract_Prime());

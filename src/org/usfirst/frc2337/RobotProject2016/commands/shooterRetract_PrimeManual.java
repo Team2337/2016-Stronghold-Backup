@@ -8,14 +8,14 @@ import edu.wpi.first.wpilibj.command.Command;
 public class shooterRetract_PrimeManual extends Command{
 
 	public shooterRetract_PrimeManual(){
-		requires(Robot.shooterRetract);
+		requires(Robot.shooterRetractor);
 	}
 	protected void initialize() {
 	
 	}
 
 	protected void execute() {
-			Robot.shooterRetract.unretracting();
+			Robot.shooterRetractor.unretracting();
 		
 	}
 
@@ -24,7 +24,7 @@ public class shooterRetract_PrimeManual extends Command{
 	}
 
 	protected void end() {
-		Robot.shooterRetract.stopMotors();
+		Robot.shooterRetractor.stopMotors();
 	}
 
 	protected void interrupted() {

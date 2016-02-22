@@ -117,12 +117,14 @@ public class OI {
         target = new JoystickButton(driverJoystick, Left_Bumper);
         target.whenPressed(new chassis_TargetWithGyroPID());
         
-        //remove before production
+        //remove before production*										************************
         retractorManualUp = new JoystickButton(driverJoystick, Red_B);
-        retractorManualUp.whileHeld(new shooterRetract_RetractManual());
+        //retractorManualUp.whileHeld(new shooterRetract_PrepManual());******************
+        retractorManualUp.whileHeld(new shooterRetract_Prep());
         
         retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
-        retractorManualDown.whileHeld(new shooterRetract_PrimeManual());
+        //retractorManualDown.whileHeld(new shooterRetract_PrimeManual());*************************
+        retractorManualDown.whileHeld(new shooterRetract_Prime());
         
         //operator button
         
