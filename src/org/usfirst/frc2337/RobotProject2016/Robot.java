@@ -108,9 +108,21 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putNumber("arm joystick y" , Robot.oi.operatorJoystick.getRawAxis(1));
       SmartDashboard.putNumber("arm get position" , Robot.shooterArmPID.getPIDController().getError());
       SmartDashboard.putBoolean("Do We See the Target?" , RobotMap.seeTarget);
-      SmartDashboard.putNumber("Shooter Arm Enc Loc", RobotMap.shooterRetractMotorA.get());
-      SmartDashboard.putBoolean("shooterRetractPrimed", RobotMap.shooterRetractPrimed);
-      SmartDashboard.putBoolean("shooterRetractRetracted", RobotMap.shooterRetractRetracted);
+      
+      SmartDashboard.putNumber("Retractor: get", RobotMap.shooterRetractMotorA.get());
+      SmartDashboard.putBoolean("Retractor: shooterRetractPrimed", RobotMap.shooterRetractPrimed);
+      SmartDashboard.putBoolean("Retractor: shooterRetractRetracted", RobotMap.shooterRetractRetracted);
+      SmartDashboard.putData(Robot.shooterRetractor.getCurrentCommand());
+      SmartDashboard.putNumber("Retractor: CL err:", RobotMap.shooterRetractMotorA.getClosedLoopError());
+      SmartDashboard.putNumber("Retractor: getError", RobotMap.shooterRetractMotorA.getError());
+      SmartDashboard.putNumber("Retractor: getEncpos", RobotMap.shooterRetractMotorA.getEncPosition());
+      SmartDashboard.putNumber("Retractor: ouputVoltage", RobotMap.shooterRetractMotorA.getOutputVoltage());
+      SmartDashboard.putNumber("Retractor: PW Velocity", RobotMap.shooterRetractMotorA.getPulseWidthPosition());
+      SmartDashboard.putNumber("Retractor: getPosition", RobotMap.shooterRetractMotorA.getPosition());
+      SmartDashboard.putNumber("Retractor: getSetpoint", RobotMap.shooterRetractMotorA.getSetpoint());
+      
+      
+      
       SmartDashboard.putBoolean("getIntakeWristStatus",  Robot.intakeWrist.getIntakeWristStatus());
       SmartDashboard.putBoolean("shooterArmOnTarget",  RobotMap.shooterArmOnTarget);
       

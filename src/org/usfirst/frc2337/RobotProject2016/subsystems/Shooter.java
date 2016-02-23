@@ -14,7 +14,7 @@ public class Shooter extends Subsystem {
 	
 	protected void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-        setDefaultCommand(new shooter_DoNothing());
+        setDefaultCommand(new shooter_UnShoot());
 	}
 	/**
      * Retracks pin for shooter to shoot.

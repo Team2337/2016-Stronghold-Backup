@@ -13,6 +13,7 @@ public class shooterRetract_Prime extends Command{
 	protected void initialize() {
 		RobotMap.shooterRetractMotorA.set(Robot.shooterRetractor.primedRetractorPosition);
 		RobotMap.shooterRetractRetracted = false;
+		setTimeout(1.5);
 	}
 
 	protected void execute() {
@@ -20,7 +21,8 @@ public class shooterRetract_Prime extends Command{
 	}
 
 	protected boolean isFinished() {
-			return (Robot.shooterRetractor.primedOnTarget());
+			//return (Robot.shooterRetractor.primedOnTarget() || isTimedOut());
+		return (RobotMap.shooterRetractMotorA.isRevLimitSwitchClosed() || isTimedOut());
 	}
 
 	protected void end() {
