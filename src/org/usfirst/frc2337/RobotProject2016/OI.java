@@ -85,6 +85,7 @@ public class OI {
     public JoystickButton base;
     public JoystickButton retractorManualUp;
     public JoystickButton retractorManualDown;
+    public JoystickButton intakePreLoad;
  
     
     
@@ -94,6 +95,10 @@ public class OI {
         driverJoystick = new Joystick(0);
         operatorJoystick = new Joystick(1);
         operatorControls = new Joystick(2);
+        
+        intakePreLoad = new JoystickButton(driverJoystick, Start_Button);
+        intakePreLoad.whenPressed(new intake_inhaleCG());
+        intakePreLoad.whenReleased(new intake_DoNothing());
         
         targetdrive = new AnalogAxisButton(driverJoystick, Left_trigger, 0.5);
         targetdrive.whileHeld(new chassis_TargetWithGyroPIDAndJoystick());
@@ -123,8 +128,8 @@ public class OI {
         retractorManualUp.whenPressed(new shooterRetract_Prep());
         
         retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
-        //retractorManualDown.whileHeld(new shooterRetract_PrimeManual());*************************
-        retractorManualDown.whenPressed(new shooterRetract_Prime());
+        retractorManualDown.whileHeld(new shooterRetract_PrimeManual());
+        //retractorManualDown.whenPressed(new shooterRetract_Prime());
         
         //operator button
         

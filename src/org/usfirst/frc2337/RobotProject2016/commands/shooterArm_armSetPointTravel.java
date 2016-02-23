@@ -15,6 +15,7 @@ public class shooterArm_armSetPointTravel extends Command {
 	
 	protected void initialize() {
 		RobotMap.shooterArmOnTarget = false;
+		Robot.shooterArmPID.setAbsoluteTolerance(.4);		
 		Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.travel);
 	}
 	
@@ -29,11 +30,16 @@ public class shooterArm_armSetPointTravel extends Command {
 
 
 	protected void end() {	
+		Robot.shooterArmPID.disable();
+		RobotMap.travelMode = true;
 		RobotMap.shooterArmOnTarget = true;
+		Robot.shooterArmPID.setAbsoluteTolerance(.1);
+		//Prevents joystick control from initializing setpoint and enabling PID.
+		RobotMap.setPointSet = true;
 	}
 
 	
 	protected void interrupted() {
-	
+		Robot.shooterArmPID.setAbsoluteTolerance(.1);
 	}
 }

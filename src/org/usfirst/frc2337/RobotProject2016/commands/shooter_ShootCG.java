@@ -13,14 +13,16 @@ public class shooter_ShootCG extends CommandGroup {
 	
     public  shooter_ShootCG() {
     	//requires(Robot.shooter);
+    	addSequential(new shooterRetract_Prep());
     	addSequential(new intake_DoNothing());
     	addSequential(new intakeWrist_Extend());
     	addSequential(new auton_Wait(5));  				//.......adjust or remove???
     	addSequential(new shooter_Shoot());
-    	addSequential(new shooterRetract_Prep());
+    	
     	addSequential(new auton_Wait(5));  				//.......adjust or remove???
     	addSequential(new intakeWrist_Retract());
     	addSequential(new shooterRetract_Prime());
+    	addSequential(new shooterRetract_Prep());
 
      	
   	

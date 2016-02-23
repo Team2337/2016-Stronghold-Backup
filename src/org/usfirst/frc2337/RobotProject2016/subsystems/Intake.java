@@ -18,6 +18,7 @@ public class Intake extends Subsystem {
 	
     private final double inhaleSpeed = 0.8;
     private final double exhaleSpeed = -0.8;
+    private final double prepSpeed = 0.7;
 
     private final CANTalon intakeMotorA = RobotMap.intakeintakeMotorA;
     private final CANTalon intakeMotorB = RobotMap.intakeintakeMotorB;
@@ -57,6 +58,13 @@ public class Intake extends Subsystem {
    public void intakeExhale() {
 	   intakeMotorA.set(exhaleSpeed);
 	   intakeMotorB.set(-exhaleSpeed);
+   }
+   /**
+    * Sets the intake rollers to both roll in 
+    */
+   public void intakeInhaleOffGround() {
+	   intakeMotorA.set(inhaleSpeed);
+	   intakeMotorB.set(inhaleSpeed);
    }
    /**
     * Sets the motor speed for the intake to zero thereby stopping the intake. 

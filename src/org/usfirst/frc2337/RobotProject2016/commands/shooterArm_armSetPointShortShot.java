@@ -16,6 +16,9 @@ public class shooterArm_armSetPointShortShot extends Command {
 	protected void initialize() {
 		RobotMap.shooterArmOnTarget = false;
 		Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.layupShot);
+		if (!Robot.shooterArmPID.armPIDstatus) {
+			Robot.shooterArmPID.enable();
+		}
 	}
 	
 	

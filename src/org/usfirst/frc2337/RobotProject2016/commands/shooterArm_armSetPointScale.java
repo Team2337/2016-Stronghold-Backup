@@ -15,6 +15,9 @@ public class shooterArm_armSetPointScale extends Command {
 	protected void initialize() {
 		RobotMap.shooterArmOnTarget = false;
 		Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.scale);
+		if (!Robot.shooterArmPID.armPIDstatus) {
+			Robot.shooterArmPID.enable();
+		}
 	}
 	
 	

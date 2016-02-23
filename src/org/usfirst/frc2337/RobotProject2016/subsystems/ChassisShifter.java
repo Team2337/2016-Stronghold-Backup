@@ -27,13 +27,13 @@ public class ChassisShifter extends Subsystem {
      * Change to high gear
      */
     public void highGear() {
-    	shiftSolenoid.set(true);
+    	shiftSolenoid.set(false);
     }
     /**
      * Change to low gear
      */
     public void lowGear() {
-    	shiftSolenoid.set(false);
+    	shiftSolenoid.set(true);
     }
     /**
      * Get the status of Shifter Solenoid 
