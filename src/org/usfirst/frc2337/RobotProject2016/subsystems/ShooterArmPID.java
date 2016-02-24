@@ -21,7 +21,7 @@ public class ShooterArmPID extends PIDSubsystem {
     
    	//Specified angle value for Pot
     public double scale = 6.6;
-    public double layupShot = 4.86;
+    public double layupShot = 5;   //4.86
     public double hookShot = 3.5;
     public double travel = 3.3;
     public double base = 2.4; 
