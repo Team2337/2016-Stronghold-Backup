@@ -35,14 +35,18 @@ public class  shooterArm_JoystickControl extends Command {
     	
     	//Check the joystick for a dead band, if in do...
     	if ((armJoystickY > -deadBand ) && (armJoystickY < deadBand)) { //Dead band
-    		
+    		//System.out.println("in deadband");
     		armJoystickY = 0;  //Set Motor to 0 if in dead band
+    		/*
     		if (RobotMap.travelMode  &&((Robot.shooterArmPID.getSetpoint() - Robot.shooterArmPID.getPosition()) > travelError) ) {
     			Robot.shooterArmPID.enable();
     		} else if (RobotMap.travelMode) {
     			Robot.shooterArmPID.disable();
     		}
-    		//If setPointSet, is not set (so false), run this ONCE and
+    			 */
+    		//If setPointSet, is not
+    		// set (so false), run this ONCE and
+    	
     		//enable the Lift PID and set the PID to where the lift is
     		if (!RobotMap.setPointSet) {
     			Robot.shooterArmPID.enable(); //Enable Lift Pid
@@ -51,6 +55,7 @@ public class  shooterArm_JoystickControl extends Command {
     			RobotMap.setPointSet = true; 
     		}
     	} else {		//If the Joystick is out of the dead band, do..
+    	//	System.out.println("out of deadband");
     		Robot.shooterArmPID.disable(); //Disable the Lift PID
     		//Make the motor be controlled by the joystick but at a multiplied speed
     		if  ((armJoystickY > 0) && (Robot.shooterArmPID.getPosition() < Robot.shooterArmPID.armToplimit)) {
@@ -64,7 +69,7 @@ public class  shooterArm_JoystickControl extends Command {
     		}
     		//Make the setPointSet to false, so if in dead band, the PID can reset
     		RobotMap.setPointSet = false;
-    		RobotMap.travelMode = false;
+    		//RobotMap.travelMode = false;
     	}	// End Deadband
     
     	SmartDashboard.putBoolean("setPointSet?" , RobotMap.setPointSet);

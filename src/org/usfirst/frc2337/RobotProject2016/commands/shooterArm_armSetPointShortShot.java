@@ -15,6 +15,7 @@ public class shooterArm_armSetPointShortShot extends Command {
 	
 	protected void initialize() {
 		RobotMap.shooterArmOnTarget = false;
+		setTimeout(2);
 		Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.layupShot);
 		if (!Robot.shooterArmPID.armPIDstatus) {
 			Robot.shooterArmPID.enable();
@@ -27,7 +28,7 @@ public class shooterArm_armSetPointShortShot extends Command {
 
 	
 	protected boolean isFinished() {
-		return (Robot.shooterArmPID.onTarget());
+		return (Robot.shooterArmPID.onTarget() || isTimedOut());
 	}
 
 	

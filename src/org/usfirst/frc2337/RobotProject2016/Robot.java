@@ -126,6 +126,8 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putBoolean("getIntakeWristStatus",  Robot.intakeWrist.getIntakeWristStatus());
       SmartDashboard.putBoolean("shooterArmOnTarget",  RobotMap.shooterArmOnTarget);
       
+      SmartDashboard.putNumber("arm joystick", Robot.oi.operatorJoystick.getY());
+      
   
 
     

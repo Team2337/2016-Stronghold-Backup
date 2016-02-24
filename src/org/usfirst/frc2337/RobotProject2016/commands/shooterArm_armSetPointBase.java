@@ -17,7 +17,7 @@ public class shooterArm_armSetPointBase extends Command {
 	protected void initialize() {
 		RobotMap.shooterArmOnTarget = false;
 		Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.base);
-		setTimeout(1);
+		setTimeout(2);
 		if (!Robot.shooterArmPID.armPIDstatus) {
 			Robot.shooterArmPID.enable();
 		}

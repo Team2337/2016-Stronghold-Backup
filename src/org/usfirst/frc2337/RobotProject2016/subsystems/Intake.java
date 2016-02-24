@@ -57,7 +57,7 @@ public class Intake extends Subsystem {
     */
    public void intakeExhale() {
 	   intakeMotorA.set(exhaleSpeed);
-	   intakeMotorB.set(-exhaleSpeed);
+	   intakeMotorB.set(exhaleSpeed);
    }
    /**
     * Sets the intake rollers to both roll in 

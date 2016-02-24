@@ -28,7 +28,7 @@ public class chassis_NerdyDrive extends Command {
 	
 	
 	protected void initialize() {
-		maxTurnFullSpeed = Robot.prefs.getDouble("NerdyTurnVarible", 0.45);
+		maxTurnFullSpeed = Robot.prefs.getDouble("NerdyTurnVarible", 0.99);
 		
 	}
 
