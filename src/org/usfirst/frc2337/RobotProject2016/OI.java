@@ -74,7 +74,7 @@ public class OI {
     public AnalogAxisButton shoot;
     public JoystickButton gryoDrive;
     public JoystickButton target;
-    public AnalogAxisButton targetdrive;
+    public JoystickButton targetdrive;
    // operator button
     public AnalogAxisButton inhale;
     public AnalogAxisButton exhale;
@@ -101,17 +101,17 @@ public class OI {
         shoot = new AnalogAxisButton(driverJoystick, Right_trigger, 0.5);
         shoot.whenPressed(new shooter_ShootCG());
         
-        retractorManualUp = new JoystickButton(driverJoystick, Red_B);
-        retractorManualUp.whenPressed(new shooterRetract_Prep());
+       // retractorManualUp = new JoystickButton(driverJoystick, Red_B);
+       // retractorManualUp.whenPressed(new shooterRetract_Prep());
         
-        retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
-        retractorManualDown.whenPressed(new shooterRetract_Prime());
+       // retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
+       // retractorManualDown.whenPressed(new shooterRetract_Prime());
         
-        wrist = new JoystickButton(driverJoystick, Left_Bumper);
-        wrist.whenPressed(new intakeWrist_Extend());
-        wrist.whenReleased(new intakeWrist_Retract());
+        //wrist = new JoystickButton(driverJoystick, Left_Bumper);
+        //wrist.whenPressed(new intakeWrist_Extend());
+        //wrist.whenReleased(new intakeWrist_Retract());
         
-        gryoDrive = new JoystickButton(driverJoystick, Right_Bumper);
+        gryoDrive = new JoystickButton(driverJoystick, Left_Bumper);
         gryoDrive.whileHeld(new chassis_DriveWithGyroNoTurn());
         
         
@@ -119,8 +119,8 @@ public class OI {
         //intakePreLoad.whenPressed(new intake_inhaleCG());
         //intakePreLoad.whenReleased(new intake_DoNothing());
         
-        //targetdrive = new AnalogAxisButton(driverJoystick, Left_trigger, 0.5);
-        //targetdrive.whileHeld(new chassis_TargetWithGyroPIDAndJoystick());
+        targetdrive = new JoystickButton(driverJoystick, Left_trigger);
+        targetdrive.whileHeld(new chassis_TargetWithGyroPIDAndJoystick());
         
         shifter = new AnalogAxisButton(driverJoystick, Left_trigger, 0.5); 
         shifter.whenPressed(new chassisShifter_HighToLow());
