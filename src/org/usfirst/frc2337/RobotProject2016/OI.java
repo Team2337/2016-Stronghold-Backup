@@ -105,7 +105,7 @@ public class OI {
         gryoDrive = new JoystickButton(driverJoystick, Left_Bumper);
         gryoDrive.whileHeld(new chassis_DriveWithGyroNoTurn());
         
-        targetdrive = new JoystickButton(driverJoystick, Left_trigger);
+        targetdrive = new JoystickButton(driverJoystick, Right_Bumper);
         targetdrive.whileHeld(new chassis_TargetWithGyroPIDAndJoystick());
         
         shifter = new AnalogAxisButton(driverJoystick, Left_trigger, 0.5); 
