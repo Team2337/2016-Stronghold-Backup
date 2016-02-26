@@ -16,6 +16,7 @@ public class intakeWrist_Extend extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.intakeWrist.intakeExtend();
+    	//setTimeout(5);
     	
     }
     
@@ -27,6 +28,7 @@ public class intakeWrist_Extend extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
         return true;
+    	//return isTimedOut();
     }
 
     // Called once after isFinished returns true

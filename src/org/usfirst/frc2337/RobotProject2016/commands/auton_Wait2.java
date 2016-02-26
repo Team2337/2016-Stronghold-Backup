@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj.command.Command;
  * @param seconds The time, in seconds, to wait for.
  */
 
-public class  auton_Wait extends Command {
+public class  auton_Wait2 extends Command {
 
 	private double seconds;
 	
-    public auton_Wait(double seconds) {
+    public auton_Wait2(double seconds) {
     	this.seconds = seconds;
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -23,12 +23,12 @@ public class  auton_Wait extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	setTimeout(seconds);
+    	setTimeout(5);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	System.out.println("waiting in auton_wait");
+    	System.out.println("22222222222222222");
     }
 
     // Make this return true when this Command no longer needs to run execute()

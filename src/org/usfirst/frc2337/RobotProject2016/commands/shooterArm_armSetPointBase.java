@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class shooterArm_armSetPointBase extends Command {
 	
+	
+	
 	public shooterArm_armSetPointBase() {
 		requires(Robot.shooterArmPID);	
 	}
@@ -15,6 +17,10 @@ public class shooterArm_armSetPointBase extends Command {
 	protected void initialize() {
 		RobotMap.shooterArmOnTarget = false;
 		Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.base);
+		setTimeout(2);
+		if (!Robot.shooterArmPID.armPIDstatus) {
+			Robot.shooterArmPID.enable();
+		}
 	}
 	
 	
@@ -23,7 +29,7 @@ public class shooterArm_armSetPointBase extends Command {
 
 
 	protected boolean isFinished() {
-		return (Robot.shooterArmPID.onTarget());
+		return (Robot.shooterArmPID.onTarget() || isTimedOut());
 	}
 
 

@@ -99,6 +99,8 @@ public class RobotMap {
     public static boolean okToShoot = false;
     public static boolean seeTarget = false;
     public static double gyroConversion = 4.5;
+    public static boolean travelMode = false;
+    public static boolean setPointSet = false;
     
     
     //Start of init
@@ -155,7 +157,7 @@ public class RobotMap {
         shooterArmPIDMotorA = new CANTalon(3);
         LiveWindow.addActuator("ShooterArm", "shooterArmMotorA", shooterArmPIDMotorA);
         shooterArmPIDMotorA.setControlMode(0);  
-        shooterArmPIDMotorA.enableBrakeMode(true);
+        //shooterArmPIDMotorA.enableBrakeMode(true);
         
         shooterArmPIDMotorB = new CANTalon(12);
         LiveWindow.addActuator("ShooterArm", "shooterArmMotorB", shooterArmPIDMotorB);
@@ -173,15 +175,19 @@ public class RobotMap {
         //intakeintakeMotorB.setControlMode(5);
         intakeintakeMotorB.reverseOutput(false);
         //intakeintakeMotorB.set(6);
-
+        																	//**************************retractor*****
         shooterRetractMotorA = new CANTalon(7);
         shooterRetractMotorA.changeControlMode(TalonControlMode.Position);
+        shooterRetractMotorA.setPID(.1, 0.0, 0.0);
+        shooterRetractMotorA.setAllowableClosedLoopErr(60);
         shooterRetractMotorA.reverseOutput(false);
         shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
-        shooterRetractMotorA.configNominalOutputVoltage(+0f, -0f);
+        shooterRetractMotorA.configNominalOutputVoltage(+6f, -6f);
         shooterRetractMotorA.configPeakOutputVoltage(+12f, -12f);
         shooterRetractMotorA.setProfile(0);
-        shooterRetractMotorA.setP(.2);
+        shooterRetractMotorA.setP(10);
+        shooterRetractMotorA.enableBrakeMode(true);
+
 
         
         
@@ -197,24 +203,20 @@ public class RobotMap {
         portWheelMotorB.reverseOutput(true);
         portWheelMotorB.set(8);
  
-        powerTakeOffptoSolenoid = new DoubleSolenoid(0, 2, 3);
-        LiveWindow.addActuator("PowerTakeOff", "ptoSolenoid", powerTakeOffptoSolenoid);
         
-        scalerscalerAirActuator = new Solenoid(0, 4);
-        LiveWindow.addActuator("Scaler", "scalerAirActuator", scalerscalerAirActuator);
-        
-        intakeWristintakeWristSolenoid = new Solenoid(0, 1);
-        LiveWindow.addActuator("IntakeWrist", "intakeWristSolenoid", intakeWristintakeWristSolenoid);
-        
+        //   Solenoid Module 0  Get in my belly!
         chassisShiftershiftSolenoid = new Solenoid(0, 0);
-        LiveWindow.addActuator("ChassisShifter", "shiftSolenoid", chassisShiftershiftSolenoid);
+        powerTakeOffptoSolenoid = new DoubleSolenoid(0, 2, 3);
         
-        ledGRIPCamera = new Solenoid(1, 0);
-        LiveWindow.addActuator("Led", "GRIPLed", ledGRIPCamera);
+        //   Solenoid Module 1  On the Arm
+        intakeWristintakeWristSolenoid = new Solenoid(1, 0);
+        ShooterPneumaticPin = new Solenoid(1, 2);
+        scalerscalerAirActuator = new Solenoid(1, 4);
+        ledGRIPCamera = new Solenoid(1, 5);
+        gotBallLED = new Solenoid(1, 6);
+
         
-        gotBallLED = new Solenoid(1, 1);
-        
-        targetLightLight = new Solenoid(1, 2);
+        targetLightLight = new Solenoid(1, 7);
 
         
         //Digital Sensors

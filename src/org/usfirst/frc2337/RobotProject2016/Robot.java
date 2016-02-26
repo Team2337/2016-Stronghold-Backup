@@ -97,7 +97,7 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putBoolean("okToShoot", RobotMap.okToShoot);
       SmartDashboard.putBoolean("leftBall", RobotMap.intakeLeftBallSensor.get());
       SmartDashboard.putBoolean("RightBall", RobotMap.intakeRightBallSensor.get());
-      SmartDashboard.putBoolean("gotBall", RobotMap.intakeGotBallSensor.get());
+      SmartDashboard.putBoolean("gotBall", Robot.intake.gotBallSensorState());
       SmartDashboard.putDouble("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getRate());
       SmartDashboard.putNumber("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getDistance());
       SmartDashboard.putBoolean("Shifter Status" , RobotMap.chassisShiftershiftSolenoid.get());
@@ -108,6 +108,26 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putNumber("arm joystick y" , Robot.oi.operatorJoystick.getRawAxis(1));
       SmartDashboard.putNumber("arm get position" , Robot.shooterArmPID.getPIDController().getError());
       SmartDashboard.putBoolean("Do We See the Target?" , RobotMap.seeTarget);
+      
+      SmartDashboard.putNumber("Retractor: get", RobotMap.shooterRetractMotorA.get());
+      SmartDashboard.putBoolean("Retractor: shooterRetractPrimed", RobotMap.shooterRetractPrimed);
+      SmartDashboard.putBoolean("Retractor: shooterRetractRetracted", RobotMap.shooterRetractRetracted);
+      SmartDashboard.putData(Robot.shooterRetractor.getCurrentCommand());
+      SmartDashboard.putNumber("Retractor: CL err:", RobotMap.shooterRetractMotorA.getClosedLoopError());
+      SmartDashboard.putNumber("Retractor: getError", RobotMap.shooterRetractMotorA.getError());
+      SmartDashboard.putNumber("Retractor: getEncpos", RobotMap.shooterRetractMotorA.getEncPosition());
+      SmartDashboard.putNumber("Retractor: ouputVoltage", RobotMap.shooterRetractMotorA.getOutputVoltage());
+      SmartDashboard.putNumber("Retractor: PW Velocity", RobotMap.shooterRetractMotorA.getPulseWidthPosition());
+      SmartDashboard.putNumber("Retractor: getPosition", RobotMap.shooterRetractMotorA.getPosition());
+      SmartDashboard.putNumber("Retractor: getSetpoint", RobotMap.shooterRetractMotorA.getSetpoint());
+      
+      
+      
+      SmartDashboard.putBoolean("getIntakeWristStatus",  Robot.intakeWrist.getIntakeWristStatus());
+      SmartDashboard.putBoolean("shooterArmOnTarget",  RobotMap.shooterArmOnTarget);
+      
+      SmartDashboard.putNumber("arm joystick", Robot.oi.operatorJoystick.getY());
+      
   
 
     
@@ -130,6 +150,7 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
     	RobotMap.gyro.reset();
+    	RobotMap.shooterArmPIDMotorA.enableBrakeMode(true);
     	autonomousCommand = new Auton_GyroFwd();
     	//autonomousCommand = (Command) autonChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();

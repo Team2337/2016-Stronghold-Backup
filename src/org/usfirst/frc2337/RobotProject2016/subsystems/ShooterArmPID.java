@@ -21,18 +21,18 @@ public class ShooterArmPID extends PIDSubsystem {
     
    	//Specified angle value for Pot
     public double scale = 6.6;
-    public double layupShot = 4.86;
-    public double hookShot = 3.5;
-    public double travel = 3.3;
-    public double base = 2.4; 
+    public double layupShot = 5;   //4.86
+    public double hookShot = 2.9;
+    public double travel = 3.0;  //3.5
+    public double base = 2.55; 
 
     private final double setPointTolerance = 0.1;
     public final double autonArmSpeedUp = .4;
     public final double autonArmSpeedDown = -.4;
-    public final double teleopArmSpeedUp = .4;
+    public final double teleopArmSpeedUp = .5;
     public final double teleopArmSpeedDown = -.4;
     public final double armToplimit = 6.6;
-    public final double armBottomlimit = 2.54;
+    public final double armBottomlimit = 2.45;
     
     public boolean armPIDstatus = false;
     public boolean armjoystickstatus = true;
@@ -43,7 +43,7 @@ public class ShooterArmPID extends PIDSubsystem {
     // Initialize your subsystem here
     public ShooterArmPID() {
        
-        super("ShooterArmPID", 1.0, 0.0, 0.0);
+        super("ShooterArmPID", 2.0, 0.0, 0.0);  //1.0
         setAbsoluteTolerance(setPointTolerance);
         getPIDController().setContinuous(false);
         LiveWindow.addActuator("ShooterArmPID", "PIDSubsystem Controller", getPIDController());

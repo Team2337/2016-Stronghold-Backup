@@ -16,9 +16,12 @@ public class shooter_Shoot extends Command {
 	}
 	protected void initialize() {
 		// Disengages the shooter pin
+		/*
 		if((Robot.intakeWrist.getIntakeWristStatus()) && (RobotMap.okToShoot) && (RobotMap.shooterRetractPrimed) && (RobotMap.shooterRetractRetracted)) {
 			Robot.shooter.shooterShoot();
 		}
+		*/
+		Robot.shooter.shooterShoot();            //   ****************************
 	}
 
 

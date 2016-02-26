@@ -10,11 +10,11 @@ public class ShooterRetractor extends Subsystem{
 	
 	private final CANTalon retractorMotor = RobotMap.shooterRetractMotorA;
 	
-	public double primedRetractorPosition = 1;
-	public double preppedRetractorPosition = 2.2;
+	public double primedRetractorPosition = 0.1;  //-.9   range is roughly 1.3
+	public double preppedRetractorPosition = 1.2;   // .3
 	
-	private final double retractSpeedDown = -.2;
-	private final double retractSpeedUp = .2;
+	private final double retractSpeedDown = -0.90;	//retracting manually.......PRMING RIGHT NOW!!!! 0.75 to test w/o latching
+	private final double retractSpeedUp = 1;		//unretracting manually
 	
 	private double threshold = 0.1;
 	

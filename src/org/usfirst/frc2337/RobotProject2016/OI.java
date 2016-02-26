@@ -70,10 +70,11 @@ public class OI {
     public AnalogAxisButton shifter;
     public JoystickButton PTO;
     public JoystickButton portWheels;
-    public JoystickButton shoot;
+    //public JoystickButton shoot;
+    public AnalogAxisButton shoot;
     public JoystickButton gryoDrive;
     public JoystickButton target;
-    public AnalogAxisButton targetdrive;
+    public JoystickButton targetdrive;
    // operator button
     public AnalogAxisButton inhale;
     public AnalogAxisButton exhale;
@@ -85,6 +86,9 @@ public class OI {
     public JoystickButton base;
     public JoystickButton retractorManualUp;
     public JoystickButton retractorManualDown;
+    public JoystickButton intakePreLoad;
+    public JoystickButton wrist;
+    public JoystickButton intakeDoNo;
  
     
     
@@ -95,49 +99,69 @@ public class OI {
         operatorJoystick = new Joystick(1);
         operatorControls = new Joystick(2);
         
-        targetdrive = new AnalogAxisButton(driverJoystick, Left_trigger, 0.5);
+        shoot = new AnalogAxisButton(driverJoystick, Right_trigger, 0.5);
+        shoot.whenPressed(new shooter_ShootCG());
+        
+        gryoDrive = new JoystickButton(driverJoystick, Left_Bumper);
+        gryoDrive.whileHeld(new chassis_DriveWithGyroNoTurn());
+        
+        targetdrive = new JoystickButton(driverJoystick, Right_Bumper);
         targetdrive.whileHeld(new chassis_TargetWithGyroPIDAndJoystick());
         
-        shifter = new AnalogAxisButton(driverJoystick, Right_trigger, 0.5); 
+        shifter = new AnalogAxisButton(driverJoystick, Left_trigger, 0.5); 
         shifter.whenPressed(new chassisShifter_HighToLow());
         shifter.whenReleased(new chassisShifter_LowToHigh());
+        
+        // retractorManualUp = new JoystickButton(driverJoystick, Red_B);
+        // retractorManualUp.whenPressed(new shooterRetract_Prep());
+         
+        // retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
+        // retractorManualDown.whenPressed(new shooterRetract_Prime());
+         
+         //wrist = new JoystickButton(driverJoystick, Left_Bumper);
+         //wrist.whenPressed(new intakeWrist_Extend());
+         //wrist.whenReleased(new intakeWrist_Retract());
+        
+        //intakePreLoad = new JoystickButton(driverJoystick, Start_Button);
+        //intakePreLoad.whenPressed(new intake_inhaleCG());
+        //intakePreLoad.whenReleased(new intake_DoNothing());
        
-        PTO  = new JoystickButton(driverJoystick, Yellow_Y);
-        PTO.whenPressed(new PTO_Activate());
+        //PTO  = new JoystickButton(driverJoystick, Yellow_Y);**********commentd out for retractor testing*****
+        //PTO.whenPressed(new PTO_Activate());
         
         //portWheels = new JoystickButton(driverJoystick, Blue_X);
         //portWheels.whileHeld(new portWheels_activate());
         
-        shoot = new JoystickButton(driverJoystick, Green_A);
-        shoot.whenPressed(new shooter_ShootCG());
+        //shoot = new JoystickButton(driverJoystick, Green_A);     **********commentd out for retractor testing*****
+        //shoot.whenPressed(new shooter_ShootCG());
         
-        gryoDrive = new JoystickButton(driverJoystick, Right_Bumper);
-        gryoDrive.whileHeld(new chassis_DriveWithGyroNoTurn());
         
-        target = new JoystickButton(driverJoystick, Left_Bumper);
-        target.whenPressed(new chassis_TargetWithGyroPID());
+        //target = new JoystickButton(driverJoystick, Left_Bumper);
+       // target.whenPressed(new chassis_TargetWithGyroPID());
         
         //remove before production*										************************
-        retractorManualUp = new JoystickButton(driverJoystick, Red_B);
-        //retractorManualUp.whileHeld(new shooterRetract_PrepManual());******************
-        retractorManualUp.whenPressed(new shooterRetract_Prep());
+        //PTO  = new JoystickButton(driverJoystick, Yellow_Y);        // *****************************
+        //PTO.whenPressed(new shooterRetractor_adjustSetpointUp()) ;	//*******************
+        //shoot = new JoystickButton(driverJoystick, Green_A);   		//  ***************
+        //shoot.whenPressed(new shooterRetractor_adjustSetpointDown());				//**************************
         
-        retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
-        //retractorManualDown.whileHeld(new shooterRetract_PrimeManual());*************************
-        retractorManualDown.whenPressed(new shooterRetract_Prime());
+        
+        //retractorManualUp = new JoystickButton(driverJoystick, Red_B);
+        //retractorManualUp.whileHeld(new shooterRetract_PrepManual());******************
+        //retractorManualUp.whenPressed(new shooterRetract_Prep());
+        
+        //retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
+        //retractorManualDown.whileHeld(new shooterRetract_PrimeManual());
+        //retractorManualDown.whenPressed(new shooterRetract_Prime());
         
         //operator button
         
-        inhale = new AnalogAxisButton(operatorJoystick, Left_trigger, 0.5);
+        inhale = new AnalogAxisButton(operatorJoystick, Right_trigger, 0.5);
         inhale.whileHeld(new intake_Inhale());
         
-        exhale = new AnalogAxisButton(operatorJoystick, Right_trigger, 0.5);
+        exhale = new AnalogAxisButton(operatorJoystick, Left_trigger, 0.5);
         exhale.whileHeld(new intake_Exhale());
         
-        light = new JoystickButton(operatorJoystick, Left_Bumper);
-        light.whenPressed(new target_LightActivate());
-        light.whenReleased(new target_LightDeactivate());
-     
         shortshot = new JoystickButton(operatorJoystick, Right_Bumper);
         shortshot.whenPressed(new shooterArm_armSetPointShortShot());
         
@@ -153,10 +177,50 @@ public class OI {
         base = new JoystickButton(operatorJoystick, Green_A);
         base.whenPressed(new shooterArm_armSetPointBase());
         
+        wrist = new JoystickButton(operatorJoystick, Left_Bumper);
+        wrist.whenPressed(new intakeWrist_Extend());
+        wrist.whenReleased(new intakeWrist_Retract());
+        
+        intakeDoNo = new JoystickButton(operatorJoystick, Start_Button);
+        intakeDoNo.whenPressed(new intake_DoNothing());
+        
+        //light = new JoystickButton(operatorJoystick, Left_Bumper);
+        //light.whenPressed(new target_LightActivate());
+        //light.whenReleased(new target_LightDeactivate());       
         
         
+        //*****************************  test retractor on 3rd Joystick ******************
+        
+        //remove before production*	************************
+        /*
+        PTO  = new JoystickButton(operatorControls, Yellow_Y);        
+        PTO.whenPressed(new shooterRetractor_adjustSetpointUp()) ;
+        
+        shoot = new JoystickButton(operatorControls, Green_A);   				
+        shoot.whenPressed(new shooterRetractor_adjustSetpointDown());				
         
         
+        retractorManualUp = new JoystickButton(operatorControls, Red_B);
+        retractorManualUp.whenPressed(new shooterRetract_Prep());
+        
+        retractorManualDown = new JoystickButton(operatorControls, Blue_X);
+        retractorManualDown.whenPressed(new shooterRetract_Prime());
+        
+        light = new JoystickButton(operatorControls, Left_Bumper);
+        light.whenPressed(new intakeWrist_Extend());
+        light.whenReleased(new intakeWrist_Retract());
+        
+        intakePreLoad = new JoystickButton(operatorControls, Start_Button);
+        intakePreLoad.whenPressed(new shooterRetractor_enablePID());
+        
+        base = new JoystickButton(operatorControls, Back_Button);
+        base.whenPressed(new shooterRetractor_disbablePID());
+   
+        shoot = new JoystickButton(operatorControls, Right_Bumper);   
+        shoot.whenPressed(new shooter_ShootCG());
+        */
+        
+        //************************************************************************************************
         
      /*   
         driveWithGyro = new JoystickButton(driverJoystick, Left_Bumper);
