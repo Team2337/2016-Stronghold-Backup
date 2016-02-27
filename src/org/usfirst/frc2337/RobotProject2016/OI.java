@@ -89,6 +89,8 @@ public class OI {
     public JoystickButton intakePreLoad;
     public JoystickButton wrist;
     public JoystickButton intakeDoNo;
+    
+    public JoystickButton test;
  
     
     
@@ -116,6 +118,9 @@ public class OI {
         //light.whileHeld(new target_LightActivate());
         light.whenPressed(new auton_SimpleReach());
         //light.whenReleased(new target_LightDeactivate());  
+        
+        test = new JoystickButton(driverJoystick, Back_Button);
+        test.whenPressed(new auton_MoveAfterDefenseAndTurnToGoal(0.3, 3000, 5.0, 45));
         
         //retractorManualUp = new JoystickButton(driverJoystick, Red_B);
         //retractorManualUp.whenPressed(new shooterRetract_Prep());

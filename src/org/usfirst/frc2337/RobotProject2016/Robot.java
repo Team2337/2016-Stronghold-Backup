@@ -153,8 +153,8 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
         // schedule the autonomous command (example)
     	RobotMap.gyro.reset();
-    	RobotMap.shooterArmPIDMotorA.enableBrakeMode(true);
-    	autonomousCommand = new Auton_GyroFwd();
+    	RobotMap.shooterArmPIDMotorA.enableBrakeMode(true);     //TODO   Dow we want on
+    	autonomousCommand = new auton_MainCG();
     	//autonomousCommand = (Command) autonChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
         
