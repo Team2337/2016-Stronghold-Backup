@@ -34,10 +34,12 @@ public class auton_MainCG extends CommandGroup {
     	if (intake == 1) { //I'm INTAKING, so lets run...
     		addSequential(new auton_IntakeCG());  							//TODO   NEED tO TEST
     		
-    	} else {//if (intake == 0) {//Nope, lets not intake for midline...
+    	} else if (intake == 2) {//if (intake == 0) {//Nope, lets not intake for midline...
     		addSequential(new Auton_GyroAndEncoderDrive(0.5, 500, 3.0));  		//TODO   NEED TO SET DISTANCE 
 
     		//addSequential(new auton_Wait(1));   //just for testing
+    	} else {
+    		addSequential(new auton_Wait(15));
     	}
     	
     	/*
@@ -109,6 +111,8 @@ public class auton_MainCG extends CommandGroup {
     		addSequential(new auton_Wait(0)); 
     		//System.out.println("IM AT 5, I WANT TO GO RIGHT");
     	} else if (startingPoint == 6){ //NOPE WE ARE NOT GOING TO THE GOAL
+    		addSequential(new auton_Wait(15));
+    	} else {
     		addSequential(new auton_Wait(15));
     	}
     	//ELSE GOWN DOWN
