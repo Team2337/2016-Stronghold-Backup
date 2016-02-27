@@ -88,15 +88,24 @@ public class ChassisPID extends PIDSubsystem {
     	leftEncoder.reset();
     	rightEncoder.reset();
     }
+    public void resetDriveEncoder() {
+    	RobotMap.chassisPIDchassisLeft1.setEncPosition(0);
+    }
     public int readLeftEncoder() {
-    	return (leftEncoder.get());
+    	//return (leftEncoder.get());
+    	return -RobotMap.chassisPIDchassisLeft1.getEncPosition();
     	
     }
     public int readRightEncoder() {
-    	return (rightEncoder.get());
+    	//return (rightEncoder.get());
+    	return RobotMap.chassisPIDchassisRight1.getEncPosition();
     }
     public boolean encoderOnTargetLeft(int target) {
-    	return (target > readLeftEncoder());
+    	if (target > 0) {
+    		return (readLeftEncoder() > target);
+    	} else {
+    		return (readLeftEncoder() < target);
+    	}
     }
     public boolean encoderOnTargetRight(int target) {
     	return (target > readRightEncoder());

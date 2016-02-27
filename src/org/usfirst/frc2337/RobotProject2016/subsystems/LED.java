@@ -14,7 +14,9 @@ package org.usfirst.frc2337.RobotProject2016.subsystems;
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 import org.usfirst.frc2337.RobotProject2016.commands.*;
 
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -25,8 +27,9 @@ public class LED extends Subsystem {
 
 	
 	private final Solenoid GRIPCameraLed = RobotMap.ledGRIPCamera;
-	private final Solenoid targetingLight = RobotMap.targetLightLight;
+	//private final Solenoid targetingLight = RobotMap.targetLightLight;
 	private final Solenoid gotBall = RobotMap.gotBallLED;
+	private final Relay targetingLight = RobotMap.targetLightLight;
    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -60,10 +63,12 @@ public class LED extends Subsystem {
     	GRIPCameraLed.get();
     }
     public void lightOn(){
-    	targetingLight.set(true);
+    	//targetingLight.set(true);
+    	targetingLight.set(Relay.Value.kForward);
     }
     public void lightOff(){
-    	targetingLight.set(false);
+    	//targetingLight.set(false);
+    	targetingLight.set(Relay.Value.kOff);
     }
     
     public void gotBallOn() {

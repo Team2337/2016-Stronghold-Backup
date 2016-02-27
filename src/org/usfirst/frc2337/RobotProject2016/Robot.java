@@ -121,6 +121,9 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putNumber("Retractor: getPosition", RobotMap.shooterRetractMotorA.getPosition());
       SmartDashboard.putNumber("Retractor: getSetpoint", RobotMap.shooterRetractMotorA.getSetpoint());
       
+     
+      SmartDashboard.putNumber("Drive Encoder Get", Robot.chassisPID.readLeftEncoder());
+      
       
       
       SmartDashboard.putBoolean("getIntakeWristStatus",  Robot.intakeWrist.getIntakeWristStatus());

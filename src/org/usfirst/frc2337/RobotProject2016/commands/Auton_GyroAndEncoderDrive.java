@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *  using the encoder(reset to 0) for distance and gyro to drive straight.
  *  Can also inout a timeout, otherwise it will default to 5 seconds.
  */
-public class Auton_GyroAndEncoderReverse extends Command {
+public class Auton_GyroAndEncoderDrive extends Command {
 
 	public double Kp = 0.03;
 	public double yaw;
@@ -20,20 +20,20 @@ public class Auton_GyroAndEncoderReverse extends Command {
 	public double m_speed;
 	public double m_timeout;
 
-	  public Auton_GyroAndEncoderReverse(double speed) {
+	  public Auton_GyroAndEncoderDrive(double speed) {
 	    	requires(Robot.chassisPID);
 	    	setTimeout(5);
 	    	m_speed = speed;
 	    	m_target = Robot.prefs.getInt("AutonEncDist", 60);
 	    }
-	  public Auton_GyroAndEncoderReverse(double speed, int encoderTarget) {
+	  public Auton_GyroAndEncoderDrive(double speed, int encoderTarget) {
 		   	requires(Robot.chassisPID);
 	    	setTimeout(5);
 	    	m_target = encoderTarget;
 	    	m_speed = speed;
 	    }
 		 
-	  public Auton_GyroAndEncoderReverse(double speed, int encoderTarget, double timeout) {
+	  public Auton_GyroAndEncoderDrive(double speed, int encoderTarget, double timeout) {
 		   	requires(Robot.chassisPID);
 		   	m_timeout = timeout;
 	    	m_target = encoderTarget;

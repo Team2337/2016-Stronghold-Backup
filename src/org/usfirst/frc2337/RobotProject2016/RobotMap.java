@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -77,12 +78,12 @@ public class RobotMap {
     public static Solenoid intakeWristintakeWristSolenoid;
     public static Solenoid chassisShiftershiftSolenoid;
     public static Solenoid ledGRIPCamera;
-    public static Solenoid targetLightLight;
+  //  public static Solenoid targetLightLight;
     public static Solenoid gotBallLED;
     
     public static Solenoid keyPullOut;
     
-    
+    public static Relay targetLightLight;
     
     public static Ultrasonic intakeSensor;
     public static Ultrasonic chassisPIDultrasonicSensor;
@@ -129,6 +130,11 @@ public class RobotMap {
     	chassisPIDchassisLeft1 = new CANTalon(0);
         LiveWindow.addActuator("ChassisPID", "chassisLeft1", chassisPIDchassisLeft1);
         chassisPIDchassisLeft1.changeControlMode(TalonControlMode.PercentVbus);
+        chassisPIDchassisLeft1.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+        chassisPIDchassisLeft1.setEncPosition(0);
+        
+        
+        
          
         chassisPIDchassisLeft2 = new CANTalon(1);
         LiveWindow.addActuator("ChassisPID", "chassisLeft2", chassisPIDchassisLeft2);
@@ -188,7 +194,6 @@ public class RobotMap {
         shooterRetractMotorA.setP(10);
         shooterRetractMotorA.enableBrakeMode(true);
 
-
         
         
         LiveWindow.addActuator("ShooterRetract", "shooterRetractMotorA", shooterRetractMotorA);
@@ -216,8 +221,8 @@ public class RobotMap {
         gotBallLED = new Solenoid(1, 6);
 
         
-        targetLightLight = new Solenoid(1, 7);
-
+       // targetLightLight = new Solenoid(1, 7);
+        targetLightLight = new Relay(1, Relay.Direction.kForward);
         
         //Digital Sensors
         
