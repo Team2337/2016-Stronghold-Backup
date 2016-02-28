@@ -116,11 +116,11 @@ public class OI {
         
         light = new JoystickButton(driverJoystick, Start_Button);
         //light.whileHeld(new target_LightActivate());
-        light.whenPressed(new auton_SimpleReach());
+        light.whenPressed(new auton_TurnPID(-25));
         //light.whenReleased(new target_LightDeactivate());  
         
         test = new JoystickButton(driverJoystick, Back_Button);
-        test.whenPressed(new auton_MoveAfterDefenseAndTurnToGoal(0.3, 3000, 5.0, 45));
+        //test.whenPressed(new auton_MoveAfterDefenseAndTurnToGoal(0.3, 3000, 5.0, 45));
         
         //retractorManualUp = new JoystickButton(driverJoystick, Red_B);
         //retractorManualUp.whenPressed(new shooterRetract_Prep());

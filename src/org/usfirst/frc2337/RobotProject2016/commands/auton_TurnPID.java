@@ -10,6 +10,7 @@ public class auton_TurnPID extends PIDCommand {
 	
 
 	double turnValue, targetAngle, leftJoystick;
+	private static double timeout = 3;
 
 
 	public auton_TurnPID(double angle) {
@@ -36,7 +37,8 @@ public class auton_TurnPID extends PIDCommand {
 
 	protected void initialize() {
 		RobotMap.gyro.reset();
-		this.setSetpoint(targetAngle);	
+		this.setSetpoint(targetAngle);
+		setTimeout(timeout);
 		RobotMap.chassisPIDchassisRight1.enableBrakeMode(true);
 	}
 
@@ -45,11 +47,11 @@ public class auton_TurnPID extends PIDCommand {
 	}
 
 	protected boolean isFinished() {
-		return false;
+		return (isTimedOut() || getPIDController().onTarget());
 	}
 
 	protected void end() {
-		System.out.println("done" + RobotMap.gyro.getAngle());
+		//System.out.println("done" + RobotMap.gyro.getAngle());
 		Robot.chassisPID.stopMotors();
 		RobotMap.chassisPIDchassisRight1.enableBrakeMode(false);
 	}
