@@ -30,7 +30,7 @@ public class chassis_ArcadeDrive extends Command {
     	if (joystickMain.getRawAxis(2) > 0.2) {
     		speed = Robot.oi.driverJoystick.getRawAxis(2);
         	yaw = RobotMap.gyro.getAngle();
-        	speed = speed * speed;
+        	//speed = speed * speed;
         	RobotMap.chassisDrive.drive(speed, yaw*Kp);
     	}
     	else {

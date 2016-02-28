@@ -95,24 +95,22 @@ public class auton_MainCG extends CommandGroup {
     	 * ------------------------------------------
     	 */
     	
-    	if (startingPoint == 1) { //GO TO LEFT GOAL
+    	if (startingPoint == 1 && (shootHigh == 1 || shootHigh == 2)) { //GO TO LEFT GOAL
 	    	addSequential(new auton_MoveStart1ToGoal1()); // move forward
     		//System.out.println("IM AT 1, I WANT TO GO LEFT");
-    	} else if (startingPoint == 2) { //STARING POINT IS NOW 2, GO TO LEFT GOAL
+    	} else if (startingPoint == 2 && (shootHigh == 1 || shootHigh == 2)) { //STARING POINT IS NOW 2, GO TO LEFT GOAL
     		addSequential(new auton_MoveStart2ToGoal1()); 
     		//System.out.println("IM AT 2, I WANT TO GO LEFT");
-    	} else if (startingPoint == 3) { //STARING POINT IS NOW 3, GO TO MIDDLE GOAL
-    		addSequential(new auton_Wait(0)); 
+    	} else if (startingPoint == 3 && (shootHigh == 1 || shootHigh == 2)) { //STARING POINT IS NOW 3, GO TO MIDDLE GOAL
+    		addSequential(new auton_MoveStart3ToGoal2()); 
     		//System.out.println("IM AT 3, I WANT TO GO MIDDLE");
-    	} else if (startingPoint == 4) { //STARING POINT IS NOW 4, GO TO MIDDLE GOAL
-    		addSequential(new auton_Wait(0)); 
+    	} else if (startingPoint == 4 && (shootHigh == 1 || shootHigh == 2)) { //STARING POINT IS NOW 4, GO TO MIDDLE GOAL
+    		addSequential(new auton_MoveStart4ToGoal2()); 
     		//System.out.println("IM AT 4, I WANT TO GO MIDDLE");
-    	} else if (startingPoint == 5) {  //STARING POINT IS NOW 5, GO TO RIGHT GOAL
-    		addSequential(new auton_Wait(0)); 
+    	} else if (startingPoint == 5 && (shootHigh == 1 || shootHigh == 2)) {  //STARING POINT IS NOW 5, GO TO RIGHT GOAL
+    		addSequential(new auton_MoveStart5ToGoal3()); 
     		//System.out.println("IM AT 5, I WANT TO GO RIGHT");
     	} else if (startingPoint == 6){ //NOPE WE ARE NOT GOING TO THE GOAL
-    		addSequential(new auton_Wait(15));
-    	} else {
     		addSequential(new auton_Wait(15));
     	}
     	//ELSE GOWN DOWN

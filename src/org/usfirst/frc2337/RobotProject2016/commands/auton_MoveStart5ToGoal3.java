@@ -12,9 +12,13 @@ public class auton_MoveStart5ToGoal3 extends CommandGroup {
 	 */
 	public auton_MoveStart5ToGoal3()
 	{
-		addSequential(new Auton_GyroAndEncoderFwd(0.7, 1200, 2.0)); //MOVE
+		//addSequential(new Auton_GyroAndEncoderFwd(0.7, 1200, 2.0)); //MOVE
 	
-		addSequential(new chassis_TargetWithGyroPIDAndJoystick()); //TARGET WITH GYRO
+		//addSequential(new chassis_TargetWithGyroPIDAndJoystick()); //TARGET WITH GYRO
+		
+
+		addSequential(new Auton_GyroAndEncoderDrive(0.7, 2100, 2.0)); // Move to Right Goal		//TODO SET DISTANCE
+     	addSequential(new auton_TurnPID(-35)); //Turn 50 Degree angle							//TODO  TEST & SET ANGLE
 			
 	}
 }
