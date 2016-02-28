@@ -5,6 +5,7 @@ import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -31,6 +32,7 @@ public class Auton_GyroAndEncoderDrive extends Command {
 	    	setTimeout(5);
 	    	m_target = encoderTarget;
 	    	m_speed = speed;
+	    	
 	    }
 		 
 	  public Auton_GyroAndEncoderDrive(double speed, int encoderTarget, double timeout) {
@@ -54,9 +56,11 @@ public class Auton_GyroAndEncoderDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yaw = RobotMap.gyro.getAngle();
+    	yaw = -RobotMap.gyro.getAngle();
     	RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
-    	System.out.println(m_target);
+    	//System.out.println(m_target);
+       // SmartDashboard.putNumber("auto Speed", m_speed);
+      //  SmartDashboard.putNumber("auto Turn", yaw*Kp);
     }
 
     // Make this return true when this Command no longer needs to run execute()
