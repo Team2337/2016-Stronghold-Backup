@@ -109,7 +109,7 @@ public class Robot extends IterativeRobot {
       //SmartDashboard.putNumber("arm get position" , Robot.shooterArmPID.getPIDController().getError());
       //SmartDashboard.putBoolean("Do We See the Target?" , RobotMap.seeTarget);
       
-      //SmartDashboard.putNumber("Retractor: get", RobotMap.shooterRetractMotorA.get());
+      SmartDashboard.putNumber("Retractor: get", RobotMap.shooterRetractMotorA.get());
       SmartDashboard.putBoolean("Retractor: shooterRetractPrimed", RobotMap.shooterRetractPrimed);
       SmartDashboard.putBoolean("Retractor: shooterRetractRetracted", RobotMap.shooterRetractRetracted);
       //SmartDashboard.putData(Robot.shooterRetractor.getCurrentCommand());
@@ -118,7 +118,7 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putNumber("Retractor: getEncpos", RobotMap.shooterRetractMotorA.getEncPosition());
       //SmartDashboard.putNumber("Retractor: ouputVoltage", RobotMap.shooterRetractMotorA.getOutputVoltage());
       //SmartDashboard.putNumber("Retractor: PW Velocity", RobotMap.shooterRetractMotorA.getPulseWidthPosition());
-      //SmartDashboard.putNumber("Retractor: getPosition", RobotMap.shooterRetractMotorA.getPosition());
+      SmartDashboard.putNumber("Retractor: getPosition", RobotMap.shooterRetractMotorA.getPosition());
       //SmartDashboard.putNumber("Retractor: getSetpoint", RobotMap.shooterRetractMotorA.getSetpoint());
       
      

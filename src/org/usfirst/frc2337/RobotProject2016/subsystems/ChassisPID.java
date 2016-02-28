@@ -93,7 +93,7 @@ public class ChassisPID extends PIDSubsystem {
     }
     public int readLeftEncoder() {
     	//return (leftEncoder.get());
-    	return -RobotMap.chassisPIDchassisLeft1.getEncPosition();
+    	return RobotMap.chassisPIDchassisLeft1.getEncPosition();  //** removed neg???
     	
     }
     public int readRightEncoder() {

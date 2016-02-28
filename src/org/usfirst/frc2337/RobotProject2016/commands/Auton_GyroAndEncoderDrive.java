@@ -46,7 +46,7 @@ public class Auton_GyroAndEncoderDrive extends Command {
 		Robot.chassisPID.resetGyro();
 		setTimeout(m_timeout);
 		
-		if (m_target < 0 ){ //Robot.chassisPID.readLeftEncoder()
+		if (m_target > 0 ){ //Robot.chassisPID.readLeftEncoder()
 			m_speed = - m_speed;
 			}
 		}

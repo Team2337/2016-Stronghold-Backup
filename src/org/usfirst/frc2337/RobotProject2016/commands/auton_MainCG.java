@@ -15,18 +15,18 @@ public class auton_MainCG extends CommandGroup {
     	
     	
     	//Input from file or smartdashboard or web interface??????? (Web, Web, Web)
-    	int intake = 1;
-    	int startingPoint = 1;
-    	int defense = 1;
-    	int shootHigh = 1;
+    	int intake = 2;
+    	int startingPoint = 3;
+    	int defense = 9;
+    	int shootHigh = 4;
     	/*REMOVE THE COMMENT >*/
     	
 
     	
-    	intake = (int) RobotMap.autonTables.getNumber("intakeBall");
-    	startingPoint = (int) RobotMap.autonTables.getNumber("startPos");
-    	defense = (int) RobotMap.autonTables.getNumber("defenseType");
-    	shootHigh = (int) RobotMap.autonTables.getNumber("goalPos");
+    	//intake = (int) RobotMap.autonTables.getNumber("intakeBall");
+    	//startingPoint = (int) RobotMap.autonTables.getNumber("startPos");
+    	//defense = (int) RobotMap.autonTables.getNumber("defenseType");
+    	//shootHigh = (int) RobotMap.autonTables.getNumber("goalPos");
     	/*< REMOVE THE COMMENT*/
     	
     	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
@@ -35,10 +35,12 @@ public class auton_MainCG extends CommandGroup {
     		addSequential(new auton_IntakeCG());  							//TODO   NEED tO TEST
     		
     	} else if (intake == 2) {//if (intake == 0) {//Nope, lets not intake for midline...
-    		addSequential(new Auton_GyroAndEncoderDrive(0.5, 500, 3.0));  		//TODO   NEED TO SET DISTANCE 
+    		addSequential(new shooterArm_armSetPointTravel());
+    		addSequential(new Auton_GyroAndEncoderDrive(0.5, 22029, 3.0));  //22029		//TODO   NEED TO SET DISTANCE 
 
     		//addSequential(new auton_Wait(1));   //just for testing
     	} else {
+    		addSequential(new shooterArm_armSetPointTravel());
     		addSequential(new auton_Wait(15));
     	}
     	
