@@ -66,10 +66,10 @@ public class CheesyDriveHelper extends Command {
   protected void execute() {
 	  
 	  // get  (boolean isQuickTurn, boolean isHighGear)	  *******************
-		throttle = joystickMain.getRawAxis(1);
+		throttle = -joystickMain.getRawAxis(1);
 		wheel = joystickMain.getRawAxis(4);
 		isHighGear = Robot.chassisShifter.getShiftStatus();
-		isQuickTurn = joystickMain.getRawButton(5);
+		isQuickTurn = joystickMain.getRawButton(10);
 
 
 	    wheel = handleDeadband(wheel, wheelDeadband);
@@ -101,6 +101,8 @@ public class CheesyDriveHelper extends Command {
 	    // Negative inertia!
 	    //double negInertiaAccumulator = 0.0;    moved to top, does this need to be here to reset to zero???******
 
+	    //negInertiaAccumulator = 0.0;
+	    
 	    if (isHighGear) {
 	      negInertiaScalar = 5.0;
 	      sensitivity = sensitivityHigh;
@@ -128,6 +130,10 @@ public class CheesyDriveHelper extends Command {
 	      negInertiaAccumulator = 0;
 	    }
 	    linearPower = throttle;
+	    
+	    //SmartDashboard.putNumber("Neg Inertia Acc", negInertiaAccumulator);
+	    
+	    //SmartDashboard.putNumber("linear Power", linearPower);
 
 	    // Quickturn!
 	    if (isQuickTurn) {
@@ -135,6 +141,9 @@ public class CheesyDriveHelper extends Command {
 	        alpha = 0.1;
 	        quickStopAccumulator = (1 - alpha) * quickStopAccumulator + alpha
 	                * this.limit(wheel, 1.0) * 5;      //   * Util.limit(wheel, 1.0) * 5;
+	      
+	        // SmartDashboard.putNumber("quickStopAccumulator", quickStopAccumulator);
+	      
 	      }
 	      overPower = 1.0;
 	      if (isHighGear) {
@@ -154,10 +163,16 @@ public class CheesyDriveHelper extends Command {
 	        quickStopAccumulator = 0.0;
 	      }
 	    }
-
+	    	//SmartDashboard.putNumber("Angular pPower", angularPower);
+	    	//SmartDashboard.putNumber("throttle Power", throttle);
+	    	//SmartDashboard.putNumber("wheel Power", wheel);
+	    	//SmartDashboard.putNumber("sensitivity", sensitivity);
+	    	//SmartDashboard.putNumber("quickStopAccumulator2", quickStopAccumulator);
+	    	
+	    	
 	    rightPwm = leftPwm = linearPower;
-	    leftPwm += angularPower;
-	    rightPwm -= angularPower;
+	    leftPwm -= angularPower;
+	    rightPwm += angularPower;
 
 	    if (leftPwm > 1.0) {
 	      rightPwm -= overPower * (leftPwm - 1.0);
@@ -174,7 +189,7 @@ public class CheesyDriveHelper extends Command {
 	    }
 	    
 	    
-	    Robot.chassisPID.tankDrive(leftPwm, rightPwm);
+	    RobotMap.chassisDrive.setLeftRightMotorOutputs(leftPwm, rightPwm);
 
   }
 
