@@ -27,24 +27,14 @@ public class chassis_ArcadeDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (joystickMain.getRawAxis(2) > 0.2) {
-    		speed = Robot.oi.driverJoystick.getRawAxis(2);
-        	yaw = RobotMap.gyro.getAngle();
-        	speed = speed * speed;
-        	RobotMap.chassisDrive.drive(speed, yaw*Kp);
-    	}
-    	else {
-    		RobotMap.gyro.reset();
+    	
+
     		double leftJoystick = joystickMain.getRawAxis(1);
 	    	double turnJoystick = joystickMain.getRawAxis(4);
-	    	
-	    	turnJoystick = turnJoystick * Math.abs(turnJoystick);
-	    	leftJoystick = leftJoystick * Math.abs(leftJoystick);
-	    	 Robot.chassisPID.arcadeDrive(leftJoystick, turnJoystick);
-	    	 SmartDashboard.putNumber(   "leftJoytick",             leftJoystick);
-	    	 SmartDashboard.putNumber(   "turnJoystick",             turnJoystick);
-    	}
-    	
+
+	    	Robot.chassisPID.arcadeDrive(leftJoystick, turnJoystick);
+	    	// SmartDashboard.putNumber(   "leftJoytick",             leftJoystick);
+	    	// SmartDashboard.putNumber(   "turnJoystick",             turnJoystick);
     }
 
     // Make this return true when this Command no longer needs to run execute()

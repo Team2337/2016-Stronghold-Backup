@@ -89,6 +89,8 @@ public class OI {
     public JoystickButton intakePreLoad;
     public JoystickButton wrist;
     public JoystickButton intakeDoNo;
+    
+    public JoystickButton test;
  
     
     
@@ -112,8 +114,16 @@ public class OI {
         shifter.whenPressed(new chassisShifter_HighToLow());
         shifter.whenReleased(new chassisShifter_LowToHigh());
         
-        // retractorManualUp = new JoystickButton(driverJoystick, Red_B);
-        // retractorManualUp.whenPressed(new shooterRetract_Prep());
+        light = new JoystickButton(driverJoystick, Start_Button);
+        //light.whileHeld(new target_LightActivate());
+        light.whenPressed(new auton_TurnPID(-25));
+        //light.whenReleased(new target_LightDeactivate());  
+        
+        test = new JoystickButton(driverJoystick, Back_Button);
+        //test.whenPressed(new auton_MoveAfterDefenseAndTurnToGoal(0.3, 3000, 5.0, 45));
+        
+        //retractorManualUp = new JoystickButton(driverJoystick, Red_B);
+        //retractorManualUp.whenPressed(new shooterRetract_Prep());
          
         // retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
         // retractorManualDown.whenPressed(new shooterRetract_Prime());
@@ -184,9 +194,7 @@ public class OI {
         intakeDoNo = new JoystickButton(operatorJoystick, Start_Button);
         intakeDoNo.whenPressed(new intake_DoNothing());
         
-        //light = new JoystickButton(operatorJoystick, Left_Bumper);
-        //light.whenPressed(new target_LightActivate());
-        //light.whenReleased(new target_LightDeactivate());       
+     
         
         
         //*****************************  test retractor on 3rd Joystick ******************

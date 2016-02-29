@@ -37,6 +37,12 @@ public class  shooterArm_JoystickControl extends Command {
     	if ((armJoystickY > -deadBand ) && (armJoystickY < deadBand)) { //Dead band
     		//System.out.println("in deadband");
     		armJoystickY = 0;  //Set Motor to 0 if in dead band
+    		
+    		
+    		if (Robot.shooterArmPID.getPosition() <  Robot.shooterArmPID.hookShot) {
+    			Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.hookShot);
+    		}
+    		
     		/*
     		if (RobotMap.travelMode  &&((Robot.shooterArmPID.getSetpoint() - Robot.shooterArmPID.getPosition()) > travelError) ) {
     			Robot.shooterArmPID.enable();

@@ -39,7 +39,8 @@ public class chassis_DriveWithGyroNoTurn extends Command {
         }
 		
 		RobotMap.chassisDrive.arcadeDrive(moveSpeed, -yaw*Kp);
-        SmartDashboard.putNumber("yaw4Nerds", yaw); 
+		//SmartDashboard.putNumber("drWGYNoTurn Speed", moveSpeed);
+	    //SmartDashboard.putNumber("drWGYNoTurn", yaw*Kp); 
 	}
 
 	protected boolean isFinished() {

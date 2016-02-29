@@ -22,7 +22,7 @@ public class ShooterArmPID extends PIDSubsystem {
    	//Specified angle value for Pot
     public double scale = 6.6;
     public double layupShot = 5;   //4.86
-    public double hookShot = 2.9;
+    public double hookShot = 2.9;   ////  Low tavel mode
     public double travel = 3.0;  //3.5
     public double base = 2.55; 
 
