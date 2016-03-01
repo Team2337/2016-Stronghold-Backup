@@ -178,23 +178,27 @@ public class RobotMap {
         intakeintakeMotorA.setInverted(true);
         LiveWindow.addActuator("Intake", "intakeMotorA", intakeintakeMotorA);
         //intakeintakeMotorA.setControlMode(0);
+        intakeintakeMotorA.setVoltageRampRate(6);	// 6v/sec.  Max v is 12 so 2 sec to full speed.
         
         intakeintakeMotorB = new CANTalon(9);
         LiveWindow.addActuator("Intake", "intakeMotorB", intakeintakeMotorB);
         //intakeintakeMotorB.setControlMode(5);
         intakeintakeMotorB.reverseOutput(false);
         //intakeintakeMotorB.set(6);
-        																	//**************************retractor*****
+        intakeintakeMotorB.setVoltageRampRate(6);	// 6v/sec.  Max v is 12 so 2 sec to full speed.
+        					
+        												//**************************retractor*****
         shooterRetractMotorA = new CANTalon(7);
         shooterRetractMotorA.changeControlMode(TalonControlMode.Position);
-        shooterRetractMotorA.setPID(.1, 0.0, 0.0);
+        shooterRetractMotorA.setPID(10, 0.0, 0.0);
         shooterRetractMotorA.setAllowableClosedLoopErr(60);
         shooterRetractMotorA.reverseOutput(false);
-        shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
+        shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+        //shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
         shooterRetractMotorA.configNominalOutputVoltage(+6f, -6f);
         shooterRetractMotorA.configPeakOutputVoltage(+12f, -12f);
         shooterRetractMotorA.setProfile(0);
-        shooterRetractMotorA.setP(10);
+        //shooterRetractMotorA.setP(10);
         shooterRetractMotorA.enableBrakeMode(true);
 
         
@@ -229,14 +233,13 @@ public class RobotMap {
         
         //Digital Sensors
         
+        /*   ALL ENCODERS SWITCHED OVER TO TALON SRX ENCODERS
         chassisPIDLeftEncoder = new Encoder(0, 1, false, EncodingType.k4X);
         LiveWindow.addSensor("ChassisPID", "driveEncoder", chassisPIDLeftEncoder);
         //chassisPIDLeftEncoder.setDistancePerPulse(1.0);
         //chassisPIDLeftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
         LiveWindow.addSensor("ChassisPIDLeftEnc", "Strafe Encoder", chassisPIDLeftEncoder);
-
-   
-        
+     
         chassisPIDRightEncoder = new Encoder(2, 3, false, EncodingType.k4X);
         LiveWindow.addSensor("ChassisPID", "driveEncoder", chassisPIDRightEncoder);
         //chassisPIDRightEncoder.setDistancePerPulse(1.0);
@@ -248,6 +251,7 @@ public class RobotMap {
         
         shooterRetractPIDEncoder = new Encoder(6, 7, false, EncodingType.k4X);
         LiveWindow.addActuator("ShooterRetract", "shooterRetractPIDEncoder", shooterRetractPIDEncoder);
+        */
         
         chassisPIDultrasonicSensor = new Ultrasonic(11, 12);
         LiveWindow.addSensor("ChassisPID", "ultrasonicSensor", chassisPIDultrasonicSensor);

@@ -11,22 +11,34 @@ public class shooterRetract_PrimeManual extends Command{
 		requires(Robot.shooterRetractor);
 	}
 	protected void initialize() {
+		setTimeout(4);
+		Robot.shooter.shooterUnShoot();
+		RobotMap.shooterRetractRetracted = false;
 	
 	}
 
 	protected void execute() {
-			Robot.shooterRetractor.unretracting();
+			Robot.shooterRetractor.unretracting();    //fix this name by switching in methods???
 		
 	}
 
 	protected boolean isFinished() {
-			return false;
+			return (isTimedOut() || Robot.shooterRetractor.onLimitSwitch()); 
 	}
 
 	protected void end() {
 		Robot.shooterRetractor.stopMotors();
+		if(Robot.shooterRetractor.onLimitSwitch()) {
+			RobotMap.shooterRetractPrimed = true;
+			Robot.shooterRetractor.resetEncoder();
+			Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.preppedRetractorPosition);
+			RobotMap.shooterRetractRetracted = true;
+		} else {
+		Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.getRetractPosition());
+		RobotMap.shooterRetractPrimed = false;
+		}
 	}
-
+	
 	protected void interrupted() {
 		this.end();
 	}
