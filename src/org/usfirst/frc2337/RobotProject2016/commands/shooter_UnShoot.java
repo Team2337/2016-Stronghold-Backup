@@ -15,7 +15,7 @@ public class shooter_UnShoot extends Command {
 	}
 	protected void initialize() {
 	
-		Robot.shooter.shooterShoot();           //   ****************************
+		Robot.shooter.shooterUnShoot();          //   ****************************
 	}
 
 

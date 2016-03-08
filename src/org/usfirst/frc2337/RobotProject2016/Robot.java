@@ -113,16 +113,18 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putBoolean("Retractor: shooterRetractPrimed", RobotMap.shooterRetractPrimed);
       SmartDashboard.putBoolean("Retractor: shooterRetractRetracted", RobotMap.shooterRetractRetracted);
       //SmartDashboard.putData(Robot.shooterRetractor.getCurrentCommand());
-      //SmartDashboard.putNumber("Retractor: CL err:", RobotMap.shooterRetractMotorA.getClosedLoopError());
-      //SmartDashboard.putNumber("Retractor: getError", RobotMap.shooterRetractMotorA.getError());
+      SmartDashboard.putNumber("Retractor: CL err:", RobotMap.shooterRetractMotorA.getClosedLoopError());
+      SmartDashboard.putNumber("Retractor: getError", RobotMap.shooterRetractMotorA.getError());
       SmartDashboard.putNumber("Retractor: getEncpos", RobotMap.shooterRetractMotorA.getEncPosition());
       //SmartDashboard.putNumber("Retractor: ouputVoltage", RobotMap.shooterRetractMotorA.getOutputVoltage());
       //SmartDashboard.putNumber("Retractor: PW Velocity", RobotMap.shooterRetractMotorA.getPulseWidthPosition());
       SmartDashboard.putNumber("Retractor: getPosition", RobotMap.shooterRetractMotorA.getPosition());
-      //SmartDashboard.putNumber("Retractor: getSetpoint", RobotMap.shooterRetractMotorA.getSetpoint());
+      SmartDashboard.putNumber("Retractor: getSetpoint", RobotMap.shooterRetractMotorA.getSetpoint());
       
      
       SmartDashboard.putNumber("Drive Encoder Get", Robot.chassisPID.readLeftEncoder());
+      
+      SmartDashboard.putBoolean("Shooter - Shoot", RobotMap.ShooterPneumaticPin.get());
       
       
       

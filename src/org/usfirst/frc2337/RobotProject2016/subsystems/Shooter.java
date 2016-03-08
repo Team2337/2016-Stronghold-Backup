@@ -20,10 +20,10 @@ public class Shooter extends Subsystem {
      * Retracks pin for shooter to shoot.
      */
 	public void shooterShoot(){
-		shooterSolenoid.set(false);
+		shooterSolenoid.set(true);  //switched during unbag
 	}
 	public void shooterUnShoot(){
-		shooterSolenoid.set(true);
+		shooterSolenoid.set(false);
 	}
 	public boolean getShooterValue(){
 		return shooterSolenoid.get();

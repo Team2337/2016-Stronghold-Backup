@@ -11,7 +11,7 @@ public class shooter_Shoot extends Command {
 	public shooter_Shoot(){
 		requires(Robot.shooter);
 		
-		Timer timer = new Timer();
+		
 		
 	}
 	protected void initialize() {
