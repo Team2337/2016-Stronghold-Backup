@@ -6,7 +6,6 @@ import org.usfirst.frc2337.RobotProject2016.commands.*;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
@@ -16,9 +15,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
 
 	
-    private final double inhaleSpeed = 0.8;
+    public final double inhaleSpeed = 0.8;
+    public final double inhaleSlowSpeed = 0.4;
     private final double exhaleSpeed = -0.8;
-    private final double prepSpeed = 0.7;
+    //private final double prepSpeed = 0.7;
 
     private final CANTalon intakeMotorA = RobotMap.intakeintakeMotorA;
     private final CANTalon intakeMotorB = RobotMap.intakeintakeMotorB;

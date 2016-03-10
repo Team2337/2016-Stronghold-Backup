@@ -229,7 +229,7 @@ public class RobotMap {
 
         
        // targetLightLight = new Solenoid(1, 7);
-        targetLightLight = new Relay(1, Relay.Direction.kForward);
+        targetLightLight = new Relay(0, Relay.Direction.kForward);
         
         //Digital Sensors
         

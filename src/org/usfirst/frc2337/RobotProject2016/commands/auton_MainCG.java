@@ -23,10 +23,10 @@ public class auton_MainCG extends CommandGroup {
     	
 
     	
-    	//intake = (int) RobotMap.autonTables.getNumber("intakeBall");
-    	//startingPoint = (int) RobotMap.autonTables.getNumber("startPos");
-    	//defense = (int) RobotMap.autonTables.getNumber("defenseType");
-    	//shootHigh = (int) RobotMap.autonTables.getNumber("goalPos");
+    	intake = (int) RobotMap.autonTables.getNumber("intakeBall");
+    	startingPoint = (int) RobotMap.autonTables.getNumber("startPos");
+    	defense = (int) RobotMap.autonTables.getNumber("defenseType");
+    	shootHigh = (int) RobotMap.autonTables.getNumber("goalPos");
     	/*< REMOVE THE COMMENT*/
     	
     	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
@@ -35,9 +35,12 @@ public class auton_MainCG extends CommandGroup {
     		addSequential(new auton_IntakeCG());  							//TODO   NEED tO TEST
     		
     	} else if (intake == 2) {//if (intake == 0) {//Nope, lets not intake for midline...
-    		addSequential(new shooterArm_armSetPointTravel());
-    		addSequential(new Auton_GyroAndEncoderDrive(0.5, 22029, 3.0));  //22029		//TODO   NEED TO SET DISTANCE 
-
+    		if (defense == 0) {
+    			addParallel(new auton_shooterArm_PidSet(2.55, 6.0));
+    		} else {
+    			addSequential(new shooterArm_armSetPointTravel());
+    			addSequential(new Auton_GyroAndEncoderDrive(0.5, 22029, 3.0));  //22029		//TODO   NEED TO SET DISTANCE 
+    		}
     		//addSequential(new auton_Wait(1));   //just for testing
     	} else {
     		addSequential(new shooterArm_armSetPointTravel());
@@ -124,6 +127,13 @@ public class auton_MainCG extends CommandGroup {
     		addSequential(new shooter_ShootCG());
     		//System.out.println("LETS SHOOT HIGH");
     	} else if (shootHigh == 2) {//SHOOT LOW!!
+    		if (startingPoint == 1) {
+    			addSequential(new Auton_GyroAndEncoderDrive(0.3, 22000, 1));
+    		} else if (startingPoint == 2) {
+    			addSequential(new Auton_GyroAndEncoderDrive(0.3, 22000, 1));
+    		} else if (startingPoint == 5) {
+    			addSequential(new Auton_GyroAndEncoderDrive(0.3, 22000, 1));
+    		}
 	     	addSequential(new auton_ShootLowCG());  
 	     	//System.out.println("WE ARE SHOOTING LOW");
     	} else if (shootHigh == 3) {//SPIT BALL

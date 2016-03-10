@@ -16,7 +16,7 @@ public class auton_TurnPID extends PIDCommand {
 	public auton_TurnPID(double angle) {
 		//chassis_TargetWithGyroPID(String name, double p, double i, double d)
 
-		super("chassis_TargetWithGyroPID", .13, 0, 0.02);
+		super("chassis_TargetWithGyroPID", .03, 0, 0.02);
 		getPIDController().setAbsoluteTolerance(0.1);
         getPIDController().setContinuous(false);
         getPIDController().setOutputRange(-1, 1);

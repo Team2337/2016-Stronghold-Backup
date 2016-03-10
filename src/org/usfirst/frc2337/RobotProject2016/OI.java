@@ -116,15 +116,15 @@ public class OI {
         shifter.whenReleased(new chassisShifter_LowToHigh());
         
         light = new JoystickButton(driverJoystick, Start_Button);
-        //light.whileHeld(new target_LightActivate());
+        light.whileHeld(new target_LightActivate());
+        light.whenReleased(new target_LightDeactivate());
         //light.whenPressed(new auton_TurnPID(-25));
-        //light.whenReleased(new target_LightDeactivate());
-        light.whileHeld(new  shooter_Shoot());
+        //light.whileHeld(new  shooter_Shoot());
         //light.whenReleased(new  shooter_UnShoot()); 
         
         
         
-        test = new JoystickButton(driverJoystick, Back_Button);
+        //test = new JoystickButton(driverJoystick, Back_Button);
         //test.whenPressed(new auton_MoveAfterDefenseAndTurnToGoal(0.3, 3000, 5.0, 45));
         
         //retractorManualUp = new JoystickButton(driverJoystick, Red_B);
@@ -172,7 +172,7 @@ public class OI {
         //operator button
         
         inhale = new AnalogAxisButton(operatorJoystick, Right_trigger, 0.5);
-        inhale.whileHeld(new intake_Inhale());
+        inhale.whileHeld(new intake_ActivateMotors());
         
         exhale = new AnalogAxisButton(operatorJoystick, Left_trigger, 0.5);
         exhale.whileHeld(new intake_Exhale());
@@ -180,8 +180,8 @@ public class OI {
         shortshot = new JoystickButton(operatorJoystick, Right_Bumper);
         shortshot.whenPressed(new shooterArm_armSetPointShortShot());
         
-        scale = new JoystickButton(operatorJoystick, Yellow_Y);
-        scale.whenPressed(new shooterArm_armSetPointScale());
+        //scale = new JoystickButton(operatorJoystick, Yellow_Y);
+        //scale.whenPressed(new shooterArm_armSetPointScale());
         
         longshot = new JoystickButton(operatorJoystick, Red_B);
         longshot.whenPressed(new shooterArm_armSetPointLongShot());
@@ -199,19 +199,25 @@ public class OI {
        // intakeDoNo = new JoystickButton(operatorJoystick, Start_Button);
        // intakeDoNo.whenPressed(new intake_DoNothing());
         
-        //portWheels = new JoystickButton(driverJoystick, Blue_X);
-        //portWheels.whileHeld(new portWheels_activate());
+        portWheels = new JoystickButton(driverJoystick, Yellow_Y);
+        portWheels.whileHeld(new portWheels_activate());
         
      
         
         
         //*****************************  test retractor on 3rd Joystick ******************
         
+        scale = new JoystickButton(operatorControls, 4);
+        scale.whenPressed(new shooterArm_armSetPointScale());
+        
         PTO  = new JoystickButton(operatorControls, 5);        
-        PTO.whileHeld(new PTO_Activate()) ;
+        PTO.whileHeld(new scaler_PTOandClimbCG());
         
         scalerPin = new JoystickButton(operatorControls, 10);
-        scalerPin.whenPressed(new scaler_pinPullOut());
+        scalerPin.whenPressed(new scaler_ExtendAndRaiseArmCG());
+
+        retractorManualDown = new JoystickButton(operatorControls, 1);
+        retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
         
         //remove before production*	************************
         /*

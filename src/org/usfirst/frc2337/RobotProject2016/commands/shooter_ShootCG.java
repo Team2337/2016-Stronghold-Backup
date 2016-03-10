@@ -17,11 +17,11 @@ public class shooter_ShootCG extends CommandGroup {
     	addSequential(new intake_DoNothing());
     	addSequential(new intakeWrist_Extend());
     
-    	addSequential(new auton_Wait(0.5));  				//.......adjust or remove???
+    	addSequential(new auton_Wait(0.3));  				//.......adjust or remove???
     		
     	addSequential(new shooter_Shoot());
 
-    	addSequential(new auton_Wait(0.5));  				//.......adjust or remove???
+    	addSequential(new auton_Wait(0.3));  				//.......adjust or remove???
     	
     	addSequential(new intakeWrist_Retract());
     	addSequential(new shooter_UnShoot());
