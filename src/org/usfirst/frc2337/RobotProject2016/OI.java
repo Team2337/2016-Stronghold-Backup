@@ -89,6 +89,7 @@ public class OI {
     public JoystickButton intakePreLoad;
     public JoystickButton wrist;
     public JoystickButton intakeDoNo;
+    public JoystickButton scalerPin;
     
     public JoystickButton test;
  
@@ -118,7 +119,7 @@ public class OI {
         //light.whileHeld(new target_LightActivate());
         //light.whenPressed(new auton_TurnPID(-25));
         //light.whenReleased(new target_LightDeactivate());
-        light.whileHeld(new  shooter_Shoot ());
+        light.whileHeld(new  shooter_Shoot());
         //light.whenReleased(new  shooter_UnShoot()); 
         
         
@@ -195,13 +196,22 @@ public class OI {
         wrist.whenPressed(new intakeWrist_Extend());
         wrist.whenReleased(new intakeWrist_Retract());
         
-        intakeDoNo = new JoystickButton(operatorJoystick, Start_Button);
-        intakeDoNo.whenPressed(new intake_DoNothing());
+       // intakeDoNo = new JoystickButton(operatorJoystick, Start_Button);
+       // intakeDoNo.whenPressed(new intake_DoNothing());
+        
+        //portWheels = new JoystickButton(driverJoystick, Blue_X);
+        //portWheels.whileHeld(new portWheels_activate());
         
      
         
         
         //*****************************  test retractor on 3rd Joystick ******************
+        
+        PTO  = new JoystickButton(operatorControls, 5);        
+        PTO.whileHeld(new PTO_Activate()) ;
+        
+        scalerPin = new JoystickButton(operatorControls, 10);
+        scalerPin.whenPressed(new scaler_pinPullOut());
         
         //remove before production*	************************
         /*
