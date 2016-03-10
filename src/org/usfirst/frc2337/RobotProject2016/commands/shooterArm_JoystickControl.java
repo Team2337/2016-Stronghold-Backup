@@ -41,6 +41,8 @@ public class  shooterArm_JoystickControl extends Command {
     		
     		if (Robot.shooterArmPID.getPosition() <  Robot.shooterArmPID.hookShot) {
     			Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.hookShot);
+    			//  Enable when we get stronger struts
+    			//Robot.shooterArmPID.disable();
     		}
     		
     		/*

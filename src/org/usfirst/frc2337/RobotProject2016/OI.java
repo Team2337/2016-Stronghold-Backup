@@ -175,9 +175,10 @@ public class OI {
         inhale.whileHeld(new intake_ActivateMotors());
         
         exhale = new AnalogAxisButton(operatorJoystick, Left_trigger, 0.5);
-        exhale.whileHeld(new intake_Exhale());
+        exhale.whileHeld(new shooterArm_armSetPointBase());
         
-        shortshot = new JoystickButton(operatorJoystick, Right_Bumper);
+        
+        shortshot = new JoystickButton(operatorJoystick, Green_A);
         shortshot.whenPressed(new shooterArm_armSetPointShortShot());
         
         //scale = new JoystickButton(operatorJoystick, Yellow_Y);
@@ -189,8 +190,8 @@ public class OI {
         travel = new JoystickButton(operatorJoystick, Blue_X);
         travel.whenPressed(new shooterArm_armSetPointTravel());
         
-        base = new JoystickButton(operatorJoystick, Green_A);
-        base.whenPressed(new shooterArm_armSetPointBase());
+        base = new JoystickButton(operatorJoystick, Right_Bumper);
+        base.whileHeld(new intake_Exhale());
         
         wrist = new JoystickButton(operatorJoystick, Left_Bumper);
         wrist.whenPressed(new intakeWrist_Extend());
