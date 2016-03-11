@@ -10,13 +10,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
+ * 
  *
  */
 public class Intake extends Subsystem {
 
 	
     public final double inhaleSpeed = 0.8;
-    public final double inhaleSlowSpeed = 0.4;
+    public final double inhaleSlowSpeed = 0.8;
     private final double exhaleSpeed = -0.8;
     //private final double prepSpeed = 0.7;
 

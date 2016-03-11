@@ -15,7 +15,7 @@ public class shooterArm_armSetPointLongShot extends Command {
 	protected void initialize() {
 		RobotMap.shooterArmOnTarget = false;
 		setTimeout(2);
-		Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.hookShot);
+		Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.battershot);
 		if (!Robot.shooterArmPID.armPIDstatus) {
 			Robot.shooterArmPID.enable();
 		}
