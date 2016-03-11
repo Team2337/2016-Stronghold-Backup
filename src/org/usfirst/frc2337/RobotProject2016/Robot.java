@@ -25,7 +25,7 @@ import org.usfirst.frc2337.RobotProject2016.subsystems.*;
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
-    //SendableChooser autonChooser;
+    SendableChooser autonChooser;
 
     public static OI oi;
 
@@ -72,14 +72,14 @@ public class Robot extends IterativeRobot {
         oi = new OI();
 
         // Autonomous
-        /*
+        
         autonChooser = new SendableChooser();
         autonChooser.addDefault("Do Nothing", new auton_Wait(15));
-        autonChooser.addObject("AutonMain", new auton_Main());
-        autonChooser.addObject("Auton_GyroFwd", new Auton_GyroFwd());
-        autonChooser.addObject("Grab Container First", new auton_SimpleReach());
-        autonChooser.addObject("GyroAndEncoderFwd", new Auton_GyroAndEncoderFwd(0.5, 1200, 4.0));      
-        */
+       // autonChooser.addObject("AutonMain", new auton_Main());
+        //autonChooser.addObject("Auton_GyroFwd", new Auton_GyroFwd());
+        autonChooser.addObject("Reach", new auton_Reach());
+        autonChooser.addObject("Cross Flat Defenses", new auton_Cross());      
+        
         
         RobotMap.gyro.reset();
 
@@ -88,7 +88,7 @@ public class Robot extends IterativeRobot {
 
 	public void robotPeriodic() {
 		LiveWindow.run();
-
+		SmartDashboard.putData(		"Auton Chooser", 		autonChooser);	
 	  //SmartDashboard.putBoolean(  "IMU_Connected",        RobotMap.gyro.isConnected());
       //SmartDashboard.putBoolean(  "IMU_IsCalibrating",    RobotMap.gyro.isCalibrating());
       SmartDashboard.putNumber(   "IMU_Yaw",              RobotMap.gyro.getYaw());
@@ -160,8 +160,10 @@ public class Robot extends IterativeRobot {
     	RobotMap.shooterRetractMotorA.setEncPosition(0);
     	// added prep command as first auton command....
     	//Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.preppedRetractorPosition);
-    	autonomousCommand = new auton_MainCG();
-    	//autonomousCommand = (Command) autonChooser.getSelected();
+    	//autonomousCommand = new auton_MainCG();
+    	autonomousCommand = new auton_Cross();
+    	
+    //	autonomousCommand = (Command) autonChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
         
 
