@@ -25,6 +25,7 @@ public class ShooterArmPID extends PIDSubsystem {
     public double hookShot = 2.7;   ////  Low tavel mode  //2.9
     public double battershot = 4.8;
     public double travel = 2.7;  //3.5
+    public double autontravel = 2.9;  
     public double base = 2.55; 
 
     private final double setPointTolerance = 0.1;
