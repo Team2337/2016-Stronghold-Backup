@@ -63,6 +63,7 @@ public class Robot extends IterativeRobot {
         shooterArmPID = new ShooterArmPID();
         shooter = new Shooter();
         shooterRetractor = new ShooterRetractor();
+        PortWheels = new PortWheels();
         
       //Preference variables
         prefs = Preferences.getInstance();

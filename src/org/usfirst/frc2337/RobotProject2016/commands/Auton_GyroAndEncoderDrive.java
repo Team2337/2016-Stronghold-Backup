@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Auton_GyroAndEncoderDrive extends Command {
 
-	public double Kp = 0.03;
+	public double Kp = .5;
 	public double yaw;
 	public int m_target;
 	public double m_speed;
@@ -45,7 +45,7 @@ public class Auton_GyroAndEncoderDrive extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 		Robot.chassisPID.resetDriveEncoder();
-		Robot.chassisPID.resetGyro();
+		//Robot.chassisPID.resetGyro();
 		setTimeout(m_timeout);
 		
 		if (m_target > 0 ){ //Robot.chassisPID.readLeftEncoder()

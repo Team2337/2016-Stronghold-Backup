@@ -29,7 +29,7 @@ public class auton_MainCG extends CommandGroup {
     	shootHigh = (int) RobotMap.autonTables.getNumber("goalPos");
     	/*< REMOVE THE COMMENT*/
     	
-    	addParallel(new shooterRetract_Prep());				//prep shooter retracter
+    	addSequential(new shooterRetract_Prep());				//prep shooter retracter
     	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
     	
     	if (intake == 1) { //I'm INTAKING, so lets run...
@@ -40,7 +40,7 @@ public class auton_MainCG extends CommandGroup {
     			addParallel(new auton_shooterArm_PidSet(2.55, 6.0));
     		} else {
     			addSequential(new shooterArm_armSetPointTravel());
-    			addSequential(new Auton_GyroAndEncoderDrive(0.5, 22029, 3.0));  //22029		//TODO   NEED TO SET DISTANCE 
+    			addSequential(new Auton_GyroAndEncoderDrive(0.3, 16029, 4.0));  //22029		//TODO   NEED TO SET DISTANCE 
     		}
     		//addSequential(new auton_Wait(1));   //just for testing
     	} else {
@@ -62,10 +62,10 @@ public class auton_MainCG extends CommandGroup {
     		//System.out.println("CHEVAL DE FRISE");
     		addSequential(new auton_Wait(15));
     	} else if (defense == 3){ //RAMPARTS
-    		addSequential(new Auton_GyroAndEncoderDrive(0.7, 1200, 5.0));			//TODO   NEED TO SET DISTANCE
+    		addSequential(new Auton_GyroAndEncoderDrive(0.5, 12000, 5.0));			//TODO   NEED TO SET DISTANCE
     		//System.out.println("RAMPARTS");
     	} else if (defense == 4){ //MOAT
-    		addSequential(new Auton_GyroAndEncoderDrive(0.7, 1600, 4.5));			//TODO   NEED TO SET DISTANCE
+    		addSequential(new Auton_GyroAndEncoderDrive(0.5, 16000, 4.5));			//TODO   NEED TO SET DISTANCE
     		//System.out.println("MOAT");
     	} else if (defense == 5){ //DRAWBRIDGE
     		addSequential(new auton_Wait(15)); 
@@ -74,10 +74,10 @@ public class auton_MainCG extends CommandGroup {
     		addSequential(new auton_Wait(15)); 
     		//System.out.println("SALLY PORT");
     	} else if (defense == 7){ //ROCK WALL
-    		addSequential(new Auton_GyroAndEncoderDrive(0.7, 1200, 4.0));				//TODO   NEED TO SET DISTANCE
+    		addSequential(new Auton_GyroAndEncoderDrive(0.5, 1200, 4.0));				//TODO   NEED TO SET DISTANCE
     		//System.out.println("ROCK WALL");
     	} else if (defense == 8) { //ROUGH TERRIAN
-    		addSequential(new Auton_GyroAndEncoderDrive(0.7, 1000, 4.0));				//TODO   NEED TO SET DISTANCE
+    		addSequential(new Auton_GyroAndEncoderDrive(0.5, 1000, 4.0));				//TODO   NEED TO SET DISTANCE
     		//System.out.println("ROUGH TERRIAN");
     	} else { //IF OVER 9 or so, lets just wait and not go over;
     			addSequential(new auton_Wait(15)); 
