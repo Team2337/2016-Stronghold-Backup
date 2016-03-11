@@ -23,6 +23,8 @@ public class intake_ActivateMotors extends Command {
     protected void initialize() {
     	RobotMap.okToShoot = false;
     	m_speed = Robot.intake.inhaleSlowSpeed;
+    	
+    	Robot.intake.fastRampRate();
     }
 
 
@@ -53,6 +55,7 @@ public class intake_ActivateMotors extends Command {
 
    
     protected void interrupted() {
+    	Robot.intake.slowRampRate();
     	Robot.intake.setMotor(0);
     }
 }

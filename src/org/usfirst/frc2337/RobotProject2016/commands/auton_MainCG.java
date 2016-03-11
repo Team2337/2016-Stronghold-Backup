@@ -29,13 +29,14 @@ public class auton_MainCG extends CommandGroup {
     	shootHigh = (int) RobotMap.autonTables.getNumber("goalPos");
     	/*< REMOVE THE COMMENT*/
     	
+    	addParallel(new shooterRetract_Prep());				//prep shooter retracter
     	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
     	
     	if (intake == 1) { //I'm INTAKING, so lets run...
     		addSequential(new auton_IntakeCG());  							//TODO   NEED tO TEST
     		
     	} else if (intake == 2) {//if (intake == 0) {//Nope, lets not intake for midline...
-    		if (defense == 0) {
+    		if (defense == 0) {				//lower arm to go under lo-bar, add for porticulis???
     			addParallel(new auton_shooterArm_PidSet(2.55, 6.0));
     		} else {
     			addSequential(new shooterArm_armSetPointTravel());

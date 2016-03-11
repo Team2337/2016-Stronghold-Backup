@@ -157,7 +157,8 @@ public class Robot extends IterativeRobot {
     	RobotMap.gyro.reset();
     	RobotMap.shooterArmPIDMotorA.enableBrakeMode(true);     //TODO   Dow we want on
     	RobotMap.shooterRetractMotorA.setEncPosition(0);
-    	Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.preppedRetractorPosition);
+    	// added prep command as first auton command....
+    	//Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.preppedRetractorPosition);
     	autonomousCommand = new auton_MainCG();
     	//autonomousCommand = (Command) autonChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();

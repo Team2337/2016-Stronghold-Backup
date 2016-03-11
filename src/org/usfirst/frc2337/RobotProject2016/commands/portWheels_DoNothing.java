@@ -5,6 +5,10 @@ import org.usfirst.frc2337.RobotProject2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class portWheels_DoNothing extends Command {
+	
+	public portWheels_DoNothing() {
+		requires (Robot.PortWheels);
+	}
 
 	protected void initialize() {
 		// TODO Auto-generated method stub
