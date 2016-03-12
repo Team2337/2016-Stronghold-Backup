@@ -22,7 +22,7 @@ public class shooter_ShootCG extends CommandGroup {
     		
     	addSequential(new shooter_Shoot());
 
-    	addSequential(new auton_Wait(0.5));  				//.......adjust or remove???
+    	addSequential(new auton_Wait(0.8));  				//.......adjust or remove???
     	//addSequential(new intake_DoNothing());
     	addSequential(new intakeWrist_Retract());
     	addSequential(new shooter_UnShoot());

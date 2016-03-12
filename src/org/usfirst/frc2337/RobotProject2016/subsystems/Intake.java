@@ -71,13 +71,13 @@ public class Intake extends Subsystem {
     * Set fast ramp rate, in volts per second.
     */
    public void fastRampRate() {
-	   RobotMap.intakeintakeMotorB.setVoltageRampRate(600);
+	  // RobotMap.intakeintakeMotorB.setVoltageRampRate(600);
    }
    /**
     * Set slow ramp rate, in volts per second.
     */
    public void slowRampRate() {
-	   RobotMap.intakeintakeMotorB.setVoltageRampRate(6);
+	  // RobotMap.intakeintakeMotorB.setVoltageRampRate(6);
    }
    /**
     * Sets the motor speed for the intake to zero thereby stopping the intake. 

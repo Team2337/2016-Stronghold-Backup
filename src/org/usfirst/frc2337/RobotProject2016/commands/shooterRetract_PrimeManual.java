@@ -35,8 +35,8 @@ public class shooterRetract_PrimeManual extends Command{
 		RobotMap.shooterRetractMotorA.set(0);
 		if(Robot.shooterRetractor.onLimitSwitch()) {
 			RobotMap.shooterRetractPrimed = true;
-			Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.preppedRetractorPosition);
-			RobotMap.shooterRetractRetracted = true;
+			//Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.preppedRetractorPosition);
+			//RobotMap.shooterRetractRetracted = true;
 		} else {
 		//Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.getRetractPosition());
 		RobotMap.shooterRetractPrimed = false;

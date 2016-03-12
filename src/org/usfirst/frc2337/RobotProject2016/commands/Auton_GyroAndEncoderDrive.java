@@ -45,7 +45,7 @@ public class Auton_GyroAndEncoderDrive extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
 		Robot.chassisPID.resetDriveEncoder();
-		//Robot.chassisPID.resetGyro();
+		Robot.chassisPID.resetGyro();
 		setTimeout(m_timeout);
 		
 		if (m_target > 0 ){ //Robot.chassisPID.readLeftEncoder()
@@ -57,7 +57,10 @@ public class Auton_GyroAndEncoderDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	yaw = -RobotMap.gyro.getAngle();
-    	RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
+    	//RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
+    	RobotMap.chassisDrive.drive(m_speed, 0); //TODO check yaw direction okay...
+
+    	
     	//System.out.println(m_target);
        // SmartDashboard.putNumber("auto Speed", m_speed);
       //  SmartDashboard.putNumber("auto Turn", yaw*Kp);

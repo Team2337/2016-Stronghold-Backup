@@ -178,16 +178,16 @@ public class RobotMap {
         intakeintakeMotorA.setInverted(true);
         LiveWindow.addActuator("Intake", "intakeMotorA", intakeintakeMotorA);
         //intakeintakeMotorA.setControlMode(0);
-        intakeintakeMotorA.setVoltageRampRate(6);	// 6v/sec.  Max v is 12 so 2 sec to full speed.
+        //intakeintakeMotorA.setVoltageRampRate(6);	// 6v/sec.  Max v is 12 so 2 sec to full speed.
         
         intakeintakeMotorB = new CANTalon(9);
         LiveWindow.addActuator("Intake", "intakeMotorB", intakeintakeMotorB);
         //intakeintakeMotorB.setControlMode(5);
         intakeintakeMotorB.reverseOutput(false);
         //intakeintakeMotorB.set(6);
-        intakeintakeMotorB.setVoltageRampRate(600);	// 6v/sec.  Max v is 12 so 2 sec to full speed.
+       //intakeintakeMotorB.setVoltageRampRate(600);	// 6v/sec.  Max v is 12 so 2 sec to full speed.
         											// 12v in 20 millisec (20*50=600)	
-        
+       
         												//**************************retractor*****
         shooterRetractMotorA = new CANTalon(7);
         shooterRetractMotorA.changeControlMode(TalonControlMode.Position);
