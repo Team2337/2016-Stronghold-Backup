@@ -96,8 +96,10 @@ public class Robot extends IterativeRobot {
       //SmartDashboard.putNumber(   "IMU_Roll",             RobotMap.gyro.getRoll());
       SmartDashboard.putNumber(   "IMU_ANGLE",             RobotMap.gyro.getAngle());
       //SmartDashboard.putBoolean("okToShoot", RobotMap.okToShoot);
-      //SmartDashboard.putBoolean("leftBall", RobotMap.intakeLeftBallSensor.get());
-      //SmartDashboard.putBoolean("RightBall", RobotMap.intakeRightBallSensor.get());
+      
+      SmartDashboard.putBoolean("Pin10: Cross", RobotMap.autonPin10.get());
+      SmartDashboard.putBoolean("Pin19: Low Bar (Reverse)", RobotMap.autonPin19.get());
+      
       //SmartDashboard.putBoolean("gotBall", Robot.intake.gotBallSensorState());
       //SmartDashboard.putDouble("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getRate());
       //SmartDashboard.putNumber("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getDistance());
@@ -161,7 +163,24 @@ public class Robot extends IterativeRobot {
     	// added prep command as first auton command....
     	//Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.preppedRetractorPosition);
     	//autonomousCommand = new auton_MainCG();
+    	
+    	
+    	//autonomousCommand = new auton_LowBar();
     	autonomousCommand = new auton_Cross();
+    	//autonomousCommand = new auton_Reach();
+    	//autonomousCommand = new auton_DoNothing();
+    	
+    	/* ***
+    	if (!RobotMap.autonPin10.get()) {
+    		autonomousCommand = new auton_Cross();
+    	} else if (!RobotMap.autonPin19.get()) {
+    		autonomousCommand = new auton_LowBar();
+    	} else {
+    		autonomousCommand = new auton_DoNothing();
+    	}
+    	*/
+    	
+    	
     	
     //	autonomousCommand = (Command) autonChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();

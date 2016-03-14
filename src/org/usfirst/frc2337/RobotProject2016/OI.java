@@ -93,6 +93,8 @@ public class OI {
     
     public JoystickButton test;
  
+    public JoystickButton BlackButton;
+    public JoystickButton BlueButton;
     
     
     
@@ -219,7 +221,14 @@ public class OI {
 
         retractorManualDown = new JoystickButton(operatorControls, 1);
         retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
-        
+       
+        /*
+        BlackButton = new JoystickButton(operatorControls, 3);
+        BlackButton.whenPressed(new shooterRetract_Mid());
+   
+        BlueButton = new JoystickButton(operatorControls, 4);
+        BlueButton.whenPressed(new shooterRetract_Prep());
+        */
         //remove before production*	************************
         /*
         PTO  = new JoystickButton(operatorControls, Yellow_Y);        

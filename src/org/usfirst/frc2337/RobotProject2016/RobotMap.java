@@ -60,6 +60,9 @@ public class RobotMap {
     public static DigitalInput intakeRightBallSensor;
     public static DigitalInput intakeGotBallSensor;
     
+    public static DigitalInput autonPin10;
+    public static DigitalInput autonPin19;
+    
     public static DoubleSolenoid powerTakeOffptoSolenoid;
 	
 	public static Encoder chassisPIDLeftEncoder;
@@ -75,7 +78,7 @@ public class RobotMap {
     
     public static RobotDrive chassisDrive;
     
-    public static Solenoid scalerscalerAirActuator;
+    
     public static Solenoid ShooterPneumaticPin;
     public static Solenoid intakeWristintakeWristSolenoid;
     public static Solenoid chassisShiftershiftSolenoid;
@@ -84,8 +87,10 @@ public class RobotMap {
     public static Solenoid gotBallLED;
     
     public static Solenoid keyPullOut;
+    public static Solenoid scalerscalerAirActuator;
     
     public static Relay targetLightLight;
+    
     
     public static Ultrasonic intakeSensor;
     public static Ultrasonic chassisPIDultrasonicSensor;
@@ -104,6 +109,7 @@ public class RobotMap {
     public static double gyroConversion = 4.5;
     public static boolean travelMode = false;
     public static boolean setPointSet = false;
+    
     
     
     //Start of init
@@ -191,12 +197,12 @@ public class RobotMap {
         												//**************************retractor*****
         shooterRetractMotorA = new CANTalon(7);
         shooterRetractMotorA.changeControlMode(TalonControlMode.Position);
-        shooterRetractMotorA.setPID(20, 0.0, 0.0);
+        shooterRetractMotorA.setPID(10, 0.0, 0.0);
         shooterRetractMotorA.setAllowableClosedLoopErr(30);
         shooterRetractMotorA.reverseOutput(false);
         shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
         //shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
-        shooterRetractMotorA.configNominalOutputVoltage(+12f, -12f);
+        shooterRetractMotorA.configNominalOutputVoltage(+8f, -8f);
         shooterRetractMotorA.configPeakOutputVoltage(+12f, -12f);
         shooterRetractMotorA.setProfile(0);
         //shooterRetractMotorA.setP(10);
@@ -266,8 +272,12 @@ public class RobotMap {
         intakeRightBallSensor = new DigitalInput(9);
         LiveWindow.addSensor("Intake", "ballSensor", intakeRightBallSensor);
         
-        intakeGotBallSensor = new DigitalInput(10);
+        intakeGotBallSensor = new DigitalInput(17);
         LiveWindow.addSensor("Intake", "ballSensor", intakeGotBallSensor);
+        
+        autonPin19 = new DigitalInput(23);
+        autonPin10 = new DigitalInput(10);
+        
         
    
         

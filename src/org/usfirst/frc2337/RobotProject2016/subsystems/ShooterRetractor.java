@@ -13,8 +13,10 @@ public class ShooterRetractor extends Subsystem{
 	
 	
 	// 4096 tics/ rev for Relative.  1.3 rev Absolute = (4096 * 1.3) 5325 tic range
-	public double primedRetractorPosition = -0.1;  		// 0.1 -0.9   range is roughly 1.3
-	public double preppedRetractorPosition = 1.1;   	// 1.2  0.3  0.9
+	public double primedRetractorPosition = -0.1;  		// 0.1 -0.9   range is roughly 1.3[]\
+	
+	public double preppedRetractorPosition = 1.2;   	// 1.2  0.3  0.9
+	public double midRetractorPosition = 0.5;   	// 1.2  0.3  0.9
 	
 	private final double retractSpeedDown = -0.90;	//retracting manually.......PRMING RIGHT NOW!!!! 0.75 to test w/o latching
 	private final double retractSpeedUp = 1.1;		//unretracting manually
@@ -71,6 +73,10 @@ public class ShooterRetractor extends Subsystem{
 	
 	public boolean primedOnTarget() {
 		return (RobotMap.shooterRetractMotorA.get() < (primedRetractorPosition + threshold) );
+	}
+	
+	public boolean midOnTarget() {
+		return (RobotMap.shooterRetractMotorA.get() < (midRetractorPosition + threshold) );
 	}
 	
 	public boolean preppedOnTarget() {
