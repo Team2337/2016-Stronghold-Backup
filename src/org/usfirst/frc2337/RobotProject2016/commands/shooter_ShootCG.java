@@ -25,8 +25,7 @@ public class shooter_ShootCG extends CommandGroup {
     	addSequential(new shooter_Shoot());
 
     	addSequential(new auton_Wait(0.8));  				//.......adjust or remove???
-    	
-    	//[]\
+
     	addSequential(new shooterRetractor_turnOnBrakeMode());
     	
     	addSequential(new intake_DoNothing());

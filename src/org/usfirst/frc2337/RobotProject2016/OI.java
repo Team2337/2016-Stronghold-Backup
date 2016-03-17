@@ -1,11 +1,29 @@
 
 package org.usfirst.frc2337.RobotProject2016;
 
-import org.usfirst.frc2337.RobotProject2016.commands.*;
+import org.usfirst.frc2337.RobotProject2016.commands.chassisShifter_HighToLow;
+import org.usfirst.frc2337.RobotProject2016.commands.chassisShifter_LowToHigh;
+import org.usfirst.frc2337.RobotProject2016.commands.chassis_DriveWithGyroNoTurn;
+import org.usfirst.frc2337.RobotProject2016.commands.chassis_TargetWithGyroPIDAndJoystick;
+import org.usfirst.frc2337.RobotProject2016.commands.intakeWrist_Extend;
+import org.usfirst.frc2337.RobotProject2016.commands.intakeWrist_Retract;
+import org.usfirst.frc2337.RobotProject2016.commands.intake_ActivateMotors;
+import org.usfirst.frc2337.RobotProject2016.commands.intake_Exhale;
+import org.usfirst.frc2337.RobotProject2016.commands.portWheels_activate;
+import org.usfirst.frc2337.RobotProject2016.commands.scaler_ExtendAndRaiseArmCG;
+import org.usfirst.frc2337.RobotProject2016.commands.scaler_PTOandClimbCG;
+import org.usfirst.frc2337.RobotProject2016.commands.shooterArm_armSetPointBase;
+import org.usfirst.frc2337.RobotProject2016.commands.shooterArm_armSetPointLongShot;
+import org.usfirst.frc2337.RobotProject2016.commands.shooterArm_armSetPointScale;
+import org.usfirst.frc2337.RobotProject2016.commands.shooterArm_armSetPointShortShot;
+import org.usfirst.frc2337.RobotProject2016.commands.shooterArm_armSetPointTravel;
+import org.usfirst.frc2337.RobotProject2016.commands.shooterRetract_PrimeManual;
+import org.usfirst.frc2337.RobotProject2016.commands.shooter_ShootCG;
+import org.usfirst.frc2337.RobotProject2016.commands.target_LightActivate;
+import org.usfirst.frc2337.RobotProject2016.commands.target_LightDeactivate;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.*;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 
 
@@ -124,6 +142,12 @@ public class OI {
         //light.whileHeld(new  shooter_Shoot());
         //light.whenReleased(new  shooter_UnShoot()); 
         
+        portWheels = new JoystickButton(driverJoystick, Yellow_Y);
+        portWheels.whileHeld(new portWheels_activate());
+        
+        retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
+        retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
+        //retractorManualDown.whenPressed(new shooterRetract_Prime());
         
         
         //test = new JoystickButton(driverJoystick, Back_Button);
@@ -167,9 +191,7 @@ public class OI {
         //retractorManualUp.whileHeld(new shooterRetract_PrepManual());******************
         //retractorManualUp.whenPressed(new shooterRetract_Prep());
         
-        retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
-        retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
-        //retractorManualDown.whenPressed(new shooterRetract_Prime());
+
         
         //operator button
         
@@ -202,13 +224,12 @@ public class OI {
        // intakeDoNo = new JoystickButton(operatorJoystick, Start_Button);
        // intakeDoNo.whenPressed(new intake_DoNothing());
         
-        portWheels = new JoystickButton(driverJoystick, Yellow_Y);
-        portWheels.whileHeld(new portWheels_activate());
+
         
      
         
         
-        //*****************************  test retractor on 3rd Joystick ******************
+        //*****************************  Operator Controls  ******************
         
         scale = new JoystickButton(operatorControls, 4);
         scale.whenPressed(new shooterArm_armSetPointScale());

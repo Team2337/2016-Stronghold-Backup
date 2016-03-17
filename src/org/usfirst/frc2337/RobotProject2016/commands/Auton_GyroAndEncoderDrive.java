@@ -73,11 +73,12 @@ public class Auton_GyroAndEncoderDrive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.chassisPIDchassisLeft1.enableBrakeMode(true);
-    	RobotMap.chassisPIDchassisRight1.enableBrakeMode(true);
+    	//RobotMap.chassisPIDchassisLeft1.enableBrakeMode(true);
+    	//RobotMap.chassisPIDchassisRight1.enableBrakeMode(true);
+    	Robot.chassisPID.setBrakeMode(true);
     	Robot.chassisPID.stopMotors();
-    	RobotMap.chassisPIDchassisLeft1.enableBrakeMode(true);
-    	RobotMap.chassisPIDchassisRight1.enableBrakeMode(true);
+    	//RobotMap.chassisPIDchassisLeft1.enableBrakeMode(true);
+    	//RobotMap.chassisPIDchassisRight1.enableBrakeMode(true);
     }
 
     // Called when another command which requires one or more of the same
