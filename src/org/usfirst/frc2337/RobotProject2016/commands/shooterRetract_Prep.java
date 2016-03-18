@@ -14,7 +14,7 @@ public class shooterRetract_Prep extends Command{
 	}
 	protected void initialize() {
 		Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.preppedRetractorPosition);
-		setTimeout(2.0);
+		setTimeout(0.5);
 		}
 
 	protected void execute() {

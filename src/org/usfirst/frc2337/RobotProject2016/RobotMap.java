@@ -197,16 +197,16 @@ public class RobotMap {
         												//**************************retractor*****
         shooterRetractMotorA = new CANTalon(7);
         shooterRetractMotorA.changeControlMode(TalonControlMode.Position);
-        shooterRetractMotorA.setPID(10, 0.0, 0.0);
+        shooterRetractMotorA.setPID(2, 0.0, 0.0);
         shooterRetractMotorA.setAllowableClosedLoopErr(30);
         shooterRetractMotorA.reverseOutput(false);
         shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
         //shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
-        shooterRetractMotorA.configNominalOutputVoltage(+8f, -8f);
+        shooterRetractMotorA.configNominalOutputVoltage(+4f, -8f);
         shooterRetractMotorA.configPeakOutputVoltage(+12f, -12f);
         shooterRetractMotorA.setProfile(0);
         //shooterRetractMotorA.setP(10);
-        shooterRetractMotorA.enableBrakeMode(true);
+       /// shooterRetractMotorA.enableBrakeMode(true);
         //shooterRetractMotorA.enableReverseSoftLimit(true);
         //shooterRetractMotorA.setReverseSoftLimit(-0.3);
 

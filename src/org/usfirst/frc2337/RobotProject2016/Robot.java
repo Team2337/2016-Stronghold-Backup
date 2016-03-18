@@ -78,7 +78,9 @@ public class Robot extends IterativeRobot {
        // autonChooser.addObject("AutonMain", new auton_Main());
         //autonChooser.addObject("Auton_GyroFwd", new Auton_GyroFwd());
         autonChooser.addObject("Reach", new auton_Reach());
-        autonChooser.addObject("Cross Flat Defenses", new auton_Cross());      
+        autonChooser.addObject("Cross Flat Defenses", new auton_Cross());     
+        autonChooser.addObject("Low Bar", new auton_LowBar()); 
+        autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
         
         
         RobotMap.gyro.reset();
@@ -167,7 +169,7 @@ public class Robot extends IterativeRobot {
     	
     	
     	//autonomousCommand = new auton_LowBar();
-    	autonomousCommand = new auton_Cross();
+    	//autonomousCommand = new auton_Cross();
     	//autonomousCommand = new auton_Reach();
     	//autonomousCommand = new auton_DoNothing();
     	
@@ -183,7 +185,7 @@ public class Robot extends IterativeRobot {
     	
     	
     	
-    //	autonomousCommand = (Command) autonChooser.getSelected();
+    	autonomousCommand = (Command) autonChooser.getSelected();
         if (autonomousCommand != null) autonomousCommand.start();
         
 

@@ -13,7 +13,7 @@ public class ShooterRetractor extends Subsystem{
 	
 	
 	// 4096 tics/ rev for Relative.  1.3 rev Absolute = (4096 * 1.3) 5325 tic range
-	public double primedRetractorPosition = -0.1;  		// 0.1 -0.9   range is roughly 1.3[]\
+	public double primedRetractorPosition = -0.05;  		// 0.1 -0.9   range is roughly 1.3[]\
 	
 	public double preppedRetractorPosition = 1.372;   	// 1.2  0.3  0.9   1.2
 	public double midRetractorPosition = 0.5;   	// 1.2  0.3  0.9

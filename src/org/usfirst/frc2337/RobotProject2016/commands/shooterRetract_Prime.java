@@ -30,7 +30,6 @@ public class shooterRetract_Prime extends Command{
 		//RobotMap.shooterRetractPrimed = true;
 		if(Robot.shooterRetractor.onLimitSwitch()) {
 			RobotMap.shooterRetractPrimed = true;
-			//Robot.shooterRetractor.resetEncoder();
 		} else {
 			RobotMap.shooterRetractPrimed = false;
 		}
