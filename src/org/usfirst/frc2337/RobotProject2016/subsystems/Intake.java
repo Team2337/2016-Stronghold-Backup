@@ -32,6 +32,7 @@ public class Intake extends Subsystem {
 
     public void initDefaultCommand() {
         setDefaultCommand(new intake_DoNothing());
+    	//setDefaultCommand(new intake_ActivateMotors());
 
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
