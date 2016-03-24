@@ -81,7 +81,7 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Cross Flat Defenses", new auton_Cross());     
         autonChooser.addObject("Low Bar", new auton_LowBar()); 
         autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
-        autonChooser.addObject("Cross And Shoot", new auton_Chevy()); 
+        autonChooser.addObject("Chevy", new auton_Chevy()); 
         autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         
         
@@ -116,7 +116,7 @@ public class Robot extends IterativeRobot {
       //SmartDashboard.putBoolean("arm pid enabled?" , Robot.shooterArmPID.getPIDStatus());
       //SmartDashboard.putNumber("arm joystick y" , Robot.oi.operatorJoystick.getRawAxis(1));
       //SmartDashboard.putNumber("arm get position" , Robot.shooterArmPID.getPIDController().getError());
-      //SmartDashboard.putBoolean("Do We See the Target?" , RobotMap.seeTarget);
+      SmartDashboard.putBoolean("Do We See the Target?" , RobotMap.seeTarget);
       
       SmartDashboard.putNumber("Retractor: get", RobotMap.shooterRetractMotorA.get());
       SmartDashboard.putBoolean("Retractor: shooterRetractPrimed", RobotMap.shooterRetractPrimed);

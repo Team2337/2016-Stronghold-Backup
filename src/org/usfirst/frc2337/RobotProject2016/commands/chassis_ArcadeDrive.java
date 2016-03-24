@@ -15,6 +15,9 @@ public class chassis_ArcadeDrive extends Command {
 	public double Kp = 0.03;
 	public double yaw;
 	private Joystick joystickMain = Robot.oi.driverJoystick;
+	double[] vision = new double[0];	
+	double[] centerx;
+	int visionlen;
 
     public chassis_ArcadeDrive() {
     	requires(Robot.chassisPID);
@@ -27,7 +30,13 @@ public class chassis_ArcadeDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+		centerx = RobotMap.gripTables.getNumberArray("centerX", vision);
+		visionlen = centerx.length;
+		if (visionlen > 0) {
+			RobotMap.seeTarget = true;
+		} else {
+			RobotMap.seeTarget = false;
+		}
 
     		double leftJoystick = joystickMain.getRawAxis(1);
 	    	double turnJoystick = joystickMain.getRawAxis(4);
