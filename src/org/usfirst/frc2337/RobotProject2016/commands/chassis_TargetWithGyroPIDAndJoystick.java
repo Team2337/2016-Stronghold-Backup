@@ -5,6 +5,7 @@ import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class chassis_TargetWithGyroPIDAndJoystick extends PIDCommand {
 	
@@ -49,11 +50,17 @@ public class chassis_TargetWithGyroPIDAndJoystick extends PIDCommand {
 			System.out.println(centerX + " ");
 			firstcenter = centerx[0];
 		}
-		turnValue = firstcenter - centerpnt;
-		targetAngle = turnValue/RobotMap.gyroConversion;
-		System.out.println("TurnValues: FirstCenter "  + firstcenter + " - " + "Centerpoint " + centerpnt + " = " + turnValue);
-		System.out.println("targetAngle: TurnValue " + turnValue + " divided by " + RobotMap.gyroConversion + " equals " + targetAngle);
-		this.setSetpoint(targetAngle);	
+		
+		if (firstcenter == 0) {
+			System.out.println("This is not the target you are looking for, Move along...");
+		} else {
+			turnValue = firstcenter - centerpnt;
+			targetAngle = turnValue/RobotMap.gyroConversion;
+			System.out.println("TurnValues: FirstCenter "  + firstcenter + " - " + "Centerpoint " + centerpnt + " = " + turnValue);
+			System.out.println("targetAngle: TurnValue " + turnValue + " divided by " + RobotMap.gyroConversion + " equals " + targetAngle);
+			this.setSetpoint(targetAngle);	
+			SmartDashboard.putNumber(   "first center",             firstcenter);
+		}
 	}
 
 	protected void execute() {

@@ -12,7 +12,7 @@ public class auton_LowBar extends CommandGroup {
 	 */
 	public auton_LowBar()
 	{
-		addParallel(new shooterRetract_Prep());				//prep shooter retracter
+		//addParallel(new shooterRetract_Prep());				//prep shooter retracter
     	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish..
     	addSequential(new Auton_GyroAndEncoderDrive(0.4, -5000, 2.0));  //22029		//TODO   NEED TO SET DISTANCE 
     	//addParallel(new shooterArm_armSetPointAutonBase());   //  Change back to Travel

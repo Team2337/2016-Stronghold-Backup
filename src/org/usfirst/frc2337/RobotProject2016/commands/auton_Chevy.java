@@ -12,7 +12,7 @@ public class auton_Chevy extends CommandGroup {
 	 */
 	public auton_Chevy()
 	{
-		addSequential(new shooterRetract_Prep());				//prep shooter retracter
+		//addSequential(new shooterRetract_Prep());				//prep shooter retracter
     	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
     	addSequential(new shooterArm_armSetPointAutonChevy());
 		addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.3, 4.0, -6));  //22029		//TODO   NEED TO SET DISTANCE 

@@ -81,6 +81,7 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Cross Flat Defenses", new auton_Cross());     
         autonChooser.addObject("Low Bar", new auton_LowBar()); 
         autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
+        autonChooser.addObject("Cross And Shoot", new auton_Chevy()); 
         autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         
         
@@ -100,7 +101,7 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putNumber(   "IMU_ANGLE",             RobotMap.gyro.getAngle());
       SmartDashboard.putNumber(   "IMU_ROLL",             RobotMap.gyro.getRoll());
       //SmartDashboard.putBoolean("okToShoot", RobotMap.okToShoot);
-      
+     
       //SmartDashboard.putBoolean("Pin10: Cross", RobotMap.autonPin10.get());
       //SmartDashboard.putBoolean("Pin19: Low Bar (Reverse)", RobotMap.autonPin19.get());
       
