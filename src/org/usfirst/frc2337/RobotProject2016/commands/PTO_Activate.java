@@ -1,6 +1,9 @@
 package org.usfirst.frc2337.RobotProject2016.commands;
 
 import org.usfirst.frc2337.RobotProject2016.Robot;
+import org.usfirst.frc2337.RobotProject2016.RobotMap;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class PTO_Activate extends Command {
@@ -15,8 +18,13 @@ public class PTO_Activate extends Command {
 	 * 
 	 */
 	protected void initialize() {
-		Robot.powerTakeOff.LiftOn();
+		
+		if (RobotMap.powerTakeOffptoSolenoid.get() != DoubleSolenoid.Value.kForward) {
+			Robot.powerTakeOff.LiftOn();
+			}
 	}
+	
+
 	
 	protected void execute() {
 	}

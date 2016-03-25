@@ -37,16 +37,17 @@ public class ChassisPID extends PIDSubsystem {
 
     
     public ChassisPID() {
-        super("ChassisPID", 1.0, 0.0, 0.0);
+        super("ChassisPID", 0.03, 0.0, 0.0);
         setAbsoluteTolerance(0.2);
-        getPIDController().setContinuous(false);
-        //LiveWindow.addActuator("ChassisPID", "PIDSubsystem Controller", getPIDController());
+        getPIDController().setContinuous(true);
+        LiveWindow.addActuator("ChassisPID Gyro", "PID Controller", getPIDController());
+        LiveWindow.addActuator("ChassisPID Gyro", "Gyro", gyro);
 
         chassisLeft.enableBrakeMode(false);
         chassisRight.enableBrakeMode(false);
 
         //verify this shows talon encoder and then delete....
-        SmartDashboard.putNumber("chassis PIDget", RobotMap.chassisPIDchassisLeft1.pidGet());
+        SmartDashboard.putNumber("chassis GetPosition", RobotMap.chassisPIDchassisLeft1.getPosition());
         
         // Use these to get going:
         // setSetpoint() -  Sets where the PID controller should move the system
@@ -76,8 +77,8 @@ public class ChassisPID extends PIDSubsystem {
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
        //return rightEncoder.pidGet();
-    	//return gyro.getYaw();
-        return RobotMap.chassisPIDchassisLeft1.pidGet();
+    	return gyro.getYaw();
+        //return RobotMap.chassisPIDchassisLeft1.pidGet();
     }
 
     protected void usePIDOutput(double output) {
@@ -85,9 +86,9 @@ public class ChassisPID extends PIDSubsystem {
         // e.g. yourMotor.set(output);
 
         //chassisLeft2.pidWrite(output);
-        double PIDyaw = this.readGyroYaw();
-        this.arcadeDrive(-output, PIDyaw);
-        //this.arcadeDrive(0, output);
+        //double PIDyaw = this.readGyroYaw();
+        //this.arcadeDrive(-output, PIDyaw);
+        this.arcadeDrive(0, output);
     }
     /*
     //Reset the encoders
