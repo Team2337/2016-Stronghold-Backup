@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Auton_GyroAndEncoderDriveTillRoll extends Command {
 
-	public double Kp = .5;
+	public double Kp = .05;
 	public double yaw;
 	public double roll;
 	public int m_target;
@@ -59,8 +59,7 @@ public class Auton_GyroAndEncoderDriveTillRoll extends Command {
 	  
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.chassisPID.resetDriveEncoder();
-		Robot.chassisPID.resetGyro();
+
 		setTimeout(m_timeout);
 		
 		if (m_target > 0 ){ //Robot.chassisPID.readLeftEncoder()
@@ -71,10 +70,11 @@ public class Auton_GyroAndEncoderDriveTillRoll extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yaw = -RobotMap.gyro.getAngle();
+    	yaw = -RobotMap.gyro.getYaw();
     	roll = RobotMap.gyro.getRoll();
     	//RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
-    	RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
+    	//RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
+    	RobotMap.chassisDrive.arcadeDrive(m_speed, yaw*Kp, false); //TODO check yaw direction okay...
 
     	
     	//System.out.println(m_target);

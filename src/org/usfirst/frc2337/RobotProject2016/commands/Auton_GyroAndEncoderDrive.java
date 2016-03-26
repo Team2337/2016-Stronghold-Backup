@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Auton_GyroAndEncoderDrive extends Command {
 
-	public double Kp = .5;
+	public double Kp = .05;
 	public double yaw;
 	public int m_target;
 	public double m_speed;
@@ -55,9 +55,11 @@ public class Auton_GyroAndEncoderDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yaw = -RobotMap.gyro.getAngle();
+    	yaw = -RobotMap.gyro.getYaw();
     	//RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
-    	RobotMap.chassisDrive.drive(m_speed, 0); //TODO check yaw direction okay...
+    	//RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
+    	RobotMap.chassisDrive.arcadeDrive(m_speed, yaw*Kp, false); //TODO check yaw direction okay...
+    	//RobotMap.chassisDrive.
 
     	
     	//System.out.println(m_target);

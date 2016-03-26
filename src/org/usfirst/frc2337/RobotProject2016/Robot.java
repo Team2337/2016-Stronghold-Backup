@@ -82,7 +82,7 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Low Bar", new auton_LowBar()); 
         autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
         autonChooser.addObject("Chevy", new auton_Chevy()); 
-        autonChooser.addObject("WebChooser", new auton_MainCG()); 
+        //autonChooser.addObject("WebChooser", new auton_MainCG()); 
         autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         
         
@@ -109,6 +109,9 @@ public class Robot extends IterativeRobot {
       //SmartDashboard.putBoolean("gotBall", Robot.intake.gotBallSensorState());
       //SmartDashboard.putDouble("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getRate());
       //SmartDashboard.putNumber("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getDistance());
+      SmartDashboard.putNumber("Left Speed" , RobotMap.chassisPIDchassisLeft1.get());
+      SmartDashboard.putNumber("Right Speed" , RobotMap.chassisPIDchassisRight1.get());
+      SmartDashboard.putNumber(   "Turn_Yaw",              RobotMap.gyro.getYaw()*.005);
      
       SmartDashboard.putBoolean("Shifter Status" , RobotMap.chassisShiftershiftSolenoid.get());
       SmartDashboard.putNumber("String pot" , RobotMap.shooterArmPIDshooterArmPot.get());
@@ -170,10 +173,11 @@ public class Robot extends IterativeRobot {
     	RobotMap.shooterArmPIDMotorA.enableBrakeMode(true);     //TODO   Dow we want on
     	RobotMap.shooterRetractMotorA.setEncPosition(0);
 
-    	//autonomousCommand = new auton_MainCG();
+    	
     	
     	
     	autonomousCommand = (Command) autonChooser.getSelected();
+    	autonomousCommand = new auton_MainCG();
         if (autonomousCommand != null) autonomousCommand.start();
         
 

@@ -1,17 +1,15 @@
 package org.usfirst.frc2337.RobotProject2016.commands;
 
-import org.usfirst.frc2337.RobotProject2016.Robot;
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.Timer;
 
 /**
  *  
  */
 public class auton_MainCG extends CommandGroup {
 	
-    public  auton_MainCG() {
+    @SuppressWarnings("deprecation")
+	public  auton_MainCG() {
     	
     	
     	//Input from file or smartdashboard or web interface??????? (Web, Web, Web)
@@ -29,17 +27,17 @@ public class auton_MainCG extends CommandGroup {
     	shootHigh = (int) RobotMap.autonTables.getNumber("goalPos");
     	/*< REMOVE THE COMMENT*/
     	
-    	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
+    	addParallel(new intake_ActivateMotors());  		
     	
-    	if (intake == 1) { 									//I'm INTAKING, so lets run...
-    		addSequential(new auton_IntakeCG());  							//TODO   NEED tO TEST
+    	if (intake == 1) { 									
+    		addSequential(new auton_IntakeCG());  						
     		
     	} else if (intake == 2) {//if (intake == 0) {//Nope, lets not intake for midline...
     		if ((defense == 0) || (defense == 1) || (defense == 3) || (defense == 4)) {				//lower arm to go under lo-bar, add for porticulis???
     			addSequential(new auton_ReverseReach());
     		} else  {
     			addParallel(new shooterArm_armSetPointTravel());
-    			addSequential(new Auton_GyroAndEncoderDrive(0.3, 16029, 4.0));  //22029		//TODO   NEED TO SET DISTANCE 
+    			addSequential(new Auton_GyroAndEncoderDrive(0.4, 16029, 4.0));  //22029		//TODO   NEED TO SET DISTANCE 
     		}
     	} else {
     		addSequential(new shooterArm_armSetPointTravel());
