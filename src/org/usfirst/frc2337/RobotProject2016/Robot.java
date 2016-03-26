@@ -82,6 +82,7 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Low Bar", new auton_LowBar()); 
         autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
         autonChooser.addObject("Chevy", new auton_Chevy()); 
+        autonChooser.addObject("WebChooser", new auton_MainCG()); 
         autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         
         
@@ -164,29 +165,12 @@ public class Robot extends IterativeRobot {
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-    	RobotMap.gyro.reset();
+		Robot.chassisPID.resetDriveEncoder();
+		Robot.chassisPID.resetGyro();
     	RobotMap.shooterArmPIDMotorA.enableBrakeMode(true);     //TODO   Dow we want on
     	RobotMap.shooterRetractMotorA.setEncPosition(0);
-    	// added prep command as first auton command....
-    	//Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.preppedRetractorPosition);
+
     	//autonomousCommand = new auton_MainCG();
-    	
-    	
-    	//autonomousCommand = new auton_LowBar();
-    	//autonomousCommand = new auton_Cross();
-    	//autonomousCommand = new auton_Reach();
-    	//autonomousCommand = new auton_DoNothing();
-    	
-    	/* ***
-    	if (!RobotMap.autonPin10.get()) {
-    		autonomousCommand = new auton_Cross();
-    	} else if (!RobotMap.autonPin19.get()) {
-    		autonomousCommand = new auton_LowBar();
-    	} else {
-    		autonomousCommand = new auton_DoNothing();
-    	}
-    	*/
-    	
     	
     	
     	autonomousCommand = (Command) autonChooser.getSelected();

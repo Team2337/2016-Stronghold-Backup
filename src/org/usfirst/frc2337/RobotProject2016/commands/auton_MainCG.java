@@ -15,7 +15,7 @@ public class auton_MainCG extends CommandGroup {
     	
     	
     	//Input from file or smartdashboard or web interface??????? (Web, Web, Web)
-    	int intake = 2;
+    	int intake = 3;
     	int startingPoint = 3;
     	int defense = 9;
     	int shootHigh = 4;
@@ -29,20 +29,18 @@ public class auton_MainCG extends CommandGroup {
     	shootHigh = (int) RobotMap.autonTables.getNumber("goalPos");
     	/*< REMOVE THE COMMENT*/
     	
-    	addSequential(new shooterRetract_Prep());				//prep shooter retracter
     	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
     	
-    	if (intake == 1) { //I'm INTAKING, so lets run...
+    	if (intake == 1) { 									//I'm INTAKING, so lets run...
     		addSequential(new auton_IntakeCG());  							//TODO   NEED tO TEST
     		
     	} else if (intake == 2) {//if (intake == 0) {//Nope, lets not intake for midline...
-    		if (defense == 0) {				//lower arm to go under lo-bar, add for porticulis???
-    			addParallel(new auton_shooterArm_PidSet(2.55, 6.0));
-    		} else {
-    			addSequential(new shooterArm_armSetPointTravel());
+    		if ((defense == 0) || (defense == 1) || (defense == 3) || (defense == 4)) {				//lower arm to go under lo-bar, add for porticulis???
+    			addSequential(new auton_ReverseReach());
+    		} else  {
+    			addParallel(new shooterArm_armSetPointTravel());
     			addSequential(new Auton_GyroAndEncoderDrive(0.3, 16029, 4.0));  //22029		//TODO   NEED TO SET DISTANCE 
     		}
-    		//addSequential(new auton_Wait(1));   //just for testing
     	} else {
     		addSequential(new shooterArm_armSetPointTravel());
     		addSequential(new auton_Wait(15));
@@ -52,33 +50,43 @@ public class auton_MainCG extends CommandGroup {
     	 * DEFENSE COMMANDS/COMMAND GROUPS TO CROSS
     	 */
     	if (defense == 0) {// LOW BAR
-    		addSequential(new Auton_GyroAndEncoderDrive(0.5, 1200, 5.0));  //cross defense//TODO   NEED TO SET DISTANCE
-    		//System.out.println("LOW BAR");
+	        	addSequential(new shooterArm_armSetPointBase());
+	        	addParallel(new shooterArm_armSetPointAutonBase());
+	    		addSequential(new Auton_GyroAndEncoderDrive(0.4, -60000, 8.0));
+	    		addSequential(new intake_DoNothing());  
     	} else if (defense == 1){ //PORTCULLIS
-    		addSequential(new auton_Wait(15));
-    		//System.out.println("PORTICULLIS");
+	        	addSequential(new shooterArm_armSetPointBase());   //  Drive Arm to Base
+	        	addParallel(new shooterArm_armSetPointAutonBase());   //  Keep Arm down through the motion  
+	    		addSequential(new Auton_GyroAndEncoderDrive(0.4, -50000, 8.0));  //22029		//Drive Forward
+	    		addSequential(new intake_DoNothing());  
     	} else if (defense == 2){ //CHEVAL DE FRISE
-    		//MAKE CHEVAL DE FRISE COMMAND GROUP
-    		//System.out.println("CHEVAL DE FRISE");
-    		addSequential(new auton_Wait(15));
+	        	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
+	        	addSequential(new shooterArm_armSetPointAutonChevy());
+	    		addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.3, 4.0, -6));  //22029		//TODO   NEED TO SET DISTANCE 
+	    		addSequential(new shooterArm_armSetPointBase());
+	    		addParallel(new shooterArm_armSetPointAutonBase());
+	    		addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.3, 2.0, -30));
+	    		addSequential(new shooterArm_armSetPointAutonTravel());
+	    		addSequential(new Auton_GyroAndEncoderDrive(0.3, 16000, 8.0));
+	    		addSequential(new intake_DoNothing());  	
     	} else if (defense == 3){ //RAMPARTS
-    		addSequential(new Auton_GyroAndEncoderDrive(0.5, 12000, 5.0));			//TODO   NEED TO SET DISTANCE
-    		//System.out.println("RAMPARTS");
+    		addSequential(new Auton_GyroAndEncoderDrive(0.5, -12000, 5.0));			//TODO   NEED TO SET DISTANCE
+
     	} else if (defense == 4){ //MOAT
     		addSequential(new Auton_GyroAndEncoderDrive(0.5, 16000, 4.5));			//TODO   NEED TO SET DISTANCE
-    		//System.out.println("MOAT");
+
     	} else if (defense == 5){ //DRAWBRIDGE
     		addSequential(new auton_Wait(15)); 
-    		//System.out.println("DRAWBRIDGE");
+
     	} else if (defense == 6){ //SALLY PORT
     		addSequential(new auton_Wait(15)); 
-    		//System.out.println("SALLY PORT");
+
     	} else if (defense == 7){ //ROCK WALL
     		addSequential(new Auton_GyroAndEncoderDrive(0.5, 1200, 4.0));				//TODO   NEED TO SET DISTANCE
-    		//System.out.println("ROCK WALL");
+
     	} else if (defense == 8) { //ROUGH TERRIAN
     		addSequential(new Auton_GyroAndEncoderDrive(0.5, 1000, 4.0));				//TODO   NEED TO SET DISTANCE
-    		//System.out.println("ROUGH TERRIAN");
+
     	} else { //IF OVER 9 or so, lets just wait and not go over;
     			addSequential(new auton_Wait(15)); 
     	}
