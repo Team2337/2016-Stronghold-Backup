@@ -85,6 +85,8 @@ public class RobotMap {
     public static Solenoid ledGRIPCamera;
   //  public static Solenoid targetLightLight;
     public static Solenoid gotBallLED;
+    public static Solenoid leftArmLED;
+    public static Solenoid rightArmLED;
     
     public static Solenoid keyPullOut;
     public static Solenoid scalerscalerAirActuator;
@@ -109,6 +111,7 @@ public class RobotMap {
     public static double gyroConversion = 4.5;
     public static boolean travelMode = false;
     public static boolean setPointSet = false;
+    public static double centerpnt = 172;
     
     
     
@@ -232,10 +235,12 @@ public class RobotMap {
         
         //   Solenoid Module 1  On the Arm
         intakeWristintakeWristSolenoid = new Solenoid(1, 0);
+        leftArmLED = new Solenoid(1,1);
         ShooterPneumaticPin = new Solenoid(1, 2);
-        scalerscalerAirActuator = new Solenoid(1, 4);
+        scalerscalerAirActuator = new Solenoid(1, 3);
         ledGRIPCamera = new Solenoid(1, 5);
         gotBallLED = new Solenoid(1, 6);
+        rightArmLED = new Solenoid(1, 7);
 
         
        // targetLightLight = new Solenoid(1, 7);

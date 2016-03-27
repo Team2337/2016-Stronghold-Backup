@@ -13,45 +13,46 @@ package org.usfirst.frc2337.RobotProject2016.subsystems;
 
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 import org.usfirst.frc2337.RobotProject2016.commands.*;
+
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Relay.Direction;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
  *
  */
-public class Scaler extends Subsystem {
+public class targetLED extends Subsystem {
 
-  
-    private final Solenoid scalerAirActuator = RobotMap.scalerscalerAirActuator;
+	private final Solenoid rightArm = RobotMap.rightArmLED;
+	private final Solenoid leftArm = RobotMap.leftArmLED;
+   
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-        setDefaultCommand(new scaler_DoNothing());
 
+
+        setDefaultCommand(new targetLED_LEDControl());
+    }
+
+
+    public void leftArmLEDOn() {
+    	leftArm.set(true);
     }
     
-    /**
-     * Extend the scaler arm
-     */
-    public void pinOut(){
-    	scalerAirActuator.set(true);
-    }
-    /**
-     * Retract the scaler arm 
-     */
-    public void pinIn(){
-    	scalerAirActuator.set(false);
-    }
-    /**
-     * get the status of pneumatic pin
-     * @return
-     */
-    public boolean getPinStatus() {
-    	return scalerAirActuator.get();
+    public void leftArmLEDOff() {
+    	leftArm.set(false);
     }
     
+    public void rightArmLEDOn() {
+    	rightArm.set(true);
+    }
+    
+    public void rightArmLEDOff() {
+    	rightArm.set(false);
+    }
     
 }
 

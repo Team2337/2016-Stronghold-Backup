@@ -11,7 +11,7 @@ public class chassis_TargetWithGyroPID extends PIDCommand {
 
 	double[] defaultValue = new double[0];	
 
-	double centerpnt = 172;
+	double centerpnt = RobotMap.centerpnt;
 	public double firstcenter, secondcenter;
 	double deadband = 10;
 	double turnValue, targetAngle;
@@ -19,7 +19,7 @@ public class chassis_TargetWithGyroPID extends PIDCommand {
 	double Kp = .003;
 	double degreeConversion = 0.04;
 	double setpoint;
-	double timeout = 2.5;
+	double timeout = 2.0;
 	
 
 	public chassis_TargetWithGyroPID() {

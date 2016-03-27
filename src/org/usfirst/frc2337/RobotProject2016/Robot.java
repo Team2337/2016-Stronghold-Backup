@@ -41,6 +41,7 @@ public class Robot extends IterativeRobot {
     public static ShooterRetractor shooterRetractor;
     public static Shooter shooter;
     public static PortWheels PortWheels;
+    public static targetLED targetLED;
 
     public static Preferences prefs;
     //public static Preferences prefsShooterRetract;
@@ -64,6 +65,7 @@ public class Robot extends IterativeRobot {
         shooter = new Shooter();
         shooterRetractor = new ShooterRetractor();
         PortWheels = new PortWheels();
+        targetLED = new targetLED();
         
       //Preference variables
         prefs = Preferences.getInstance();
@@ -82,7 +84,6 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Low Bar", new auton_LowBar()); 
         autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
         autonChooser.addObject("Chevy", new auton_Chevy()); 
-        //autonChooser.addObject("WebChooser", new auton_MainCG()); 
         autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         
         
@@ -111,7 +112,7 @@ public class Robot extends IterativeRobot {
       //SmartDashboard.putNumber("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getDistance());
       SmartDashboard.putNumber("Left Speed" , RobotMap.chassisPIDchassisLeft1.get());
       SmartDashboard.putNumber("Right Speed" , RobotMap.chassisPIDchassisRight1.get());
-      SmartDashboard.putNumber(   "Turn_Yaw",              RobotMap.gyro.getYaw()*.005);
+      SmartDashboard.putNumber(   "Turn_Yaw",              RobotMap.gyro.getYaw()*.05);
      
       SmartDashboard.putBoolean("Shifter Status" , RobotMap.chassisShiftershiftSolenoid.get());
       SmartDashboard.putNumber("String pot" , RobotMap.shooterArmPIDshooterArmPot.get());

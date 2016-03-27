@@ -1,26 +1,7 @@
 
 package org.usfirst.frc2337.RobotProject2016;
 
-import org.usfirst.frc2337.RobotProject2016.commands.chassisShifter_HighToLow;
-import org.usfirst.frc2337.RobotProject2016.commands.chassisShifter_LowToHigh;
-import org.usfirst.frc2337.RobotProject2016.commands.chassis_DriveWithGyroNoTurn;
-import org.usfirst.frc2337.RobotProject2016.commands.chassis_TargetWithGyroPIDAndJoystick;
-import org.usfirst.frc2337.RobotProject2016.commands.intakeWrist_Extend;
-import org.usfirst.frc2337.RobotProject2016.commands.intakeWrist_Retract;
-import org.usfirst.frc2337.RobotProject2016.commands.intake_ActivateMotors;
-import org.usfirst.frc2337.RobotProject2016.commands.intake_Exhale;
-import org.usfirst.frc2337.RobotProject2016.commands.portWheels_activate;
-import org.usfirst.frc2337.RobotProject2016.commands.scaler_ExtendAndRaiseArmCG;
-import org.usfirst.frc2337.RobotProject2016.commands.scaler_PTOandClimbCG;
-import org.usfirst.frc2337.RobotProject2016.commands.shooterArm_armSetPointBase;
-import org.usfirst.frc2337.RobotProject2016.commands.shooterArm_armSetPointLongShot;
-import org.usfirst.frc2337.RobotProject2016.commands.shooterArm_armSetPointScale;
-import org.usfirst.frc2337.RobotProject2016.commands.shooterArm_armSetPointShortShot;
-import org.usfirst.frc2337.RobotProject2016.commands.shooterArm_armSetPointTravel;
-import org.usfirst.frc2337.RobotProject2016.commands.shooterRetract_PrimeManual;
-import org.usfirst.frc2337.RobotProject2016.commands.shooter_ShootCG;
-import org.usfirst.frc2337.RobotProject2016.commands.target_LightActivate;
-import org.usfirst.frc2337.RobotProject2016.commands.target_LightDeactivate;
+import org.usfirst.frc2337.RobotProject2016.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -236,17 +217,19 @@ public class OI {
         
         PTO  = new JoystickButton(operatorControls, 5);        
         PTO.whileHeld(new scaler_PTOandClimbCG());
+        PTO.whenReleased(new shooterArm_LowerWithGyro());
         
         scalerPin = new JoystickButton(operatorControls, 10);
         scalerPin.whenPressed(new scaler_ExtendAndRaiseArmCG());
+        scalerPin.whenReleased(new scaler_Deactivate());
 
         retractorManualDown = new JoystickButton(operatorControls, 1);
         retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
        
-        /*
+       
         BlackButton = new JoystickButton(operatorControls, 3);
-        BlackButton.whenPressed(new shooterRetract_Mid());
-   
+        BlackButton.whenPressed(new shooterArm_LowerWithGyro());
+        /*
         BlueButton = new JoystickButton(operatorControls, 4);
         BlueButton.whenPressed(new shooterRetract_Prep());
         */

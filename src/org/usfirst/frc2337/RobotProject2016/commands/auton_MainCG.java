@@ -35,7 +35,9 @@ public class auton_MainCG extends CommandGroup {
     	} else if (intake == 2) {//if (intake == 0) {//Nope, lets not intake for midline...
     		if ((defense == 0) || (defense == 1) || (defense == 3) || (defense == 4)) {				//lower arm to go under lo-bar, add for porticulis???
     			addSequential(new auton_ReverseReach());
-    		} else  {
+    		} else if (defense == 2) {
+    			
+    		} else {	
     			addParallel(new shooterArm_armSetPointTravel());
     			addSequential(new Auton_GyroAndEncoderDrive(0.4, 16029, 4.0));  //22029		//TODO   NEED TO SET DISTANCE 
     		}
@@ -60,7 +62,7 @@ public class auton_MainCG extends CommandGroup {
     	} else if (defense == 2){ //CHEVAL DE FRISE
 	        	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
 	        	addSequential(new shooterArm_armSetPointAutonChevy());
-	    		addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.3, 4.0, -6));  //22029		//TODO   NEED TO SET DISTANCE 
+	    		addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.3, 4.0, -5));  //22029		//TODO   NEED TO SET DISTANCE 
 	    		addSequential(new shooterArm_armSetPointBase());
 	    		addParallel(new shooterArm_armSetPointAutonBase());
 	    		addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.3, 2.0, -30));
@@ -68,10 +70,10 @@ public class auton_MainCG extends CommandGroup {
 	    		addSequential(new Auton_GyroAndEncoderDrive(0.3, 16000, 8.0));
 	    		addSequential(new intake_DoNothing());  	
     	} else if (defense == 3){ //RAMPARTS
-    		addSequential(new Auton_GyroAndEncoderDrive(0.5, -12000, 5.0));			//TODO   NEED TO SET DISTANCE
+    		addSequential(new Auton_GyroAndEncoderDrive(1.0, -50000, 5.0));			//TODO   NEED TO SET DISTANCE
 
     	} else if (defense == 4){ //MOAT
-    		addSequential(new Auton_GyroAndEncoderDrive(0.5, 16000, 4.5));			//TODO   NEED TO SET DISTANCE
+    		addSequential(new Auton_GyroAndEncoderDrive(1.0, -50000, 4.5));			//TODO   NEED TO SET DISTANCE
 
     	} else if (defense == 5){ //DRAWBRIDGE
     		addSequential(new auton_Wait(15)); 
@@ -80,10 +82,10 @@ public class auton_MainCG extends CommandGroup {
     		addSequential(new auton_Wait(15)); 
 
     	} else if (defense == 7){ //ROCK WALL
-    		addSequential(new Auton_GyroAndEncoderDrive(0.5, 1200, 4.0));				//TODO   NEED TO SET DISTANCE
+    		addSequential(new Auton_GyroAndEncoderDrive(0.7, 65029, 6.0));				//TODO   NEED TO SET DISTANCE
 
     	} else if (defense == 8) { //ROUGH TERRIAN
-    		addSequential(new Auton_GyroAndEncoderDrive(0.5, 1000, 4.0));				//TODO   NEED TO SET DISTANCE
+    		addSequential(new Auton_GyroAndEncoderDrive(0.7, 65029, 6.0));				//TODO   NEED TO SET DISTANCE
 
     	} else { //IF OVER 9 or so, lets just wait and not go over;
     			addSequential(new auton_Wait(15)); 
@@ -108,19 +110,19 @@ public class auton_MainCG extends CommandGroup {
     	 */
     	
     	if (startingPoint == 1 && (shootHigh == 1 || shootHigh == 2)) { //GO TO LEFT GOAL
-	    	addSequential(new auton_MoveStart1ToGoal1()); // move forward
+	    	addSequential(new auton_MoveAfterDefenseAndTurnToGoal(0.5, 72000, 4.0, 45)); // move forward
     		//System.out.println("IM AT 1, I WANT TO GO LEFT");
     	} else if (startingPoint == 2 && (shootHigh == 1 || shootHigh == 2)) { //STARING POINT IS NOW 2, GO TO LEFT GOAL
-    		addSequential(new auton_MoveStart2ToGoal1()); 
+    		addSequential(new auton_MoveAfterDefenseAndTurnToGoal(0.5, 72000, 4.0, 30)); 
     		//System.out.println("IM AT 2, I WANT TO GO LEFT");
     	} else if (startingPoint == 3 && (shootHigh == 1 || shootHigh == 2)) { //STARING POINT IS NOW 3, GO TO MIDDLE GOAL
-    		addSequential(new auton_MoveStart3ToGoal2()); 
+    		addSequential(new auton_MoveAfterDefenseAndTurnToGoal(0.5, 72000, 4.0, 15)); 
     		//System.out.println("IM AT 3, I WANT TO GO MIDDLE");
     	} else if (startingPoint == 4 && (shootHigh == 1 || shootHigh == 2)) { //STARING POINT IS NOW 4, GO TO MIDDLE GOAL
-    		addSequential(new auton_MoveStart4ToGoal2()); 
+    		addSequential(new auton_MoveAfterDefenseAndTurnToGoal(0.5, 72000, 4.0, -10)); 
     		//System.out.println("IM AT 4, I WANT TO GO MIDDLE");
     	} else if (startingPoint == 5 && (shootHigh == 1 || shootHigh == 2)) {  //STARING POINT IS NOW 5, GO TO RIGHT GOAL
-    		addSequential(new auton_MoveStart5ToGoal3()); 
+    		addSequential(new auton_MoveAfterDefenseAndTurnToGoal(0.5, 72000, 4.0, -45)); 
     		//System.out.println("IM AT 5, I WANT TO GO RIGHT");
     	} else if (startingPoint == 6){ //NOPE WE ARE NOT GOING TO THE GOAL
     		addSequential(new auton_Wait(15));
@@ -131,6 +133,7 @@ public class auton_MainCG extends CommandGroup {
     	 * SHOOT HIGH, LOW OR SPIT BALL?
     	 */
     	if (shootHigh == 1) { //SHOOT HIGH!!
+    		addSequential(new chassis_TargetWithGyroPID());
     		addSequential(new shooter_ShootCG());
     		//System.out.println("LETS SHOOT HIGH");
     	} else if (shootHigh == 2) {//SHOOT LOW!!

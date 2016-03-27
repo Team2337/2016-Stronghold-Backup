@@ -8,6 +8,7 @@ public class scaler_ExtendAndRaiseArmCG extends CommandGroup {
 	public scaler_ExtendAndRaiseArmCG() {
 		addSequential(new scaler_pinPullOut());
 		addSequential(new shooterArm_armSetPointScale());
+
 	
 	}
 

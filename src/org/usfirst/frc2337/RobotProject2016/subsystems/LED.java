@@ -30,6 +30,8 @@ public class LED extends Subsystem {
 	//private final Solenoid targetingLight = RobotMap.targetLightLight;
 	private final Solenoid gotBall = RobotMap.gotBallLED;
 	private final Relay targetingLight = RobotMap.targetLightLight;
+	private final Solenoid rightArm = RobotMap.rightArmLED;
+	private final Solenoid leftArm = RobotMap.leftArmLED;
    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -78,5 +80,8 @@ public class LED extends Subsystem {
     public void gotBallOff() {
     	gotBall.set(false);
     }
+    
+
+    
 }
 

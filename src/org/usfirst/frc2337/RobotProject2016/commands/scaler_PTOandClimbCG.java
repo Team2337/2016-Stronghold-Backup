@@ -8,7 +8,11 @@ public class scaler_PTOandClimbCG extends CommandGroup {
 		addSequential(new PTO_Activate());
 		///  PTO should have a positive speed an a negative encoder target
 		//	chassis_EncoderPTODrive(speed, -target)
-		addSequential(new chassis_EncoderPTODrive(.8, -6000));
+		addParallel(new chassis_EncoderPTODrive(.5, -6000));
+		addSequential(new auton_Wait(.5));
+		addSequential(new shooterArm_LowerWithGyro());
+		
+		
 	
 	}
 	

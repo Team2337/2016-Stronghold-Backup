@@ -56,7 +56,6 @@ public class ChassisPID extends PIDSubsystem {
     }
     
     public void initDefaultCommand() {
-        this.resetGyro();
         setDefaultCommand(new chassis_ArcadeDrive());
 
     }
@@ -70,6 +69,10 @@ public class ChassisPID extends PIDSubsystem {
     public void setBrakeMode(boolean type) {
         chassisLeft.enableBrakeMode(type);
         chassisRight.enableBrakeMode(type);
+        RobotMap.chassisPIDchassisLeft2.enableBrakeMode(type);
+        RobotMap.chassisPIDchassisLeft3.enableBrakeMode(type);
+        RobotMap.chassisPIDchassisRight2.enableBrakeMode(type);
+        RobotMap.chassisPIDchassisRight3.enableBrakeMode(type);
     }
 
     protected double returnPIDInput() {
