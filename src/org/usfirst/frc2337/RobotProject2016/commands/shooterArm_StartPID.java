@@ -2,6 +2,8 @@
 package org.usfirst.frc2337.RobotProject2016.commands;
 
 import org.usfirst.frc2337.RobotProject2016.Robot;
+import org.usfirst.frc2337.RobotProject2016.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class  shooterArm_StartPID extends Command {
@@ -17,6 +19,7 @@ public class  shooterArm_StartPID extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.shooterArmPID.startPID();
+    	RobotMap.shooterArmDisabled = false;
     }
 
     // Called repeatedly when this Command is scheduled to run

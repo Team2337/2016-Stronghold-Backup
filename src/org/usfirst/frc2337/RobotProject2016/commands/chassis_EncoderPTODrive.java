@@ -40,18 +40,20 @@ public class chassis_EncoderPTODrive extends Command {
 	  
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.chassisPID.resetDriveEncoder();
-
+    	if (Robot.oi.getoperatorControls().getRawButton(10)) {
+    		Robot.chassisPID.resetDriveEncoder();
+    	}
     }
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-   
-    	RobotMap.chassisDrive.drive(m_speed, 0); //TODO check yaw direction okay...
-
+    	if (Robot.oi.getoperatorControls().getRawButton(10)) {
+    		RobotMap.chassisDrive.drive(m_speed, 0); //TODO check yaw direction okay...
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	
          return Robot.chassisPID.encoderOnTargetLeft(m_target);
     }
 

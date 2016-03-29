@@ -35,18 +35,26 @@ public class shooterArm_LowerWithGyro extends PIDCommand {
 	}
 
 	protected void initialize() {
-		Robot.shooterArmPID.disable();
-		this.setSetpoint(0);
+		
+		if (Robot.oi.getoperatorControls().getRawButton(10)) {
+			Robot.shooterArmPID.disable();
+			this.setSetpoint(0);
+		}
+
 		
 	}
 
 	protected void execute() {
-		SmartDashboard.putNumber("PID Error", this.getPIDController().getError());
+		//SmartDashboard.putNumber("PID Error", this.getPIDController().getError());
 		
 	}
 
 	protected boolean isFinished() {
-		return false;
+		if (Robot.oi.getoperatorControls().getRawButton(10)) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 	protected void end() {

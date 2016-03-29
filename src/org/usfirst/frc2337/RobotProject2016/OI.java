@@ -94,6 +94,9 @@ public class OI {
  
     public JoystickButton BlackButton;
     public JoystickButton BlueButton;
+    public JoystickButton clearSwitch;
+    public JoystickButton blueSwitch;
+    public JoystickButton blackSwitch;
     
     
     
@@ -212,6 +215,12 @@ public class OI {
         
         //*****************************  Operator Controls  ******************
         
+        retractorManualDown = new JoystickButton(operatorControls, 1);
+        retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
+       
+        BlackButton = new JoystickButton(operatorControls, 3);
+        BlackButton.whenPressed(new shooterArm_LowerWithGyro());
+        
         scale = new JoystickButton(operatorControls, 4);
         scale.whenPressed(new shooterArm_armSetPointScale());
         
@@ -219,127 +228,17 @@ public class OI {
         PTO.whileHeld(new scaler_PTOandClimbCG());
         PTO.whenReleased(new shooterArm_LowerWithGyro());
         
+        clearSwitch = new JoystickButton(operatorControls, 6);
+        clearSwitch.whenPressed(new shooterArm_StopPID());
+        clearSwitch.whenReleased(new shooterArm_StartPID());
+        
         scalerPin = new JoystickButton(operatorControls, 10);
         scalerPin.whenPressed(new scaler_ExtendAndRaiseArmCG());
         scalerPin.whenReleased(new scaler_Deactivate());
 
-        retractorManualDown = new JoystickButton(operatorControls, 1);
-        retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
-       
-       
-        BlackButton = new JoystickButton(operatorControls, 3);
-        BlackButton.whenPressed(new shooterArm_LowerWithGyro());
-        /*
-        BlueButton = new JoystickButton(operatorControls, 4);
-        BlueButton.whenPressed(new shooterRetract_Prep());
-        */
-        //remove before production*	************************
-        /*
-        PTO  = new JoystickButton(operatorControls, Yellow_Y);        
-        PTO.whenPressed(new shooterRetractor_adjustSetpointUp()) ;
-        
-        shoot = new JoystickButton(operatorControls, Green_A);   				
-        shoot.whenPressed(new shooterRetractor_adjustSetpointDown());				
-        
-        
-        retractorManualUp = new JoystickButton(operatorControls, Red_B);
-        retractorManualUp.whenPressed(new shooterRetract_Prep());
-        
-        retractorManualDown = new JoystickButton(operatorControls, Blue_X);
-        retractorManualDown.whenPressed(new shooterRetract_Prime());
-        
-        light = new JoystickButton(operatorControls, Left_Bumper);
-        light.whenPressed(new intakeWrist_Extend());
-        light.whenReleased(new intakeWrist_Retract());
-        
-        intakePreLoad = new JoystickButton(operatorControls, Start_Button);
-        intakePreLoad.whenPressed(new shooterRetractor_enablePID());
-        
-        base = new JoystickButton(operatorControls, Back_Button);
-        base.whenPressed(new shooterRetractor_disbablePID());
-   
-        shoot = new JoystickButton(operatorControls, Right_Bumper);   
-        shoot.whenPressed(new shooter_ShootCG());
-        */
-        
-        //************************************************************************************************
-        
-     /*   
-        driveWithGyro = new JoystickButton(driverJoystick, Left_Bumper);
-        driveWithGyro.whileHeld(new intake_ActivateMotors());
-        
-        driveWithGyroAndEncoder = new JoystickButton(driverJoystick, Right_Bumper);
-        driveWithGyroAndEncoder.whenPressed(new chassis_DriveWithGyroNoTurn());
-
-
-
-        target = new JoystickButton(driverJoystick, Start_Button);
-        target.whenPressed(new chassis_TargetWithGyroPID());
-        
-        ptest = new JoystickButton(driverJoystick, Green_A);
-        ptest.whenPressed(new GyroReset());
-
-        lowToHigh = new JoystickButton(driverJoystick, Blue_X);
-        lowToHigh.whenPressed(new chassisShifter_LowToHigh());
-        
-        hightoLow = new JoystickButton(driverJoystick, Yellow_Y);
-        hightoLow.whenPressed(new chassisShifter_HighToLow());
-        */
-        
-
-
-
         // SmartDashboard Buttons
        // SmartDashboard.putData("camera_DoNothing", new camera_DoNothing());
 
-
-        /*
-        
-        
-        
-        energizeWrist = new JoystickButton(operatorJoystick, 4 );
-        energizeWrist.whenPressed(new intakeWrist_Activate());
-        
-        layup = new JoystickButton(operatorJoystick, 7);
-        layup.whenPressed(new shooter_Layup());
-        
-        hookShot = new JoystickButton(operatorJoystick, 8);
-        hookShot.whenPressed(new shooter_HookShot());
-        
-        intake_In = new JoystickButton(operatorJoystick, 5);
-        intake_In.whileHeld(new intake_Inhale());
-        
-        intake_Out = new JoystickButton(operatorJoystick, 6);
-        intake_Out.whileHeld(new intake_Exhale());
-        
-        
-        gripLed_On = new JoystickButton(operatorJoystick, Blue_X);
-        gripLed_On.whileHeld(new led_GRIPOn());
-        
-        gripLed_Off = new JoystickButton(operatorJoystick, Yellow_Y);
-        gripLed_Off.whileHeld(new led_GRIPOff());
-        
-        //Uses Switch to 'Change' state of CANTalon's, brake or coast.
-        drive_Brake = new JoystickButton(driverJoystick, Green_A);
-        drive_Brake.whenPressed(new chassis_DriveBrakePressed());
-        drive_Brake.whenReleased(new chassis_DriveBrakeReleased());
-        
-        armSetPointBase = new JoystickButton(operatorControls, Back_Button);
-        armSetPointBase.whenPressed(new shooterArm_armSetPointBase(1));
-        
-        armSetPointLongShot = new JoystickButton(operatorControls, Back_Button);
-        armSetPointLongShot.whenPressed(new shooterArm_armSetPointBase(3));
-       
-        armSetPointShortShot = new JoystickButton(operatorControls, Back_Button);
-        armSetPointShortShot.whenPressed(new shooterArm_armSetPointBase(4));
-        
-        armSetPointScale = new JoystickButton(operatorControls, Back_Button);
-        armSetPointScale.whenPressed(new shooterArm_armSetPointBase(9));
-        
-        keypullout = new JoystickButton(operatorControls, Back_Button);
-        keypullout.whenPressed(new scaler_pinPullOut());
-        
-  */
         
     }
 

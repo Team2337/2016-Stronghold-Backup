@@ -112,6 +112,7 @@ public class RobotMap {
     public static boolean travelMode = false;
     public static boolean setPointSet = false;
     public static double centerpnt = 172;
+    public static boolean shooterArmDisabled = false;
     
     
     

@@ -84,6 +84,7 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Low Bar", new auton_LowBar()); 
         autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
         autonChooser.addObject("Chevy", new auton_Chevy()); 
+        autonChooser.addObject("Main", new auton_MainCG()); 
         autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         
         
@@ -178,7 +179,7 @@ public class Robot extends IterativeRobot {
     	
     	
     	autonomousCommand = (Command) autonChooser.getSelected();
-    	autonomousCommand = new auton_MainCG();
+    	//autonomousCommand = new auton_MainCG();
         if (autonomousCommand != null) autonomousCommand.start();
         
 

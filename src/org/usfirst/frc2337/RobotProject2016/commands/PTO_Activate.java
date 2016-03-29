@@ -18,10 +18,11 @@ public class PTO_Activate extends Command {
 	 * 
 	 */
 	protected void initialize() {
-		
-		if (RobotMap.powerTakeOffptoSolenoid.get() != DoubleSolenoid.Value.kForward) {
-			Robot.powerTakeOff.LiftOn();
-			}
+		if (Robot.oi.getoperatorControls().getRawButton(10)) {
+			if (RobotMap.powerTakeOffptoSolenoid.get() != DoubleSolenoid.Value.kForward) {
+				Robot.powerTakeOff.LiftOn();
+				}
+		}
 	}
 	
 
