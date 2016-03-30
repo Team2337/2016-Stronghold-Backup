@@ -80,6 +80,7 @@ public class OI {
     public JoystickButton light;
     public JoystickButton shortshot;
     public JoystickButton scale;
+    public JoystickButton batterShot;
     public JoystickButton longshot;
     public JoystickButton travel;
     public JoystickButton base;
@@ -189,8 +190,8 @@ public class OI {
         shortshot = new JoystickButton(operatorJoystick, Green_A);
         shortshot.whenPressed(new shooterArm_armSetPointShortShot());
         
-        //scale = new JoystickButton(operatorJoystick, Yellow_Y);
-        //scale.whenPressed(new shooterArm_armSetPointScale());
+        batterShot = new JoystickButton(operatorJoystick, Yellow_Y);
+        batterShot.whenPressed(new shooterArm_armSetPointBatterShot());
         
         longshot = new JoystickButton(operatorJoystick, Red_B);
         longshot.whenPressed(new shooterArm_armSetPointLongShot());

@@ -53,6 +53,7 @@ public class auton_MainCG extends CommandGroup {
 	        	addSequential(new shooterArm_armSetPointBase());
 	        	addParallel(new shooterArm_armSetPointAutonBase());
 	    		addSequential(new Auton_GyroAndEncoderDrive(0.4, -60000, 8.0));
+	    		//addSequential(new Auton_GyroAndEncoderDrive(0.4, -11000, 8.0));
 	    		addSequential(new intake_DoNothing());  
     	} else if (defense == 1){ //PORTCULLIS
 	        	addSequential(new shooterArm_armSetPointBase());   //  Drive Arm to Base

@@ -20,14 +20,15 @@ public class ShooterArmPID extends PIDSubsystem {
     private final CANTalon shooterArmMotor = RobotMap.shooterArmPIDMotorA;
     
    	//Specified angle value for Pot
-    public double scale = 6.6;
+    public double scale = 5.47;
     public double layupShot = 4.65;   //4.86
-    public double hookShot = 2.7;   ////  Low tavel mode  //2.9
-    public double battershot = 4.8;
+    public double hookShot = 2.7;   ////  Low tavel mode  //2.9    5.03  batter shot
+    public double battershot = 5.03;
     public double travel = 2.7;  //3.5
     public double autontravel = 2.9;  
     public double base = 2.55; 
     public double chevy = 3.2;
+    
 
     private final double setPointTolerance = 0.1;
     public final double autonArmSpeedUp = .4;
