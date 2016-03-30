@@ -28,8 +28,8 @@ public class chassis_DriveWithGyroNoTurn extends Command {
 	protected void execute() {
 		yaw = RobotMap.gyro.getYaw();
 		
-    	speed = Robot.oi.driverJoystick.getRawAxis(joystickAxis);
-    	
+    	speed = -Robot.oi.driverJoystick.getRawAxis(joystickAxis);
+    	/*
 		if (Robot.oi.driverJoystick.getRawAxis(joystickAxis) > deadband) {
 			moveSpeed = -speed;
 		} else if (Robot.oi.driverJoystick.getRawAxis(joystickAxis) < -deadband) {
@@ -37,6 +37,8 @@ public class chassis_DriveWithGyroNoTurn extends Command {
         } else {
         	moveSpeed = 0;
         }
+        */
+    	moveSpeed = ((Math.abs(speed) > deadband) ? speed : 0);  //If the absolute speed of the joystick is outside of the deadband set the moveSpeed to speed otherwise set speed to zero.
 		
 		RobotMap.chassisDrive.arcadeDrive(moveSpeed, -yaw*Kp);
 		//SmartDashboard.putNumber("drWGYNoTurn Speed", moveSpeed);
