@@ -120,18 +120,18 @@ public class OI {
         shifter.whenPressed(new chassisShifter_HighToLow());
         shifter.whenReleased(new chassisShifter_LowToHigh());
         
-        light = new JoystickButton(driverJoystick, Start_Button);
-        light.whileHeld(new target_LightActivate());
-        light.whenReleased(new target_LightDeactivate());
+        //light = new JoystickButton(driverJoystick, Start_Button);
+        //light.whileHeld(new target_LightActivate());
+        //light.whenReleased(new target_LightDeactivate());
         //light.whenPressed(new auton_TurnPID(-25));
         //light.whileHeld(new  shooter_Shoot());
         //light.whenReleased(new  shooter_UnShoot()); 
         
-        portWheels = new JoystickButton(driverJoystick, Yellow_Y);
-        portWheels.whileHeld(new portWheels_activate());
+       // portWheels = new JoystickButton(driverJoystick, Yellow_Y);
+        //portWheels.whileHeld(new portWheels_activate());
         
-        retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
-        retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
+       // retractorManualDown = new JoystickButton(driverJoystick, Blue_X);
+       // retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
         //retractorManualDown.whenPressed(new shooterRetract_Prime());
         
         
