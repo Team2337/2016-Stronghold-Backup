@@ -118,6 +118,14 @@ public class auton_MainCG extends CommandGroup {
     	 */
     	
     	if (startingPoint == 1 && (shootHigh == 1 || shootHigh == 2)) { //GO TO LEFT GOAL
+    		
+    		addParallel(new shooterArm_armSetPointShortShot());
+    		//addSequential(new Auton_GyroAndEncoderDrive(0.4, -11000, 8.0));
+    		addSequential(new auton_TurnPID(-105));
+    		addSequential(new chassis_TargetWithGyroPID());
+    		addSequential(new Auton_GyroAndEncoderDrive(0.4, 16000, 8.0));
+    		addSequential(new chassis_TargetWithGyroPID());
+    		addSequential(new shooter_ShootCG());
 	    	//addSequential(new auton_MoveAfterDefenseAndTurnToGoal(0.4, 72000, 4.0, 45)); // move forward
     		//System.out.println("IM AT 1, I WANT TO GO LEFT");
     	} else if (startingPoint == 2 && (shootHigh == 1 || shootHigh == 2)) { //STARING POINT IS NOW 2, GO TO LEFT GOAL

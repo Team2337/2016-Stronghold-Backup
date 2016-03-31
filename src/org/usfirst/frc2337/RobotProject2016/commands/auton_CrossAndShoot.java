@@ -17,6 +17,7 @@ public class auton_CrossAndShoot extends CommandGroup {
     	addSequential(new shooterArm_armSetPointAutonTravel());
 		addSequential(new Auton_GyroAndEncoderDrive(0.7, 65029, 4.0));  //22029		//TODO   NEED TO SET DISTANCE 
 		addSequential(new intake_DoNothing());  
+		addSequential(new chassis_TargetWithGyroPID());
 		addSequential(new shooter_ShootCG());  
 	}
 }

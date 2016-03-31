@@ -85,7 +85,7 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
         autonChooser.addObject("Chevy", new auton_Chevy()); 
         autonChooser.addObject("Main", new auton_MainCG()); 
-        autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
+       // autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         
         
         RobotMap.gyro.reset();
