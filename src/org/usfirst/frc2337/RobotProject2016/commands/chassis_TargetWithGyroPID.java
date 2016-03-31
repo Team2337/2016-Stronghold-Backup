@@ -38,8 +38,8 @@ public class chassis_TargetWithGyroPID extends PIDCommand {
 	}
 
 	protected void usePIDOutput(double output) {
-		//Robot.chassisPID.arcadeDrive(0, output);
-		RobotMap.chassisPIDchassisLeft1.set(-output);
+		Robot.chassisPID.arcadeDrive(0, output);
+		//RobotMap.chassisPIDchassisLeft1.set(-output);
 	}
 
 	protected void initialize() {
