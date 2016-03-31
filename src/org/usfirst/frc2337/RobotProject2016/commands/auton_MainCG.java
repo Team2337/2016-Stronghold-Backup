@@ -163,13 +163,14 @@ public class auton_MainCG extends CommandGroup {
     	 */
     	if (shootHigh == 1) { //SHOOT HIGH!!
     		addSequential(new chassis_TargetWithGyroPID());
+    		addSequential(new auton_Wait(1.0));
     		addSequential(new shooter_ShootCG());
     		//System.out.println("LETS SHOOT HIGH");
     	} else if (shootHigh == 2) {//SHOOT LOW!!
     		if (startingPoint == 1) {
     			addSequential(new Auton_GyroAndEncoderDrive(0.3, 22000, 1));
     		} else if (startingPoint == 2) {
-    			addSequential(new Auton_GyroAndEncoderDrive(0.3, 22000, 1));
+    			addSequential(new Auton_GyroAndEncoderDrive(0.3, 11000, 1));
     		} else if (startingPoint == 5) {
     			addSequential(new Auton_GyroAndEncoderDrive(0.3, 22000, 1));
     		}
