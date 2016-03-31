@@ -174,6 +174,7 @@ public class Robot extends IterativeRobot {
 		Robot.chassisPID.resetGyro();
     	RobotMap.shooterArmPIDMotorA.enableBrakeMode(true);     //TODO   Dow we want on
     	RobotMap.shooterRetractMotorA.setEncPosition(0);
+    	Robot.powerTakeOff.LiftOff();
 
     	
     	

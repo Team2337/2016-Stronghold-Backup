@@ -219,11 +219,15 @@ public class OI {
         retractorManualDown = new JoystickButton(operatorControls, 1);
         retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
        
-        BlackButton = new JoystickButton(operatorControls, 3);
-        BlackButton.whenPressed(new shooterArm_LowerWithGyro());
+        //BlackButton = new JoystickButton(operatorControls, 3);
+        //BlackButton.whenPressed(new shooterArm_LowerWithGyro());
         
-        scale = new JoystickButton(operatorControls, 4);
-        scale.whenPressed(new shooterArm_armSetPointScale());
+        BlackButton = new JoystickButton(operatorControls, 3);
+        BlackButton.whenPressed(new shooterArm_armSetPointScale());
+        
+        BlueButton = new JoystickButton(operatorControls, 4);
+        BlueButton.whenPressed(new scaler_pinPullOut());
+        BlueButton.whenReleased(new scaler_Deactivate());
         
         PTO  = new JoystickButton(operatorControls, 5);        
         PTO.whileHeld(new scaler_PTOandClimbCG());
@@ -233,9 +237,13 @@ public class OI {
         clearSwitch.whenPressed(new shooterArm_StopPID());
         clearSwitch.whenReleased(new shooterArm_StartPID());
         
+       // blueSwitch = new JoystickButton(operatorControls, 9);
+       // blueSwitch.whenPressed(new scaler_pinPullOut());
+       // blueSwitch.whenReleased(new scaler_Deactivate());
+        
         scalerPin = new JoystickButton(operatorControls, 10);
         scalerPin.whenPressed(new scaler_ExtendAndRaiseArmCG());
-        scalerPin.whenReleased(new scaler_Deactivate());
+
 
         // SmartDashboard Buttons
        // SmartDashboard.putData("camera_DoNothing", new camera_DoNothing());
