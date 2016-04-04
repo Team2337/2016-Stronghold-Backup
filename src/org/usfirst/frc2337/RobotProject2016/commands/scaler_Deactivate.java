@@ -15,9 +15,9 @@ public class scaler_Deactivate extends Command {
 	 * 
 	 */
 	protected void initialize() {
-		if (Robot.oi.getoperatorControls().getRawButton(10)) {
+		//if (Robot.oi.getoperatorControls().getRawButton(10)) {
 			Robot.scaler.pinIn();
-		}
+		//}
 	}
 	
 	protected void execute() {

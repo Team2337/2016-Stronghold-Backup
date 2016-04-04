@@ -98,6 +98,8 @@ public class OI {
     public JoystickButton clearSwitch;
     public JoystickButton blueSwitch;
     public JoystickButton blackSwitch;
+    public JoystickButton yellowButton;
+    public JoystickButton yellowSwitch;
     
     
     
@@ -222,16 +224,16 @@ public class OI {
         //BlackButton = new JoystickButton(operatorControls, 3);
         //BlackButton.whenPressed(new shooterArm_LowerWithGyro());
         
-        BlackButton = new JoystickButton(operatorControls, 3);
-        BlackButton.whenPressed(new shooterArm_armSetPointScale());
-        
         BlueButton = new JoystickButton(operatorControls, 4);
-        BlueButton.whenPressed(new scaler_pinPullOut());
-        BlueButton.whenReleased(new scaler_Deactivate());
+        BlueButton.whenPressed(new shooterArm_armSetPointScale());
         
-        PTO  = new JoystickButton(operatorControls, 5);        
-        PTO.whileHeld(new scaler_PTOandClimbCG());
-        PTO.whenReleased(new shooterArm_LowerWithGyro());
+        scale = new JoystickButton(operatorControls, 5);
+        scale.whenPressed(new scaler_pinPullOut());
+        scale.whenReleased(new scaler_Deactivate());
+        
+       // PTO  = new JoystickButton(operatorControls, 5);        
+        //PTO.whileHeld(new scaler_PTOandClimbCG());
+        //PTO.whenReleased(new shooterArm_LowerWithGyro());
         
         clearSwitch = new JoystickButton(operatorControls, 6);
         clearSwitch.whenPressed(new shooterArm_StopPID());
@@ -241,8 +243,9 @@ public class OI {
        // blueSwitch.whenPressed(new scaler_pinPullOut());
        // blueSwitch.whenReleased(new scaler_Deactivate());
         
-        scalerPin = new JoystickButton(operatorControls, 10);
-        scalerPin.whenPressed(new scaler_ExtendAndRaiseArmCG());
+        yellowSwitch = new JoystickButton(operatorControls, 10);
+        yellowSwitch.whenPressed(new scaler_PTOandClimbCG());
+        yellowSwitch.whenReleased(new PTO_Deactivate());
 
 
         // SmartDashboard Buttons

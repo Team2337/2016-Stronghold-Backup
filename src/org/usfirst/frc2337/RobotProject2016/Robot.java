@@ -84,7 +84,7 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Low Bar", new auton_LowBar()); 
         autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
         autonChooser.addObject("Chevy", new auton_Chevy()); 
-        autonChooser.addObject("Main", new auton_MainCG()); 
+        //autonChooser.addObject("Main", new auton_MainCG()); 
        // autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         
         
@@ -172,9 +172,11 @@ public class Robot extends IterativeRobot {
         // schedule the autonomous command (example)
 		Robot.chassisPID.resetDriveEncoder();
 		Robot.chassisPID.resetGyro();
-    	RobotMap.shooterArmPIDMotorA.enableBrakeMode(true);     //TODO   Dow we want on
+    	RobotMap.shooterArmPIDMotorA.enableBrakeMode(false);     //TODO   Dow we want on
+    	RobotMap.shooterArmPIDMotorB.enableBrakeMode(false);
     	RobotMap.shooterRetractMotorA.setEncPosition(0);
     	Robot.powerTakeOff.LiftOff();
+    	
 
     	
     	
