@@ -1,9 +1,12 @@
 package org.usfirst.frc2337.RobotProject2016.commands;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.kauailabs.navx.frc.AHRS;
+
 import org.usfirst.frc2337.RobotProject2016.Robot;
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
@@ -37,9 +40,15 @@ public class chassis_ArcadeDrive extends Command {
 		} else {
 			RobotMap.seeTarget = false;
 		}
+		
 
     		double leftJoystick = joystickMain.getRawAxis(1);
 	    	double turnJoystick = joystickMain.getRawAxis(4);
+	    	
+			if (RobotMap.powerTakeOffptoSolenoid.equals(DoubleSolenoid.Value.kForward)) {
+				if (leftJoystick > 0)
+				leftJoystick = 0;
+			}
 
 	    	Robot.chassisPID.arcadeDrive(leftJoystick, turnJoystick);
 	    	// SmartDashboard.putNumber(   "leftJoytick",             leftJoystick);

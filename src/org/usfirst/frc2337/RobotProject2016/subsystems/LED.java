@@ -28,7 +28,6 @@ public class LED extends Subsystem {
 	
 	private final Solenoid GRIPCameraLed = RobotMap.ledGRIPCamera;
 	//private final Solenoid targetingLight = RobotMap.targetLightLight;
-	private final Solenoid gotBall = RobotMap.gotBallLED;
 	private final Relay targetingLight = RobotMap.targetLightLight;
 	private final Solenoid rightArm = RobotMap.rightArmLED;
 	private final Solenoid leftArm = RobotMap.leftArmLED;
@@ -73,13 +72,6 @@ public class LED extends Subsystem {
     	targetingLight.set(Relay.Value.kOff);
     }
     
-    public void gotBallOn() {
-    	gotBall.set(true);
-    }
-    
-    public void gotBallOff() {
-    	gotBall.set(false);
-    }
     
 
     

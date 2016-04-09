@@ -18,6 +18,7 @@ public class Intake extends Subsystem {
 	
     public final double inhaleSpeed = 0.8;
     private final double exhaleSpeed = 0.8;
+    public final double loadSpeed = 0.3;
 
     private final CANTalon intakeMotorA = RobotMap.intakeintakeMotorA;
     private final CANTalon intakeMotorB = RobotMap.intakeintakeMotorB;
@@ -71,8 +72,7 @@ public class Intake extends Subsystem {
     * @return
     */
    public boolean getBallSensorState() {
-	   //RobotMap.leftBallSensorState = leftBallSensor.get();
-	   return ballSensor.get();
+	   return !ballSensor.get();
    }
 
 }

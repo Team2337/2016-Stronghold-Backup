@@ -5,18 +5,19 @@ import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class intakeArm_armSetPointShortShot extends Command {
-
+public class intakeArm_armSetPointIntake extends Command {
 	
-	public intakeArm_armSetPointShortShot() {
-		requires(Robot.intakeArmPID);
+	
+	
+	public intakeArm_armSetPointIntake() {
+		requires(Robot.intakeArmPID);	
 	}
 
 	
 	protected void initialize() {
 		RobotMap.shooterArmOnTarget = false;
+		Robot.intakeArmPID.setSetpoint(Robot.intakeArmPID.intakePosition);
 		setTimeout(2);
-		Robot.intakeArmPID.setSetpoint(Robot.intakeArmPID.layupShot);
 		if (!Robot.intakeArmPID.armPIDstatus) {
 			Robot.intakeArmPID.enable();
 		}
@@ -26,18 +27,20 @@ public class intakeArm_armSetPointShortShot extends Command {
 	protected void execute() {
 	}
 
-	
+
 	protected boolean isFinished() {
 		return (Robot.intakeArmPID.onTarget() || isTimedOut());
+		//return isTimedOut();
 	}
 
-	
-	protected void end() {	
+
+	protected void end() {
 		RobotMap.shooterArmOnTarget = true;
 	}
 
 	
 	protected void interrupted() {
-		
+	
 	}
+
 }

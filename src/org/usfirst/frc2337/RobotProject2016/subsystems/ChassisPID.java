@@ -6,12 +6,8 @@ import org.usfirst.frc2337.RobotProject2016.commands.*;
 
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.AnalogAccelerometer;
-import edu.wpi.first.wpilibj.AnalogGyro;
+
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CounterBase.EncodingType;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Ultrasonic;
@@ -24,13 +20,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class ChassisPID extends PIDSubsystem {
 
-    //private final AnalogGyro smallGyro = RobotMap.chassisPIDgyro;   //Small not NavX Gyro
     private final AHRS gyro = RobotMap.gyro;
     private final PowerDistributionPanel powerDistributionPanel = RobotMap.chassisPIDpowerDistributionPanel;
-   //private final Encoder rightEncoder = RobotMap.chassisPIDRightEncoder;
-   //private final Encoder leftEncoder = RobotMap.chassisPIDLeftEncoder;
     private final Ultrasonic ultrasonicSensor = RobotMap.chassisPIDultrasonicSensor;
-   // private final AnalogAccelerometer accelerometer = RobotMap.chassisPIDaccelerometer;
     private final CANTalon chassisLeft = RobotMap.chassisPIDchassisLeft1;
     private final CANTalon chassisRight = RobotMap.chassisPIDchassisRight1;
     RobotDrive robotDrive = RobotMap.chassisDrive;  
@@ -93,13 +85,7 @@ public class ChassisPID extends PIDSubsystem {
         //this.arcadeDrive(-output, PIDyaw);
         this.arcadeDrive(0, output);
     }
-    /*
-    //Reset the encoders
-    public void resetEncoders() {
-    	leftEncoder.reset();
-    	rightEncoder.reset();
-    }
-    */
+
     public void resetDriveEncoder() {
     	RobotMap.chassisPIDchassisLeft1.setEncPosition(0);
     }

@@ -14,28 +14,17 @@ public class led_ledControl extends Command {
 	}
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-		shooterArmPotLightEngage = Robot.intakeArmPID.layupShot *.9;
+		Robot.Led.ledOn_GRIPCamera();
 	}
 
 	@Override
 	protected void execute() {
-		if (RobotMap.gotBallSensorState) {
-			Robot.Led.gotBallOn();
-		} else {
-			Robot.Led.gotBallOff();
-		}
 		
-		if (RobotMap.shooterArmPIDshooterArmPot.get() > shooterArmPotLightEngage) {
+		if (Robot.linAccElevator.getLinAccElevatorStatus()) {
 			Robot.Led.lightOn();
-			Robot.Led.ledOn_GRIPCamera();
 		} else {
 			Robot.Led.lightOff();
-			Robot.Led.ledOff_GRIPCamera();
 		}
-		
-		
-		
 	}
 
 	@Override

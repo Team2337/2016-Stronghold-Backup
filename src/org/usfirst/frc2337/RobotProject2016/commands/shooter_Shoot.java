@@ -36,7 +36,6 @@ public class shooter_Shoot extends Command {
 
 
 	protected void end() {
-		RobotMap.okToShoot = false;
 		RobotMap.shooterRetractPrimed = false;
 		//Robot.shooter.shooterUnShoot();
 		

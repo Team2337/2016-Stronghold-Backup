@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Scaler extends Subsystem {
 
   
-    private final Solenoid scalerAirActuator = RobotMap.scalerscalerAirActuator;
+    private final Solenoid scalerAirActuator = RobotMap.grapplingHookRelease;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

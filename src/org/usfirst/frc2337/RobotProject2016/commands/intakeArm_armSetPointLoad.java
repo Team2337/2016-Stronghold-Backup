@@ -5,18 +5,18 @@ import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class intakeArm_armSetPointBatterShot extends Command {
+public class intakeArm_armSetPointLoad extends Command {
 	
 	
 	
-	public intakeArm_armSetPointBatterShot() {
+	public intakeArm_armSetPointLoad() {
 		requires(Robot.intakeArmPID);	
 	}
 
 	
 	protected void initialize() {
 		RobotMap.shooterArmOnTarget = false;
-		Robot.intakeArmPID.setSetpoint(Robot.intakeArmPID.battershot);
+		Robot.intakeArmPID.setSetpoint(Robot.intakeArmPID.loadPosition);
 		setTimeout(2);
 		if (!Robot.intakeArmPID.armPIDstatus) {
 			Robot.intakeArmPID.enable();

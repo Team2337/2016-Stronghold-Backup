@@ -25,15 +25,21 @@ public class intake_Inhale extends Command {
 
 
     protected void execute() {
-    	Robot.intake.setMotor(m_speed);   	
+    	
+    	if ((Robot.intakeArmPID.getPosition() > Robot.intakeArmPID.intakeRollerOffPosition) &&  Robot.intake.getBallSensorState()) {
+    		Robot.intake.setMotor(0); 
+    	} else if (Robot.intakeArmPID.getPosition() < Robot.intakeArmPID.intakeRollerOffPosition) {
+    		Robot.intake.setMotor(Robot.intake.loadSpeed); 
+    	
+    	} else {
+    		Robot.intake.setMotor(m_speed);  
+    	}
     }
 
     protected boolean isFinished() {
-    	if ((Robot.intakeArmPID.getPosition() > Robot.intakeArmPID.intakeRollerOffPosition) &&  Robot.intake.getBallSensorState()) {
-    		return true;
-    	} else {
+
     		return false;
-    	}
+    	
 
     }
 

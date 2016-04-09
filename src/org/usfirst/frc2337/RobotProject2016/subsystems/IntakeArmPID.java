@@ -15,16 +15,11 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class IntakeArmPID extends PIDSubsystem {
 
-	private final Encoder shooterEncoder = RobotMap.shooterPIDEncoder;
     private final AnalogPotentiometer shooterArmPot = RobotMap.shooterArmPIDshooterArmPot;
     private final CANTalon shooterArmMotor = RobotMap.intakeArmPIDMotorA;
     
    	//Specified angle value for Pot
     public double scale = 5.47;
-    public double layupShot = 4.75;   //4.86 //4.65 //4.75  ///  green
-    public double hookShot = 2.9;   ////  Low tavel mode  //2.9    5.03  batter shot
-    public double battershot = 5.15;   ///4.85   ///  yellow
-    public double longshot = 5.05;   ///4.85   ///  red
     public double travel = 2.7;  //3.5
     public double autontravel = 2.9;  
     public double base = 2.55; 

@@ -139,9 +139,11 @@ public class Robot extends IterativeRobot {
       
       SmartDashboard.putBoolean("Shooter - Shoot", RobotMap.ShooterPneumaticPin.get());
       
+      SmartDashboard.putBoolean("Intake Ball Sensor", Robot.intake.getBallSensorState());
       
       
-      SmartDashboard.putBoolean("getIntakeWristStatus",  Robot.linAccElevator.getIntakeWristStatus());
+      
+      SmartDashboard.putBoolean("getIntakeWristStatus",  Robot.linAccElevator.getLinAccElevatorStatus());
       //SmartDashboard.putBoolean("shooterArmOnTarget",  RobotMap.shooterArmOnTarget);
       
       //SmartDashboard.putNumber("arm joystick", Robot.oi.operatorJoystick.getY());

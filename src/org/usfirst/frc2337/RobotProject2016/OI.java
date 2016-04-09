@@ -186,20 +186,20 @@ public class OI {
         inhale.whileHeld(new intake_Inhale());
         
         exhale = new AnalogAxisButton(operatorJoystick, Left_trigger, 0.5);
-        exhale.whileHeld(new intakeArm_armSetPointBase());
+        exhale.whileHeld(new intakeArm_armSetPointIntake());
         
         
         shortshot = new JoystickButton(operatorJoystick, Green_A);
-        shortshot.whenPressed(new intakeArm_armSetPointShortShot());
+        shortshot.whenPressed(new intakeArm_armSetPointGround());
         
         batterShot = new JoystickButton(operatorJoystick, Yellow_Y);
-        batterShot.whenPressed(new intakeArm_armSetPointBatterShot());
+        batterShot.whenPressed(new intakeArm_armSetPointLoad());
         
         longshot = new JoystickButton(operatorJoystick, Red_B);
-        longshot.whenPressed(new intakeArm_armSetPointLongShot());
+        longshot.whenPressed(new intakeArm_armSetPointLowGoal());
         
         travel = new JoystickButton(operatorJoystick, Blue_X);
-        travel.whenPressed(new intakeArm_armSetPointTravel());
+        travel.whenPressed(new linAccElevator_Extend());
         
         base = new JoystickButton(operatorJoystick, Right_Bumper);
         base.whileHeld(new intake_Exhale());

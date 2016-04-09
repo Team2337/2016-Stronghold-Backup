@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class LinearAcceleratorElevator extends Subsystem {
 
-    private final Solenoid intakeWristSolenoid = RobotMap.intakeWristintakeWristSolenoid;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -26,16 +25,16 @@ public class LinearAcceleratorElevator extends Subsystem {
      * Energize the jazz hands or extend the intake wrist.
      */
     public void intakeExtend() {
-    	intakeWristSolenoid.set(true);
+    	linAccElevatorSolenoid.set(true);
     }
     /**
      * De-energize the jazz hands or extend the intake wrist.
      */
     public void intakeRetract() {
-    	intakeWristSolenoid.set(false);
+    	linAccElevatorSolenoid.set(false);
     }
-    public boolean getIntakeWristStatus() {
-    	return intakeWristSolenoid.get();
+    public boolean getLinAccElevatorStatus() {
+    	return linAccElevatorSolenoid.get();
     }
     
 }

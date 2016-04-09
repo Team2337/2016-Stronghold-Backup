@@ -37,7 +37,6 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class RobotMap {
 
     public static AHRS gyro;
-	public static AnalogGyro chassisPIDgyro;
 	
 	public static AnalogAccelerometer chassisPIDaccelerometer; 
 	public static AnalogPotentiometer shooterArmPIDshooterArmPot;
@@ -58,11 +57,6 @@ public class RobotMap {
 
     
     public static DoubleSolenoid powerTakeOffptoSolenoid;
-	
-	public static Encoder chassisPIDLeftEncoder;
-	public static Encoder chassisPIDRightEncoder;
-	public static Encoder shooterPIDEncoder;
-	public static Encoder shooterRetractPIDEncoder;
     
     public static NetworkTable gripTables;
     public static NetworkTable autonTables;
@@ -74,33 +68,25 @@ public class RobotMap {
     
     
     public static Solenoid ShooterPneumaticPin;
-    public static Solenoid intakeWristintakeWristSolenoid;
+    public static Solenoid linearAccElevatorSolenoid;
     public static Solenoid chassisShiftershiftSolenoid;
     public static Solenoid ledGRIPCamera;
-  //  public static Solenoid targetLightLight;
-    public static Solenoid gotBallLED;
     public static Solenoid leftArmLED;
     public static Solenoid rightArmLED;
-    
-    public static Solenoid keyPullOut;
-    public static Solenoid scalerscalerAirActuator;
+    public static Solenoid grapplingHookRelease;
     
     public static Relay targetLightLight;
     
-    
-    public static Ultrasonic intakeSensor;
     public static Ultrasonic chassisPIDultrasonicSensor;
   
     
     ////  Public variables
     public static boolean leftBallSensorState;
     public static boolean rightBallSensorState;
-    public static boolean gotBallSensorState;
     public static boolean shooterRetractPrimed;
     public static boolean shooterRetractRetracted;
     public static boolean shooterArmOnTarget = false;
     public static boolean visionOnTarget = false;
-    public static boolean okToShoot = false;
     public static boolean seeTarget = false;
     public static double gyroConversion = 4.5;
     public static boolean travelMode = false;
@@ -120,10 +106,6 @@ public class RobotMap {
         LiveWindow.addSensor("ChassisPID", "accelerometer ", chassisPIDaccelerometer);
         chassisPIDaccelerometer.setSensitivity(0.0);
         chassisPIDaccelerometer.setZero(2.5);
-        
-        chassisPIDgyro = new AnalogGyro(0);
-        LiveWindow.addSensor("ChassisPID", "gyro", chassisPIDgyro);
-        chassisPIDgyro.setSensitivity(0.003);
         
         shooterArmPIDshooterArmPot = new AnalogPotentiometer(3, 20.0, .068);
         LiveWindow.addSensor("shooterArm", "Potentiometer", shooterArmPIDshooterArmPot);
@@ -208,6 +190,7 @@ public class RobotMap {
         //shooterRetractMotorA.enableReverseSoftLimit(true);
         //shooterRetractMotorA.setReverseSoftLimit(-0.3);
 
+        intakeBallSensor = new DigitalInput(10);
         
         
         LiveWindow.addActuator("ShooterRetract", "shooterRetractMotorA", shooterRetractMotorA);
@@ -215,42 +198,23 @@ public class RobotMap {
         
         //   Solenoid Module 0  Get in my belly!
         chassisShiftershiftSolenoid = new Solenoid(0, 0);
+        linearAccElevatorSolenoid = new Solenoid(0, 1);
         powerTakeOffptoSolenoid = new DoubleSolenoid(0, 2, 3);
+        ShooterPneumaticPin = new Solenoid(0, 4);
+        grapplingHookRelease = new Solenoid(0, 5);
+        ledGRIPCamera = new Solenoid(0, 6);
+        leftArmLED = new Solenoid(0, 7);
         
         //   Solenoid Module 1  On the Arm
-        intakeWristintakeWristSolenoid = new Solenoid(1, 0);
-        leftArmLED = new Solenoid(1,1);
-        ShooterPneumaticPin = new Solenoid(1, 2);
-        scalerscalerAirActuator = new Solenoid(1, 3);
-        ledGRIPCamera = new Solenoid(1, 5);
-        gotBallLED = new Solenoid(1, 6);
         rightArmLED = new Solenoid(1, 7);
 
         
-       // targetLightLight = new Solenoid(1, 7);
+        //  Target light relay
         targetLightLight = new Relay(0, Relay.Direction.kForward);
         
         //Digital Sensors
         
-        /*   ALL ENCODERS SWITCHED OVER TO TALON SRX ENCODERS
-        chassisPIDLeftEncoder = new Encoder(0, 1, false, EncodingType.k4X);
-        LiveWindow.addSensor("ChassisPID", "driveEncoder", chassisPIDLeftEncoder);
-        //chassisPIDLeftEncoder.setDistancePerPulse(1.0);
-        //chassisPIDLeftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
-        LiveWindow.addSensor("ChassisPIDLeftEnc", "Strafe Encoder", chassisPIDLeftEncoder);
-     
-        chassisPIDRightEncoder = new Encoder(2, 3, false, EncodingType.k4X);
-        LiveWindow.addSensor("ChassisPID", "driveEncoder", chassisPIDRightEncoder);
-        //chassisPIDRightEncoder.setDistancePerPulse(1.0);
-        //chassisPIDRightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
-        LiveWindow.addSensor("ChassisPIDRightEnc", "Strafe Encoder", chassisPIDRightEncoder);
-        
-        shooterPIDEncoder = new Encoder(4, 5, false, EncodingType.k4X);
-        LiveWindow.addActuator("ShooterArmPID", "shooterArmEncoder", shooterPIDEncoder);
-        
-        shooterRetractPIDEncoder = new Encoder(6, 7, false, EncodingType.k4X);
-        LiveWindow.addActuator("ShooterRetract", "shooterRetractPIDEncoder", shooterRetractPIDEncoder);
-        */
+
         
         chassisPIDultrasonicSensor = new Ultrasonic(11, 12);
         LiveWindow.addSensor("ChassisPID", "ultrasonicSensor", chassisPIDultrasonicSensor);

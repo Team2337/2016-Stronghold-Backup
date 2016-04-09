@@ -39,9 +39,8 @@ public class  intakeArm_JoystickControl extends Command {
     		armJoystickY = 0;  //Set Motor to 0 if in dead band
     		
     		
-    		if (Robot.intakeArmPID.getPosition() <  Robot.intakeArmPID.hookShot) {
-    			Robot.intakeArmPID.setSetpoint(Robot.intakeArmPID.hookShot);
-    			//  Enable when we get stronger struts
+    		if (Robot.intakeArmPID.getPosition() >  Robot.intakeArmPID.intakePosition) {
+    			Robot.intakeArmPID.setSetpoint(Robot.intakeArmPID.intakePosition);
     			Robot.intakeArmPID.disable();
     		}
     		

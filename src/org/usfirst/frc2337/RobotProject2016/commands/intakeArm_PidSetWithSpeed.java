@@ -12,7 +12,7 @@ import org.usfirst.frc2337.RobotProject2016.RobotMap;
 public class  intakeArm_PidSetWithSpeed extends Command {
 
     int setpoint;
-	double upSpeed, downSpeed; //arm Speed 
+	double upSpeed, downSpeed = .5; //arm Speed 
     
     public intakeArm_PidSetWithSpeed(int setpoint) {
 
@@ -35,7 +35,7 @@ public class  intakeArm_PidSetWithSpeed extends Command {
     protected void initialize() {
     	
     	Robot.intakeArmPID.getPIDController().setOutputRange(downSpeed, upSpeed);
-        Robot.intakeArmPID.setSetpoint(setpoint);; //Run command in Lift Subsytem    	    	
+        Robot.intakeArmPID.setSetpoint(setpoint); //Run command in Lift Subsytem    	    	
     }
 
     // Called repeatedly when this Command is scheduled to run

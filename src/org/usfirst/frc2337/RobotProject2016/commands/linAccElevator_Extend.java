@@ -15,6 +15,9 @@ public class linAccElevator_Extend extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if (Robot.intakeArmPID.getPosition() < Robot.intakeArmPID.intakeRollerOffPosition) {
+    		Robot.intakeArmPID.setSetpoint(Robot.intakeArmPID.intakePosition);
+    	}
     	Robot.linAccElevator.intakeExtend();
     	//setTimeout(5);
     	
