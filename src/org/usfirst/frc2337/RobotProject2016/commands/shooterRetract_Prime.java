@@ -11,9 +11,10 @@ public class shooterRetract_Prime extends Command{
 		requires(Robot.shooterRetractor);
 	}
 	protected void initialize() {
-		RobotMap.shooterRetractMotorA.set(Robot.shooterRetractor.primedRetractorPosition);
+		Robot.shooter.shooterUnShoot();
+		Robot.shooterRetractor.retractorPrimedPosition();
 		RobotMap.shooterRetractRetracted = false;
-		setTimeout(1.5);
+		setTimeout(3.0);
 	}
 
 	protected void execute() {
@@ -22,15 +23,20 @@ public class shooterRetract_Prime extends Command{
 
 	protected boolean isFinished() {
 			//return (Robot.shooterRetractor.primedOnTarget() || isTimedOut());
-		return (RobotMap.shooterRetractMotorA.isRevLimitSwitchClosed() || isTimedOut());
+		return (Robot.shooterRetractor.onLimitSwitch() || isTimedOut());
 	}
 
 	protected void end() {
-		RobotMap.shooterRetractPrimed = true;
+		//RobotMap.shooterRetractPrimed = true;
+		if(Robot.shooterRetractor.onLimitSwitch()) {
+			RobotMap.shooterRetractPrimed = true;
+		} else {
+			RobotMap.shooterRetractPrimed = false;
+		}
 	}
 
 	protected void interrupted() {
-		
+		end();
 	}
 
 }

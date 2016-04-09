@@ -12,7 +12,9 @@
 package org.usfirst.frc2337.RobotProject2016.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
 import org.usfirst.frc2337.RobotProject2016.Robot;
+import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
 /**
  *
@@ -28,6 +30,7 @@ public class intake_Inhale extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.intake.fastRampRate();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -42,12 +45,13 @@ public class intake_Inhale extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.intake.slowRampRate();
     	Robot.intake.stopMotors();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.intake.stopMotors();
+    	this.end();
     }
 }

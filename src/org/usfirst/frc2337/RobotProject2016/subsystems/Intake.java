@@ -6,19 +6,20 @@ import org.usfirst.frc2337.RobotProject2016.commands.*;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
+ * 
  *
  */
 public class Intake extends Subsystem {
 
 	
-    private final double inhaleSpeed = 0.8;
-    private final double exhaleSpeed = -0.8;
-    private final double prepSpeed = 0.7;
+    public final double inhaleSpeed = 0.8;
+    public final double inhaleSlowSpeed = 0.8;
+    private final double exhaleSpeed = 0.8;
+    //private final double prepSpeed = 0.7;
 
     private final CANTalon intakeMotorA = RobotMap.intakeintakeMotorA;
     private final CANTalon intakeMotorB = RobotMap.intakeintakeMotorB;
@@ -31,6 +32,7 @@ public class Intake extends Subsystem {
 
     public void initDefaultCommand() {
         setDefaultCommand(new intake_DoNothing());
+    	//setDefaultCommand(new intake_ActivateMotors());
 
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
@@ -65,6 +67,18 @@ public class Intake extends Subsystem {
    public void intakeInhaleOffGround() {
 	   intakeMotorA.set(inhaleSpeed);
 	   intakeMotorB.set(inhaleSpeed);
+   }
+   /**
+    * Set fast ramp rate, in volts per second.
+    */
+   public void fastRampRate() {
+	  // RobotMap.intakeintakeMotorB.setVoltageRampRate(600);
+   }
+   /**
+    * Set slow ramp rate, in volts per second.
+    */
+   public void slowRampRate() {
+	  // RobotMap.intakeintakeMotorB.setVoltageRampRate(6);
    }
    /**
     * Sets the motor speed for the intake to zero thereby stopping the intake. 

@@ -16,7 +16,7 @@ public class auton_TurnPID extends PIDCommand {
 	public auton_TurnPID(double angle) {
 		//chassis_TargetWithGyroPID(String name, double p, double i, double d)
 
-		super("chassis_TargetWithGyroPID", .13, 0, 0.02);
+		super("chassis_TargetWithGyroPID", .03, 0, 0.02);
 		getPIDController().setAbsoluteTolerance(0.1);
         getPIDController().setContinuous(false);
         getPIDController().setOutputRange(-1, 1);
@@ -39,7 +39,8 @@ public class auton_TurnPID extends PIDCommand {
 		RobotMap.gyro.reset();
 		this.setSetpoint(targetAngle);
 		setTimeout(timeout);
-		RobotMap.chassisPIDchassisRight1.enableBrakeMode(true);
+		//RobotMap.chassisPIDchassisRight1.enableBrakeMode(true);
+		Robot.chassisPID.setBrakeMode(true);
 	}
 
 	protected void execute() {
@@ -53,7 +54,8 @@ public class auton_TurnPID extends PIDCommand {
 	protected void end() {
 		//System.out.println("done" + RobotMap.gyro.getAngle());
 		Robot.chassisPID.stopMotors();
-		RobotMap.chassisPIDchassisRight1.enableBrakeMode(false);
+		//RobotMap.chassisPIDchassisRight1.enableBrakeMode(false);
+		Robot.chassisPID.setBrakeMode(false);
 	}
 
 	protected void interrupted() {

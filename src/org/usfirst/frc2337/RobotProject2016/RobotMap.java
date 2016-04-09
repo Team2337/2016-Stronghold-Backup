@@ -60,6 +60,9 @@ public class RobotMap {
     public static DigitalInput intakeRightBallSensor;
     public static DigitalInput intakeGotBallSensor;
     
+    public static DigitalInput autonPin10;
+    public static DigitalInput autonPin19;
+    
     public static DoubleSolenoid powerTakeOffptoSolenoid;
 	
 	public static Encoder chassisPIDLeftEncoder;
@@ -75,17 +78,21 @@ public class RobotMap {
     
     public static RobotDrive chassisDrive;
     
-    public static Solenoid scalerscalerAirActuator;
+    
     public static Solenoid ShooterPneumaticPin;
     public static Solenoid intakeWristintakeWristSolenoid;
     public static Solenoid chassisShiftershiftSolenoid;
     public static Solenoid ledGRIPCamera;
   //  public static Solenoid targetLightLight;
     public static Solenoid gotBallLED;
+    public static Solenoid leftArmLED;
+    public static Solenoid rightArmLED;
     
     public static Solenoid keyPullOut;
+    public static Solenoid scalerscalerAirActuator;
     
     public static Relay targetLightLight;
+    
     
     public static Ultrasonic intakeSensor;
     public static Ultrasonic chassisPIDultrasonicSensor;
@@ -104,6 +111,9 @@ public class RobotMap {
     public static double gyroConversion = 4.5;
     public static boolean travelMode = false;
     public static boolean setPointSet = false;
+    public static double centerpnt = 172;
+    public static boolean shooterArmDisabled = false;
+    
     
     
     //Start of init
@@ -178,24 +188,31 @@ public class RobotMap {
         intakeintakeMotorA.setInverted(true);
         LiveWindow.addActuator("Intake", "intakeMotorA", intakeintakeMotorA);
         //intakeintakeMotorA.setControlMode(0);
+        //intakeintakeMotorA.setVoltageRampRate(6);	// 6v/sec.  Max v is 12 so 2 sec to full speed.
         
         intakeintakeMotorB = new CANTalon(9);
         LiveWindow.addActuator("Intake", "intakeMotorB", intakeintakeMotorB);
         //intakeintakeMotorB.setControlMode(5);
         intakeintakeMotorB.reverseOutput(false);
         //intakeintakeMotorB.set(6);
-        																	//**************************retractor*****
+       //intakeintakeMotorB.setVoltageRampRate(600);	// 6v/sec.  Max v is 12 so 2 sec to full speed.
+        											// 12v in 20 millisec (20*50=600)	
+       
+        												//**************************retractor*****
         shooterRetractMotorA = new CANTalon(7);
         shooterRetractMotorA.changeControlMode(TalonControlMode.Position);
-        shooterRetractMotorA.setPID(.1, 0.0, 0.0);
-        shooterRetractMotorA.setAllowableClosedLoopErr(60);
+        shooterRetractMotorA.setPID(2, 0.0, 0.0);
+        shooterRetractMotorA.setAllowableClosedLoopErr(30);
         shooterRetractMotorA.reverseOutput(false);
-        shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
-        shooterRetractMotorA.configNominalOutputVoltage(+6f, -6f);
+        shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+        //shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
+        shooterRetractMotorA.configNominalOutputVoltage(+4f, -8f);
         shooterRetractMotorA.configPeakOutputVoltage(+12f, -12f);
         shooterRetractMotorA.setProfile(0);
-        shooterRetractMotorA.setP(10);
-        shooterRetractMotorA.enableBrakeMode(true);
+        //shooterRetractMotorA.setP(10);
+       /// shooterRetractMotorA.enableBrakeMode(true);
+        //shooterRetractMotorA.enableReverseSoftLimit(true);
+        //shooterRetractMotorA.setReverseSoftLimit(-0.3);
 
         
         
@@ -203,7 +220,8 @@ public class RobotMap {
         
         portWheelMotorA= new CANTalon(8);
         LiveWindow.addActuator("PortWheels", "portWheelMotorA", portWheelMotorA);
-        portWheelMotorA.setControlMode(0);
+        portWheelMotorA.changeControlMode(TalonControlMode.PercentVbus);
+        portWheelMotorA.set(0);
         
         portWheelMotorB= new CANTalon(16);
         LiveWindow.addActuator("PortWheels", "portWheelMotorB", portWheelMotorB);
@@ -218,25 +236,26 @@ public class RobotMap {
         
         //   Solenoid Module 1  On the Arm
         intakeWristintakeWristSolenoid = new Solenoid(1, 0);
+        leftArmLED = new Solenoid(1,1);
         ShooterPneumaticPin = new Solenoid(1, 2);
-        scalerscalerAirActuator = new Solenoid(1, 4);
+        scalerscalerAirActuator = new Solenoid(1, 3);
         ledGRIPCamera = new Solenoid(1, 5);
         gotBallLED = new Solenoid(1, 6);
+        rightArmLED = new Solenoid(1, 7);
 
         
        // targetLightLight = new Solenoid(1, 7);
-        targetLightLight = new Relay(1, Relay.Direction.kForward);
+        targetLightLight = new Relay(0, Relay.Direction.kForward);
         
         //Digital Sensors
         
+        /*   ALL ENCODERS SWITCHED OVER TO TALON SRX ENCODERS
         chassisPIDLeftEncoder = new Encoder(0, 1, false, EncodingType.k4X);
         LiveWindow.addSensor("ChassisPID", "driveEncoder", chassisPIDLeftEncoder);
         //chassisPIDLeftEncoder.setDistancePerPulse(1.0);
         //chassisPIDLeftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
         LiveWindow.addSensor("ChassisPIDLeftEnc", "Strafe Encoder", chassisPIDLeftEncoder);
-
-   
-        
+     
         chassisPIDRightEncoder = new Encoder(2, 3, false, EncodingType.k4X);
         LiveWindow.addSensor("ChassisPID", "driveEncoder", chassisPIDRightEncoder);
         //chassisPIDRightEncoder.setDistancePerPulse(1.0);
@@ -248,6 +267,7 @@ public class RobotMap {
         
         shooterRetractPIDEncoder = new Encoder(6, 7, false, EncodingType.k4X);
         LiveWindow.addActuator("ShooterRetract", "shooterRetractPIDEncoder", shooterRetractPIDEncoder);
+        */
         
         chassisPIDultrasonicSensor = new Ultrasonic(11, 12);
         LiveWindow.addSensor("ChassisPID", "ultrasonicSensor", chassisPIDultrasonicSensor);
@@ -258,8 +278,12 @@ public class RobotMap {
         intakeRightBallSensor = new DigitalInput(9);
         LiveWindow.addSensor("Intake", "ballSensor", intakeRightBallSensor);
         
-        intakeGotBallSensor = new DigitalInput(10);
+        intakeGotBallSensor = new DigitalInput(17);
         LiveWindow.addSensor("Intake", "ballSensor", intakeGotBallSensor);
+        
+        autonPin19 = new DigitalInput(23);
+        autonPin10 = new DigitalInput(10);
+        
         
    
         

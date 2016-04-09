@@ -1,5 +1,6 @@
 package org.usfirst.frc2337.RobotProject2016.subsystems;
 
+import org.usfirst.frc2337.RobotProject2016.Robot;
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 import org.usfirst.frc2337.RobotProject2016.commands.shooterRetract_DoNothing;
 
@@ -10,13 +11,17 @@ public class ShooterRetractor extends Subsystem{
 	
 	private final CANTalon retractorMotor = RobotMap.shooterRetractMotorA;
 	
-	public double primedRetractorPosition = 0.1;  //-.9   range is roughly 1.3
-	public double preppedRetractorPosition = 1.2;   // .3
+	
+	// 4096 tics/ rev for Relative.  1.3 rev Absolute = (4096 * 1.3) 5325 tic range
+	public double primedRetractorPosition = -0.05;  		// 0.1 -0.9   range is roughly 1.3[]\
+	
+	public double preppedRetractorPosition = 1.372;   	// 1.2  0.3  0.9   1.2
+	public double midRetractorPosition = 0.5;   	// 1.2  0.3  0.9
 	
 	private final double retractSpeedDown = -0.90;	//retracting manually.......PRMING RIGHT NOW!!!! 0.75 to test w/o latching
-	private final double retractSpeedUp = 1;		//unretracting manually
+	private final double retractSpeedUp = 1.1;		//unretracting manually
 	
-	private double threshold = 0.1;
+	private double threshold = .05;						//0.1
 	
 	boolean retractPIDStatus = true;
 
@@ -61,12 +66,30 @@ public class ShooterRetractor extends Subsystem{
 		return RobotMap.shooterRetractMotorA.get();
 	}
 	
+	
+	public void setRetractPosition(double position) {
+		RobotMap.shooterRetractMotorA.set(position);
+	}
+	
 	public boolean primedOnTarget() {
 		return (RobotMap.shooterRetractMotorA.get() < (primedRetractorPosition + threshold) );
 	}
 	
+	public boolean midOnTarget() {
+		return (RobotMap.shooterRetractMotorA.get() < (midRetractorPosition + threshold) );
+	}
+	
 	public boolean preppedOnTarget() {
 		return (RobotMap.shooterRetractMotorA.get() > (preppedRetractorPosition - threshold) );
+	}
+	
+	public boolean onLimitSwitch() {
+		return ( RobotMap.shooterRetractMotorA.isRevLimitSwitchClosed() );
+	}
+	
+	public void resetEncoder() {
+		//RobotMap.shooterRetractPIDEncoder.reset();
+		RobotMap.shooterRetractMotorA.setEncPosition(0);
 	}
 
 

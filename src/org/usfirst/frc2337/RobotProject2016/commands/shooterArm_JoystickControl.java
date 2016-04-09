@@ -12,7 +12,7 @@ import org.usfirst.frc2337.RobotProject2016.RobotMap;
  */
 public class  shooterArm_JoystickControl extends Command {
 
-	public double armSpeedFactor = 0.5;    //multiply joystick to reduce arm speed
+	public double armSpeedFactor = 1;    //multiply joystick to reduce arm speed
 	private double deadBand = 0.1;
 	private double armJoystickY;
 	private double travelError = 1.1;
@@ -41,6 +41,8 @@ public class  shooterArm_JoystickControl extends Command {
     		
     		if (Robot.shooterArmPID.getPosition() <  Robot.shooterArmPID.hookShot) {
     			Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.hookShot);
+    			//  Enable when we get stronger struts
+    			Robot.shooterArmPID.disable();
     		}
     		
     		/*

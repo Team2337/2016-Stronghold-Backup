@@ -13,7 +13,7 @@ public class chassis_Target extends Command {
 
 double[] defaultValue = new double[0];	
 
-double centerpnt = 150;
+double centerpnt = RobotMap.centerpnt;
 double firstcenter, secondcenter;
 double deadband = 10;
 double turnValue;

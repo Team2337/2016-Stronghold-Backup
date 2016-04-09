@@ -41,7 +41,7 @@ public class Auton_GyroAndEncoderFwd extends Command {
 	  
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.chassisPID.resetEncoders();
+    	Robot.chassisPID.resetDriveEncoder();
     	Robot.chassisPID.resetGyro();
     }
 

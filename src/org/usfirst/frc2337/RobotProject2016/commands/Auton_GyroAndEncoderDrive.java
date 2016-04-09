@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Auton_GyroAndEncoderDrive extends Command {
 
-	public double Kp = 0.03;
+	public double Kp = .05;
 	public double yaw;
 	public int m_target;
 	public double m_speed;
@@ -44,10 +44,9 @@ public class Auton_GyroAndEncoderDrive extends Command {
 	  
     // Called just before this Command runs the first time
     protected void initialize() {
-		Robot.chassisPID.resetDriveEncoder();
-		Robot.chassisPID.resetGyro();
+
 		setTimeout(m_timeout);
-		
+		Robot.chassisPID.resetDriveEncoder();
 		if (m_target > 0 ){ //Robot.chassisPID.readLeftEncoder()
 			m_speed = - m_speed;
 			}
@@ -56,8 +55,13 @@ public class Auton_GyroAndEncoderDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yaw = -RobotMap.gyro.getAngle();
-    	RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
+    	yaw = -RobotMap.gyro.getYaw();
+    	//RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
+    	//RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
+    	RobotMap.chassisDrive.arcadeDrive(m_speed, yaw*Kp, false); //TODO check yaw direction okay...
+    	//RobotMap.chassisDrive.
+
+    	
     	//System.out.println(m_target);
        // SmartDashboard.putNumber("auto Speed", m_speed);
       //  SmartDashboard.putNumber("auto Turn", yaw*Kp);
@@ -70,11 +74,12 @@ public class Auton_GyroAndEncoderDrive extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.chassisPIDchassisLeft1.enableBrakeMode(true);
-    	RobotMap.chassisPIDchassisRight1.enableBrakeMode(true);
+    	//RobotMap.chassisPIDchassisLeft1.enableBrakeMode(true);
+    	//RobotMap.chassisPIDchassisRight1.enableBrakeMode(true);
+    	Robot.chassisPID.setBrakeMode(true);
     	Robot.chassisPID.stopMotors();
-    	RobotMap.chassisPIDchassisLeft1.enableBrakeMode(true);
-    	RobotMap.chassisPIDchassisRight1.enableBrakeMode(true);
+    	//RobotMap.chassisPIDchassisLeft1.enableBrakeMode(true);
+    	//RobotMap.chassisPIDchassisRight1.enableBrakeMode(true);
     }
 
     // Called when another command which requires one or more of the same

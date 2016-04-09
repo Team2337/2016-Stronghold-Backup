@@ -11,15 +11,15 @@ public class chassis_TargetWithGyroPID extends PIDCommand {
 
 	double[] defaultValue = new double[0];	
 
-	double centerpnt = 172;
-	double firstcenter, secondcenter;
+	double centerpnt = RobotMap.centerpnt;
+	public double firstcenter, secondcenter;
 	double deadband = 10;
 	double turnValue, targetAngle;
 	double turnSpeed = 0.4;
 	double Kp = .003;
 	double degreeConversion = 0.04;
 	double setpoint;
-	double timeout = 2.5;
+	double timeout = 2.0;
 	
 
 	public chassis_TargetWithGyroPID() {
@@ -38,8 +38,8 @@ public class chassis_TargetWithGyroPID extends PIDCommand {
 	}
 
 	protected void usePIDOutput(double output) {
-		//Robot.chassisPID.arcadeDrive(0, output);
-		RobotMap.chassisPIDchassisLeft1.set(-output);
+		Robot.chassisPID.arcadeDrive(0, output);
+		//RobotMap.chassisPIDchassisLeft1.set(-output);
 	}
 
 	protected void initialize() {
@@ -55,13 +55,16 @@ public class chassis_TargetWithGyroPID extends PIDCommand {
 				firstcenter = centerx[0];
 			System.out.println();
 			}
-				
-			turnValue = firstcenter - centerpnt;		
-			targetAngle = turnValue/RobotMap.gyroConversion;
-
-			System.out.println("TurnValues: FirstCenter "  + firstcenter + " - " + "Centerpoint " + centerpnt + " = " + turnValue);
-			System.out.println("targetAngle: TurnValue " + turnValue + " divided by " + RobotMap.gyroConversion + " equals " + targetAngle);
-			this.setSetpoint(targetAngle);
+			if (firstcenter == 0) {
+				System.out.println("This is not the target you are looking for, Move along...");
+			} else {
+				turnValue = firstcenter - centerpnt;		
+				targetAngle = turnValue/RobotMap.gyroConversion;
+	
+				System.out.println("TurnValues: FirstCenter "  + firstcenter + " - " + "Centerpoint " + centerpnt + " = " + turnValue);
+				System.out.println("targetAngle: TurnValue " + turnValue + " divided by " + RobotMap.gyroConversion + " equals " + targetAngle);
+				this.setSetpoint(targetAngle);
+			}
 		
 	}
 

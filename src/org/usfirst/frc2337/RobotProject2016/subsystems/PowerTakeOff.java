@@ -43,5 +43,9 @@ public class PowerTakeOff extends Subsystem {
     public void LiftOff(){
     	ptoSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
+    
+    public void LiftStatus(){
+    	ptoSolenoid.get();
+    }
 }
 

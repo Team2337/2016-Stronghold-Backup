@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class PortWheels extends Subsystem {
 
 	private final CANTalon motorA = RobotMap.portWheelMotorA;
-	private final CANTalon motorB = RobotMap.portWheelMotorB;
-	private final double raiseSpeed = .5;
+	//private final CANTalon motorB = RobotMap.portWheelMotorB;
+	private final double raiseSpeed = 1;
 	
 	protected void initDefaultCommand() {
 		setDefaultCommand(new portWheels_DoNothing());

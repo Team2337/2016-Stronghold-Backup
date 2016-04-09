@@ -25,7 +25,7 @@ import org.usfirst.frc2337.RobotProject2016.subsystems.*;
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
-    //SendableChooser autonChooser;
+    SendableChooser autonChooser;
 
     public static OI oi;
 
@@ -41,6 +41,7 @@ public class Robot extends IterativeRobot {
     public static ShooterRetractor shooterRetractor;
     public static Shooter shooter;
     public static PortWheels PortWheels;
+    public static targetLED targetLED;
 
     public static Preferences prefs;
     //public static Preferences prefsShooterRetract;
@@ -63,6 +64,8 @@ public class Robot extends IterativeRobot {
         shooterArmPID = new ShooterArmPID();
         shooter = new Shooter();
         shooterRetractor = new ShooterRetractor();
+        PortWheels = new PortWheels();
+        targetLED = new targetLED();
         
       //Preference variables
         prefs = Preferences.getInstance();
@@ -71,14 +74,19 @@ public class Robot extends IterativeRobot {
         oi = new OI();
 
         // Autonomous
-        /*
+        
         autonChooser = new SendableChooser();
         autonChooser.addDefault("Do Nothing", new auton_Wait(15));
-        autonChooser.addObject("AutonMain", new auton_Main());
-        autonChooser.addObject("Auton_GyroFwd", new Auton_GyroFwd());
-        autonChooser.addObject("Grab Container First", new auton_SimpleReach());
-        autonChooser.addObject("GyroAndEncoderFwd", new Auton_GyroAndEncoderFwd(0.5, 1200, 4.0));      
-        */
+       // autonChooser.addObject("AutonMain", new auton_Main());
+        //autonChooser.addObject("Auton_GyroFwd", new Auton_GyroFwd());
+        autonChooser.addObject("Reach", new auton_Reach());
+        autonChooser.addObject("Cross Flat Defenses", new auton_Cross());     
+        autonChooser.addObject("Low Bar", new auton_LowBar()); 
+        autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
+        autonChooser.addObject("Chevy", new auton_Chevy()); 
+        //autonChooser.addObject("Main", new auton_MainCG()); 
+       // autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
+        
         
         RobotMap.gyro.reset();
 
@@ -87,19 +95,26 @@ public class Robot extends IterativeRobot {
 
 	public void robotPeriodic() {
 		LiveWindow.run();
-
+		SmartDashboard.putData(		"Auton Chooser", 		autonChooser);	
 	  //SmartDashboard.putBoolean(  "IMU_Connected",        RobotMap.gyro.isConnected());
       //SmartDashboard.putBoolean(  "IMU_IsCalibrating",    RobotMap.gyro.isCalibrating());
       SmartDashboard.putNumber(   "IMU_Yaw",              RobotMap.gyro.getYaw());
       //SmartDashboard.putNumber(   "IMU_Pitch",            RobotMap.gyro.getPitch());
       //SmartDashboard.putNumber(   "IMU_Roll",             RobotMap.gyro.getRoll());
       SmartDashboard.putNumber(   "IMU_ANGLE",             RobotMap.gyro.getAngle());
+      SmartDashboard.putNumber(   "IMU_ROLL",             RobotMap.gyro.getRoll());
       //SmartDashboard.putBoolean("okToShoot", RobotMap.okToShoot);
-      //SmartDashboard.putBoolean("leftBall", RobotMap.intakeLeftBallSensor.get());
-      //SmartDashboard.putBoolean("RightBall", RobotMap.intakeRightBallSensor.get());
+     
+      //SmartDashboard.putBoolean("Pin10: Cross", RobotMap.autonPin10.get());
+      //SmartDashboard.putBoolean("Pin19: Low Bar (Reverse)", RobotMap.autonPin19.get());
+      
       //SmartDashboard.putBoolean("gotBall", Robot.intake.gotBallSensorState());
       //SmartDashboard.putDouble("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getRate());
       //SmartDashboard.putNumber("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getDistance());
+      SmartDashboard.putNumber("Left Speed" , RobotMap.chassisPIDchassisLeft1.get());
+      SmartDashboard.putNumber("Right Speed" , RobotMap.chassisPIDchassisRight1.get());
+      SmartDashboard.putNumber(   "Turn_Yaw",              RobotMap.gyro.getYaw()*.05);
+     
       SmartDashboard.putBoolean("Shifter Status" , RobotMap.chassisShiftershiftSolenoid.get());
       SmartDashboard.putNumber("String pot" , RobotMap.shooterArmPIDshooterArmPot.get());
       //SmartDashboard.putNumber("arm set pt" , Robot.shooterArmPID.getSetpoint());
@@ -107,22 +122,24 @@ public class Robot extends IterativeRobot {
       //SmartDashboard.putBoolean("arm pid enabled?" , Robot.shooterArmPID.getPIDStatus());
       //SmartDashboard.putNumber("arm joystick y" , Robot.oi.operatorJoystick.getRawAxis(1));
       //SmartDashboard.putNumber("arm get position" , Robot.shooterArmPID.getPIDController().getError());
-      //SmartDashboard.putBoolean("Do We See the Target?" , RobotMap.seeTarget);
+      SmartDashboard.putBoolean("Do We See the Target?" , RobotMap.seeTarget);
       
       SmartDashboard.putNumber("Retractor: get", RobotMap.shooterRetractMotorA.get());
       SmartDashboard.putBoolean("Retractor: shooterRetractPrimed", RobotMap.shooterRetractPrimed);
       SmartDashboard.putBoolean("Retractor: shooterRetractRetracted", RobotMap.shooterRetractRetracted);
       //SmartDashboard.putData(Robot.shooterRetractor.getCurrentCommand());
-      //SmartDashboard.putNumber("Retractor: CL err:", RobotMap.shooterRetractMotorA.getClosedLoopError());
-      //SmartDashboard.putNumber("Retractor: getError", RobotMap.shooterRetractMotorA.getError());
+      SmartDashboard.putNumber("Retractor: CL err:", RobotMap.shooterRetractMotorA.getClosedLoopError());
+      SmartDashboard.putNumber("Retractor: getError", RobotMap.shooterRetractMotorA.getError());
       SmartDashboard.putNumber("Retractor: getEncpos", RobotMap.shooterRetractMotorA.getEncPosition());
       //SmartDashboard.putNumber("Retractor: ouputVoltage", RobotMap.shooterRetractMotorA.getOutputVoltage());
       //SmartDashboard.putNumber("Retractor: PW Velocity", RobotMap.shooterRetractMotorA.getPulseWidthPosition());
       SmartDashboard.putNumber("Retractor: getPosition", RobotMap.shooterRetractMotorA.getPosition());
-      //SmartDashboard.putNumber("Retractor: getSetpoint", RobotMap.shooterRetractMotorA.getSetpoint());
+      SmartDashboard.putNumber("Retractor: getSetpoint", RobotMap.shooterRetractMotorA.getSetpoint());
       
      
       SmartDashboard.putNumber("Drive Encoder Get", Robot.chassisPID.readLeftEncoder());
+      
+      SmartDashboard.putBoolean("Shooter - Shoot", RobotMap.ShooterPneumaticPin.get());
       
       
       
@@ -148,14 +165,24 @@ public class Robot extends IterativeRobot {
 
     public void disabledPeriodic() {
         Scheduler.getInstance().run();
+        robotPeriodic();
     }
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-    	RobotMap.gyro.reset();
-    	RobotMap.shooterArmPIDMotorA.enableBrakeMode(true);     //TODO   Dow we want on
-    	autonomousCommand = new auton_MainCG();
-    	//autonomousCommand = (Command) autonChooser.getSelected();
+		Robot.chassisPID.resetDriveEncoder();
+		Robot.chassisPID.resetGyro();
+    	RobotMap.shooterArmPIDMotorA.enableBrakeMode(false);     //TODO   Dow we want on
+    	RobotMap.shooterArmPIDMotorB.enableBrakeMode(false);
+    	RobotMap.shooterRetractMotorA.setEncPosition(0);
+    	Robot.powerTakeOff.LiftOff();
+    	
+
+    	
+    	
+    	
+    	autonomousCommand = (Command) autonChooser.getSelected();
+    	//autonomousCommand = new auton_MainCG();
         if (autonomousCommand != null) autonomousCommand.start();
         
 

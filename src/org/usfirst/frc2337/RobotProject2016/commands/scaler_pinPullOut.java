@@ -15,7 +15,9 @@ public class scaler_pinPullOut extends Command {
 	 * 
 	 */
 	protected void initialize() {
-		Robot.scaler.pinOut();
+		//if (Robot.oi.getoperatorControls().getRawButton(10)) {
+			Robot.scaler.pinOut();
+		//}
 	}
 	
 	protected void execute() {

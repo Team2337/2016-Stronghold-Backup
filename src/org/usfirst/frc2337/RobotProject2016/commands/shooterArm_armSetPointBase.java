@@ -30,6 +30,7 @@ public class shooterArm_armSetPointBase extends Command {
 
 	protected boolean isFinished() {
 		return (Robot.shooterArmPID.onTarget() || isTimedOut());
+		//return isTimedOut();
 	}
 
 

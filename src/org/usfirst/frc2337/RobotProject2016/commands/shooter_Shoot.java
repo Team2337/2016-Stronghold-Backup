@@ -11,7 +11,7 @@ public class shooter_Shoot extends Command {
 	public shooter_Shoot(){
 		requires(Robot.shooter);
 		
-		Timer timer = new Timer();
+		
 		
 	}
 	protected void initialize() {
@@ -38,7 +38,7 @@ public class shooter_Shoot extends Command {
 	protected void end() {
 		RobotMap.okToShoot = false;
 		RobotMap.shooterRetractPrimed = false;
-		Robot.shooter.shooterUnShoot();
+		//Robot.shooter.shooterUnShoot();
 		
 	}
 

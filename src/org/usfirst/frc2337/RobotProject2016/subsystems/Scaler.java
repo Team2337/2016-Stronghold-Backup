@@ -33,10 +33,16 @@ public class Scaler extends Subsystem {
     }
     
     /**
-     * Pull out pneumatic pin to extend the scaling arm
+     * Extend the scaler arm
      */
     public void pinOut(){
     	scalerAirActuator.set(true);
+    }
+    /**
+     * Retract the scaler arm 
+     */
+    public void pinIn(){
+    	scalerAirActuator.set(false);
     }
     /**
      * get the status of pneumatic pin
