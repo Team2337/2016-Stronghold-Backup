@@ -31,7 +31,7 @@ public class auton_MainCG extends CommandGroup {
     	shootHigh = (int) RobotMap.autonTables.getNumber("goalPos");
     	/*< REMOVE THE COMMENT*/
     	
-    	addParallel(new intake_ActivateMotors());  		
+    	addParallel(new intake_Inhale());  		
     	
     	if (intake == 1) { 									
     		addSequential(new auton_IntakeCG());  						
@@ -43,11 +43,11 @@ public class auton_MainCG extends CommandGroup {
     		} else if (defense == 2) {
     			
     		} else {	
-    			addParallel(new shooterArm_armSetPointTravel());
+    			addParallel(new intakeArm_armSetPointTravel());
     			addSequential(new Auton_GyroAndEncoderDrive(0.4, 16029, 4.0));  //22029		//TODO   NEED TO SET DISTANCE 
     		}
     	} else {
-    		addSequential(new shooterArm_armSetPointTravel());
+    		addSequential(new intakeArm_armSetPointTravel());
     		addSequential(new auton_Wait(15));
     	}
     	
@@ -55,24 +55,24 @@ public class auton_MainCG extends CommandGroup {
     	 * DEFENSE COMMANDS/COMMAND GROUPS TO CROSS
     	 */
     	if (defense == 0) {// LOW BAR
-	        	addSequential(new shooterArm_armSetPointBase());
-	        	addParallel(new shooterArm_armSetPointAutonBase());
+	        	addSequential(new intakeArm_armSetPointBase());
+	        	addParallel(new intakeArm_armSetPointAutonBase());
 	    		addSequential(new Auton_GyroAndEncoderDrive(0.4, -60000, 8.0));
 	    		//addSequential(new Auton_GyroAndEncoderDrive(0.4, -11000, 8.0));
 	    		addSequential(new intake_DoNothing());  
     	} else if (defense == 1){ //PORTCULLIS
-	        	addSequential(new shooterArm_armSetPointBase());   //  Drive Arm to Base
-	        	addParallel(new shooterArm_armSetPointAutonBase());   //  Keep Arm down through the motion  
+	        	addSequential(new intakeArm_armSetPointBase());   //  Drive Arm to Base
+	        	addParallel(new intakeArm_armSetPointAutonBase());   //  Keep Arm down through the motion  
 	    		addSequential(new Auton_GyroAndEncoderDrive(0.4, -33000, 8.0));  //22029		//Drive Forward
 	    		addSequential(new intake_DoNothing());  
     	} else if (defense == 2){ //CHEVAL DE FRISE
-	        	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
-	        	addSequential(new shooterArm_armSetPointAutonChevy());
+	        	addParallel(new intake_Inhale());  			//activate intake and run parallel as it does not finish...
+	        	addSequential(new intakeArm_armSetPointAutonChevy());
 	    		addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.3, 4.0, -5));  //22029		//TODO   NEED TO SET DISTANCE 
-	    		addSequential(new shooterArm_armSetPointBase());
-	    		addParallel(new shooterArm_armSetPointAutonBase());
+	    		addSequential(new intakeArm_armSetPointBase());
+	    		addParallel(new intakeArm_armSetPointAutonBase());
 	    		addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.3, 2.0, -30));
-	    		addSequential(new shooterArm_armSetPointAutonTravel());
+	    		addSequential(new intakeArm_armSetPointAutonTravel());
 	    		addSequential(new Auton_GyroAndEncoderDrive(0.3, 22000, 4.0));
 	    		addSequential(new intake_DoNothing());  	
     	} else if (defense == 3){ //RAMPARTS
@@ -105,7 +105,7 @@ public class auton_MainCG extends CommandGroup {
     	 */
     	
     	if (shootHigh == 1) { //IF WE WANT TO SHOOT HIGH RUN THIS IN PARALLEL
-    		addParallel(new shooterArm_armSetPointLongShot());  	//aim for high goal..for low goal, staying in travel mode for now.
+    		addParallel(new intakeArm_armSetPointLongShot());  	//aim for high goal..for low goal, staying in travel mode for now.
     		//System.out.println("SHOOT HIGH? YES RUN PARALLEL");
     	} else if (shootHigh == 3) {
     		startingPoint = 0;
@@ -119,7 +119,7 @@ public class auton_MainCG extends CommandGroup {
     	
     	if (startingPoint == 1 && (shootHigh == 1 || shootHigh == 2)) { //GO TO LEFT GOAL
     		
-    		addParallel(new shooterArm_armSetPointShortShot());
+    		addParallel(new intakeArm_armSetPointShortShot());
     		//addSequential(new Auton_GyroAndEncoderDrive(0.4, -11000, 8.0));
     		addSequential(new auton_TurnPID(-105));
     		addSequential(new chassis_TargetWithGyroPID());

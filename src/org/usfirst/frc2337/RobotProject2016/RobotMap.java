@@ -49,19 +49,13 @@ public class RobotMap {
     public static CANTalon chassisPIDchassisRight1;
     public static CANTalon chassisPIDchassisRight2;
     public static CANTalon chassisPIDchassisRight3;
-    public static CANTalon shooterArmPIDMotorA;
+    public static CANTalon intakeArmPIDMotorA;
     public static CANTalon intakeintakeMotorB;
-    public static CANTalon shooterArmPIDMotorB;
+    public static CANTalon intakeArmPIDMotorB;
     public static CANTalon shooterRetractMotorA;
-    public static CANTalon portWheelMotorA;
-    public static CANTalon portWheelMotorB;
-    
-    public static DigitalInput intakeLeftBallSensor;
-    public static DigitalInput intakeRightBallSensor;
-    public static DigitalInput intakeGotBallSensor;
-    
-    public static DigitalInput autonPin10;
-    public static DigitalInput autonPin19;
+
+    public static DigitalInput intakeBallSensor;
+
     
     public static DoubleSolenoid powerTakeOffptoSolenoid;
 	
@@ -173,16 +167,16 @@ public class RobotMap {
         chassisPIDchassisRight3.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisRight3.set(chassisPIDchassisRight1.getDeviceID());
          
-        shooterArmPIDMotorA = new CANTalon(3);
-        LiveWindow.addActuator("ShooterArm", "shooterArmMotorA", shooterArmPIDMotorA);
-        shooterArmPIDMotorA.setControlMode(0);  
+        intakeArmPIDMotorA = new CANTalon(3);
+        LiveWindow.addActuator("ShooterArm", "shooterArmMotorA", intakeArmPIDMotorA);
+        intakeArmPIDMotorA.setControlMode(0);  
         //shooterArmPIDMotorA.enableBrakeMode(true);
         
-        shooterArmPIDMotorB = new CANTalon(12);
-        LiveWindow.addActuator("ShooterArm", "shooterArmMotorB", shooterArmPIDMotorB);
-        shooterArmPIDMotorB.setControlMode(5);
-        shooterArmPIDMotorB.reverseOutput(true);
-        shooterArmPIDMotorB.set(shooterArmPIDMotorA.getDeviceID());
+        intakeArmPIDMotorB = new CANTalon(12);
+        LiveWindow.addActuator("ShooterArm", "shooterArmMotorB", intakeArmPIDMotorB);
+        intakeArmPIDMotorB.setControlMode(5);
+        intakeArmPIDMotorB.reverseOutput(true);
+        intakeArmPIDMotorB.set(intakeArmPIDMotorA.getDeviceID());
         
         intakeintakeMotorA = new CANTalon(6);
         intakeintakeMotorA.setInverted(true);
@@ -217,17 +211,6 @@ public class RobotMap {
         
         
         LiveWindow.addActuator("ShooterRetract", "shooterRetractMotorA", shooterRetractMotorA);
-        
-        portWheelMotorA= new CANTalon(8);
-        LiveWindow.addActuator("PortWheels", "portWheelMotorA", portWheelMotorA);
-        portWheelMotorA.changeControlMode(TalonControlMode.PercentVbus);
-        portWheelMotorA.set(0);
-        
-        portWheelMotorB= new CANTalon(16);
-        LiveWindow.addActuator("PortWheels", "portWheelMotorB", portWheelMotorB);
-        portWheelMotorB.setControlMode(5);
-        portWheelMotorB.reverseOutput(true);
-        portWheelMotorB.set(8);
  
         
         //   Solenoid Module 0  Get in my belly!
@@ -271,21 +254,6 @@ public class RobotMap {
         
         chassisPIDultrasonicSensor = new Ultrasonic(11, 12);
         LiveWindow.addSensor("ChassisPID", "ultrasonicSensor", chassisPIDultrasonicSensor);
-        
-        intakeLeftBallSensor = new DigitalInput(8);
-        LiveWindow.addSensor("Intake", "ballSensor", intakeLeftBallSensor);
-       
-        intakeRightBallSensor = new DigitalInput(9);
-        LiveWindow.addSensor("Intake", "ballSensor", intakeRightBallSensor);
-        
-        intakeGotBallSensor = new DigitalInput(17);
-        LiveWindow.addSensor("Intake", "ballSensor", intakeGotBallSensor);
-        
-        autonPin19 = new DigitalInput(23);
-        autonPin10 = new DigitalInput(10);
-        
-        
-   
         
         chassisDrive = new RobotDrive(chassisPIDchassisLeft1, chassisPIDchassisRight1);
     	chassisDrive.setMaxOutput(1.0);

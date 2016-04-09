@@ -33,14 +33,13 @@ public class Robot extends IterativeRobot {
     public static PowerTakeOff powerTakeOff;
     public static ChassisPID chassisPID;
     public static Scaler scaler;
-    public static IntakeWrist intakeWrist;
+    public static LinearAcceleratorElevator linAccElevator;
     public static ChassisShifter chassisShifter;
     public static DriveCamera driveCamera;
     public static LED Led;
-    public static ShooterArmPID shooterArmPID;
+    public static IntakeArmPID intakeArmPID;
     public static ShooterRetractor shooterRetractor;
     public static Shooter shooter;
-    public static PortWheels PortWheels;
     public static targetLED targetLED;
 
     public static Preferences prefs;
@@ -57,14 +56,13 @@ public class Robot extends IterativeRobot {
         powerTakeOff = new PowerTakeOff();
         chassisPID = new ChassisPID();
         scaler = new Scaler();
-        intakeWrist = new IntakeWrist();
+        linAccElevator = new LinearAcceleratorElevator();
         chassisShifter = new ChassisShifter();
         driveCamera = new DriveCamera();
         Led = new LED();
-        shooterArmPID = new ShooterArmPID();
+        intakeArmPID = new IntakeArmPID();
         shooter = new Shooter();
         shooterRetractor = new ShooterRetractor();
-        PortWheels = new PortWheels();
         targetLED = new targetLED();
         
       //Preference variables
@@ -143,7 +141,7 @@ public class Robot extends IterativeRobot {
       
       
       
-      SmartDashboard.putBoolean("getIntakeWristStatus",  Robot.intakeWrist.getIntakeWristStatus());
+      SmartDashboard.putBoolean("getIntakeWristStatus",  Robot.linAccElevator.getIntakeWristStatus());
       //SmartDashboard.putBoolean("shooterArmOnTarget",  RobotMap.shooterArmOnTarget);
       
       //SmartDashboard.putNumber("arm joystick", Robot.oi.operatorJoystick.getY());
@@ -172,8 +170,8 @@ public class Robot extends IterativeRobot {
         // schedule the autonomous command (example)
 		Robot.chassisPID.resetDriveEncoder();
 		Robot.chassisPID.resetGyro();
-    	RobotMap.shooterArmPIDMotorA.enableBrakeMode(false);     //TODO   Dow we want on
-    	RobotMap.shooterArmPIDMotorB.enableBrakeMode(false);
+    	RobotMap.intakeArmPIDMotorA.enableBrakeMode(false);     //TODO   Dow we want on
+    	RobotMap.intakeArmPIDMotorB.enableBrakeMode(false);
     	RobotMap.shooterRetractMotorA.setEncPosition(0);
     	Robot.powerTakeOff.LiftOff();
     	

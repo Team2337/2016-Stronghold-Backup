@@ -20,7 +20,6 @@ public class intake_Exhale extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.intake.fastRampRate();
     }
 
     // Called repeatedly when this Command is scheduled to run

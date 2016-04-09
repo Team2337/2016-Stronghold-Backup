@@ -14,7 +14,7 @@ public class shooter_Layup extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.layupShot);
+    	Robot.intakeArmPID.setSetpoint(Robot.intakeArmPID.layupShot);
     }
 
     // Called repeatedly when this Command is scheduled to run

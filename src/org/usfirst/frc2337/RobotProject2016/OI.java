@@ -183,30 +183,30 @@ public class OI {
         //operator button
         
         inhale = new AnalogAxisButton(operatorJoystick, Right_trigger, 0.5);
-        inhale.whileHeld(new intake_ActivateMotors());
+        inhale.whileHeld(new intake_Inhale());
         
         exhale = new AnalogAxisButton(operatorJoystick, Left_trigger, 0.5);
-        exhale.whileHeld(new shooterArm_armSetPointBase());
+        exhale.whileHeld(new intakeArm_armSetPointBase());
         
         
         shortshot = new JoystickButton(operatorJoystick, Green_A);
-        shortshot.whenPressed(new shooterArm_armSetPointShortShot());
+        shortshot.whenPressed(new intakeArm_armSetPointShortShot());
         
         batterShot = new JoystickButton(operatorJoystick, Yellow_Y);
-        batterShot.whenPressed(new shooterArm_armSetPointBatterShot());
+        batterShot.whenPressed(new intakeArm_armSetPointBatterShot());
         
         longshot = new JoystickButton(operatorJoystick, Red_B);
-        longshot.whenPressed(new shooterArm_armSetPointLongShot());
+        longshot.whenPressed(new intakeArm_armSetPointLongShot());
         
         travel = new JoystickButton(operatorJoystick, Blue_X);
-        travel.whenPressed(new shooterArm_armSetPointTravel());
+        travel.whenPressed(new intakeArm_armSetPointTravel());
         
         base = new JoystickButton(operatorJoystick, Right_Bumper);
         base.whileHeld(new intake_Exhale());
         
         wrist = new JoystickButton(operatorJoystick, Left_Bumper);
-        wrist.whenPressed(new intakeWrist_Extend());
-        wrist.whenReleased(new intakeWrist_Retract());
+        wrist.whenPressed(new linAccElevator_Extend());
+        wrist.whenReleased(new linAccElevator_Retract());
         
        // intakeDoNo = new JoystickButton(operatorJoystick, Start_Button);
        // intakeDoNo.whenPressed(new intake_DoNothing());
@@ -225,7 +225,7 @@ public class OI {
         //BlackButton.whenPressed(new shooterArm_LowerWithGyro());
         
         BlueButton = new JoystickButton(operatorControls, 4);
-        BlueButton.whenPressed(new shooterArm_armSetPointScale());
+        BlueButton.whenPressed(new intakeArm_armSetPointScale());
         
         scale = new JoystickButton(operatorControls, 5);
         scale.whenPressed(new scaler_pinPullOut());
@@ -236,8 +236,8 @@ public class OI {
         //PTO.whenReleased(new shooterArm_LowerWithGyro());
         
         clearSwitch = new JoystickButton(operatorControls, 6);
-        clearSwitch.whenPressed(new shooterArm_StopPID());
-        clearSwitch.whenReleased(new shooterArm_StartPID());
+        clearSwitch.whenPressed(new intakeArm_StopPID());
+        clearSwitch.whenReleased(new intakeArm_StartPID());
         
        // blueSwitch = new JoystickButton(operatorControls, 9);
        // blueSwitch.whenPressed(new scaler_pinPullOut());

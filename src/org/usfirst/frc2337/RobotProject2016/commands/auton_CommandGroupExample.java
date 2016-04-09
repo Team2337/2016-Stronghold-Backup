@@ -21,12 +21,12 @@ public class auton_CommandGroupExample extends CommandGroup {
     	int goal = 1; ///??? in the future
     	int shootHigh = 1;
     	
-    	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
+    	addParallel(new intake_Inhale());  			//activate intake and run parallel as it does not finish...
     	
     	/// if intake = 1 then run these,   put them in a CG....
-    	addSequential(new shooterArm_armSetPointBase());  	//lower to pick up ball
+    	addSequential(new intakeArm_armSetPointBase());  	//lower to pick up ball
     														//wait or sense ball???
-    	addParallel(new shooterArm_armSetPointTravel());  	//move arm to travel
+    	addParallel(new intakeArm_armSetPointTravel());  	//move arm to travel
     	addSequential(new Auton_GyroAndEncoderDrive(0.4, -100, 1.0));  //back up 			//TODO set encoder distance
      	addSequential(new doNothing (true, 5.0));			//turn 180...sean's turn???		//TODO write turn command
      	addSequential(new Auton_GyroAndEncoderDrive(0.5, 300, 2.0));  //finish reach		//TODO set encoder distance
@@ -39,7 +39,7 @@ public class auton_CommandGroupExample extends CommandGroup {
     	//else if defense =2......etc....
     	
     	//if shoothigh = 1... run this in parallel....
-    	addParallel(new shooterArm_armSetPointShortShot());  	//aim for high goal..for low goal, staying in travel mode for now.
+    	addParallel(new intakeArm_armSetPointShortShot());  	//aim for high goal..for low goal, staying in travel mode for now.
     	
     	
     	//if startingpoint=1, then go to goal 1
@@ -51,7 +51,7 @@ public class auton_CommandGroupExample extends CommandGroup {
      	//if shoothigh = 1 then 
      	addSequential(new shooter_ShootCG());
      	//if shoothigh = 0 then
-     	addSequential(new shooterArm_armSetPointBase());  	//needed??? Are we on or off batten?????
+     	addSequential(new intakeArm_armSetPointBase());  	//needed??? Are we on or off batten?????
      	addSequential(new intake_Exhale());  	
      	
 

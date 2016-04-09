@@ -13,7 +13,7 @@ public class auton_ReverseReach extends CommandGroup {
 	public auton_ReverseReach()
 	{
 		addSequential(new Auton_GyroAndEncoderDrive(0.4, -5000, 2.0)); 
-		addParallel(new shooterArm_armSetPointTravel());
+		addParallel(new intakeArm_armSetPointTravel());
 		addSequential(new Auton_GyroAndEncoderDrive(0.4, -11029, 3.0));
 	}
 }

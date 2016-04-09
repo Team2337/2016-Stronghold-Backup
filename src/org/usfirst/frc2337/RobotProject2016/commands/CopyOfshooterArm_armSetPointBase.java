@@ -10,16 +10,16 @@ public class CopyOfshooterArm_armSetPointBase extends Command {
 	
 	
 	public CopyOfshooterArm_armSetPointBase() {
-		requires(Robot.shooterArmPID);	
+		requires(Robot.intakeArmPID);	
 	}
 
 	
 	protected void initialize() {
 		RobotMap.shooterArmOnTarget = false;
-		Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.base);
+		Robot.intakeArmPID.setSetpoint(Robot.intakeArmPID.base);
 		setTimeout(2);
-		if (!Robot.shooterArmPID.armPIDstatus) {
-			Robot.shooterArmPID.enable();
+		if (!Robot.intakeArmPID.armPIDstatus) {
+			Robot.intakeArmPID.enable();
 		}
 	}
 	
@@ -29,7 +29,7 @@ public class CopyOfshooterArm_armSetPointBase extends Command {
 
 
 	protected boolean isFinished() {
-		return (Robot.shooterArmPID.onTarget() || isTimedOut());
+		return (Robot.intakeArmPID.onTarget() || isTimedOut());
 		//return isTimedOut();
 	}
 

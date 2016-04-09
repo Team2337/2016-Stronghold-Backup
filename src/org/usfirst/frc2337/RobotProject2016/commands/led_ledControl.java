@@ -15,7 +15,7 @@ public class led_ledControl extends Command {
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		shooterArmPotLightEngage = Robot.shooterArmPID.layupShot *.9;
+		shooterArmPotLightEngage = Robot.intakeArmPID.layupShot *.9;
 	}
 
 	@Override
