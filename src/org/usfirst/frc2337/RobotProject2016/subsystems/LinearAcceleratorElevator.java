@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class LinearAcceleratorElevator extends Subsystem {
 
+    private final Solenoid linAccElevatorSolenoid = RobotMap.linearAccElevatorSolenoid;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

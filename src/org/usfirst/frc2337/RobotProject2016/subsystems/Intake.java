@@ -16,8 +16,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
 
 	
-    public final double inhaleSpeed = 0.8;
-    private final double exhaleSpeed = 0.8;
+    public final double inhaleSpeed = 1.0;
+    private final double exhaleSpeed = 1.0;
     public final double loadSpeed = 0.3;
 
     private final CANTalon intakeMotorA = RobotMap.intakeintakeMotorA;
@@ -50,7 +50,7 @@ public class Intake extends Subsystem {
     * Sets Intake motors to exhale at the variable exhaleSpeed which is defined at the top of the Intake subsystem
     */
    public void intakeExhale() {
-	   intakeMotorA.set(exhaleSpeed);
+	   intakeMotorA.set(-exhaleSpeed);
 	   intakeMotorB.set(exhaleSpeed);
    }
    /**

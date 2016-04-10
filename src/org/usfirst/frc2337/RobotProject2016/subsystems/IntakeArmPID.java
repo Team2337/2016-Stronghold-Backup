@@ -24,11 +24,11 @@ public class IntakeArmPID extends PIDSubsystem {
     public double autontravel = 2.9;  
     public double base = 2.55; 
     public double chevy = 3.2;
-    public double loadPosition = 2.7;
-    public double intakeRollerOffPosition = 3.0;
-    public double lowGoalPosition = 3.4;
-    public double intakePosition = 3.8;
-    public double groundPosition = 4.2;
+    public double loadPosition = 3.38;
+    public double intakeRollerOffPosition = 3.5;
+    public double lowGoalPosition = 4.69;
+    public double intakePosition = 5.16;
+    public double groundPosition = 5.2;
     
 
     private final double setPointTolerance = 0.1;
