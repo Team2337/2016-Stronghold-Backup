@@ -12,12 +12,12 @@ public class auton_Portcullis extends CommandGroup {
 	 */
 	public auton_Portcullis()
 	{
-    	addParallel(new intake_Inhale());  			//activate intake and run parallel as it does not finish..
+    	//addParallel(new intake_Inhale());  			//activate intake and run parallel as it does not finish..
     	addSequential(new Auton_GyroAndEncoderDrive(0.4, -5000, 2.0));  //22029		//TODO   NEED TO SET DISTANCE 
 
-    	addSequential(new intakeArm_armSetPointBase());   //  Drive Arm to Base
-    	addParallel(new intakeArm_armSetPointAutonBase());   //  Keep Arm down through the motion  
+    	addSequential(new intakeArm_armSetPointGround());   //  Drive Arm to Base
+    	addParallel(new intakeArm_armSetPointAutonGround());   //  Keep Arm down through the motion  
 		addSequential(new Auton_GyroAndEncoderDrive(0.4, -50000, 8.0));  //22029		//Drive Forward
-		addSequential(new intake_DoNothing());  	
+		//addSequential(new intake_DoNothing());  	
 	}
 }

@@ -75,13 +75,14 @@ public class Robot extends IterativeRobot {
         
         autonChooser = new SendableChooser();
         autonChooser.addDefault("Do Nothing", new auton_Wait(15));
-       // autonChooser.addObject("AutonMain", new auton_Main());
-        //autonChooser.addObject("Auton_GyroFwd", new Auton_GyroFwd());
         autonChooser.addObject("Reach", new auton_Reach());
         autonChooser.addObject("Cross Flat Defenses", new auton_Cross());     
-        autonChooser.addObject("Low Bar", new auton_LowBar()); 
+        //autonChooser.addObject("Low Bar", new auton_LowBar()); 
         autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
         autonChooser.addObject("Chevy", new auton_Chevy()); 
+        autonChooser.addObject("Chevy Pos 3 or 4 and shoot high", new auton_ChevyPos3and4Shoot()); 
+        autonChooser.addObject("Chevy", new auton_Portcullis()); 
+        autonChooser.addObject("Chevy", new auton_PortcullisAndShoot()); 
         //autonChooser.addObject("Main", new auton_MainCG()); 
        // autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         
@@ -97,31 +98,17 @@ public class Robot extends IterativeRobot {
 	  //SmartDashboard.putBoolean(  "IMU_Connected",        RobotMap.gyro.isConnected());
       //SmartDashboard.putBoolean(  "IMU_IsCalibrating",    RobotMap.gyro.isCalibrating());
       SmartDashboard.putNumber(   "IMU_Yaw",              RobotMap.gyro.getYaw());
-      //SmartDashboard.putNumber(   "IMU_Pitch",            RobotMap.gyro.getPitch());
-      //SmartDashboard.putNumber(   "IMU_Roll",             RobotMap.gyro.getRoll());
       SmartDashboard.putNumber(   "IMU_ANGLE",             RobotMap.gyro.getAngle());
       SmartDashboard.putNumber(   "IMU_ROLL",             RobotMap.gyro.getRoll());
-      //SmartDashboard.putBoolean("okToShoot", RobotMap.okToShoot);
-     
-      //SmartDashboard.putBoolean("Pin10: Cross", RobotMap.autonPin10.get());
-      //SmartDashboard.putBoolean("Pin19: Low Bar (Reverse)", RobotMap.autonPin19.get());
-      
-      //SmartDashboard.putBoolean("gotBall", Robot.intake.gotBallSensorState());
-      //SmartDashboard.putDouble("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getRate());
-      //SmartDashboard.putNumber("Encoder distance" , RobotMap.chassisPIDLeftEncoder.getDistance());
+      SmartDashboard.putNumber(   "IMU_PITCH",             RobotMap.gyro.getPitch());
+
       SmartDashboard.putNumber("Left Speed" , RobotMap.chassisPIDchassisLeft1.get());
       SmartDashboard.putNumber("Right Speed" , RobotMap.chassisPIDchassisRight1.get());
       SmartDashboard.putNumber(   "Turn_Yaw",              RobotMap.gyro.getYaw()*.05);
      
       SmartDashboard.putBoolean("Shifter Status" , RobotMap.chassisShiftershiftSolenoid.get());
       SmartDashboard.putNumber("String pot" , RobotMap.shooterArmPIDshooterArmPot.get());
-      //SmartDashboard.putNumber("arm set pt" , Robot.shooterArmPID.getSetpoint());
-      //SmartDashboard.putNumber("arm get position" , Robot.shooterArmPID.getPosition());
-      //SmartDashboard.putBoolean("arm pid enabled?" , Robot.shooterArmPID.getPIDStatus());
-      //SmartDashboard.putNumber("arm joystick y" , Robot.oi.operatorJoystick.getRawAxis(1));
-      //SmartDashboard.putNumber("arm get position" , Robot.shooterArmPID.getPIDController().getError());
       SmartDashboard.putBoolean("Do We See the Target?" , RobotMap.seeTarget);
-      
       SmartDashboard.putNumber("Retractor: get", RobotMap.shooterRetractMotorA.get());
       SmartDashboard.putBoolean("Retractor: shooterRetractPrimed", RobotMap.shooterRetractPrimed);
       SmartDashboard.putBoolean("Retractor: shooterRetractRetracted", RobotMap.shooterRetractRetracted);
@@ -139,14 +126,11 @@ public class Robot extends IterativeRobot {
       
       SmartDashboard.putBoolean("Shooter - Shoot", RobotMap.ShooterPneumaticPin.get());
       
-      //SmartDashboard.putBoolean("Intake Ball Sensor", Robot.intake.getBallSensorState());
-      SmartDashboard.putBoolean("Intake Ball Sensor2", RobotMap.intakeBallSensor.get());
+      SmartDashboard.putBoolean("Intake Ball Sensor", Robot.intake.getBallSensorState());
       
       
       SmartDashboard.putBoolean("getIntakeWristStatus",  Robot.linAccElevator.getLinAccElevatorStatus());
-      //SmartDashboard.putBoolean("shooterArmOnTarget",  RobotMap.shooterArmOnTarget);
-      
-      //SmartDashboard.putNumber("arm joystick", Robot.oi.operatorJoystick.getY());
+
       
   
 

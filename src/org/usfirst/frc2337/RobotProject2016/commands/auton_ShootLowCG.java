@@ -12,7 +12,7 @@ public class auton_ShootLowCG extends CommandGroup{
 	 */
 	public auton_ShootLowCG()
 	{
-		addSequential(new intakeArm_armSetPointBase());  	//needed??? are on or off batten?????
+		addSequential(new intakeArm_armSetPointGround());  	//needed??? are on or off batten?????
      	addSequential(new auton_IntakeExhale(2)); 
 	}
 }

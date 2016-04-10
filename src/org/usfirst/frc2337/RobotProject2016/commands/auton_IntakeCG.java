@@ -12,7 +12,7 @@ public class auton_IntakeCG extends CommandGroup {
 	 */
 	public auton_IntakeCG()
 	{
-		addSequential(new intakeArm_armSetPointBase());  	//lower to pick up ball
+		addSequential(new intakeArm_armSetPointGround());  	//lower to pick up ball
 															//wait or sense ball???
 		addParallel(new intakeArm_armSetPointTravel());  	//move arm to travel
 		addSequential(new Auton_GyroAndEncoderReverse(0.4, 100, 1.0));  //back up 
