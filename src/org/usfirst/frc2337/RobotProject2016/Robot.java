@@ -84,6 +84,7 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Portcullis", new auton_Portcullis()); 
         autonChooser.addObject("Portcullis and shoot high", new auton_PortcullisAndShoot()); 
         autonChooser.addObject("Distance Test", new auton_DistanceTest()); 
+        autonChooser.addObject("Cross Flat Def. then re-Cross", new auton_CrossThenReverse());
         
         //autonChooser.addObject("Main", new auton_MainCG()); 
        // autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
