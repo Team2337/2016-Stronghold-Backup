@@ -1,5 +1,5 @@
 
-package org.usfirst.frc2337.RobotProject2016;
+package org.usfirst.frc2337.RobotProject2016.commands;
 
 import java.io.IOException;
 
@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc2337.RobotProject2016.OI;
+import org.usfirst.frc2337.RobotProject2016.RobotMap;
 import org.usfirst.frc2337.RobotProject2016.commands.*;
 import org.usfirst.frc2337.RobotProject2016.subsystems.*;
 
@@ -81,10 +83,8 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
         autonChooser.addObject("Chevy", new auton_Chevy()); 
         autonChooser.addObject("Chevy Pos 3 or 4 and shoot high", new auton_ChevyPos3and4Shoot()); 
-        autonChooser.addObject("Portcullis", new auton_Portcullis()); 
-        autonChooser.addObject("Portcullis and shoot high", new auton_PortcullisAndShoot()); 
-        autonChooser.addObject("Distance Test", new auton_DistanceTest()); 
-        
+        autonChooser.addObject("Chevy", new auton_Portcullis()); 
+        autonChooser.addObject("Chevy", new auton_PortcullisAndShoot()); 
         //autonChooser.addObject("Main", new auton_MainCG()); 
        // autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         

@@ -217,6 +217,8 @@ public class RobotMap {
 
         
         chassisPIDultrasonicSensor = new Ultrasonic(8, 9);
+        chassisPIDultrasonicSensor.setEnabled(true);
+        chassisPIDultrasonicSensor.setAutomaticMode(true);
         
         LiveWindow.addSensor("ChassisPID", "ultrasonicSensor", chassisPIDultrasonicSensor);
         

@@ -18,7 +18,7 @@ public class Intake extends Subsystem {
 	
     public final double inhaleSpeed = 1.0;
     private final double exhaleSpeed = 1.0;
-    public final double loadSpeed = 0.3;
+    public final double loadSpeed = 0.5;
 
     private final CANTalon intakeMotorA = RobotMap.intakeintakeMotorA;
     private final CANTalon intakeMotorB = RobotMap.intakeintakeMotorB;
@@ -36,21 +36,21 @@ public class Intake extends Subsystem {
      * @param speed(double)
      */
    public void setMotor(double speed) {
-	   intakeMotorA.set(speed);
+	   intakeMotorA.set(-speed);
 	   intakeMotorB.set(-speed);
    }
    /**
     * Sets Intake motors to inhale at the variable inhaleSpeed which is defined at the top of the Intake subsystem
     */
    public void intakeInhale() {
-	   intakeMotorA.set(inhaleSpeed);
+	   intakeMotorA.set(-inhaleSpeed);
 	   intakeMotorB.set(-inhaleSpeed);
    }
    /**
     * Sets Intake motors to exhale at the variable exhaleSpeed which is defined at the top of the Intake subsystem
     */
    public void intakeExhale() {
-	   intakeMotorA.set(-exhaleSpeed);
+	   intakeMotorA.set(exhaleSpeed);
 	   intakeMotorB.set(exhaleSpeed);
    }
    /**
