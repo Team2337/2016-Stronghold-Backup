@@ -13,6 +13,8 @@ public class shooter_ShootCG extends CommandGroup {
 	
     public  shooter_ShootCG() {
 
+    	//set setpoint to current position and turn PID on
+    	addSequential(new shooterRetractor_setPointToCurrentPosition());
     	addParallel(new shooterRetract_Prep());
     	addSequential(new linAccElevator_Extend());  
     	addSequential(new auton_Wait(0.5));   
@@ -20,7 +22,9 @@ public class shooter_ShootCG extends CommandGroup {
     	addSequential(new auton_Wait(0.5));  	
     	addSequential(new shooterRetract_Prime());
     	addSequential(new shooter_UnShoot());
-    	addSequential(new linAccElevator_Retract());
+    	//turn PID off
+    	addSequential(new shooterRetractor_disablePID());
+    	addSequential(new linAccElevator_Retract());   //maybe move up to after shoot+shoot and run parallel after shorter wait
 
 
     }

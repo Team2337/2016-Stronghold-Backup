@@ -14,6 +14,7 @@ public class shooterRetractor_setPointToCurrentPosition extends Command{
 	}
 	protected void initialize() {
 		RobotMap.shooterRetractMotorA.set(RobotMap.shooterRetractMotorA.get());
+		RobotMap.shooterRetractMotorA.enable();
 		}
 
 	protected void execute() {
