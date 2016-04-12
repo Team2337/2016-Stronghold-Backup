@@ -5,11 +5,11 @@ import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class shooterRetractor_disbablePID extends Command{
+public class shooterRetractor_disablePID extends Command{
 
 	
 	
-	public shooterRetractor_disbablePID(){
+	public shooterRetractor_disablePID(){
 		requires(Robot.shooterRetractor);
 	}
 	protected void initialize() {
