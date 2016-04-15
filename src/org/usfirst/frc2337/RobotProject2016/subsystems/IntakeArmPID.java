@@ -19,16 +19,16 @@ public class IntakeArmPID extends PIDSubsystem {
     private final CANTalon shooterArmMotor = RobotMap.intakeArmPIDMotorA;
     
    	//Specified angle value for Pot
-    public double scale = 5.47;
-    public double travel = 2.7;  //3.5
-    public double autontravel = 2.9;  
-    public double base = 2.55; 
-    public double chevy = 4.9;
-    public double loadPosition = 3.38;
-    public double intakeRollerOffPosition = 3.5;
-    public double lowGoalPosition = 4.69;
-    public double intakePosition = 5.16;
-    public double groundPosition = 5.2;
+    public double scale = 2.8;
+    public double travel = 2.8;  //3.5
+    public double autontravel = 2.8;  
+   // public double base = 2.55; 
+    public double chevy = 4;
+    public double loadPosition = 2.6;
+    public double intakeRollerOffPosition = 2.8;
+    public double lowGoalPosition = 3.55;
+    public double intakePosition = 4.56;
+    public double groundPosition = 4.73;
     
 
     private final double setPointTolerance = 0.1;
@@ -36,8 +36,8 @@ public class IntakeArmPID extends PIDSubsystem {
     public final double autonArmSpeedDown = -.4;
     public final double teleopArmSpeedUp = .5;
     public final double teleopArmSpeedDown = -.4;
-    public final double armToplimit = 6.6;
-    public final double armBottomlimit = 2.45;
+    public final double armToplimit = 4.8;
+    public final double armBottomlimit = 2.58;
     
     public boolean armPIDstatus = false;
     public boolean armjoystickstatus = true;

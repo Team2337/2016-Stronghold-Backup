@@ -1,32 +1,35 @@
-
 package org.usfirst.frc2337.RobotProject2016.commands;
 
+import org.usfirst.frc2337.RobotProject2016.RobotMap;
+
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc2337.RobotProject2016.Robot;
 
 /**
  *
  */
-public class linAccElevator_Retract extends Command {
+public class auton_UltrasonicWait extends Command {
 
-    public linAccElevator_Retract() {
-    	requires(Robot.linAccElevator);
-
+	double distance;
+	double set_distance;
+    public auton_UltrasonicWait(double dis) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	set_distance = dis;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.linAccElevator.intakeRetract();
+    	setTimeout(15);
     }
-    
+
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	
+    	distance = RobotMap.chassisPIDultrasonicSensor.getRangeInches();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return (distance> set_distance || isTimedOut());
     }
 
     // Called once after isFinished returns true

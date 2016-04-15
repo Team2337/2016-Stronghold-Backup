@@ -67,8 +67,9 @@ public class RobotMap {
     public static RobotDrive chassisDrive;
     
     
-    public static Solenoid ShooterPneumaticPin;
-    public static Solenoid linearAccElevatorSolenoid;
+    public static DoubleSolenoid ShooterPneumaticPin;
+    public static Solenoid linearAccElevatorSolenoidA;
+    public static Solenoid linearAccElevatorSolenoidB;
     public static Solenoid chassisShiftershiftSolenoid;
     public static Solenoid ledGRIPCamera;
     public static Solenoid leftArmLED;
@@ -119,6 +120,7 @@ public class RobotMap {
     	chassisPIDchassisLeft1 = new CANTalon(0);
         LiveWindow.addActuator("ChassisPID", "chassisLeft1", chassisPIDchassisLeft1);
         chassisPIDchassisLeft1.changeControlMode(TalonControlMode.PercentVbus);
+        chassisPIDchassisLeft1.reverseOutput(false);
         chassisPIDchassisLeft1.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
         chassisPIDchassisLeft1.setEncPosition(0);
         
@@ -129,25 +131,30 @@ public class RobotMap {
         LiveWindow.addActuator("ChassisPID", "chassisLeft2", chassisPIDchassisLeft2);
         chassisPIDchassisLeft2.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisLeft2.set(chassisPIDchassisLeft1.getDeviceID());
+        chassisPIDchassisLeft2.reverseOutput(false);
         
         chassisPIDchassisLeft3 = new CANTalon(2);
         LiveWindow.addActuator("ChassisPID", "chassisLeft3", chassisPIDchassisLeft3);
         chassisPIDchassisLeft3.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisLeft3.set(chassisPIDchassisLeft1.getDeviceID());
+        chassisPIDchassisLeft3.reverseOutput(false);
          
         chassisPIDchassisRight1 = new CANTalon(15);
         LiveWindow.addActuator("ChassisPID", "chassisRight1", chassisPIDchassisRight1);
         chassisPIDchassisRight1.changeControlMode(TalonControlMode.PercentVbus);
+        chassisPIDchassisRight1.reverseOutput(false);
          
         chassisPIDchassisRight2 = new CANTalon(14);
         LiveWindow.addActuator("ChassisPID", "chassisRight2", chassisPIDchassisRight2);
         chassisPIDchassisRight2.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisRight2.set(chassisPIDchassisRight1.getDeviceID());
+        chassisPIDchassisRight2.reverseOutput(false);
         
         chassisPIDchassisRight3 = new CANTalon(13);
         LiveWindow.addActuator("ChassisPID", "chassisRight3", chassisPIDchassisRight3);
         chassisPIDchassisRight3.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisRight3.set(chassisPIDchassisRight1.getDeviceID());
+        chassisPIDchassisRight3.reverseOutput(false);
          
         intakeArmPIDMotorA = new CANTalon(3);
         LiveWindow.addActuator("ShooterArm", "shooterArmMotorA", intakeArmPIDMotorA);
@@ -198,15 +205,18 @@ public class RobotMap {
         
         //   Solenoid Module 0  Get in my belly!
         chassisShiftershiftSolenoid = new Solenoid(0, 0);
-        linearAccElevatorSolenoid = new Solenoid(0, 1);
+        
         powerTakeOffptoSolenoid = new DoubleSolenoid(0, 2, 3);
-        ShooterPneumaticPin = new Solenoid(0, 4);
+        
         grapplingHookRelease = new Solenoid(0, 5);
         ledGRIPCamera = new Solenoid(0, 6);
         leftArmLED = new Solenoid(0, 7);
         
         //   Solenoid Module 1  On the Arm
-        rightArmLED = new Solenoid(1, 7);
+        linearAccElevatorSolenoidA = new Solenoid(1, 0);
+        linearAccElevatorSolenoidB = new Solenoid(1, 7);
+        ShooterPneumaticPin = new DoubleSolenoid(1, 1, 6);
+        rightArmLED = new Solenoid(1, 4);
 
         
         //  Target light relay

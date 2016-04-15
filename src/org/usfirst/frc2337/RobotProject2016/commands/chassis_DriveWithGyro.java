@@ -42,7 +42,7 @@ public class chassis_DriveWithGyro extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	leftJoystick = Robot.oi.driverJoystick.getRawAxis(1);
+    	leftJoystick = -Robot.oi.driverJoystick.getRawAxis(1);
     	//rightJoystick =  Robot.oi.joystickMain.getRawAxis(5);
     	
     	turnJoystick =  Robot.oi.driverJoystick.getRawAxis(4);

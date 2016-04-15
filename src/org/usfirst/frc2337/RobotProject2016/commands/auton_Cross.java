@@ -13,9 +13,9 @@ public class auton_Cross extends CommandGroup {
 	public auton_Cross()
 	{
 		//addSequential(new shooterRetract_Prep());				//prep shooter retracter
-    	addParallel(new intake_Inhale());  			//activate intake and run parallel as it does not finish...
+    	//addParallel(new intake_Inhale());  			//activate intake and run parallel as it does not finish...
     	addSequential(new intakeArm_armSetPointAutonTravel());
-		addSequential(new Auton_GyroAndEncoderDrive(0.7, 65029, 8.0));  //22029		//TODO   NEED TO SET DISTANCE 
-		addSequential(new intake_DoNothing());  	
+		addSequential(new Auton_GyroAndEncoderDrive(0.7, -65029, 8.0));  //22029		//TODO   NEED TO SET DISTANCE 
+		//addSequential(new intake_DoNothing());  	
 	}
 }

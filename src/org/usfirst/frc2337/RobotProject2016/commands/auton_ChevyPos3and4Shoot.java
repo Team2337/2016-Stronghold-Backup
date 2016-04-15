@@ -13,11 +13,11 @@ public class auton_ChevyPos3and4Shoot extends CommandGroup {
 		addParallel(new intakeArm_armSetPointAutonGround());
 		addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.3, 2.0, -30));
 		//addSequential(new intakeArm_armSetPointLoad());
-		addSequential(new Auton_GyroAndEncoderDrive(0.3, 4000, 8.0));
+		addSequential(new Auton_GyroAndEncoderDrive(0.3, -4000, 8.0));
 		addSequential(new chassis_TargetWithGyroPID());
-		addSequential(new Auton_GyroAndEncoderDrive(0.3, 12000, 8.0));
+		addSequential(new Auton_GyroAndEncoderDrive(0.3, -12000, 8.0));
 		addSequential(new chassis_TargetWithGyroPID());
-		addSequential(new Auton_GyroAndEncoderDrive(0.3, 12000, 8.0));
+		addSequential(new Auton_GyroAndEncoderDrive(0.3, -12000, 8.0));
 		addSequential(new linAccElevator_Extend());
 		addSequential(new auton_Wait(1.0));
 		//addSequential(new shooter_ShootCG());

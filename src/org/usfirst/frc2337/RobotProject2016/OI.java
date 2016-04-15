@@ -1,4 +1,5 @@
 
+
 package org.usfirst.frc2337.RobotProject2016;
 
 import org.usfirst.frc2337.RobotProject2016.commands.*;
@@ -221,11 +222,17 @@ public class OI {
         retractorManualDown = new JoystickButton(operatorControls, 1);
         retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
        
-        //BlackButton = new JoystickButton(operatorControls, 3);
-        //BlackButton.whenPressed(new shooterArm_LowerWithGyro());
+        BlackButton = new JoystickButton(operatorControls, 3);
+        //BlackButton.whenPressed(new shooterRetract_Prime());
+        BlackButton.whenPressed(new linAccElevator_Extend());
+        BlackButton.whenReleased(new linAccElevator_Retract());
+        
         
         BlueButton = new JoystickButton(operatorControls, 4);
-        BlueButton.whenPressed(new intakeArm_armSetPointScale());
+        //BlueButton.whenPressed(new intakeArm_armSetPointScale());
+       // BlueButton.whenPressed(new shooterRetract_Prep());
+        BlueButton.whenPressed(new shooter_Shoot());
+        BlueButton.whenReleased(new shooter_UnShoot());
         
         scale = new JoystickButton(operatorControls, 5);
         scale.whenPressed(new scaler_pinPullOut());
@@ -239,9 +246,13 @@ public class OI {
         clearSwitch.whenPressed(new intakeArm_StopPID());
         clearSwitch.whenReleased(new intakeArm_StartPID());
         
-       // blueSwitch = new JoystickButton(operatorControls, 9);
-       // blueSwitch.whenPressed(new scaler_pinPullOut());
-       // blueSwitch.whenReleased(new scaler_Deactivate());
+       // blackSwitch = new JoystickButton(operatorControls, 8); 
+        //blackSwitch.whenPressed(new shooter_Shoot());
+        //blackSwitch.whenReleased(new shooter_UnShoot());
+        
+        //blueSwitch = new JoystickButton(operatorControls, 9);
+        //blueSwitch.whenPressed(new linAccElevator_Extend());
+        //blueSwitch.whenReleased(new linAccElevator_Retract());
         
         yellowSwitch = new JoystickButton(operatorControls, 10);
         yellowSwitch.whenPressed(new scaler_PTOandClimbCG());

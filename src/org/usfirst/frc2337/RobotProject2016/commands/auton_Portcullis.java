@@ -17,7 +17,7 @@ public class auton_Portcullis extends CommandGroup {
 
     	addSequential(new intakeArm_armSetPointGround());   //  Drive Arm to Base
     	addParallel(new intakeArm_armSetPointAutonGround());   //  Keep Arm down through the motion  
-		addSequential(new Auton_GyroAndEncoderDrive(0.4, -50000, 8.0));  //22029		//Drive Forward
+		addSequential(new Auton_GyroAndEncoderDrive(0.6, -50000, 8.0));  //22029		//Drive Forward
 		//addSequential(new intake_DoNothing());  	
 	}
 }

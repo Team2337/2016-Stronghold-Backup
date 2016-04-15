@@ -42,7 +42,7 @@ public class chassis_NerdyDrive extends Command {
 			RobotMap.seeTarget = false;
 		}
 
-		leftJoystick = joystickMain.getRawAxis(1);
+		leftJoystick = -joystickMain.getRawAxis(1);
 		turnJoystick = joystickMain.getRawAxis(4);
 		absTurn = Math.abs(turnJoystick);
 		absSpeed = Math.abs(leftJoystick);

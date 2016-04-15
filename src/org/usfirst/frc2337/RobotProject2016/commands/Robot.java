@@ -126,12 +126,12 @@ public class Robot extends IterativeRobot {
      
       SmartDashboard.putNumber("Drive Encoder Get", Robot.chassisPID.readLeftEncoder());
       
-      SmartDashboard.putBoolean("Shooter - Shoot", RobotMap.ShooterPneumaticPin.get());
+      //SmartDashboard.putData(RobotMap.ShooterPneumaticPin.get());
       
       SmartDashboard.putBoolean("Intake Ball Sensor", Robot.intake.getBallSensorState());
       
       
-      SmartDashboard.putBoolean("Linear Elevator Status",  Robot.linAccElevator.getLinAccElevatorStatus());
+      //SmartDashboard.putBoolean("Linear Elevator Status",  Robot.linAccElevator.getLinAccElevatorStatus());
       SmartDashboard.putBoolean("Ultrasonic State",  RobotMap.chassisPIDultrasonicSensor.isEnabled());
       SmartDashboard.putNumber("Ultrasonic Diatance",  RobotMap.chassisPIDultrasonicSensor.getRangeInches());
 

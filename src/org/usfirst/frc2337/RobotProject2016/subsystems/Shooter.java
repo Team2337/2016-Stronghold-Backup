@@ -2,13 +2,15 @@ package org.usfirst.frc2337.RobotProject2016.subsystems;
 
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 import org.usfirst.frc2337.RobotProject2016.commands.*;
-import edu.wpi.first.wpilibj.Solenoid;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Shooter extends Subsystem {
 
-	private final Solenoid shooterSolenoid = RobotMap.ShooterPneumaticPin;
+	private final DoubleSolenoid shooterSolenoid = RobotMap.ShooterPneumaticPin;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
@@ -20,12 +22,12 @@ public class Shooter extends Subsystem {
      * Retracks pin for shooter to shoot.
      */
 	public void shooterShoot(){
-		shooterSolenoid.set(true);  //switched during unbag
+		shooterSolenoid.set(DoubleSolenoid.Value.kForward);  //switched during unbag
 	}
 	public void shooterUnShoot(){
-		shooterSolenoid.set(false);
+		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
 	}
-	public boolean getShooterValue(){
+	public Value getShooterValue(){
 		return shooterSolenoid.get();
 	}
 }

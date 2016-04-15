@@ -46,8 +46,8 @@ public class Auton_GyroAndEncoderDriveTillRoll extends Command {
 	  public Auton_GyroAndEncoderDriveTillRoll(double speed, double timeout, double rollAngle) {
 		   	requires(Robot.chassisPID);
 		   	m_timeout = timeout;
-	    	m_speed = -speed;
-	    	m_rollAngle = -rollAngle;
+	    	m_speed = speed;
+	    	m_rollAngle = rollAngle;
 	    }
 
 	  public Auton_GyroAndEncoderDriveTillRoll(double speed, int encoderTarget, double timeout) {

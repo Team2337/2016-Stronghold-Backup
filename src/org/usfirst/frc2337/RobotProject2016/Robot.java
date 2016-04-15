@@ -83,9 +83,11 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Chevy Pos 3 or 4 and shoot high", new auton_ChevyPos3and4Shoot()); 
         autonChooser.addObject("Portcullis", new auton_Portcullis()); 
         autonChooser.addObject("Portcullis and shoot high", new auton_PortcullisAndShoot()); 
-        autonChooser.addObject("Distance Test", new auton_DistanceTest()); 
+        //autonChooser.addObject("Distance Test", new auton_DistanceTest()); 
         autonChooser.addObject("Cross Flat Def. then re-Cross", new auton_CrossThenReverse());
-        
+        autonChooser.addObject("Cross Turn: LEFT", new auton_CrossWithTurn(1));
+        autonChooser.addObject("Cross Turn: RIGHT", new auton_CrossWithTurn(0));
+       
         //autonChooser.addObject("Main", new auton_MainCG()); 
        // autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         
@@ -118,7 +120,7 @@ public class Robot extends IterativeRobot {
       //SmartDashboard.putData(Robot.shooterRetractor.getCurrentCommand());
       SmartDashboard.putNumber("Retractor: CL err:", RobotMap.shooterRetractMotorA.getClosedLoopError());
       SmartDashboard.putNumber("Retractor: getError", RobotMap.shooterRetractMotorA.getError());
-      SmartDashboard.putNumber("Retractor: getEncpos", RobotMap.shooterRetractMotorA.getEncPosition());
+      //SmartDashboard.putNumber("Retractor: getEncpos", RobotMap.shooterRetractMotorA.getEncPosition());
       //SmartDashboard.putNumber("Retractor: ouputVoltage", RobotMap.shooterRetractMotorA.getOutputVoltage());
       //SmartDashboard.putNumber("Retractor: PW Velocity", RobotMap.shooterRetractMotorA.getPulseWidthPosition());
       SmartDashboard.putNumber("Retractor: getPosition", RobotMap.shooterRetractMotorA.getPosition());
@@ -127,12 +129,14 @@ public class Robot extends IterativeRobot {
      
       SmartDashboard.putNumber("Drive Encoder Get", Robot.chassisPID.readLeftEncoder());
       
-      SmartDashboard.putBoolean("Shooter - Shoot", RobotMap.ShooterPneumaticPin.get());
+      //SmartDashboard.putBoolean("Shooter - Shoot", RobotMap.ShooterPneumaticPin.get());
+      SmartDashboard.putData("Shooter - Shoot", Robot.shooter);
+      SmartDashboard.putData("Linear Elevator Status", Robot.linAccElevator);
       
       SmartDashboard.putBoolean("Intake Ball Sensor", Robot.intake.getBallSensorState());
       
       
-      SmartDashboard.putBoolean("Linear Elevator Status",  Robot.linAccElevator.getLinAccElevatorStatus());
+      //SmartDashboard.putBoolean("Linear Elevator Status",  Robot.linAccElevator.getLinAccElevatorStatus());
       SmartDashboard.putBoolean("Ultrasonic State",  RobotMap.chassisPIDultrasonicSensor.isEnabled());
       SmartDashboard.putNumber("Ultrasonic Diatance",  RobotMap.chassisPIDultrasonicSensor.getRangeInches());
 

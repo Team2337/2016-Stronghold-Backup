@@ -28,7 +28,7 @@ public class chassis_DriveWithGyroNoTurn extends Command {
 	protected void execute() {
 		yaw = RobotMap.gyro.getYaw();
 		
-    	speed = Robot.oi.driverJoystick.getRawAxis(joystickAxis);
+    	speed = -Robot.oi.driverJoystick.getRawAxis(joystickAxis);
     	/*
 		if (Robot.oi.driverJoystick.getRawAxis(joystickAxis) > deadband) {
 			moveSpeed = -speed;

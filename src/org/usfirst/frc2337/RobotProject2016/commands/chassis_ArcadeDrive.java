@@ -42,7 +42,7 @@ public class chassis_ArcadeDrive extends Command {
 		}
 		
 
-    		double leftJoystick = joystickMain.getRawAxis(1);
+    		double leftJoystick = -joystickMain.getRawAxis(1);
 	    	double turnJoystick = joystickMain.getRawAxis(4);
 	    	
 			if (RobotMap.powerTakeOffptoSolenoid.equals(DoubleSolenoid.Value.kForward)) {
