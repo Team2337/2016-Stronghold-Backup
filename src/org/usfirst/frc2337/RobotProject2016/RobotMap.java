@@ -53,7 +53,11 @@ public class RobotMap {
     public static CANTalon intakeArmPIDMotorB;
     public static CANTalon shooterRetractMotorA;
 
+    //public static CameraServer cam0;
+    
     public static DigitalInput intakeBallSensor;
+    
+    
 
     
     public static DoubleSolenoid powerTakeOffptoSolenoid;
@@ -68,13 +72,14 @@ public class RobotMap {
     
     
     public static DoubleSolenoid ShooterPneumaticPin;
-    public static Solenoid linearAccElevatorSolenoidA;
+    public static DoubleSolenoid linearAccElevatorSolenoidA;
     public static Solenoid linearAccElevatorSolenoidB;
     public static Solenoid chassisShiftershiftSolenoid;
     public static Solenoid ledGRIPCamera;
     public static Solenoid leftArmLED;
     public static Solenoid rightArmLED;
-    public static Solenoid grapplingHookRelease;
+    public static DoubleSolenoid grapplingHookRelease;
+    public static Solenoid ballSensorLED;
     
     public static Relay targetLightLight;
     
@@ -102,6 +107,7 @@ public class RobotMap {
     	
     	gripTables = NetworkTable.getTable("GRIP/myContoursReport");
     	autonTables = NetworkTable.getTable("Auton");
+    	
     	
     	chassisPIDaccelerometer = new AnalogAccelerometer(1);
         LiveWindow.addSensor("ChassisPID", "accelerometer ", chassisPIDaccelerometer);
@@ -184,9 +190,9 @@ public class RobotMap {
         												//**************************retractor*****
         shooterRetractMotorA = new CANTalon(7);
         shooterRetractMotorA.changeControlMode(TalonControlMode.Position);
-        shooterRetractMotorA.setPID(2, 0.0, 0.0);
+        shooterRetractMotorA.setPID(1, 0.0, 0.0);    //2
         shooterRetractMotorA.setAllowableClosedLoopErr(30);
-        shooterRetractMotorA.reverseOutput(false);
+        shooterRetractMotorA.reverseOutput(true);
         shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
         //shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
         shooterRetractMotorA.configNominalOutputVoltage(+4f, -8f);
@@ -202,27 +208,29 @@ public class RobotMap {
         
         LiveWindow.addActuator("ShooterRetract", "shooterRetractMotorA", shooterRetractMotorA);
  
-        
-        //   Solenoid Module 0  Get in my belly!
+        // ********************************************* SOLENOIDS **********************************
+        //  *** Solenoid Module 0  Get in my belly! ***
         chassisShiftershiftSolenoid = new Solenoid(0, 0);
-        
         powerTakeOffptoSolenoid = new DoubleSolenoid(0, 2, 3);
-        
-        grapplingHookRelease = new Solenoid(0, 5);
         ledGRIPCamera = new Solenoid(0, 6);
         leftArmLED = new Solenoid(0, 7);
         
-        //   Solenoid Module 1  On the Arm
-        linearAccElevatorSolenoidA = new Solenoid(1, 0);
-        linearAccElevatorSolenoidB = new Solenoid(1, 7);
-        ShooterPneumaticPin = new DoubleSolenoid(1, 1, 6);
-        rightArmLED = new Solenoid(1, 4);
+       
+       
+        //  *** Solenoid Module 1  On the Arm ***
+        linearAccElevatorSolenoidA = new DoubleSolenoid(1, 1, 6);
+      //  linearAccElevatorSolenoidB = new Solenoid(1, 7);
+        ballSensorLED = new Solenoid(1,4);
+        ShooterPneumaticPin = new DoubleSolenoid(1, 2, 5);
+        rightArmLED = new Solenoid(0, 1);  //changed for all sensor LED
+        //grapplingHookRelease = new Solenoid(1, 5);
+        grapplingHookRelease = new DoubleSolenoid(1, 0, 7);
 
         
-        //  Target light relay
+        // *** Target light relay ***
         targetLightLight = new Relay(0, Relay.Direction.kForward);
         
-        //Digital Sensors
+        //*****************************************************  Digital Sensors ********************************
         
 
         

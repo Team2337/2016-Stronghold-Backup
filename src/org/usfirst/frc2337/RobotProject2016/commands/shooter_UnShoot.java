@@ -14,7 +14,7 @@ public class shooter_UnShoot extends Command {
 	
 	}
 	protected void initialize() {
-	
+		setTimeout(3.0);
 		Robot.shooter.shooterUnShoot();          //   ****************************
 	}
 
@@ -26,6 +26,7 @@ public class shooter_UnShoot extends Command {
 
 	protected boolean isFinished() {
 		return true;
+		//return isTimedOut();
 	}
 
 

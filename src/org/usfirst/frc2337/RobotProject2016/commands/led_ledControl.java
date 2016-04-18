@@ -20,12 +20,18 @@ public class led_ledControl extends Command {
 
 	@Override
 	protected void execute() {
-		
+		if (Robot.intake.getBallSensorState()) {
+			Robot.Led.ballSensorLEDOn();
+		} else {
+			Robot.Led.ballSensorLEDOff();
+		}
+		/*
 		if (RobotMap.linearAccElevatorSolenoidA.get()) {
 			Robot.Led.lightOn();
 		} else {
 			Robot.Led.lightOff();
 		}
+		*/
 	}
 
 	@Override

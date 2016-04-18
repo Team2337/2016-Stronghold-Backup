@@ -16,16 +16,17 @@ public class Shooter extends Subsystem {
 	
 	protected void initDefaultCommand() {
 		// Set the default command for a subsystem here.
-        setDefaultCommand(new shooter_UnShoot());
+        //setDefaultCommand(new shooter_UnShoot());
+		setDefaultCommand(new shooter_DoNothing());
 	}
 	/**
      * Retracks pin for shooter to shoot.
      */
 	public void shooterShoot(){
-		shooterSolenoid.set(DoubleSolenoid.Value.kForward);  //switched during unbag
+		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);  //switched during unbag
 	}
 	public void shooterUnShoot(){
-		shooterSolenoid.set(DoubleSolenoid.Value.kReverse);
+		shooterSolenoid.set(DoubleSolenoid.Value.kForward);
 	}
 	public Value getShooterValue(){
 		return shooterSolenoid.get();

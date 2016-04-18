@@ -3,20 +3,21 @@ package org.usfirst.frc2337.RobotProject2016.commands;
 import org.usfirst.frc2337.RobotProject2016.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class scaler_pinPullOut extends Command {
+public class scaler_pinPushIn extends Command {
 
 /**
  * pull out the pneumatic pin for the scaling arm
  */
-	public scaler_pinPullOut() {
+	public scaler_pinPushIn() {
 		requires(Robot.scaler);
 	}
 	/**
 	 * 
 	 */
 	protected void initialize() {
-			Robot.scaler.pinIn();
-
+		//if (Robot.oi.getoperatorControls().getRawButton(10)) {
+			Robot.scaler.pinOut();
+		//}
 	}
 	
 	protected void execute() {

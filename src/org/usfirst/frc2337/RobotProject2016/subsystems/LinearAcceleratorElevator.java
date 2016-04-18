@@ -16,13 +16,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class LinearAcceleratorElevator extends Subsystem {
 
-    private final Solenoid linAccElevatorSolenoidA = RobotMap.linearAccElevatorSolenoidA;
-    private final Solenoid linAccElevatorSolenoidB = RobotMap.linearAccElevatorSolenoidB;
+    private final DoubleSolenoid linAccElevatorSolenoidA = RobotMap.linearAccElevatorSolenoidA;
+    //private final Solenoid linAccElevatorSolenoidB = RobotMap.linearAccElevatorSolenoidB;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
     public void initDefaultCommand() {
-      //setDefaultCommand(new linAccElevator_DoNothing());
+      setDefaultCommand(new linAccElevator_Retract());
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
@@ -30,18 +30,18 @@ public class LinearAcceleratorElevator extends Subsystem {
      * Energize the jazz hands or extend the intake wrist.
      */
     public void intakeExtend() {
-    	linAccElevatorSolenoidA.set(false);
-    	linAccElevatorSolenoidB.set(true);
+    	linAccElevatorSolenoidA.set(DoubleSolenoid.Value.kReverse);
+    	//linAccElevatorSolenoidB.set(true);
     }
     /**
      * De-energize the jazz hands or extend the intake wrist.
      */
     public void intakeRetract() {
-    	linAccElevatorSolenoidB.set(false);
-    	linAccElevatorSolenoidA.set(true);
+    	//linAccElevatorSolenoidB.set(false);
+    	linAccElevatorSolenoidA.set(DoubleSolenoid.Value.kForward);
 
     }
-    public Boolean getLinAccElevatorStatus() {
+    public Value getLinAccElevatorStatus() {
     	return linAccElevatorSolenoidA.get();
     }
     

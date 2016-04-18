@@ -134,7 +134,7 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putData("Linear Elevator Status", Robot.linAccElevator);
       
       SmartDashboard.putBoolean("Intake Ball Sensor", Robot.intake.getBallSensorState());
-      
+      SmartDashboard.putBoolean("Retractor Limit", Robot.shooterRetractor.onLimitSwitch());
       
       //SmartDashboard.putBoolean("Linear Elevator Status",  Robot.linAccElevator.getLinAccElevatorStatus());
       SmartDashboard.putBoolean("Ultrasonic State",  RobotMap.chassisPIDultrasonicSensor.isEnabled());
@@ -170,6 +170,7 @@ public class Robot extends IterativeRobot {
     	RobotMap.shooterRetractMotorA.setEncPosition(0);
     	Robot.powerTakeOff.LiftOff();
     	
+    	
 
     	
     	
@@ -196,6 +197,9 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        RobotMap.shooterRetractMotorA.setEncPosition(0);
+        //Robot.scaler.pinIn();
+        
     }
 
     /**

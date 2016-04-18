@@ -13,6 +13,8 @@ package org.usfirst.frc2337.RobotProject2016.subsystems;
 
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 import org.usfirst.frc2337.RobotProject2016.commands.*;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -23,7 +25,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Scaler extends Subsystem {
 
   
-    private final Solenoid scalerAirActuator = RobotMap.grapplingHookRelease;
+    private final DoubleSolenoid scalerAirActuator = RobotMap.grapplingHookRelease;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
@@ -36,21 +38,21 @@ public class Scaler extends Subsystem {
      * Extend the scaler arm
      */
     public void pinOut(){
-    	scalerAirActuator.set(true);
+    	scalerAirActuator.set(DoubleSolenoid.Value.kForward);
     }
     /**
      * Retract the scaler arm 
      */
     public void pinIn(){
-    	scalerAirActuator.set(false);
+    	scalerAirActuator.set(DoubleSolenoid.Value.kReverse);
     }
     /**
      * get the status of pneumatic pin
      * @return
      */
-    public boolean getPinStatus() {
-    	return scalerAirActuator.get();
-    }
+   // public Value getPinStatus() {
+    //	return scalerAirActuator.get();
+    //}
     
     
 }

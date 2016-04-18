@@ -4,6 +4,7 @@ import org.usfirst.frc2337.RobotProject2016.Robot;
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
 import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class shooterRetract_PrimeManual extends Command{
@@ -12,14 +13,15 @@ public class shooterRetract_PrimeManual extends Command{
 		requires(Robot.shooterRetractor);
 	}
 	protected void initialize() {
-		setTimeout(2);
-		Robot.shooter.shooterUnShoot();
+		setTimeout(2.5);
+		Robot.shooter.shooterShoot();
 		RobotMap.shooterRetractRetracted = false;
 		RobotMap.shooterRetractMotorA.changeControlMode(TalonControlMode.PercentVbus);
 	
 	}
 
 	protected void execute() {
+			//Timer.delay(1);
 			Robot.shooterRetractor.unretracting();    //fix this name by switching in methods???
 		
 	}
@@ -41,6 +43,8 @@ public class shooterRetract_PrimeManual extends Command{
 		//Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.getRetractPosition());
 		RobotMap.shooterRetractPrimed = false;
 		}
+		Robot.shooter.shooterUnShoot();
+		RobotMap.shooterRetractMotorA.disable();
 	}
 	
 	protected void interrupted() {
