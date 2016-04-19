@@ -27,16 +27,10 @@ public class targetLED extends Subsystem {
 
 	private final Solenoid rightArm = RobotMap.rightArmLED;
 	private final Solenoid leftArm = RobotMap.leftArmLED;
-   
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
 
     public void initDefaultCommand() {
-
-
         setDefaultCommand(new targetLED_LEDControl());
     }
-
 
     public void leftArmLEDOn() {
     	leftArm.set(true);

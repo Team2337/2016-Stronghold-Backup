@@ -4,23 +4,19 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class auton_Chevy extends CommandGroup {
 
-	/**
-	 * THIS WILL INTAKE BALL FROM MIDLINE
-	 * ----------------------------------
-	 * 
-	 * 
-	 */
+
 	public auton_Chevy()
 	{
-		//addSequential(new shooterRetract_Prep());				//prep shooter retracter
-    	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
-    	addSequential(new shooterArm_armSetPointAutonChevy());
-		addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.3, 4.0, -6));  //22029		//TODO   NEED TO SET DISTANCE 
-		addSequential(new shooterArm_armSetPointBase());
-		addParallel(new shooterArm_armSetPointAutonBase());
-		addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.3, 2.0, -30));
-		addSequential(new shooterArm_armSetPointAutonTravel());
-		addSequential(new Auton_GyroAndEncoderDrive(0.3, 16000, 8.0));
-		addSequential(new intake_DoNothing());  	
+    	addSequential(new intakeArm_armSetPointAutonTravel());
+		addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.3, 4.0, -5));  //22029		//TODO   NEED TO SET DISTANCE 
+		addSequential(new intakeArm_armSetPointGround());
+		//addParallel(new intakeArm_armSetPointAutonGround());
+		//addSequential(new Auton_GyroAndEncoderDriveTillRoll(0.8, 4.0, -15));
+		addSequential(new Auton_GyroAndEncoderDrive(0.6, -30000, 1.0));
+		addParallel(new intakeArm_armSetPointLoad());
+		addSequential(new Auton_GyroAndEncoderDrive(0.6, -50000, 8.0));
+		//addSequential(new chassis_TargetWithGyroPID());
+		//addSequential(new Auton_GyroAndEncoderDrive(0.8, -12000, 8.0));
+		
 	}
 }

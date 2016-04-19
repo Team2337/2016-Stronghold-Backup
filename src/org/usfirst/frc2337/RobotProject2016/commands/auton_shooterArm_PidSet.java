@@ -14,7 +14,7 @@ public class  auton_shooterArm_PidSet extends Command {
      
     public auton_shooterArm_PidSet(double setpoint, double timeout) {
         // Use requires() here to declare subsystem dependencies
-    	requires(Robot.shooterArmPID);
+    	requires(Robot.intakeArmPID);
     	
     	//Make the variables for this command usable through out it
     	this.setpoint = setpoint;
@@ -39,8 +39,8 @@ public class  auton_shooterArm_PidSet extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.shooterArmPID.enable();
-    	Robot.shooterArmPID.setSetpoint(Robot.shooterArmPID.getPosition());
+    	Robot.intakeArmPID.enable();
+    	Robot.intakeArmPID.setSetpoint(Robot.intakeArmPID.getPosition());
     	
     }
 

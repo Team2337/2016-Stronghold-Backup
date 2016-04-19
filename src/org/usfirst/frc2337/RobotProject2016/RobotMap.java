@@ -37,7 +37,6 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 public class RobotMap {
 
     public static AHRS gyro;
-	public static AnalogGyro chassisPIDgyro;
 	
 	public static AnalogAccelerometer chassisPIDaccelerometer; 
 	public static AnalogPotentiometer shooterArmPIDshooterArmPot;
@@ -49,26 +48,19 @@ public class RobotMap {
     public static CANTalon chassisPIDchassisRight1;
     public static CANTalon chassisPIDchassisRight2;
     public static CANTalon chassisPIDchassisRight3;
-    public static CANTalon shooterArmPIDMotorA;
+    public static CANTalon intakeArmPIDMotorA;
     public static CANTalon intakeintakeMotorB;
-    public static CANTalon shooterArmPIDMotorB;
+    public static CANTalon intakeArmPIDMotorB;
     public static CANTalon shooterRetractMotorA;
-    public static CANTalon portWheelMotorA;
-    public static CANTalon portWheelMotorB;
+
+    //public static CameraServer cam0;
     
-    public static DigitalInput intakeLeftBallSensor;
-    public static DigitalInput intakeRightBallSensor;
-    public static DigitalInput intakeGotBallSensor;
+    public static DigitalInput intakeBallSensor;
     
-    public static DigitalInput autonPin10;
-    public static DigitalInput autonPin19;
+    
+
     
     public static DoubleSolenoid powerTakeOffptoSolenoid;
-	
-	public static Encoder chassisPIDLeftEncoder;
-	public static Encoder chassisPIDRightEncoder;
-	public static Encoder shooterPIDEncoder;
-	public static Encoder shooterRetractPIDEncoder;
     
     public static NetworkTable gripTables;
     public static NetworkTable autonTables;
@@ -79,34 +71,28 @@ public class RobotMap {
     public static RobotDrive chassisDrive;
     
     
-    public static Solenoid ShooterPneumaticPin;
-    public static Solenoid intakeWristintakeWristSolenoid;
+    public static DoubleSolenoid ShooterPneumaticPin;
+    public static DoubleSolenoid linearAccElevatorSolenoidA;
+    public static Solenoid linearAccElevatorSolenoidB;
     public static Solenoid chassisShiftershiftSolenoid;
     public static Solenoid ledGRIPCamera;
-  //  public static Solenoid targetLightLight;
-    public static Solenoid gotBallLED;
     public static Solenoid leftArmLED;
     public static Solenoid rightArmLED;
-    
-    public static Solenoid keyPullOut;
-    public static Solenoid scalerscalerAirActuator;
+    public static DoubleSolenoid grapplingHookRelease;
+    public static Solenoid ballSensorLED;
     
     public static Relay targetLightLight;
     
-    
-    public static Ultrasonic intakeSensor;
     public static Ultrasonic chassisPIDultrasonicSensor;
   
     
     ////  Public variables
     public static boolean leftBallSensorState;
     public static boolean rightBallSensorState;
-    public static boolean gotBallSensorState;
     public static boolean shooterRetractPrimed;
     public static boolean shooterRetractRetracted;
     public static boolean shooterArmOnTarget = false;
     public static boolean visionOnTarget = false;
-    public static boolean okToShoot = false;
     public static boolean seeTarget = false;
     public static double gyroConversion = 4.5;
     public static boolean travelMode = false;
@@ -122,14 +108,11 @@ public class RobotMap {
     	gripTables = NetworkTable.getTable("GRIP/myContoursReport");
     	autonTables = NetworkTable.getTable("Auton");
     	
+    	
     	chassisPIDaccelerometer = new AnalogAccelerometer(1);
         LiveWindow.addSensor("ChassisPID", "accelerometer ", chassisPIDaccelerometer);
         chassisPIDaccelerometer.setSensitivity(0.0);
         chassisPIDaccelerometer.setZero(2.5);
-        
-        chassisPIDgyro = new AnalogGyro(0);
-        LiveWindow.addSensor("ChassisPID", "gyro", chassisPIDgyro);
-        chassisPIDgyro.setSensitivity(0.003);
         
         shooterArmPIDshooterArmPot = new AnalogPotentiometer(3, 20.0, .068);
         LiveWindow.addSensor("shooterArm", "Potentiometer", shooterArmPIDshooterArmPot);
@@ -143,6 +126,7 @@ public class RobotMap {
     	chassisPIDchassisLeft1 = new CANTalon(0);
         LiveWindow.addActuator("ChassisPID", "chassisLeft1", chassisPIDchassisLeft1);
         chassisPIDchassisLeft1.changeControlMode(TalonControlMode.PercentVbus);
+        chassisPIDchassisLeft1.reverseOutput(false);
         chassisPIDchassisLeft1.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
         chassisPIDchassisLeft1.setEncPosition(0);
         
@@ -153,36 +137,41 @@ public class RobotMap {
         LiveWindow.addActuator("ChassisPID", "chassisLeft2", chassisPIDchassisLeft2);
         chassisPIDchassisLeft2.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisLeft2.set(chassisPIDchassisLeft1.getDeviceID());
+        chassisPIDchassisLeft2.reverseOutput(false);
         
         chassisPIDchassisLeft3 = new CANTalon(2);
         LiveWindow.addActuator("ChassisPID", "chassisLeft3", chassisPIDchassisLeft3);
         chassisPIDchassisLeft3.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisLeft3.set(chassisPIDchassisLeft1.getDeviceID());
+        chassisPIDchassisLeft3.reverseOutput(false);
          
         chassisPIDchassisRight1 = new CANTalon(15);
         LiveWindow.addActuator("ChassisPID", "chassisRight1", chassisPIDchassisRight1);
         chassisPIDchassisRight1.changeControlMode(TalonControlMode.PercentVbus);
+        chassisPIDchassisRight1.reverseOutput(false);
          
         chassisPIDchassisRight2 = new CANTalon(14);
         LiveWindow.addActuator("ChassisPID", "chassisRight2", chassisPIDchassisRight2);
         chassisPIDchassisRight2.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisRight2.set(chassisPIDchassisRight1.getDeviceID());
+        chassisPIDchassisRight2.reverseOutput(false);
         
         chassisPIDchassisRight3 = new CANTalon(13);
         LiveWindow.addActuator("ChassisPID", "chassisRight3", chassisPIDchassisRight3);
         chassisPIDchassisRight3.changeControlMode(TalonControlMode.Follower);
         chassisPIDchassisRight3.set(chassisPIDchassisRight1.getDeviceID());
+        chassisPIDchassisRight3.reverseOutput(false);
          
-        shooterArmPIDMotorA = new CANTalon(3);
-        LiveWindow.addActuator("ShooterArm", "shooterArmMotorA", shooterArmPIDMotorA);
-        shooterArmPIDMotorA.setControlMode(0);  
+        intakeArmPIDMotorA = new CANTalon(3);
+        LiveWindow.addActuator("ShooterArm", "shooterArmMotorA", intakeArmPIDMotorA);
+        intakeArmPIDMotorA.setControlMode(0);  
         //shooterArmPIDMotorA.enableBrakeMode(true);
         
-        shooterArmPIDMotorB = new CANTalon(12);
-        LiveWindow.addActuator("ShooterArm", "shooterArmMotorB", shooterArmPIDMotorB);
-        shooterArmPIDMotorB.setControlMode(5);
-        shooterArmPIDMotorB.reverseOutput(true);
-        shooterArmPIDMotorB.set(shooterArmPIDMotorA.getDeviceID());
+        intakeArmPIDMotorB = new CANTalon(12);
+        LiveWindow.addActuator("ShooterArm", "shooterArmMotorB", intakeArmPIDMotorB);
+        intakeArmPIDMotorB.setControlMode(5);
+        intakeArmPIDMotorB.reverseOutput(true);
+        intakeArmPIDMotorB.set(intakeArmPIDMotorA.getDeviceID());
         
         intakeintakeMotorA = new CANTalon(6);
         intakeintakeMotorA.setInverted(true);
@@ -201,9 +190,9 @@ public class RobotMap {
         												//**************************retractor*****
         shooterRetractMotorA = new CANTalon(7);
         shooterRetractMotorA.changeControlMode(TalonControlMode.Position);
-        shooterRetractMotorA.setPID(2, 0.0, 0.0);
+        shooterRetractMotorA.setPID(1, 0.0, 0.0);    //2
         shooterRetractMotorA.setAllowableClosedLoopErr(30);
-        shooterRetractMotorA.reverseOutput(false);
+        shooterRetractMotorA.reverseOutput(true);
         shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
         //shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
         shooterRetractMotorA.configNominalOutputVoltage(+4f, -8f);
@@ -214,78 +203,42 @@ public class RobotMap {
         //shooterRetractMotorA.enableReverseSoftLimit(true);
         //shooterRetractMotorA.setReverseSoftLimit(-0.3);
 
+        intakeBallSensor = new DigitalInput(10);
         
         
         LiveWindow.addActuator("ShooterRetract", "shooterRetractMotorA", shooterRetractMotorA);
-        
-        portWheelMotorA= new CANTalon(8);
-        LiveWindow.addActuator("PortWheels", "portWheelMotorA", portWheelMotorA);
-        portWheelMotorA.changeControlMode(TalonControlMode.PercentVbus);
-        portWheelMotorA.set(0);
-        
-        portWheelMotorB= new CANTalon(16);
-        LiveWindow.addActuator("PortWheels", "portWheelMotorB", portWheelMotorB);
-        portWheelMotorB.setControlMode(5);
-        portWheelMotorB.reverseOutput(true);
-        portWheelMotorB.set(8);
  
-        
-        //   Solenoid Module 0  Get in my belly!
+        // ********************************************* SOLENOIDS **********************************
+        //  *** Solenoid Module 0  Get in my belly! ***
         chassisShiftershiftSolenoid = new Solenoid(0, 0);
         powerTakeOffptoSolenoid = new DoubleSolenoid(0, 2, 3);
+        ledGRIPCamera = new Solenoid(0, 6);
+        leftArmLED = new Solenoid(0, 7);
         
-        //   Solenoid Module 1  On the Arm
-        intakeWristintakeWristSolenoid = new Solenoid(1, 0);
-        leftArmLED = new Solenoid(1,1);
-        ShooterPneumaticPin = new Solenoid(1, 2);
-        scalerscalerAirActuator = new Solenoid(1, 3);
-        ledGRIPCamera = new Solenoid(1, 5);
-        gotBallLED = new Solenoid(1, 6);
-        rightArmLED = new Solenoid(1, 7);
+       
+       
+        //  *** Solenoid Module 1  On the Arm ***
+        linearAccElevatorSolenoidA = new DoubleSolenoid(1, 1, 6);
+      //  linearAccElevatorSolenoidB = new Solenoid(1, 7);
+        ballSensorLED = new Solenoid(1,4);
+        ShooterPneumaticPin = new DoubleSolenoid(1, 2, 5);
+        rightArmLED = new Solenoid(0, 1);  //changed for all sensor LED
+        //grapplingHookRelease = new Solenoid(1, 5);
+        grapplingHookRelease = new DoubleSolenoid(1, 0, 7);
 
         
-       // targetLightLight = new Solenoid(1, 7);
+        // *** Target light relay ***
         targetLightLight = new Relay(0, Relay.Direction.kForward);
         
-        //Digital Sensors
+        //*****************************************************  Digital Sensors ********************************
         
-        /*   ALL ENCODERS SWITCHED OVER TO TALON SRX ENCODERS
-        chassisPIDLeftEncoder = new Encoder(0, 1, false, EncodingType.k4X);
-        LiveWindow.addSensor("ChassisPID", "driveEncoder", chassisPIDLeftEncoder);
-        //chassisPIDLeftEncoder.setDistancePerPulse(1.0);
-        //chassisPIDLeftEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
-        LiveWindow.addSensor("ChassisPIDLeftEnc", "Strafe Encoder", chassisPIDLeftEncoder);
-     
-        chassisPIDRightEncoder = new Encoder(2, 3, false, EncodingType.k4X);
-        LiveWindow.addSensor("ChassisPID", "driveEncoder", chassisPIDRightEncoder);
-        //chassisPIDRightEncoder.setDistancePerPulse(1.0);
-        //chassisPIDRightEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
-        LiveWindow.addSensor("ChassisPIDRightEnc", "Strafe Encoder", chassisPIDRightEncoder);
+
         
-        shooterPIDEncoder = new Encoder(4, 5, false, EncodingType.k4X);
-        LiveWindow.addActuator("ShooterArmPID", "shooterArmEncoder", shooterPIDEncoder);
+        chassisPIDultrasonicSensor = new Ultrasonic(8, 9);
+        chassisPIDultrasonicSensor.setEnabled(true);
+        chassisPIDultrasonicSensor.setAutomaticMode(true);
         
-        shooterRetractPIDEncoder = new Encoder(6, 7, false, EncodingType.k4X);
-        LiveWindow.addActuator("ShooterRetract", "shooterRetractPIDEncoder", shooterRetractPIDEncoder);
-        */
-        
-        chassisPIDultrasonicSensor = new Ultrasonic(11, 12);
         LiveWindow.addSensor("ChassisPID", "ultrasonicSensor", chassisPIDultrasonicSensor);
-        
-        intakeLeftBallSensor = new DigitalInput(8);
-        LiveWindow.addSensor("Intake", "ballSensor", intakeLeftBallSensor);
-       
-        intakeRightBallSensor = new DigitalInput(9);
-        LiveWindow.addSensor("Intake", "ballSensor", intakeRightBallSensor);
-        
-        intakeGotBallSensor = new DigitalInput(17);
-        LiveWindow.addSensor("Intake", "ballSensor", intakeGotBallSensor);
-        
-        autonPin19 = new DigitalInput(23);
-        autonPin10 = new DigitalInput(10);
-        
-        
-   
         
         chassisDrive = new RobotDrive(chassisPIDchassisLeft1, chassisPIDchassisRight1);
     	chassisDrive.setMaxOutput(1.0);

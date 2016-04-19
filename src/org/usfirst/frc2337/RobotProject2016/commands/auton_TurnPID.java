@@ -17,9 +17,9 @@ public class auton_TurnPID extends PIDCommand {
 		//chassis_TargetWithGyroPID(String name, double p, double i, double d)
 
 		super("chassis_TargetWithGyroPID", .03, 0, 0.02);
-		getPIDController().setAbsoluteTolerance(0.1);
+		getPIDController().setAbsoluteTolerance(1);
         getPIDController().setContinuous(false);
-        getPIDController().setOutputRange(-1, 1);
+        getPIDController().setOutputRange(-.6, .6);
         targetAngle = angle;
       //  LiveWindow.addActuator("TargetPID", "PIDSubsystem Controller", getPIDController());
 
@@ -32,6 +32,9 @@ public class auton_TurnPID extends PIDCommand {
 
 	protected void usePIDOutput(double output) {
 		//RobotMap.chassisPIDchassisLeft1.set(-output);	
+		if (Math.abs(output)< 0.32) {
+			output = (output > 1 ? 0.32: -0.32);
+		}
 		Robot.chassisPID.arcadeDrive(0, output);
 	}
 

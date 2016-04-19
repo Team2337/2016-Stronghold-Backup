@@ -16,26 +16,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem {
 
 	
-    public final double inhaleSpeed = 0.8;
-    public final double inhaleSlowSpeed = 0.8;
-    private final double exhaleSpeed = 0.8;
-    //private final double prepSpeed = 0.7;
+    public final double inhaleSpeed = 1.0;
+    private final double exhaleSpeed = 1.0;
+    public final double loadSpeed = 0.5;
 
     private final CANTalon intakeMotorA = RobotMap.intakeintakeMotorA;
     private final CANTalon intakeMotorB = RobotMap.intakeintakeMotorB;
-    private final DigitalInput leftBallSensor = RobotMap.intakeLeftBallSensor;
-    private final DigitalInput rightBallSensor = RobotMap.intakeRightBallSensor;
-    private final DigitalInput gotBallSensor = RobotMap.intakeGotBallSensor;
-    		
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    private final DigitalInput ballSensor = RobotMap.intakeBallSensor;
+
 
     public void initDefaultCommand() {
         setDefaultCommand(new intake_DoNothing());
-    	//setDefaultCommand(new intake_ActivateMotors());
 
-        // Set the default command for a subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
     }
     
     /**
@@ -44,14 +36,14 @@ public class Intake extends Subsystem {
      * @param speed(double)
      */
    public void setMotor(double speed) {
-	   intakeMotorA.set(speed);
+	   intakeMotorA.set(-speed);
 	   intakeMotorB.set(-speed);
    }
    /**
     * Sets Intake motors to inhale at the variable inhaleSpeed which is defined at the top of the Intake subsystem
     */
    public void intakeInhale() {
-	   intakeMotorA.set(inhaleSpeed);
+	   intakeMotorA.set(-inhaleSpeed);
 	   intakeMotorB.set(-inhaleSpeed);
    }
    /**
@@ -69,18 +61,6 @@ public class Intake extends Subsystem {
 	   intakeMotorB.set(inhaleSpeed);
    }
    /**
-    * Set fast ramp rate, in volts per second.
-    */
-   public void fastRampRate() {
-	  // RobotMap.intakeintakeMotorB.setVoltageRampRate(600);
-   }
-   /**
-    * Set slow ramp rate, in volts per second.
-    */
-   public void slowRampRate() {
-	  // RobotMap.intakeintakeMotorB.setVoltageRampRate(6);
-   }
-   /**
     * Sets the motor speed for the intake to zero thereby stopping the intake. 
     */
    public void stopMotors() {
@@ -91,27 +71,9 @@ public class Intake extends Subsystem {
     * See if the ball is center on left side 
     * @return
     */
-   public boolean getLeftBallSensorState() {
-	   //RobotMap.leftBallSensorState = leftBallSensor.get();
-	   return leftBallSensor.get();
+   public boolean getBallSensorState() {
+	   return !ballSensor.get();
    }
-   /**
-    *  See if the ball is center on right side 
-    * @return
-    */
-   public boolean getRightBallSensorState() {
-	   //RobotMap.rightBallSensorState = rightBallSensor.get();
-	   return rightBallSensor.get();
-   }
-   /**
-    *  See if a ball is in the intake
-    * @return
-    */
-   public boolean gotBallSensorState() {
-	   //RobotMap.gotBallSensorState = gotBallSensor.get();
-	   return gotBallSensor.get();
-   }
-   
-   
+
 }
 

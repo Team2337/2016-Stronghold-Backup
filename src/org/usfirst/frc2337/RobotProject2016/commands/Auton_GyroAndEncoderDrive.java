@@ -34,6 +34,12 @@ public class Auton_GyroAndEncoderDrive extends Command {
 	    	m_speed = speed;
 	    	
 	    }
+	  
+	  public Auton_GyroAndEncoderDrive(double speed, double timeout) {
+		   	requires(Robot.chassisPID);
+		   	m_timeout = timeout;
+	    	m_speed = speed;
+	    }
 		 
 	  public Auton_GyroAndEncoderDrive(double speed, int encoderTarget, double timeout) {
 		   	requires(Robot.chassisPID);

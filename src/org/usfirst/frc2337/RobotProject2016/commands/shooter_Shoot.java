@@ -15,6 +15,7 @@ public class shooter_Shoot extends Command {
 		
 	}
 	protected void initialize() {
+		setTimeout(3.0);
 		// Disengages the shooter pin
 		/*
 		if((Robot.intakeWrist.getIntakeWristStatus()) && (RobotMap.okToShoot) && (RobotMap.shooterRetractPrimed) && (RobotMap.shooterRetractRetracted)) {
@@ -32,11 +33,11 @@ public class shooter_Shoot extends Command {
 
 	protected boolean isFinished() {
 		return true;
+		//return isTimedOut();
 	}
 
 
 	protected void end() {
-		RobotMap.okToShoot = false;
 		RobotMap.shooterRetractPrimed = false;
 		//Robot.shooter.shooterUnShoot();
 		

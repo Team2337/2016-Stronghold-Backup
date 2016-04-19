@@ -11,7 +11,7 @@ public class shooterRetract_Prime extends Command{
 		requires(Robot.shooterRetractor);
 	}
 	protected void initialize() {
-		Robot.shooter.shooterUnShoot();
+		//Robot.shooter.shooterUnShoot();
 		Robot.shooterRetractor.retractorPrimedPosition();
 		RobotMap.shooterRetractRetracted = false;
 		setTimeout(3.0);
@@ -33,6 +33,7 @@ public class shooterRetract_Prime extends Command{
 		} else {
 			RobotMap.shooterRetractPrimed = false;
 		}
+		Robot.shooter.shooterUnShoot();
 	}
 
 	protected void interrupted() {

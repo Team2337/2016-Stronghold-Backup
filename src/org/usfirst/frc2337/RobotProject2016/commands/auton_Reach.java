@@ -13,9 +13,9 @@ public class auton_Reach extends CommandGroup {
 	public auton_Reach()
 	{
 		//addSequential(new shooterRetract_Prep());				//prep shooter retracter
-    	addParallel(new intake_ActivateMotors());  			//activate intake and run parallel as it does not finish...
-    	addSequential(new shooterArm_armSetPointTravel());
-		addSequential(new Auton_GyroAndEncoderDrive(0.3, 16029, 4.0));  //22029		//TODO   NEED TO SET DISTANCE 
-		addSequential(new intake_DoNothing());  	
+    	//addParallel(new intake_Inhale());  			//activate intake and run parallel as it does not finish...
+    	addSequential(new intakeArm_armSetPointAutonTravel());
+		addSequential(new Auton_GyroAndEncoderDrive(0.3, -16029, 4.0));  //22029		//TODO   NEED TO SET DISTANCE 
+		//addSequential(new intake_DoNothing());  	
 	}
 }

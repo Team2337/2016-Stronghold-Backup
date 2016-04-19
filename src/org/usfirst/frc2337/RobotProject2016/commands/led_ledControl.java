@@ -3,6 +3,7 @@ package org.usfirst.frc2337.RobotProject2016.commands;
 import org.usfirst.frc2337.RobotProject2016.Robot;
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class led_ledControl extends Command {
@@ -14,28 +15,23 @@ public class led_ledControl extends Command {
 	}
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-		shooterArmPotLightEngage = Robot.shooterArmPID.layupShot *.9;
+		Robot.Led.ledOn_GRIPCamera();
 	}
 
 	@Override
 	protected void execute() {
-		if (RobotMap.gotBallSensorState) {
-			Robot.Led.gotBallOn();
+		if (Robot.intake.getBallSensorState()) {
+			Robot.Led.ballSensorLEDOn();
 		} else {
-			Robot.Led.gotBallOff();
+			Robot.Led.ballSensorLEDOff();
 		}
-		
-		if (RobotMap.shooterArmPIDshooterArmPot.get() > shooterArmPotLightEngage) {
+		/*
+		if (RobotMap.linearAccElevatorSolenoidA.get()) {
 			Robot.Led.lightOn();
-			Robot.Led.ledOn_GRIPCamera();
 		} else {
 			Robot.Led.lightOff();
-			Robot.Led.ledOff_GRIPCamera();
 		}
-		
-		
-		
+		*/
 	}
 
 	@Override

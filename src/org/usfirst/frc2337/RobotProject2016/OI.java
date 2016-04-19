@@ -1,4 +1,5 @@
 
+
 package org.usfirst.frc2337.RobotProject2016;
 
 import org.usfirst.frc2337.RobotProject2016.commands.*;
@@ -183,30 +184,30 @@ public class OI {
         //operator button
         
         inhale = new AnalogAxisButton(operatorJoystick, Right_trigger, 0.5);
-        inhale.whileHeld(new intake_ActivateMotors());
+        inhale.whileHeld(new intake_Inhale());
         
         exhale = new AnalogAxisButton(operatorJoystick, Left_trigger, 0.5);
-        exhale.whileHeld(new shooterArm_armSetPointBase());
+        exhale.whileHeld(new intakeArm_armSetPointIntake());
         
         
         shortshot = new JoystickButton(operatorJoystick, Green_A);
-        shortshot.whenPressed(new shooterArm_armSetPointShortShot());
+        shortshot.whenPressed(new intakeArm_armSetPointGround());
         
         batterShot = new JoystickButton(operatorJoystick, Yellow_Y);
-        batterShot.whenPressed(new shooterArm_armSetPointBatterShot());
+        batterShot.whenPressed(new intakeArm_armSetPointLoad());
         
         longshot = new JoystickButton(operatorJoystick, Red_B);
-        longshot.whenPressed(new shooterArm_armSetPointLongShot());
+        longshot.whenPressed(new intakeArm_armSetPointLowGoal());
         
         travel = new JoystickButton(operatorJoystick, Blue_X);
-        travel.whenPressed(new shooterArm_armSetPointTravel());
+        travel.whenPressed(new linAccElevator_Extend());
         
         base = new JoystickButton(operatorJoystick, Right_Bumper);
         base.whileHeld(new intake_Exhale());
         
         wrist = new JoystickButton(operatorJoystick, Left_Bumper);
-        wrist.whenPressed(new intakeWrist_Extend());
-        wrist.whenReleased(new intakeWrist_Retract());
+        wrist.whenPressed(new linAccElevator_Extend());
+        wrist.whenReleased(new linAccElevator_Retract());
         
        // intakeDoNo = new JoystickButton(operatorJoystick, Start_Button);
        // intakeDoNo.whenPressed(new intake_DoNothing());
@@ -221,27 +222,40 @@ public class OI {
         retractorManualDown = new JoystickButton(operatorControls, 1);
         retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
        
-        //BlackButton = new JoystickButton(operatorControls, 3);
-        //BlackButton.whenPressed(new shooterArm_LowerWithGyro());
+        BlackButton = new JoystickButton(operatorControls, 3);
+        BlackButton.whenPressed(new shooterRetract_Prime());
+        //BlackButton.whenPressed(new linAccElevator_Extend());
+        //BlackButton.whenReleased(new linAccElevator_Retract());
+        
+        
         
         BlueButton = new JoystickButton(operatorControls, 4);
-        BlueButton.whenPressed(new shooterArm_armSetPointScale());
+        //BlueButton.whenPressed(new intakeArm_armSetPointScale());
+        BlueButton.whenPressed(new shooterRetract_Prep());
+        //BlueButton.whenPressed(new shooter_Shoot());
+        //BlueButton.whenReleased(new shooter_UnShoot());
         
         scale = new JoystickButton(operatorControls, 5);
-        scale.whenPressed(new scaler_pinPullOut());
-        scale.whenReleased(new scaler_Deactivate());
+        //scale.whenPressed(new scaler_pinPullOut());
+        //scale.whenReleased(new scaler_Deactivate());
         
        // PTO  = new JoystickButton(operatorControls, 5);        
         //PTO.whileHeld(new scaler_PTOandClimbCG());
         //PTO.whenReleased(new shooterArm_LowerWithGyro());
         
         clearSwitch = new JoystickButton(operatorControls, 6);
-        clearSwitch.whenPressed(new shooterArm_StopPID());
-        clearSwitch.whenReleased(new shooterArm_StartPID());
+        clearSwitch.whenPressed(new intakeArm_StopPID());
+        clearSwitch.whenReleased(new intakeArm_StartPID());
         
-       // blueSwitch = new JoystickButton(operatorControls, 9);
-       // blueSwitch.whenPressed(new scaler_pinPullOut());
-       // blueSwitch.whenReleased(new scaler_Deactivate());
+        blackSwitch = new JoystickButton(operatorControls, 8); 
+        blackSwitch.whenPressed(new linAccElevator_Extend());
+        blackSwitch.whenReleased(new linAccElevator_Retract());
+        
+        blueSwitch = new JoystickButton(operatorControls, 9);
+        blueSwitch.whenPressed(new scaler_pinPushIn());
+       // blueSwitch.whenReleased(new scaler_pinPullOut());
+        //blueSwitch.whenPressed(new linAccElevator_Extend());
+        //blueSwitch.whenReleased(new linAccElevator_Retract());
         
         yellowSwitch = new JoystickButton(operatorControls, 10);
         yellowSwitch.whenPressed(new scaler_PTOandClimbCG());

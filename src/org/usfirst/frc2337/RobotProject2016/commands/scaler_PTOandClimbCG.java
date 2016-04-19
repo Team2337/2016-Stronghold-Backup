@@ -6,7 +6,7 @@ public class scaler_PTOandClimbCG extends CommandGroup {
 
 	public scaler_PTOandClimbCG() {
 		addSequential(new PTO_Activate());
-		addSequential(new shooterArm_BrakeMode());
+		addSequential(new intakeArm_BrakeMode());
 		
 		
 		

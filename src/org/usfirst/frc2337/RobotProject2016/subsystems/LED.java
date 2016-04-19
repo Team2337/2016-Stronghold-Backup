@@ -28,10 +28,10 @@ public class LED extends Subsystem {
 	
 	private final Solenoid GRIPCameraLed = RobotMap.ledGRIPCamera;
 	//private final Solenoid targetingLight = RobotMap.targetLightLight;
-	private final Solenoid gotBall = RobotMap.gotBallLED;
 	private final Relay targetingLight = RobotMap.targetLightLight;
 	private final Solenoid rightArm = RobotMap.rightArmLED;
 	private final Solenoid leftArm = RobotMap.leftArmLED;
+	private final Solenoid ballLED = RobotMap.ballSensorLED;
    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
@@ -72,13 +72,11 @@ public class LED extends Subsystem {
     	//targetingLight.set(false);
     	targetingLight.set(Relay.Value.kOff);
     }
-    
-    public void gotBallOn() {
-    	gotBall.set(true);
+    public void ballSensorLEDOn(){
+    	ballLED.set(true);
     }
-    
-    public void gotBallOff() {
-    	gotBall.set(false);
+    public void ballSensorLEDOff(){
+    	ballLED.set(false);
     }
     
 
