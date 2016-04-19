@@ -26,7 +26,10 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser autonChooser;
+    SendableChooser posChooser;
 
+    public static int auton_pos; 
+    
     public static OI oi;
 
     public static Intake intake;
@@ -87,10 +90,17 @@ public class Robot extends IterativeRobot {
         autonChooser.addObject("Cross Flat Def. then re-Cross", new auton_CrossThenReverse());
         autonChooser.addObject("Cross Turn: LEFT", new auton_CrossWithTurn(1));
         autonChooser.addObject("Cross Turn: RIGHT", new auton_CrossWithTurn(0));
-       
         //autonChooser.addObject("Main", new auton_MainCG()); 
        // autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         
+        
+        //SendableChooser pos!
+        posChooser = new SendableChooser();
+        posChooser.addDefault("Do Nothing", auton_pos = 0);
+        posChooser.addObject("2", auton_pos = 2);
+        posChooser.addObject("3", auton_pos = 3);
+        posChooser.addObject("4", auton_pos = 4);
+        posChooser.addObject("5", auton_pos = 5);
         
         RobotMap.gyro.reset();
 
@@ -174,7 +184,7 @@ public class Robot extends IterativeRobot {
 
     	
     	
-    	
+    	int select_pos = (int) posChooser.getSelected();
     	autonomousCommand = (Command) autonChooser.getSelected();
     	//autonomousCommand = new auton_MainCG();
         if (autonomousCommand != null) autonomousCommand.start();
