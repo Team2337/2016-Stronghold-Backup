@@ -100,6 +100,7 @@ public class RobotMap {
     public static double centerpnt = 172;
     public static boolean shooterArmDisabled = false;
     
+
     
     
     //Start of init

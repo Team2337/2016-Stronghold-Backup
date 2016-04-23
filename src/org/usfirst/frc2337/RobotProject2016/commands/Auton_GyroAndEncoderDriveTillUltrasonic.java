@@ -24,8 +24,9 @@ public class Auton_GyroAndEncoderDriveTillUltrasonic extends Command {
 	public double m_rollAngle;
 	public double m_distance;
 	public boolean rolled = false;
-
-
+	public double m_roll = 50;
+	public double current_roll;
+	
 		 /**
 		  * Drive until Timeout or roll increases
 		  * @param speed
@@ -37,6 +38,14 @@ public class Auton_GyroAndEncoderDriveTillUltrasonic extends Command {
 		   	m_timeout = timeout;
 	    	m_speed = -speed;
 	    	m_distance = distance;
+	    }
+	  
+	  public Auton_GyroAndEncoderDriveTillUltrasonic(double speed, double timeout, double distance, double roll) {
+		   	requires(Robot.chassisPID);
+		   	m_timeout = timeout;
+	    	m_speed = -speed;
+	    	m_distance = distance;
+	    	m_roll = roll;
 	    }
 
 	  
@@ -52,6 +61,8 @@ public class Auton_GyroAndEncoderDriveTillUltrasonic extends Command {
     protected void execute() {
     	yaw = -RobotMap.gyro.getYaw();
     	distance = RobotMap.chassisPIDultrasonicSensor.getRangeInches();
+    	current_roll = RobotMap.gyro.getRoll();
+    	
     	//RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
     	//RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
     	RobotMap.chassisDrive.arcadeDrive(m_speed, yaw*Kp, false); //TODO check yaw direction okay..
@@ -59,7 +70,7 @@ public class Auton_GyroAndEncoderDriveTillUltrasonic extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-         return (distance < m_distance || isTimedOut());
+         return (distance < m_distance || isTimedOut() || current_roll < m_roll);
     }
 
     // Called once after isFinished returns true
