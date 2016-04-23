@@ -26,6 +26,11 @@ public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser autonChooser;
+    SendableChooser locationChooser;
+    SendableChooser shotChooser;
+    SendableChooser delayChooser;
+    SendableChooser defensechooser;
+    
 
     public static OI oi;
 
@@ -43,6 +48,10 @@ public class Robot extends IterativeRobot {
     public static targetLED targetLED;
 
     public static Preferences prefs;
+    public static int autonPosition;
+    public static int autonshot;
+    public static int autondelay;
+    public static String autondefense;
     //public static Preferences prefsShooterRetract;
 
     /**
@@ -73,21 +82,62 @@ public class Robot extends IterativeRobot {
 
         // Autonomous
         
+        locationChooser = new SendableChooser();
+
+		
+		locationChooser.addObject("Pos 2", 2);
+		locationChooser.addObject("Pos 3", 3);
+		locationChooser.addObject("Pos 4", 4);
+		locationChooser.addObject("Pos 5", 5);
+		
+        
+		shotChooser = new SendableChooser();
+		shotChooser.addDefault("Stop", 0);
+		shotChooser.addObject("Drop Ball", 1);
+		shotChooser.addObject("Shoot High", 2);
+		shotChooser.addObject("Return (only cross)", 3);
+		
+		delayChooser = new SendableChooser();
+		delayChooser.addDefault("No Delay", 0);
+		delayChooser.addObject("5 Second Delay", 5);
+		delayChooser.addObject("8 Second Delay", 8);
+		
+		
+		
+		
+		
+		
+		defensechooser = new SendableChooser();
+		defensechooser.addDefault("Do Nothing", "nothing");
+		defensechooser.addObject("Reach", "reach");
+		defensechooser.addObject("Cross Flat Defenses", "cross");     
+		defensechooser.addObject("Chevy","chevy"); 
+		defensechooser.addObject("Portcullis", "port"); 
+		
+		//defensechooser.addObject("Cross Turn: LEFT", new auton_CrossWithTurn(1));
+		//defensechooser.addObject("Cross Turn: RIGHT", new auton_CrossWithTurn(0));
+		
+		
+		
+		
+		/*
+    	
         autonChooser = new SendableChooser();
         autonChooser.addDefault("Do Nothing", new auton_Wait(15));
         autonChooser.addObject("Reach", new auton_Reach());
         autonChooser.addObject("Cross Flat Defenses", new auton_Cross());     
-        //autonChooser.addObject("Low Bar", new auton_LowBar()); 
-        autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
         autonChooser.addObject("Chevy", new auton_Chevy()); 
-        autonChooser.addObject("Chevy Pos 3 or 4 and shoot high", new auton_ChevyPos3and4Shoot()); 
         autonChooser.addObject("Portcullis", new auton_Portcullis()); 
-        autonChooser.addObject("Portcullis and shoot high", new auton_PortcullisAndShoot()); 
-        //autonChooser.addObject("Distance Test", new auton_DistanceTest()); 
-        autonChooser.addObject("Cross Flat Def. then re-Cross", new auton_CrossThenReverse());
         autonChooser.addObject("Cross Turn: LEFT", new auton_CrossWithTurn(1));
         autonChooser.addObject("Cross Turn: RIGHT", new auton_CrossWithTurn(0));
-       
+        */
+		
+        //autonChooser.addObject("Low Bar", new auton_LowBar()); 
+        //autonChooser.addObject("Cross And Shoot", new auton_CrossAndShoot()); 
+      //autonChooser.addObject("Chevy Pos 3 or 4 and shoot high", new auton_ChevyPos3and4Shoot()); 
+        //autonChooser.addObject("Portcullis and shoot high", new auton_PortcullisAndShoot()); 
+        //autonChooser.addObject("Distance Test", new auton_DistanceTest()); 
+        //autonChooser.addObject("Cross Flat Def. then re-Cross", new auton_CrossThenReverse());
         //autonChooser.addObject("Main", new auton_MainCG()); 
        // autonChooser.addObject("Roll with it!", new Auton_GyroAndEncoderDriveTillRoll(0.3, 10.0, -6));
         
@@ -99,13 +149,19 @@ public class Robot extends IterativeRobot {
 
 	public void robotPeriodic() {
 		LiveWindow.run();
-		SmartDashboard.putData(		"Auton Chooser", 		autonChooser);	
+	
+		SmartDashboard.putData(		"Defense Chooser", 		defensechooser);	
+		//SmartDashboard.putData(		"Auton Chooser", 		autonChooser);	
+		SmartDashboard.putData(		"Position Chooser", 		locationChooser);	
+		SmartDashboard.putData(		"Shot Chooser", 		shotChooser);
+		SmartDashboard.putData(		"Delay Chooser", 		delayChooser);
+		
 	  //SmartDashboard.putBoolean(  "IMU_Connected",        RobotMap.gyro.isConnected());
       //SmartDashboard.putBoolean(  "IMU_IsCalibrating",    RobotMap.gyro.isCalibrating());
       SmartDashboard.putNumber(   "IMU_Yaw",              RobotMap.gyro.getYaw());
       SmartDashboard.putNumber(   "IMU_ANGLE",             RobotMap.gyro.getAngle());
       SmartDashboard.putNumber(   "IMU_ROLL",             RobotMap.gyro.getRoll());
-      SmartDashboard.putNumber(   "IMU_PITCH",             RobotMap.gyro.getPitch());
+      //SmartDashboard.putNumber(   "IMU_PITCH",             RobotMap.gyro.getPitch());
 
       SmartDashboard.putNumber("Left Speed" , RobotMap.chassisPIDchassisLeft1.get());
       SmartDashboard.putNumber("Right Speed" , RobotMap.chassisPIDchassisRight1.get());
@@ -114,31 +170,32 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putBoolean("Shifter Status" , RobotMap.chassisShiftershiftSolenoid.get());
       SmartDashboard.putNumber("String pot" , RobotMap.shooterArmPIDshooterArmPot.get());
       SmartDashboard.putBoolean("Do We See the Target?" , RobotMap.seeTarget);
-      SmartDashboard.putNumber("Retractor: get", RobotMap.shooterRetractMotorA.get());
+      //SmartDashboard.putNumber("Retractor: get", RobotMap.shooterRetractMotorA.get());
       SmartDashboard.putBoolean("Retractor: shooterRetractPrimed", RobotMap.shooterRetractPrimed);
       SmartDashboard.putBoolean("Retractor: shooterRetractRetracted", RobotMap.shooterRetractRetracted);
-      //SmartDashboard.putData(Robot.shooterRetractor.getCurrentCommand());
-      SmartDashboard.putNumber("Retractor: CL err:", RobotMap.shooterRetractMotorA.getClosedLoopError());
-      SmartDashboard.putNumber("Retractor: getError", RobotMap.shooterRetractMotorA.getError());
+      SmartDashboard.putData(Robot.shooterRetractor.getCurrentCommand());
+      //SmartDashboard.putNumber("Retractor: CL err:", RobotMap.shooterRetractMotorA.getClosedLoopError());
+      //SmartDashboard.putNumber("Retractor: getError", RobotMap.shooterRetractMotorA.getError());
       //SmartDashboard.putNumber("Retractor: getEncpos", RobotMap.shooterRetractMotorA.getEncPosition());
       //SmartDashboard.putNumber("Retractor: ouputVoltage", RobotMap.shooterRetractMotorA.getOutputVoltage());
       //SmartDashboard.putNumber("Retractor: PW Velocity", RobotMap.shooterRetractMotorA.getPulseWidthPosition());
-      SmartDashboard.putNumber("Retractor: getPosition", RobotMap.shooterRetractMotorA.getPosition());
+      SmartDashboard.putNumber("Retractor: getPositionn", RobotMap.shooterRetractMotorA.getPosition());
       SmartDashboard.putNumber("Retractor: getSetpoint", RobotMap.shooterRetractMotorA.getSetpoint());
-      
-     
       SmartDashboard.putNumber("Drive Encoder Get", Robot.chassisPID.readLeftEncoder());
-      
+      //SmartDashboard.putNumber("Retractor: getfish", RobotMap.shooterRetractMotorA.get());
+      //SmartDashboard.putNumber("Retractor: getencpos", RobotMap.shooterRetractMotorA.getEncPosition());
+      SmartDashboard.putBoolean("Retractor: isRevLimitSwitchClosed", RobotMap.shooterRetractMotorA.isRevLimitSwitchClosed());
+      SmartDashboard.putNumber("Retractor: lastpos", RobotMap.shooterRetractMotorA.getPosition());
       //SmartDashboard.putBoolean("Shooter - Shoot", RobotMap.ShooterPneumaticPin.get());
-      SmartDashboard.putData("Shooter - Shoot", Robot.shooter);
-      SmartDashboard.putData("Linear Elevator Status", Robot.linAccElevator);
+      //SmartDashboard.putData("Shooter - Shoot", Robot.shooter);
+      //SmartDashboard.putData("Linear Elevator Status", Robot.linAccElevator);
       
       SmartDashboard.putBoolean("Intake Ball Sensor", Robot.intake.getBallSensorState());
       SmartDashboard.putBoolean("Retractor Limit", Robot.shooterRetractor.onLimitSwitch());
       
       //SmartDashboard.putBoolean("Linear Elevator Status",  Robot.linAccElevator.getLinAccElevatorStatus());
-      SmartDashboard.putBoolean("Ultrasonic State",  RobotMap.chassisPIDultrasonicSensor.isEnabled());
-      SmartDashboard.putNumber("Ultrasonic Diatance",  RobotMap.chassisPIDultrasonicSensor.getRangeInches());
+      //SmartDashboard.putBoolean("Ultrasonic State",  RobotMap.chassisPIDultrasonicSensor.isEnabled());
+      SmartDashboard.putNumber("Ultrasonic Distance",  RobotMap.chassisPIDultrasonicSensor.getRangeInches());
 
       
   
@@ -169,14 +226,15 @@ public class Robot extends IterativeRobot {
     	RobotMap.intakeArmPIDMotorB.enableBrakeMode(false);
     	RobotMap.shooterRetractMotorA.setEncPosition(0);
     	Robot.powerTakeOff.LiftOff();
+    	//new shooterRetract_PrimeManual();
     	
-    	
-
-    	
-    	
-    	
-    	autonomousCommand = (Command) autonChooser.getSelected();
-    	//autonomousCommand = new auton_MainCG();
+    	autondelay = (int) delayChooser.getSelected();
+		autonPosition = (int) locationChooser.getSelected();
+    	autondefense = (String) defensechooser.getSelected();
+    	autonshot = (int) shotChooser.getSelected();
+    	//System.out.println("shot " + RobotMap.autonshot + " Pos " + RobotMap.autonPosition + " " + RobotMap.autondelay);
+    	//autonomousCommand = (Command) autonChooser.getSelected();
+    	autonomousCommand = new auton_MainCGCMP(autondelay, autonPosition, autondefense, autonshot); 
         if (autonomousCommand != null) autonomousCommand.start();
         
 
@@ -198,6 +256,7 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
         RobotMap.shooterRetractMotorA.setEncPosition(0);
+        //new shooterRetract_PrimeManual();
         //Robot.scaler.pinIn();
         
     }

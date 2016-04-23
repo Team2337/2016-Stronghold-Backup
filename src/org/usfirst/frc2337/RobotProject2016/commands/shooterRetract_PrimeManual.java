@@ -13,7 +13,7 @@ public class shooterRetract_PrimeManual extends Command{
 		requires(Robot.shooterRetractor);
 	}
 	protected void initialize() {
-		setTimeout(2.5);
+		setTimeout(4);
 		Robot.shooter.shooterShoot();
 		RobotMap.shooterRetractRetracted = false;
 		RobotMap.shooterRetractMotorA.changeControlMode(TalonControlMode.PercentVbus);
