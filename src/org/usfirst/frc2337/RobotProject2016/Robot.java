@@ -256,6 +256,8 @@ public class Robot extends IterativeRobot {
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
         RobotMap.shooterRetractMotorA.setEncPosition(0);
+        //RobotMap.shooterRetractMotorA.setSetpoint(RobotMap.shooterRetractMotorA.getPosition());
+        RobotMap.shooterRetractMotorA.disable();
         //new shooterRetract_PrimeManual();
         //Robot.scaler.pinIn();
         

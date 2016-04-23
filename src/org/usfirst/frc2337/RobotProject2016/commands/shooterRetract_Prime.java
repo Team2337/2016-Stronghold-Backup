@@ -34,6 +34,7 @@ public class shooterRetract_Prime extends Command{
 			RobotMap.shooterRetractPrimed = false;
 		}
 		Robot.shooter.shooterUnShoot();
+		RobotMap.shooterRetractMotorA.disable();   ///  Testing on Can Drive day
 	}
 
 	protected void interrupted() {

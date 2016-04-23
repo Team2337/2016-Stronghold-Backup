@@ -13,6 +13,7 @@ public class shooterRetract_PrimeManual extends Command{
 		requires(Robot.shooterRetractor);
 	}
 	protected void initialize() {
+		RobotMap.shooterRetractMotorA.enable();
 		setTimeout(4);
 		Robot.shooter.shooterShoot();
 		RobotMap.shooterRetractRetracted = false;
