@@ -186,7 +186,7 @@ public class Robot extends IterativeRobot {
       //SmartDashboard.putNumber("Retractor: getencpos", RobotMap.shooterRetractMotorA.getEncPosition());
       SmartDashboard.putBoolean("Retractor: isRevLimitSwitchClosed", RobotMap.shooterRetractMotorA.isRevLimitSwitchClosed());
       SmartDashboard.putNumber("Retractor: lastpos", RobotMap.shooterRetractMotorA.getPosition());
-      //SmartDashboard.putBoolean("Shooter - Shoot", RobotMap.ShooterPneumaticPin.get());
+      SmartDashboard.putBoolean("Retractor: SlidePINSensor", RobotMap.slidePINSensor.get());
       //SmartDashboard.putData("Shooter - Shoot", Robot.shooter);
       //SmartDashboard.putData("Linear Elevator Status", Robot.linAccElevator);
       

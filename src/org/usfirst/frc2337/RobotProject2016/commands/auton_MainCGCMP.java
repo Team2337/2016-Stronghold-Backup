@@ -1,4 +1,4 @@
-package org.usfirst.frc2337.RobotProject2016;
+package org.usfirst.frc2337.RobotProject2016.commands;
 
 
 import org.usfirst.frc2337.RobotProject2016.commands.*;

@@ -56,6 +56,7 @@ public class RobotMap {
     //public static CameraServer cam0;
     
     public static DigitalInput intakeBallSensor;
+    public static DigitalInput slidePINSensor;
     
     
 
@@ -205,6 +206,7 @@ public class RobotMap {
         //shooterRetractMotorA.setReverseSoftLimit(-0.3);
 
         intakeBallSensor = new DigitalInput(10);
+        slidePINSensor = new DigitalInput(11);
         
         
         LiveWindow.addActuator("ShooterRetract", "shooterRetractMotorA", shooterRetractMotorA);

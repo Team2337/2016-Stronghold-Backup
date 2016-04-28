@@ -235,9 +235,10 @@ public class OI {
         //BlueButton.whenPressed(new shooter_Shoot());
         //BlueButton.whenReleased(new shooter_UnShoot());
         
+        
         scale = new JoystickButton(operatorControls, 5);
-        //scale.whenPressed(new scaler_pinPullOut());
-        //scale.whenReleased(new scaler_Deactivate());
+        scale.whenPressed(new shooter_Shoot());
+        scale.whenReleased(new shooter_UnShoot());
         
        // PTO  = new JoystickButton(operatorControls, 5);        
         //PTO.whileHeld(new scaler_PTOandClimbCG());

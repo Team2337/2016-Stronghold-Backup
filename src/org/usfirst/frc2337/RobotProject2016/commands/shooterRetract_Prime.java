@@ -14,7 +14,7 @@ public class shooterRetract_Prime extends Command{
 		//Robot.shooter.shooterUnShoot();
 		Robot.shooterRetractor.retractorPrimedPosition();
 		RobotMap.shooterRetractRetracted = false;
-		setTimeout(3.0);
+		setTimeout(4.0);
 	}
 
 	protected void execute() {
