@@ -20,11 +20,13 @@ public class shooter_ShootCG extends CommandGroup {
     	//addSequential(new auton_Wait(2.5));   
     	addSequential(new shooter_Shoot());
     	addSequential(new auton_Wait(0.5));  	
-    	addSequential(new shooterRetract_Prime());
+    	addSequential(new shooterRetract_PrimeManual());
     	//addSequential(new shooter_UnShoot());
     	//turn PID off    	
+    	addSequential(new auton_Wait(0.5));
+    	
     	addSequential(new shooterRetract_Prep());
-    	addSequential(new shooterRetractor_disablePID());
+    	//addSequential(new shooterRetractor_disablePID());
     	//addSequential(new linAccElevator_Retract());   //maybe move up to after shoot+shoot and run parallel after shorter wait
 
 

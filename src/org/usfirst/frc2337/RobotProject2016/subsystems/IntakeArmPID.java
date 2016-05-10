@@ -24,7 +24,7 @@ public class IntakeArmPID extends PIDSubsystem {
     public double autontravel = 2.8;  
    // public double base = 2.55; 
     public double chevy = 4;
-    public double loadPosition = 2.6;
+    public double loadPosition = 2.7;
     public double intakeRollerOffPosition = 2.8;
     public double lowGoalPosition = 3.55;
     public double intakePosition = 4.56;

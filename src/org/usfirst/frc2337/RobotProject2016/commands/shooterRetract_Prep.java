@@ -16,7 +16,7 @@ public class shooterRetract_Prep extends Command{
 		RobotMap.shooterRetractMotorA.enable();
 		Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.preppedRetractorPosition);
 		
-		setTimeout(1);
+		setTimeout(4);
 		}
 
 	protected void execute() {
@@ -25,9 +25,10 @@ public class shooterRetract_Prep extends Command{
 
 	protected boolean isFinished() {
 		if (Robot.shooterRetractor.preppedOnTarget()) {
-			//System.out.println("on Target");
+		   //System.out.println("on Target");
 		}
 		return (Robot.shooterRetractor.preppedOnTarget() || isTimedOut());
+		
 		//return false;
 }
 
@@ -36,6 +37,7 @@ public class shooterRetract_Prep extends Command{
 		//System.out.println(timeSinceInitialized());
 		//System.out.println("INIT**************************************************************");
 		RobotMap.shooterRetractRetracted = true;   
+		RobotMap.shooterRetractMotorA.disable();
 	}
 
 	protected void interrupted() {

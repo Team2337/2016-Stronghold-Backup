@@ -29,7 +29,8 @@ public class auton_MainCGCMP extends  CommandGroup {
 			addSequential(new Auton_GyroAndEncoderDrive(0.7, -55029, 8.0));  // -65029  ?? if you change this change the return
 			
 			if (shot == 3) {
-				addSequential(new auton_Wait(1));
+				addSequential(new intakeArm_armSetPointLowGoal());
+				addSequential(new auton_intake_Exhale());
 				addSequential(new Auton_GyroAndEncoderDrive(0.7, 48000, 8.0));
 				addSequential(new auton_Wait(1));
 				addSequential(new auton_TurnPID(150));     

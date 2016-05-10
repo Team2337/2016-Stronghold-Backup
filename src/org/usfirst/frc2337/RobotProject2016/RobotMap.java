@@ -215,7 +215,7 @@ public class RobotMap {
         //  *** Solenoid Module 0  Get in my belly! ***
         chassisShiftershiftSolenoid = new Solenoid(0, 0);
         powerTakeOffptoSolenoid = new DoubleSolenoid(0, 2, 3);
-        ledGRIPCamera = new Solenoid(0, 6);
+        
         leftArmLED = new Solenoid(0, 7);
         
        
@@ -223,11 +223,12 @@ public class RobotMap {
         //  *** Solenoid Module 1  On the Arm ***
         linearAccElevatorSolenoidA = new DoubleSolenoid(1, 1, 6);
       //  linearAccElevatorSolenoidB = new Solenoid(1, 7);
+        ledGRIPCamera = new Solenoid(1, 3);
         ballSensorLED = new Solenoid(1,4);
         ShooterPneumaticPin = new DoubleSolenoid(1, 2, 5);
         rightArmLED = new Solenoid(0, 1);  //changed for all sensor LED
         //grapplingHookRelease = new Solenoid(1, 5);
-        grapplingHookRelease = new DoubleSolenoid(1, 0, 7);
+        grapplingHookRelease = new DoubleSolenoid(1, 7, 0);
 
         
         // *** Target light relay ***
@@ -237,7 +238,7 @@ public class RobotMap {
         
 
         
-        chassisPIDultrasonicSensor = new Ultrasonic(8, 9);
+        chassisPIDultrasonicSensor = new Ultrasonic(12, 13);
         chassisPIDultrasonicSensor.setEnabled(true);
         chassisPIDultrasonicSensor.setAutomaticMode(true);
         

@@ -53,6 +53,7 @@ public class Robot extends IterativeRobot {
     public static int autondelay;
     public static String autondefense;
     //public static Preferences prefsShooterRetract;
+    public boolean whitebutton;
 
     /**
      * This function is run when the robot is first started up and should be
@@ -165,7 +166,7 @@ public class Robot extends IterativeRobot {
 
       SmartDashboard.putNumber("Left Speed" , RobotMap.chassisPIDchassisLeft1.get());
       SmartDashboard.putNumber("Right Speed" , RobotMap.chassisPIDchassisRight1.get());
-      SmartDashboard.putNumber(   "Turn_Yaw",              RobotMap.gyro.getYaw()*.05);
+      //SmartDashboard.putNumber(   "Turn_Yaw",              RobotMap.gyro.getYaw()*.05);
      
       SmartDashboard.putBoolean("Shifter Status" , RobotMap.chassisShiftershiftSolenoid.get());
       SmartDashboard.putNumber("String pot" , RobotMap.shooterArmPIDshooterArmPot.get());
@@ -173,7 +174,7 @@ public class Robot extends IterativeRobot {
       //SmartDashboard.putNumber("Retractor: get", RobotMap.shooterRetractMotorA.get());
       SmartDashboard.putBoolean("Retractor: shooterRetractPrimed", RobotMap.shooterRetractPrimed);
       SmartDashboard.putBoolean("Retractor: shooterRetractRetracted", RobotMap.shooterRetractRetracted);
-      SmartDashboard.putData(Robot.shooterRetractor.getCurrentCommand());
+     // SmartDashboard.putData(Robot.shooterRetractor.getCurrentCommand());
       //SmartDashboard.putNumber("Retractor: CL err:", RobotMap.shooterRetractMotorA.getClosedLoopError());
       //SmartDashboard.putNumber("Retractor: getError", RobotMap.shooterRetractMotorA.getError());
       //SmartDashboard.putNumber("Retractor: getEncpos", RobotMap.shooterRetractMotorA.getEncPosition());
@@ -224,7 +225,7 @@ public class Robot extends IterativeRobot {
 		Robot.chassisPID.resetGyro();
     	RobotMap.intakeArmPIDMotorA.enableBrakeMode(false);     //TODO   Dow we want on
     	RobotMap.intakeArmPIDMotorB.enableBrakeMode(false);
-    	RobotMap.shooterRetractMotorA.setEncPosition(0);
+    	//RobotMap.shooterRetractMotorA.setEncPosition(0);
     	Robot.powerTakeOff.LiftOff();
     	//new shooterRetract_PrimeManual();
     	
@@ -255,10 +256,12 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        RobotMap.shooterRetractMotorA.setEncPosition(0);
+        //RobotMap.shooterRetractMotorA.setEncPosition(0);
         //RobotMap.shooterRetractMotorA.setSetpoint(RobotMap.shooterRetractMotorA.getPosition());
         RobotMap.shooterRetractMotorA.disable();
-        //new shooterRetract_PrimeManual();
+        
+
+        
         //Robot.scaler.pinIn();
         
     }
@@ -269,6 +272,7 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         robotPeriodic();
+
     }
 
     /**

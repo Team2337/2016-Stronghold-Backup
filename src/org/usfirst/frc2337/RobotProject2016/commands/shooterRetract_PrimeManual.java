@@ -14,8 +14,10 @@ public class shooterRetract_PrimeManual extends Command{
 	}
 	protected void initialize() {
 		RobotMap.shooterRetractMotorA.enable();
-		setTimeout(4);
+		setTimeout(6);
+		if ((RobotMap.slidePINSensor.get() == true) || (Robot.shooterRetractor.onLimitSwitch())) {
 		Robot.shooter.shooterShoot();
+		}
 		RobotMap.shooterRetractRetracted = false;
 		RobotMap.shooterRetractMotorA.changeControlMode(TalonControlMode.PercentVbus);
 	
