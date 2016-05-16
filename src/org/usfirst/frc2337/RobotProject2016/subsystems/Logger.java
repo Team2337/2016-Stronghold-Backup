@@ -1,9 +1,11 @@
 package org.usfirst.frc2337.RobotProject2016.subsystems;
 
-import org.usfirst.frc2337.RobotProject2016.OI;
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 import org.usfirst.frc2337.RobotProject2016.commands.*;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Relay;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 import java.io.FileWriter;
@@ -31,7 +33,8 @@ public static void IOInfoSB() {
 		
 		//'name' to match name in 'state' section.
 		// direction' = Input/Output.  
-		// All others for information only.
+		// type & port for information only.
+	
 		// Add a line for every item to be logged. 
 		
 		builder.append("{\"ioinfo\":[\n");
@@ -79,13 +82,71 @@ public static void IOInfoSB() {
 		addIOInfo("DS-Black_Switch", "switch", "Input", "9");
 		addIOInfo("DS-Yellow_Switch", "switch", "Input", "10");
 		
+		addIOInfo("gyro-Fused-Heading", "gyro", "Input", "");
+		addIOInfo("gyro-Yaw", "gyro", "Input", "");
+		addIOInfo("gyro-Angle", "gyro", "Input", "");
+		addIOInfo("gyro-Pitch", "gyro", "Input", "");
+		addIOInfo("gyro-Dipl-X", "gyro", "Input", "");
+		addIOInfo("accelerometer-chassis", "accel", "Input", "");
+		addIOInfo("stringpot-intake", "pot", "Input", "");
+		addIOInfo("ball sensor-intake", "sensor", "Input", "");
+		addIOInfo("ultrasonic sensor-inches","sensor 12 13", "Input", "");
+
+		addIOInfo("retractor-onPin","sensor", "Input", "");
+		addIOInfo("retractor-Primed","sensor", "Input", "");
+		addIOInfo("retractor-Prepped tbd","sensor", "Input", "");
+		
+		addIOInfo("Left1-voltage","", "Input", "0");
+		addIOInfo("Left1-current","", "Input", ""); 
+		addIOInfo("Right1-voltage","", "Input", "15");
+		addIOInfo("Right1-current","", "Input", "");
+		
+		addIOInfo("intakeArm-position","", "Input", "3");
+		addIOInfo("intakeArm-setpoint","", "Input", "");
+		addIOInfo("intakeArm-error","", "Input", "");
+		addIOInfo("intakeArm-current","", "Input", "");
+		addIOInfo("intakeArm-voltage","", "Input", "");
+		
+		addIOInfo("intakeMotor-get","", "Input", "6");
+		addIOInfo("intakeMotor-current","", "Input", "");
+		addIOInfo("intakeMotor-voltage","", "Input", "");
+		
+		addIOInfo("retractor-get","", "Input", "7");
+		addIOInfo("retractor-setpoint","", "Input", "");
+		addIOInfo("retractor-error","", "Input", "");
+		addIOInfo("retractor-current","", "Input", "");;
+		addIOInfo("retractor-voltage","","Input", "");
+		addIOInfo("retractor-position","", "Input", "");
+		
+		addIOInfo("high-Gear","", "Input", "");				//  0,0
+		//addIOInfo("PTO","", "Input", "");					// (0, 2, 3);
+		//addIOInfo("shooterArm-solenoid","", "Input", "");	// (1, 1, 6);
+		//addIOInfo("shooter-Pin","", "Input", ""); 		// (1, 2, 5);
+		addIOInfo("grapplingHook-Release","", "Input", ""); // (1, 7, 0);
+		///????
+	    
+		addIOInfo("leftArmLED","", "Input", "");			// (0, 7);
+		addIOInfo("gripLED","", "Input", "");				// (1, 3);
+		addIOInfo("ballSensorLED","", "Input", "");			//)(1,4);
+		addIOInfo("rightArmLED","", "Input", "");			// (0, 1);
+		//addIOInfo("retractor-position","", "Input", "");	// (0, Relay.Direction.kForward); "value"?
+		
+		
+		
+		//This goes last to close out entry.
 		
 		builder.setLength(Math.max(builder.length() - 1,0));  	//remove comma from last entry.
 		builder.append("\n\t]");								//close out ioinfo entry.
 		builder.append("\n\"state\":[\n");						//start state entries.
 	}
 	
-public static void stateSB() {  
+public static void stateSB() { 
+	
+	//'name' to match name in 'ioinfo' section.
+	// parent for information only.
+	// use methods to read values within corresponding addStateBoolean/Double/Int
+
+	// Add a line for every item to be logged. 
 	
 	builder.append("\n\t{\"timestamp\":\"" + System.currentTimeMillis() + "\",\"values\":[");
 
@@ -132,6 +193,66 @@ public static void stateSB() {
 	addStateBoolean("DS-Blue_Switch","Switch",Robot.oi.operatorControls.getRawButton(9));
 	addStateBoolean("DS-Yellow_Switch","Switch",Robot.oi.operatorControls.getRawButton(10));
 	
+	addStateDouble("gyro-Fused-Heading", "gyro", RobotMap.gyro.getFusedHeading());
+	addStateDouble("gyro-Yaw", "gyro", RobotMap.gyro.getYaw());
+	addStateDouble("gyro-Angle", "gyro", RobotMap.gyro.getAngle());
+	addStateDouble("gyro-Pitch", "gyro", RobotMap.gyro.getPitch());
+	addStateDouble("gyro-Dipl-X", "gyro", RobotMap.gyro.getDisplacementX());
+	
+	addStateDouble("accelerometer-chassis", "accel", RobotMap.chassisPIDaccelerometer.getAcceleration());
+	addStateDouble("stringpot-intake", "pot", RobotMap.shooterArmPIDshooterArmPot.get());
+	addStateBoolean("ball sensor-intake", "sensor", RobotMap.intakeBallSensor.get());
+	addStateDouble("ultrasonic sensor-inches","sensor 12 13",RobotMap.chassisPIDultrasonicSensor.getRangeInches());
+
+	addStateBoolean("retractor-onPin","sensor",RobotMap.slidePINSensor.get());
+	addStateBoolean("retractor-Primed","sensor",RobotMap.shooterRetractMotorA.isRevLimitSwitchClosed());
+	addStateBoolean("retractor-Prepped tbd","sensor",RobotMap.shooterRetractMotorA.isFwdLimitSwitchClosed());
+	
+	addStateDouble("Left1-voltage","",RobotMap.chassisPIDchassisLeft1.getOutputVoltage());
+	addStateDouble("Left1-current","",RobotMap.chassisPIDchassisLeft1.getOutputCurrent()); 
+	addStateDouble("Right1-voltage","",RobotMap.chassisPIDchassisRight1.getOutputVoltage());
+	addStateDouble("Right1-current","",RobotMap.chassisPIDchassisRight1.getOutputCurrent());
+	
+	addStateDouble("intakeArm-position","",RobotMap.intakeArmPIDMotorA.get());
+	addStateDouble("intakeArm-setpoint","",RobotMap.intakeArmPIDMotorA.getSetpoint());
+	addStateDouble("intakeArm-error","",RobotMap.intakeArmPIDMotorA.getError());
+	addStateDouble("intakeArm-current","",RobotMap.intakeArmPIDMotorA.getOutputCurrent());
+	addStateDouble("intakeArm-voltage","",RobotMap.intakeArmPIDMotorA.getOutputVoltage());
+	
+	addStateDouble("intakeMotor-get","",RobotMap.intakeintakeMotorA.get());
+	addStateDouble("intakeMotor-current","",RobotMap.intakeintakeMotorA.getOutputCurrent());
+	addStateDouble("intakeMotor-voltage","",RobotMap.intakeintakeMotorA.getOutputVoltage());
+	
+	addStateDouble("retractor-get","",RobotMap.shooterRetractMotorA.get());
+	addStateDouble("retractor-setpoint","",RobotMap.shooterRetractMotorA.getSetpoint());
+	addStateDouble("retractor-error","",RobotMap.shooterRetractMotorA.getError());
+	addStateDouble("retractor-current","",RobotMap.shooterRetractMotorA.getOutputCurrent());
+	addStateDouble("retractor-voltage","",RobotMap.shooterRetractMotorA.getOutputVoltage());
+	addStateDouble("retractor-position","",RobotMap.shooterRetractMotorA.getEncPosition());
+	
+
+	//PCM   //todo figure out DoubleSolenoid.Value
+	addStateBoolean("high-Gear","",RobotMap.chassisShiftershiftSolenoid.get());//  0,0
+	//addStateBoolean("PTO","",RobotMap.powerTakeOffptoSolenoid.get()); // (0, 2, 3);
+	//addStateBoolean("shooterArm-solenoid","",RobotMap.linearAccElevatorSolenoidA.get());// (1, 1, 6);
+	//addStateBoolean("shooter-Pin","",RobotMap.ShooterPneumaticPin.get());// (1, 2, 5);
+	addStateBoolean("grapplingHook-Release","",RobotMap.grapplingHookRelease.equals("kForward"));//(1, 7, 0);
+	///????
+    
+	addStateBoolean("leftArmLED","",RobotMap.leftArmLED.get());// (0, 7);
+	addStateBoolean("gripLED","",RobotMap.ledGRIPCamera.get());// (1, 3);
+	addStateBoolean("ballSensorLED","",RobotMap.ballSensorLED.get());//)(1,4);
+	addStateBoolean("rightArmLED","",RobotMap.rightArmLED.get());// (0, 1);
+	//addStateBoolean("retractor-position","",RobotMap.targetLightLight.get());// (0, Relay.Direction.kForward); "value"?
+	
+	
+	
+    //add PDP 	RobotMap.chassisPIDpowerDistributionPanel.getCurrent(1);
+	
+	
+	
+	//These two lines go last to close out entry.
+	
 	builder.setLength(Math.max(builder.length() - 1,0));  	//remove comma from last entry.
 	builder.append("\n\t\t] },");							//close out ioinfo entry.
 	
@@ -139,19 +260,18 @@ public static void stateSB() {
 	
 	public static void finalStateSB() {
 		
+		//todo figure out how to print to kangaroo or usb thumbdrive
+		
 		builder.append("\t] \n}");			// close out JSON format
  
-		// try
-		try (FileWriter file = new FileWriter("/Users/Robin/Documents/file3.txt")) {
+		try (FileWriter file = new FileWriter("~/WildLog.txt")) {
 			file.write(builder.toString());
 			System.out.println("Successfully Copied state String to File...");
 			System.out.println("builder string: \n" + builder);
 		}catch (IOException e) {
 		    System.err.println("Caught IOException (ioinfo): " + e.getMessage());
-		}	
-		
-	}
-		
+		}		
+	}		
 	
 	public static void addIOInfo(String name, String type, String direction, String port) {
 		
@@ -168,16 +288,11 @@ public static void stateSB() {
 		builder.append(m_direction);
 		builder.append("\",\"port\":\"");
 		builder.append(m_port);
-		builder.append("\"}");	
-		
-		builder.append(",");
-		
-		
+		builder.append("\"}");		
+		builder.append(",");	
 	}
 	
 	public static void addStateBoolean(String name, String parent, boolean value) {
-		
-		// have method for int, double, boolean & ???object??? et.al...
 		
 		String m_name = name;
 		String m_parent = parent;
@@ -189,13 +304,10 @@ public static void stateSB() {
 		builder.append(m_parent);
 		builder.append("\",\"value\":\"");
 		builder.append(m_value);
-		builder.append("\"},");	
-		
+		builder.append("\"},");		
 	}
 	
 	public static void addStateInt(String name, String parent, int value) {
-		
-		// have method for int, double, boolean & ???object??? et.al...
 		
 		String m_name = name;
 		String m_parent = parent;
@@ -207,13 +319,10 @@ public static void stateSB() {
 		builder.append(m_parent);
 		builder.append("\",\"value\":\"");
 		builder.append(m_value);
-		builder.append("\"},");	
-		
+		builder.append("\"},");		
 	}
 	
 	public static void addStateDouble(String name, String parent, double value) {
-		
-		// have method for int, double, boolean & ???object??? et.al...
 		
 		String m_name = name;
 		String m_parent = parent;
@@ -225,8 +334,7 @@ public static void stateSB() {
 		builder.append(m_parent);
 		builder.append("\",\"value\":\"");
 		builder.append(m_value);
-		builder.append("\"},");	
-		
+		builder.append("\"},");		
 	}
 	
 }
