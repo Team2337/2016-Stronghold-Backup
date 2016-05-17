@@ -8,27 +8,55 @@ import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class Logger extends Subsystem {
 	
+	public static File f;
 	public static StringBuilder builder = new StringBuilder();
+	public static FileWriter fw_file;
+	public static BufferedWriter bw_file;
 	
 	protected void initDefaultCommand() {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
 		
 		/*
-		IOInfoSB();  	//init
-		stateSB();   	//default command, maybe add counter/delay
-		finalStateSB();	// in disable?  call more often in case of crash?  longer counter in default command??
-						//boolean to track if printed to file so as to not double close file???
+		 * InitSB();		//robotInit?
+		 * IOInfoSB();  	//robotInit?
+		 * stateSB();   	//robotPeriodic?  default command?, maybe add counter/delay but would miss events
+		 * finalStateSB();	// in disable???
+		 * or put all in default command and use a switch to end/write file
+		 * flushSB(); 		//in robotDisabled
 		*/
 		
 	}
 	
-	
+	public static void initSB() {
+
+    	try {
+    		//add string variable to read current time and use that 
+    		f = new File("/home/lvuser/WildLog.txt");	//media/sda1 for usb
+    		if(!f.exists()){
+    			f.createNewFile();
+    		}
+			fw_file = new FileWriter(f);
+		} catch (IOException e) {
+			System.err.println("Caught IOException (init fw): " + e.getMessage());
+		}
+    	bw_file = new BufferedWriter(fw_file);
+    	//below is for testing purposes and can be deleted later...
+		try  {
+			bw_file.write(builder.toString());
+			System.out.println("Successfully Copied INIT String to File...");
+			System.out.println("builder string: \n" + builder);
+		}catch (IOException e) {
+		    System.err.println("Caught IOException (init bw): " + e.getMessage());
+		}
+	}
 public static void IOInfoSB() {
 		
 		//'name' to match name in 'state' section.
@@ -37,7 +65,7 @@ public static void IOInfoSB() {
 	
 		// Add a line for every item to be logged. 
 		
-		builder.append("{\"ioinfo\":[\n");
+		builder.append("{\"ioinfo\":[");
 		
 		addIOInfo("Dr-Green_A", "button", "Input", "1");
 		addIOInfo("Dr-Reb_B", "button", "Input", "2");
@@ -131,13 +159,28 @@ public static void IOInfoSB() {
 		addIOInfo("rightArmLED","", "Input", "");			// (0, 1);
 		//addIOInfo("retractor-position","", "Input", "");	// (0, Relay.Direction.kForward); "value"?
 		
+		addIOInfo("PDP 1","","Input", "");
+		addIOInfo("PDP 2","","Input", "");
+		addIOInfo("PDP 3","","Input", "");
+		addIOInfo("PDP 4","","Input", "");
+		addIOInfo("PDP 5","","Input", "");
+		addIOInfo("PDP 5","","Input", "");
+		addIOInfo("PDP 7","","Input", "");
+		addIOInfo("PDP 8","","Input", "");
+		addIOInfo("PDP 9","","Input", "");
+		addIOInfo("PDP 10","","Input", "");
+		addIOInfo("PDP 11","","Input", "");
+		addIOInfo("PDP 12","","Input", "");
+		addIOInfo("PDP 13","","Input", "");
+		addIOInfo("PDP 14","","Input", "");
+		addIOInfo("PDP 15","","Input", "");
+		addIOInfo("PDP 16","","Input", "");
 		
-		
-		//This goes last to close out entry.
+		//These three lines go last to close out the entry.
 		
 		builder.setLength(Math.max(builder.length() - 1,0));  	//remove comma from last entry.
 		builder.append("\n\t]");								//close out ioinfo entry.
-		builder.append("\n\"state\":[\n");						//start state entries.
+		builder.append("\n\"state\":[");						//start state entries.
 	}
 	
 public static void stateSB() { 
@@ -230,25 +273,39 @@ public static void stateSB() {
 	addStateDouble("retractor-voltage","",RobotMap.shooterRetractMotorA.getOutputVoltage());
 	addStateDouble("retractor-position","",RobotMap.shooterRetractMotorA.getEncPosition());
 	
-
-	//PCM   //todo figure out DoubleSolenoid.Value
+	//PCM
+	//todo figure out DoubleSolenoid.Value (maybe write methods and track Booleans...
 	addStateBoolean("high-Gear","",RobotMap.chassisShiftershiftSolenoid.get());//  0,0
 	//addStateBoolean("PTO","",RobotMap.powerTakeOffptoSolenoid.get()); // (0, 2, 3);
 	//addStateBoolean("shooterArm-solenoid","",RobotMap.linearAccElevatorSolenoidA.get());// (1, 1, 6);
 	//addStateBoolean("shooter-Pin","",RobotMap.ShooterPneumaticPin.get());// (1, 2, 5);
 	addStateBoolean("grapplingHook-Release","",RobotMap.grapplingHookRelease.equals("kForward"));//(1, 7, 0);
-	///????
-    
+	///???? 
 	addStateBoolean("leftArmLED","",RobotMap.leftArmLED.get());// (0, 7);
 	addStateBoolean("gripLED","",RobotMap.ledGRIPCamera.get());// (1, 3);
 	addStateBoolean("ballSensorLED","",RobotMap.ballSensorLED.get());//)(1,4);
 	addStateBoolean("rightArmLED","",RobotMap.rightArmLED.get());// (0, 1);
 	//addStateBoolean("retractor-position","",RobotMap.targetLightLight.get());// (0, Relay.Direction.kForward); "value"?
 	
+    //add PDP 	RobotMap.chassisPIDpowerDistributionPanel.getCurrent(1);  and ID must be 0
+	addStateDouble("PDP 1","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(1));
+	addStateDouble("PDP 2","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(2));
+	addStateDouble("PDP 3","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(3));
+	addStateDouble("PDP 4","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(4));
+	addStateDouble("PDP 5","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(5));
+	addStateDouble("PDP 5","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(6));
+	addStateDouble("PDP 7","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(7));
+	addStateDouble("PDP 8","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(8));
+	addStateDouble("PDP 9","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(9));
+	addStateDouble("PDP 10","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(10));
+	addStateDouble("PDP 11","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(11));
+	addStateDouble("PDP 12","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(12));
+	addStateDouble("PDP 13","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(13));
+	addStateDouble("PDP 14","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(14));
+	addStateDouble("PDP 15","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(15));
+	addStateDouble("PDP 16","",RobotMap.chassisPIDpowerDistributionPanel.getCurrent(16));
 	
-	
-    //add PDP 	RobotMap.chassisPIDpowerDistributionPanel.getCurrent(1);
-	
+	//add BOOLEANS???
 	
 	
 	//These two lines go last to close out entry.
@@ -260,18 +317,41 @@ public static void stateSB() {
 	
 	public static void finalStateSB() {
 		
-		//todo figure out how to print to kangaroo or usb thumbdrive
+		//todo figure out how to print to kangaroo
 		
-		builder.append("\t] \n}");			// close out JSON format
+		builder.setLength(Math.max(builder.length() - 1,0));  		//remove comma from last entry.
+		builder.append("\n\t] \n} \n\n\n");								// close out JSON format
  
-		try (FileWriter file = new FileWriter("~/WildLog.txt")) {
+		try{
+			if(bw_file!=null)
+			 bw_file.close();
+			System.out.println("Successfully Closed state String to File...");
+			System.out.println("builder string: \n" + builder);
+		   	}catch(Exception ex){
+		       System.out.println("Error in closing the BufferedWriter"+ex);
+		    }
+		
+		/*
+		try (FileWriter file = new FileWriter("/home/lvuser/WildLog.txt")) {  //media/sda1 for usb
 			file.write(builder.toString());
 			System.out.println("Successfully Copied state String to File...");
 			System.out.println("builder string: \n" + builder);
 		}catch (IOException e) {
 		    System.err.println("Caught IOException (ioinfo): " + e.getMessage());
-		}		
+		}	
+		*/	
 	}		
+	
+	public static void flushSB() {
+		
+		try{
+			if(bw_file!=null)
+			 bw_file.flush();
+			System.out.println("Successfully flushed String to File...");
+		   	}catch(Exception ex){
+		       System.out.println("Error in flushing the BufferedWriter"+ex);
+		    }
+	}
 	
 	public static void addIOInfo(String name, String type, String direction, String port) {
 		

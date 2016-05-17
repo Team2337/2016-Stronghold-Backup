@@ -81,6 +81,8 @@ public class Robot extends IterativeRobot {
         
         oi = new OI();
 
+
+        
         // Autonomous
         
         locationChooser = new SendableChooser();
@@ -211,6 +213,8 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
+    	
+    	Logger.flushSB();
 
     }
 
