@@ -144,6 +144,7 @@ public class Robot extends IterativeRobot {
         
         
         RobotMap.gyro.reset();
+        RobotMap.shooterRetractMotorA.setEncPosition(0);
 
 
     }
@@ -195,7 +196,7 @@ public class Robot extends IterativeRobot {
       SmartDashboard.putBoolean("Retractor Limit", Robot.shooterRetractor.onLimitSwitch());
       
       //SmartDashboard.putBoolean("Linear Elevator Status",  Robot.linAccElevator.getLinAccElevatorStatus());
-      //SmartDashboard.putBoolean("Ultrasonic State",  RobotMap.chassisPIDultrasonicSensor.isEnabled());
+      SmartDashboard.putBoolean("Ultrasonic State",  RobotMap.chassisPIDultrasonicSensor.isEnabled());
       SmartDashboard.putNumber("Ultrasonic Distance",  RobotMap.chassisPIDultrasonicSensor.getRangeInches());
 
       

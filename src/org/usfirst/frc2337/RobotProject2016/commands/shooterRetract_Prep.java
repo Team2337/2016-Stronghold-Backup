@@ -16,7 +16,7 @@ public class shooterRetract_Prep extends Command{
 		RobotMap.shooterRetractMotorA.enable();
 		Robot.shooterRetractor.setRetractPosition(Robot.shooterRetractor.preppedRetractorPosition);
 		
-		setTimeout(4);
+		setTimeout(6);
 		}
 
 	protected void execute() {
@@ -28,6 +28,8 @@ public class shooterRetract_Prep extends Command{
 		   //System.out.println("on Target");
 		}
 		return (Robot.shooterRetractor.preppedOnTarget() || isTimedOut());
+		//add when second limit switch is installed
+		//return (Robot.shooterRetractor.preppedOnTarget() || isTimedOut() || Robot.shooterRetractor.preppedOnTarget());
 		
 		//return false;
 }

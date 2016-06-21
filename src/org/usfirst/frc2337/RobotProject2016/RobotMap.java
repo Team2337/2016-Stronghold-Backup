@@ -52,6 +52,7 @@ public class RobotMap {
     public static CANTalon intakeintakeMotorB;
     public static CANTalon intakeArmPIDMotorB;
     public static CANTalon shooterRetractMotorA;
+    public static CANTalon shooterRetractMotorB;
 
     //public static CameraServer cam0;
     
@@ -194,16 +195,21 @@ public class RobotMap {
         shooterRetractMotorA.changeControlMode(TalonControlMode.Position);
         shooterRetractMotorA.setPID(1, 0.0, 0.0);    //2
         shooterRetractMotorA.setAllowableClosedLoopErr(30);
-        shooterRetractMotorA.reverseOutput(true);
+        shooterRetractMotorA.reverseOutput(false);
         shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
         //shooterRetractMotorA.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Absolute);
-        shooterRetractMotorA.configNominalOutputVoltage(+4f, -8f);
+        shooterRetractMotorA.configNominalOutputVoltage(+0f, -8f);
         shooterRetractMotorA.configPeakOutputVoltage(+12f, -12f);
         shooterRetractMotorA.setProfile(0);
         //shooterRetractMotorA.setP(10);
        /// shooterRetractMotorA.enableBrakeMode(true);
         //shooterRetractMotorA.enableReverseSoftLimit(true);
         //shooterRetractMotorA.setReverseSoftLimit(-0.3);
+        
+        shooterRetractMotorB = new CANTalon(8);
+        shooterRetractMotorB.changeControlMode(TalonControlMode.Follower);
+        shooterRetractMotorB.set(shooterRetractMotorA.getDeviceID());
+        shooterRetractMotorB.reverseOutput(false);
 
         intakeBallSensor = new DigitalInput(10);
         slidePINSensor = new DigitalInput(11);

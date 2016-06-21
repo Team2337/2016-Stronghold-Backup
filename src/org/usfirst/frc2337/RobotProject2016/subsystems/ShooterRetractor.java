@@ -13,9 +13,9 @@ public class ShooterRetractor extends Subsystem{
 	
 	
 	// 4096 tics/ rev for Relative.  1.3 rev Absolute = (4096 * 1.3) 5325 tic range
-	public double primedRetractorPosition = 0.2; 		// 0.1 -0.9   range is roughly 1.3
+	public double primedRetractorPosition = -131; 	//-131
 	
-	public double preppedRetractorPosition = -4.990;   	// 1.2  0.3  0.9   1.2 1.372 3.91 4.86
+	public double preppedRetractorPosition = -1;   //-.5	
 	/*
 	 * -4.985 is retracter pos before changed
 	 * changed: -5?
@@ -88,11 +88,15 @@ public class ShooterRetractor extends Subsystem{
 	}
 	
 	public boolean preppedOnTarget() {
-		return (RobotMap.shooterRetractMotorA.get() < (preppedRetractorPosition - threshold) );
+		return (RobotMap.shooterRetractMotorA.get() > (preppedRetractorPosition - threshold) );
 	}
 	
 	public boolean onLimitSwitch() {
 		return ( RobotMap.shooterRetractMotorA.isRevLimitSwitchClosed() );
+	}
+	
+	public boolean onFwdLimitSwitch() {
+		return ( RobotMap.shooterRetractMotorA.isFwdLimitSwitchClosed() );
 	}
 	
 	public void resetEncoder() {

@@ -31,20 +31,20 @@ public class Auton_GyroAndEncoderDriveTillUltrasonic extends Command {
 		  * Drive until Timeout or roll increases
 		  * @param speed
 		  * @param timeout
-		  * @param distance
+		  * @param indistance
 		  */
-	  public Auton_GyroAndEncoderDriveTillUltrasonic(double speed, double timeout, double distance) {
+	  public Auton_GyroAndEncoderDriveTillUltrasonic(double speed, double timeout, double indistance) {
 		   	requires(Robot.chassisPID);
 		   	m_timeout = timeout;
-	    	m_speed = -speed;
-	    	m_distance = distance;
+	    	m_speed = speed;
+	    	m_distance = indistance;
 	    }
 	  
-	  public Auton_GyroAndEncoderDriveTillUltrasonic(double speed, double timeout, double distance, double roll) {
+	  public Auton_GyroAndEncoderDriveTillUltrasonic(double speed, double timeout, double indistance, double roll) {
 		   	requires(Robot.chassisPID);
 		   	m_timeout = timeout;
-	    	m_speed = -speed;
-	    	m_distance = distance;
+	    	m_speed = speed;
+	    	m_distance = indistance;
 	    	m_roll = roll;
 	    }
 
@@ -62,7 +62,7 @@ public class Auton_GyroAndEncoderDriveTillUltrasonic extends Command {
     	yaw = -RobotMap.gyro.getYaw();
     	distance = RobotMap.chassisPIDultrasonicSensor.getRangeInches();
     	current_roll = RobotMap.gyro.getRoll();
-    	
+    	System.out.println("distance is " + distance + " m_distance is " + m_distance);
     	//RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
     	//RobotMap.chassisDrive.drive(m_speed, yaw*Kp); //TODO check yaw direction okay...
     	RobotMap.chassisDrive.arcadeDrive(m_speed, yaw*Kp, false); //TODO check yaw direction okay..

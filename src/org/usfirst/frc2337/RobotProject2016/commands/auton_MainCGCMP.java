@@ -67,10 +67,11 @@ public class auton_MainCGCMP extends  CommandGroup {
 				addSequential(new shooter_ShootCG());
 			} else if ((position == 3) || (position == 4)) {
 				
-				
-				addSequential(new chassis_TargetWithGyroPID());
+				addSequential(new auton_IntakeInhale(1));
+				addSequential(new intakeArm_armSetPointAutonGround2());
+				//addSequential(new chassis_TargetWithGyroPID());
 				addSequential(new Auton_GyroAndEncoderDriveTillUltrasonic(.6, 6.0, 60, -5));
-				addSequential(new chassis_TargetWithGyroPID());
+				//addSequential(new chassis_TargetWithGyroPID());
 				addSequential(new intakeArm_armSetPointLowGoal());
 				addSequential(new linAccElevator_Extend());
 				addSequential(new auton_Wait(1.0)); 
