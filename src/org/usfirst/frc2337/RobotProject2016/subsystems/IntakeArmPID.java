@@ -20,24 +20,26 @@ public class IntakeArmPID extends PIDSubsystem {
     
    	//Specified angle value for Pot
     public double scale = 2.8;
-    public double travel = 2.8;  //3.5
+    public double travel = 2.8;                 //3.5
     public double autontravel = 2.8;  
    // public double base = 2.55; 
     public double chevy = 4;
-    public double loadPosition = 2.7;
-    public double intakeRollerOffPosition = 2.8;
-    public double lowGoalPosition = 3.55;
-    public double intakePosition = 4.56;
-    public double groundPosition = 4.73;
+    public double loadPosition = 3.09;   //2.7       
+    public double intakeRollerOffPosition = 3.5;
+    public double lowGoalPosition = 4.6;       //3.55 //4.35
+    
+    public double intakePosition = 4.80;        //4.56 GP 6/26/16
+    public double groundPosition = 4.85;
     
 
-    private final double setPointTolerance = 0.1;
-    public final double autonArmSpeedUp = .4;
-    public final double autonArmSpeedDown = -.4;
+    
+    private final double setPointTolerance = .2; //1.0
+    public final double autonArmSpeedUp = .6;
+    public final double autonArmSpeedDown = -.6;
     public final double teleopArmSpeedUp = .5;
     public final double teleopArmSpeedDown = -.4;
-    public final double armToplimit = 4.8;
-    public final double armBottomlimit = 2.58;
+    public final double armToplimit = 4.97;        //4.8 GP 6-26-16
+    public final double armBottomlimit = 2.7;  //2.58
     
     public boolean armPIDstatus = false;
     public boolean armjoystickstatus = true;

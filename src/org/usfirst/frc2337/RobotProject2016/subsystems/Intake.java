@@ -18,7 +18,7 @@ public class Intake extends Subsystem {
 	
     public final double inhaleSpeed = 1.0;
     private final double exhaleSpeed = 1.0;
-    public final double loadSpeed = 0.5;
+    public final double loadSpeed = 1.0;    //.5 GP 6-26-16
 
     private final CANTalon intakeMotorA = RobotMap.intakeintakeMotorA;
     private final CANTalon intakeMotorB = RobotMap.intakeintakeMotorB;

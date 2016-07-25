@@ -209,8 +209,8 @@ public class OI {
         wrist.whenPressed(new linAccElevator_Extend());
         wrist.whenReleased(new linAccElevator_Retract());
         
-       // intakeDoNo = new JoystickButton(operatorJoystick, Start_Button);
-       // intakeDoNo.whenPressed(new intake_DoNothing());
+       intakeDoNo = new JoystickButton(operatorJoystick, Start_Button);
+        intakeDoNo.whenPressed(new intakeArm_armLoadCG());
         
 
         
@@ -220,7 +220,7 @@ public class OI {
         //*****************************  Operator Controls  ******************
         
         retractorManualDown = new JoystickButton(operatorControls, 1);
-        retractorManualDown.whenPressed(new shooterRetract_PrimeManual());
+        retractorManualDown.whenPressed(new shooterRetract_PrepManual());
        
         BlackButton = new JoystickButton(operatorControls, 3);
         BlackButton.whenPressed(new shooterRetract_Prime());
@@ -253,7 +253,9 @@ public class OI {
         blackSwitch.whenReleased(new linAccElevator_Retract());
         
         blueSwitch = new JoystickButton(operatorControls, 9);
-        blueSwitch.whenPressed(new scaler_pinPushIn());
+        blueSwitch.whenPressed(new shooter_Shoot());
+        blueSwitch.whenReleased(new shooter_UnShoot());
+        //blueSwitch.whenPressed(new scaler_pinPushIn());
        // blueSwitch.whenReleased(new scaler_pinPullOut());
         //blueSwitch.whenPressed(new linAccElevator_Extend());
         //blueSwitch.whenReleased(new linAccElevator_Retract());

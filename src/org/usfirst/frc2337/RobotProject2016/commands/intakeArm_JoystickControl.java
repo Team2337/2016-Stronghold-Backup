@@ -12,8 +12,8 @@ import org.usfirst.frc2337.RobotProject2016.RobotMap;
  */
 public class  intakeArm_JoystickControl extends Command {
 
-	public double armSpeedFactor = 1;    //multiply joystick to reduce arm speed
-	private double deadBand = 0.1;
+	public double armSpeedFactor = 0.5;    //multiply joystick to reduce arm speed
+	private double deadBand = 0.2;
 	private double armJoystickY;
 	private double travelError = 1.1;
 	

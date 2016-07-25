@@ -191,7 +191,7 @@ public class RobotMap {
         											// 12v in 20 millisec (20*50=600)	
        
         												//**************************retractor*****
-        shooterRetractMotorA = new CANTalon(7);
+        shooterRetractMotorA = new CANTalon(8);
         shooterRetractMotorA.changeControlMode(TalonControlMode.Position);
         shooterRetractMotorA.setPID(1, 0.0, 0.0);    //2
         shooterRetractMotorA.setAllowableClosedLoopErr(30);
@@ -206,7 +206,7 @@ public class RobotMap {
         //shooterRetractMotorA.enableReverseSoftLimit(true);
         //shooterRetractMotorA.setReverseSoftLimit(-0.3);
         
-        shooterRetractMotorB = new CANTalon(8);
+        shooterRetractMotorB = new CANTalon(7);
         shooterRetractMotorB.changeControlMode(TalonControlMode.Follower);
         shooterRetractMotorB.set(shooterRetractMotorA.getDeviceID());
         shooterRetractMotorB.reverseOutput(false);

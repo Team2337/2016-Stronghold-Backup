@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class auton_MainCGCMP extends  CommandGroup {
 
 	public auton_MainCGCMP(int delay, int position, String defense, int shot) {
+
 		
 		if (delay == 5) {
 			addSequential(new auton_Wait(5.0));
