@@ -7,7 +7,7 @@ import org.usfirst.frc2337.RobotProject2016.commands.*;
 import com.kauailabs.navx.frc.AHRS;
 
 
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Ultrasonic;

@@ -3,7 +3,7 @@ package org.usfirst.frc2337.RobotProject2016.commands;
 import org.usfirst.frc2337.RobotProject2016.Robot;
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
+import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 

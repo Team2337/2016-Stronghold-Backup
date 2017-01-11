@@ -4,7 +4,7 @@ import org.usfirst.frc2337.RobotProject2016.Robot;
 import org.usfirst.frc2337.RobotProject2016.RobotMap;
 import org.usfirst.frc2337.RobotProject2016.commands.shooterRetract_DoNothing;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ShooterRetractor extends Subsystem{
